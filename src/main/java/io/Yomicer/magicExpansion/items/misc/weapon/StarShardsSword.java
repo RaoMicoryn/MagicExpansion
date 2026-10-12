@@ -45,19 +45,19 @@ import java.util.stream.Collectors;
 public class StarShardsSword extends SimpleSlimefunItem<ItemUseHandler> implements RecipeDisplayItem, Listener {
 
 
-    //新增自定义倍率
+    // New custom multiplier
 //    public static final double DAMAGE_MULTIPLIER = 61.8;
-    // A5: 技能冷却表改为 static + ConcurrentHashMap，保证多线程安全且可被静态 cleanup 清理
+    // A5: the skill cooldown table is now static + ConcurrentHashMap, so it's thread-safe and can be cleared by a static cleanup
     private static final Map<UUID, Map<String, Long>> cooldowns = new ConcurrentHashMap<>();
-    // A5: 冷却提示限频时间戳改为 static + ConcurrentHashMap
+    // A5: the cooldown message rate-limit timestamps are now static + ConcurrentHashMap
     private static final Map<UUID, Long> lastMessageTime = new ConcurrentHashMap<>();
-    // A3: 星界护盾无敌期表——记录玩家 UUID → 无敌到期时间戳，由 onEntityDamage 的事件取消逻辑实现无敌
+    // A3: Astral Shield invincibility table - saves player UUID → invincibility end timestamp, and invincibility is done by the event cancel logic in onEntityDamage
     private static final Map<UUID, Long> invulnerableUntil = new ConcurrentHashMap<>();
-    // A7: 攻击处理重入锁——本方法内的 target.damage(...) 会再次触发 EntityDamageByEntityEvent 并重新进入本处理器，
-    // 若不拦截会造成 攻击事件 → damage() → 攻击事件 → damage() … 无限递归（StackOverflowError）。
-    // 伤害事件全部同步发生在主线程，用 ThreadLocal 标记本次攻击的处理窗口，期间所有嵌套伤害事件一律直接跳过。
+    // A7: attack handling re-entry lock - the target.damage(...) inside this method fires EntityDamageByEntityEvent again and comes back into this handler,
+    // and if we don't block it, it causes attack event → damage() → attack event → damage() … infinite recursion (StackOverflowError).
+    // All damage events happen synchronously on the main thread, so we use a ThreadLocal to mark the handling window of this attack, and all nested damage events inside it are skipped.
     private static final ThreadLocal<Boolean> PROCESSING_ATTACK = ThreadLocal.withInitial(() -> false);
-    // A6: 删除了未使用的流血任务死字段 bleedingTasks（流血任务实际存放在目标实体的 metadata 中）
+    // A6: removed the unused dead field bleedingTasks for bleed tasks (bleed tasks are really saved in the target entity's metadata)
 
     Config cfg = new Config(MagicExpansion.getInstance());
     Double StarShards_Atk_Mix = cfg.getDouble("StarShardsSword.StarShards_Atk_Mix");
@@ -92,63 +92,63 @@ public class StarShardsSword extends SimpleSlimefunItem<ItemUseHandler> implemen
 
             String namespace = "star_shards_sword";
 
-            // 💥 攻击力 +1314（固定值）
+            // 💥 Attack damage +1314 (fixed value)
             UUID atk1Id = UUID.nameUUIDFromBytes((namespace + "_atk_add").getBytes());
             meta.addAttributeModifier(
                     Attribute.GENERIC_ATTACK_DAMAGE,
                     new AttributeModifier(atk1Id, "StarShards_Atk_Add", StarShards_Atk_Add, AttributeModifier.Operation.ADD_NUMBER)
             );
 
-            // 💥 攻击力 +618%（乘法）
+            // 💥 Attack damage +618% (multiply)
             UUID atk2Id = UUID.nameUUIDFromBytes((namespace + "_atk_mult").getBytes());
             meta.addAttributeModifier(
                     Attribute.GENERIC_ATTACK_DAMAGE,
                     new AttributeModifier(atk2Id, "StarShards_Atk_Mult", StarShards_Atk_Mult, AttributeModifier.Operation.MULTIPLY_SCALAR_1)
             );
 
-            // ⚡ 攻击速度 +2000% → 最终速度 = 原速 × (1 + 20.0) = 21倍！
+            // ⚡ Attack speed +2000% → final speed = base speed × (1 + 20.0) = 21x!
             UUID atkSpeedId = UUID.nameUUIDFromBytes((namespace + "_atk_speed").getBytes());
             meta.addAttributeModifier(
                     Attribute.GENERIC_ATTACK_SPEED,
                     new AttributeModifier(atkSpeedId, "StarShards_AtkSpeed", StarShards_Atk_Speed, AttributeModifier.Operation.MULTIPLY_SCALAR_1)
             );
 
-            // ❤️ 生命值 +1314（固定值，单位是“半心”，所以 +1314 = +657 颗心！）
+            // ❤️ Health +1314 (fixed value, the unit is "half hearts", so +1314 = +657 hearts!)
             UUID health1Id = UUID.nameUUIDFromBytes((namespace + "_health_add").getBytes());
             meta.addAttributeModifier(
                     Attribute.GENERIC_MAX_HEALTH,
                     new AttributeModifier(health1Id, "StarShards_Health_Add", StarShards_Health_Add, AttributeModifier.Operation.ADD_NUMBER)
             );
 
-            // ❤️ 生命值 +618%（乘法）
+            // ❤️ Health +618% (multiply)
             UUID health2Id = UUID.nameUUIDFromBytes((namespace + "_health_mult").getBytes());
             meta.addAttributeModifier(
                     Attribute.GENERIC_MAX_HEALTH,
                     new AttributeModifier(health2Id, "StarShards_Health_Mult", StarShards_Health_Mult, AttributeModifier.Operation.MULTIPLY_SCALAR_1)
             );
 
-            // 🏃 移动速度 +1314% → 最终速度 = 原速 × (1 + 13.14) = 14.14倍！
+            // 🏃 Movement speed +1314% → final speed = base speed × (1 + 13.14) = 14.14x!
             UUID moveSpeedId = UUID.nameUUIDFromBytes((namespace + "_move_speed").getBytes());
             meta.addAttributeModifier(
                     Attribute.GENERIC_MOVEMENT_SPEED,
                     new AttributeModifier(moveSpeedId, "StarShards_MoveSpeed", StarShards_MoveSpeed, AttributeModifier.Operation.MULTIPLY_SCALAR_1)
             );
 
-            // 🛡️ 护甲值 +200（固定值）
+            // 🛡️ Armor +200 (fixed value)
             UUID armorId = UUID.nameUUIDFromBytes((namespace + "_armor").getBytes());
             meta.addAttributeModifier(
                     Attribute.GENERIC_ARMOR,
                     new AttributeModifier(armorId, "StarShards_Armor", StarShards_Armor, AttributeModifier.Operation.ADD_NUMBER)
             );
 
-            // 🧱 护甲韧性 +200（固定值）
+            // 🧱 Armor toughness +200 (fixed value)
             UUID toughnessId = UUID.nameUUIDFromBytes((namespace + "_toughness").getBytes());
             meta.addAttributeModifier(
                     Attribute.GENERIC_ARMOR_TOUGHNESS,
                     new AttributeModifier(toughnessId, "StarShards_Toughness", StarShards_Toughness, AttributeModifier.Operation.ADD_NUMBER)
             );
 
-            // ✈️ 飞行速度 +1314%
+            // ✈️ Flying speed +1314%
             UUID flySpeedId = UUID.nameUUIDFromBytes((namespace + "_fly_speed").getBytes());
             meta.addAttributeModifier(
                     Attribute.GENERIC_FLYING_SPEED,
@@ -188,19 +188,19 @@ public class StarShardsSword extends SimpleSlimefunItem<ItemUseHandler> implemen
     public void onEntityDamage(EntityDamageEvent event) {
         if (!(event.getEntity() instanceof Player)) return;
         Player p = (Player) event.getEntity();
-        // A3: 星界护盾无敌期判定（替代原 player.setInvulnerable 方案）
+        // A3: Astral Shield invincibility check (replaces the old player.setInvulnerable approach)
         Long until = invulnerableUntil.get(p.getUniqueId());
         boolean shieldActive = until != null && System.currentTimeMillis() < until;
         if (shieldActive || holyProtectedPlayers.contains(p.getUniqueId())) {
             event.setCancelled(true);
             if (event.getCause() != EntityDamageEvent.DamageCause.VOID) {
-                // A8: 星界护盾反弹——lore 声称"远程攻击自动反弹至来源方向"，现实现：弹射物被反转弹回
+                // A8: Astral Shield reflect - the lore says "ranged attacks are reflected back toward the source automatically", and now it works like this: projectiles get flipped and sent back
                 if (event instanceof EntityDamageByEntityEvent byEntity
                         && byEntity.getDamager() instanceof Projectile projectile) {
                     Vector vel = projectile.getVelocity();
                     if (vel.lengthSquared() > 0.001) {
                         projectile.setVelocity(vel.normalize().multiply(2.2).multiply(-1));
-                        p.getWorld().spawnParticle(Particle.CRIT_MAGIC, projectile.getLocation(), 12, 0.2, 0.2, 0.2, 0.1);
+                        p.getWorld().spawnParticle(Particle.ENCHANTED_HIT, projectile.getLocation(), 12, 0.2, 0.2, 0.2, 0.1);
                         p.getWorld().playSound(projectile.getLocation(), Sound.BLOCK_ANVIL_LAND, 0.8f, 1.8f);
                     }
                 } else {
@@ -208,47 +208,47 @@ public class StarShardsSword extends SimpleSlimefunItem<ItemUseHandler> implemen
                 }
             }
         }
-        // A3: 无敌期已过期的条目顺手移除，防止 Map 残留
+        // A3: while we're here, remove entries whose invincibility has expired, so nothing is left in the Map
         if (until != null && !shieldActive) {
             invulnerableUntil.remove(p.getUniqueId());
         }
     }
 
 
-    // ✅ 攻击事件监听（SF9 唯一方式）
-    // A1: 加 ignoreCancelled = true，被领地保护等插件取消的攻击事件不再重复结算伤害
+    // ✅ Attack event listener (the only way in SF9)
+    // A1: added ignoreCancelled = true, so attack events cancelled by plugins like land protection don't deal damage again
     @EventHandler(ignoreCancelled = true)
     public void onPlayerAttack(EntityDamageByEntityEvent event) {
-        // A7: 本次攻击处理窗口内，由本插件 target.damage(...) 触发的嵌套伤害事件直接跳过，防止无限递归
+        // A7: inside this attack's handling window, nested damage events fired by this plugin's target.damage(...) are skipped, to prevent infinite recursion
         if (PROCESSING_ATTACK.get()) return;
         if (!(event.getDamager() instanceof Player player)) return;
         if (!(event.getEntity() instanceof LivingEntity target)) return;
 
-        // 判断玩家主手是否持有本 Slimefun 物品
+        // Check if the player's main hand is holding this Slimefun item
         ItemStack hand = player.getInventory().getItemInMainHand();
         SlimefunItem handSfItem = getByItem(hand);
         if (!(handSfItem instanceof StarShardsSword)) return;
 
-        // A7: 套上处理锁再执行，期间任何嵌套伤害事件（含技能 target.damage）都会被本方法入口拦截
+        // A7: run it with the handling lock on, so any nested damage event (including the skill's target.damage) gets blocked at the start of this method
         PROCESSING_ATTACK.set(true);
         try {
-            // 应用伤害倍率
-            // *新增固定百分比伤害
-            // 1. 计算本次要附加的真实伤害值（保留原有公式）
+            // Apply the damage multiplier
+            // *New fixed percent damage
+            // 1. Work out the true damage to add this time (keeps the original formula)
             double damageToDeal = event.getDamage() * StarShards_Atk_Mix
                     + target.getMaxHealth() * (StarShards_Atk_ExtraPercent);
 
-            // A2: 原先 target.setHealth(...) 直接扣血会绕过事件系统（无视领地保护/Boss伤害上限），
-            // 改为 target.damage(damage, player) 走标准伤害事件，总伤害效果保持接近
+            // A2: the old target.setHealth(...) took health directly and skipped the event system (ignoring land protection / boss damage caps),
+            // so now we use target.damage(damage, player) to go through the normal damage event, and the total damage stays about the same
             target.damage(damageToDeal, player);
 
             if (target.isDead()) return;
 
-            // --- *新增 触发流血效果 (Bleed Effect) ---
-            //流血简化
+            // --- *New: trigger the bleed effect (Bleed Effect) ---
+            // Simplified bleed
             applyBleedEffect(player, target);
 
-            // 触发技能（baseDamage 用于按本次攻击伤害比例结算技能伤害）
+            // Trigger the skill (baseDamage is used to work out the skill damage in proportion to this attack's damage)
             double baseDamage = event.getDamage();
             if (player.isSneaking()) {
                 castArcaneBlast(player, event.getEntity().getLocation(), baseDamage);
@@ -256,25 +256,25 @@ public class StarShardsSword extends SimpleSlimefunItem<ItemUseHandler> implemen
                 castBlazingSlash(player, event.getEntity().getLocation(), baseDamage);
             }
         } finally {
-            // A7: 无论正常结束还是抛异常，都必须释放处理锁，避免影响后续攻击事件
+            // A7: whether it ends normally or throws an exception, we must release the handling lock, so it doesn't affect later attack events
             PROCESSING_ATTACK.set(false);
         }
     }
 
-    // 修改后：支持多层叠加、直接扣血、保底0.1血量的流血效果
+    // After the change: a bleed effect that supports stacking, takes health directly, and keeps a minimum of 0.1 health
     private void applyBleedEffect(Player damager, LivingEntity target) {
-        // 1. 计算每秒造成的伤害 (目标最大生命值的 StarShards_Atk_Blood 百分比)
+        // 1. Work out the damage per second (StarShards_Atk_Blood percent of the target's max health)
         double damagePerSecond = target.getMaxHealth() * StarShards_Atk_Blood;
 
-        // 2. 为流血效果创建一个唯一的标识符，用于在目标身上打标签
-        // 格式为 "MagicExpansion_BLEED_<攻击者UUID>"，确保来自不同玩家的流血效果可以叠加
+        // 2. Create a unique ID for the bleed effect, used to tag the target
+        // Format is "MagicExpansion_BLEED_<attacker UUID>", so bleed effects from different players can stack
         String bleedTagKey = "MagicExpansion_BLEED_" + damager.getUniqueId();
 
-        // 3. 启动一个持续8秒的异步任务
+        // 3. Start a task that lasts 8 seconds (async)
         BukkitTask bleedTask = new BukkitRunnable() {
-            int ticksPassed = 0; // 记录已过去的游戏刻
+            int ticksPassed = 0; // Counts how many game ticks have passed
 
-            // A6: 任务结束时从目标 metadata 的任务列表中移除自身；列表为空则移除整个 metadata 标签，防止残留
+            // A6: when the task ends, remove itself from the task list in the target's metadata; if the list is empty, remove the whole metadata tag so nothing is left behind
             private void finishAndCleanup() {
                 this.cancel();
                 if (target.hasMetadata(bleedTagKey)) {
@@ -290,79 +290,79 @@ public class StarShardsSword extends SimpleSlimefunItem<ItemUseHandler> implemen
 
             @Override
             public void run() {
-                // 如果目标已死亡或无效，则清理 metadata 并取消任务
+                // If the target is dead or invalid, clean up the metadata and cancel the task
                 if (!target.isValid() || target.isDead()) {
                     finishAndCleanup();
                     return;
                 }
 
-                // 每秒执行一次 (20游戏刻)
+                // Runs once every second (20 game ticks)
                 if (ticksPassed % 20 == 0) {
-                    // --- 核心修改：使用 setHealth 直接扣血 ---
+                    // --- Main change: use setHealth to take health directly ---
                     double newHealth = target.getHealth() - damagePerSecond;
 
-                    // --- 核心修改：如果血量小于等于0，则强制设为0.1 ---
+                    // --- Main change: if health is 0 or less, force it to 0.1 ---
                     if (newHealth <= 0.0) {
                         newHealth = 0.1;
                     }
 
                     target.setHealth(newHealth);
 
-                    // 在目标位置生成血粒子效果
+                    // Spawn blood particles at the target's location
                     target.getWorld().spawnParticle(
-                            Particle.REDSTONE,
+                            Particle.DUST,
                             target.getLocation().add(0, 1, 0),
                             5,
                             0.3, 0.3, 0.3,
                             0,
-                            new Particle.DustOptions(Color.RED, 1.5F) // 新增的颜色与大小参数
+                            new Particle.DustOptions(Color.RED, 1.5F) // Newly added color and size parameters
                     );
                 }
 
                 ticksPassed++;
 
-                // 8秒后 (160游戏刻) 结束任务并清理 metadata
+                // After 8 seconds (160 game ticks), end the task and clean up the metadata
                 if (ticksPassed >= 160) {
                     finishAndCleanup();
                 }
             }
-        }.runTaskTimer(MagicExpansion.getInstance(), 0L, 1L); // 立即开始，每1游戏刻检查一次
+        }.runTaskTimer(MagicExpansion.getInstance(), 0L, 1L); // Starts right away, checks every 1 game tick
 
-        // 4. 将此任务存储在目标的元数据中，以便实现效果叠加
+        // 4. Save this task in the target's metadata, so effects can stack
         List<BukkitTask> targetBleedTasks;
 
-        // 检查目标身上是否已经存在该流血标签
+        // Check if the target already has this bleed tag
         if (target.hasMetadata(bleedTagKey)) {
-            // 如果存在，安全地提取出原来的任务列表
+            // If it does, safely get the old task list
             targetBleedTasks = (List<BukkitTask>) target.getMetadata(bleedTagKey).get(0).value();
         } else {
-            // 如果不存在，创建一个全新的列表
+            // If it doesn't, create a brand new list
             targetBleedTasks = new ArrayList<>();
         }
 
-        // 将新启动的流血任务添加到列表中
+        // Add the newly started bleed task to the list
         targetBleedTasks.add(bleedTask);
 
-        // 更新元数据（覆盖旧数据）
+        // Update the metadata (replace the old data)
         target.setMetadata(bleedTagKey, new FixedMetadataValue(MagicExpansion.getInstance(), targetBleedTasks));
     }
 
 
-    // ========== 冷却与技能方法（保持不变）==========
+    // ========== Cooldown and skill methods (unchanged) ==========
     private boolean checkCooldown(Player player, String skill, long seconds) {
         UUID id = player.getUniqueId();
         long now = System.currentTimeMillis();
-        cooldowns.putIfAbsent(id, new ConcurrentHashMap<>()); // A5: 内层 Map 同步改为 ConcurrentHashMap
+        cooldowns.putIfAbsent(id, new ConcurrentHashMap<>()); // A5: the inner Map is also changed to ConcurrentHashMap
         Map<String, Long> map = cooldowns.get(id);
 
         if (map.containsKey(skill)) {
             long last = map.get(skill);
             if (now < last + seconds * 1000L) {
-                // 防止刷屏：500ms 内不再提示
+                // Stop message spam: no more messages within 500ms
                 Long lastMsg = lastMessageTime.getOrDefault(id, 0L);
                 if (now - lastMsg > 500) {
                     long remain = ((last + seconds * 1000L - now) + 999) / 1000;
-                    player.sendMessage("§c技能冷卻中，還需 " + remain + " 秒");
+                    player.sendMessage("§cSkill is cooling down, " + remain + " more seconds");
                     lastMessageTime.put(id, now);
                 }
                 return false;
@@ -377,7 +377,7 @@ public class StarShardsSword extends SimpleSlimefunItem<ItemUseHandler> implemen
 
         player.getWorld().playSound(hitLoc, Sound.ENTITY_GENERIC_EXPLODE, 1.0f, 1.3f);
 
-        // 🔥 烈焰剑气：从玩家挥向命中点的一道火焰轨迹
+        // 🔥 Flame Sword Aura: a trail of fire from the player to the hit point
         Vector slashDir = hitLoc.toVector().subtract(player.getLocation().toVector());
         double slashDist = slashDir.length();
         if (slashDist > 0.01) slashDir.normalize();
@@ -386,40 +386,40 @@ public class StarShardsSword extends SimpleSlimefunItem<ItemUseHandler> implemen
             player.getWorld().spawnParticle(Particle.FLAME, p, 3, 0.06, 0.06, 0.06, 0.02);
         }
 
-        // 💥 小型爆炸（粒子表现：不破坏地形、不误伤玩家，伤害统一走伤害事件尊重领地保护）
-        player.getWorld().spawnParticle(Particle.EXPLOSION_LARGE, hitLoc, 10, 0.2, 0.2, 0.2, 0);
-        player.getWorld().spawnParticle(Particle.EXPLOSION_HUGE, hitLoc, 3, 0.1, 0.1, 0.1, 0);
+        // 💥 Small explosion (particles only: doesn't break terrain or hurt the player, and damage all goes through the damage event to respect land protection)
+        player.getWorld().spawnParticle(Particle.EXPLOSION, hitLoc, 10, 0.2, 0.2, 0.2, 0);
+        player.getWorld().spawnParticle(Particle.EXPLOSION_EMITTER, hitLoc, 3, 0.1, 0.1, 0.1, 0);
         player.getWorld().spawnParticle(Particle.FLAME, hitLoc, 30, 0.5, 0.5, 0.5, 0.1);
 
-        // 🔥 额外火焰伤害：本次攻击伤害 × 倍率（A8：真实结算，而非仅点燃）
+        // 🔥 Extra fire damage: this attack's damage × multiplier (A8: real damage, not just setting on fire)
         double fireDamage = baseDamage * StarShards_Atk_Fire;
 
         for (Entity e : hitLoc.getWorld().getNearbyEntities(hitLoc, 2.8, 2.8, 2.8)) {
             if (e instanceof LivingEntity le && e != player && le.isValid()) {
-                // 🔥 真实火焰伤害
+                // 🔥 True fire damage
                 if (fireDamage > 0 && !le.isDead()) {
                     le.damage(fireDamage, player);
                 }
-                // 点燃
+                // Set on fire
                 le.setFireTicks(80);
 
-                // 🧨 安全计算击退方向
+                // 🧨 Safely work out the knockback direction
                 Location entityLoc = e.getLocation();
                 Vector toEntity = entityLoc.toVector().subtract(hitLoc.toVector());
                 double distance = toEntity.length();
 
-                // 如果距离太近（< 0.1），就用一个随机水平方向代替，避免 NaN
+                // If it's too close (< 0.1), use a random horizontal direction instead, to avoid NaN
                 if (distance < 0.1) {
-                    // 随机水平方向（XZ 平面）
+                    // Random horizontal direction (XZ plane)
                     double angle = Math.random() * 2 * Math.PI;
                     toEntity = new Vector(Math.cos(angle), 0, Math.sin(angle));
                 } else {
                     toEntity.normalize();
                 }
 
-                // 应用击退：水平方向 + 固定向上
+                // Apply the knockback: horizontal direction + fixed upward
                 toEntity.multiply(0.9).setY(0.5);
-                le.setVelocity(toEntity); // ✅ 现在安全了！
+                le.setVelocity(toEntity); // ✅ Safe now!
             }
         }
     }
@@ -430,7 +430,7 @@ public class StarShardsSword extends SimpleSlimefunItem<ItemUseHandler> implemen
         Vector playerForward = player.getEyeLocation().getDirection().normalize();
         Location playerOrigin = player.getEyeLocation();
 
-        double coneAngleCos = Math.cos(Math.toRadians(25)); // ±25度锥形
+        double coneAngleCos = Math.cos(Math.toRadians(25)); // ±25 degree cone
         List<LivingEntity> targets = new ArrayList<>();
 
         for (LivingEntity entity : player.getWorld().getNearbyLivingEntities(playerOrigin, 8.0)) {
@@ -442,21 +442,21 @@ public class StarShardsSword extends SimpleSlimefunItem<ItemUseHandler> implemen
             if (distance == 0) continue;
 
             toEntity.normalize();
-            double dot = playerForward.dot(toEntity); // 夹角余弦值
+            double dot = playerForward.dot(toEntity); // Cosine of the angle
 
-            // 如果在锥形内（角度 ≤ 25°）
+            // If it's inside the cone (angle ≤ 25°)
             if (dot >= coneAngleCos) {
                 targets.add(entity);
             }
         }
 
-        // 🎵 音效：魔法释放
+        // 🎵 Sound: magic release
         player.getWorld().playSound(origin, Sound.ENTITY_ELDER_GUARDIAN_CURSE, 1.0f, 0.7f);
 
-        // ✨ 奥术光束：逐段向前推进（A8：更有蓄力/脉冲贯穿感）
+        // ✨ Arcane Beam: moves forward piece by piece (A8: feels more like charging up / a piercing pulse)
         BukkitRunnable beam = new BukkitRunnable() {
             int segment = 0;
-            final int maxSegment = 20; // 8格 / 0.4
+            final int maxSegment = 20; // 8 blocks / 0.4
 
             @Override
             public void run() {
@@ -467,7 +467,7 @@ public class StarShardsSword extends SimpleSlimefunItem<ItemUseHandler> implemen
                 }
                 Location p = origin.clone().add(playerForward.clone().multiply(segment * 0.4));
                 player.getWorld().spawnParticle(Particle.END_ROD, p, 2, 0.05, 0.05, 0.05, 0);
-                player.getWorld().spawnParticle(Particle.SPELL_WITCH, p, 2, 0.05, 0.05, 0.05, 0);
+                player.getWorld().spawnParticle(Particle.WITCH, p, 2, 0.05, 0.05, 0.05, 0);
                 if (segment % 4 == 0) {
                     player.getWorld().playSound(p, Sound.BLOCK_BEACON_ACTIVATE, 0.4f, 1.6f);
                 }
@@ -475,37 +475,37 @@ public class StarShardsSword extends SimpleSlimefunItem<ItemUseHandler> implemen
         };
         beam.runTaskTimer(MagicExpansion.getInstance(), 0L, 1L);
 
-        // 💥 对每个目标：伤害（A8：按本次攻击伤害加成，而非固定10点）+ 击退 + 弱化 + 缓慢
+        // 💥 For each target: damage (A8: based on this attack's damage bonus, not a fixed 10) + knockback + weakness + slowness
         double arcaneDamage = baseDamage * StarShards_ArcaneBlast_Mult;
         for (LivingEntity target : targets) {
             target.damage(arcaneDamage, player);
 
-            // 击退（沿光束方向）
+            // Knockback (along the beam direction)
             Vector knockback = playerForward.clone().multiply(1.1).setY(0.3);
             target.setVelocity(knockback);
 
-            // 状态效果
-            target.addPotionEffect(new PotionEffect(PotionEffectType.WEAKNESS, 80, 0)); // 4秒
-            target.addPotionEffect(new PotionEffect(PotionEffectType.SLOW, 80, 1));     // 4秒
+            // Status effects
+            target.addPotionEffect(new PotionEffect(PotionEffectType.WEAKNESS, 80, 0)); // 4 seconds
+            target.addPotionEffect(new PotionEffect(PotionEffectType.SLOWNESS, 80, 1));     // 4 seconds
 
-            // 命中闪光
-            target.getWorld().spawnParticle(Particle.EXPLOSION_HUGE, target.getLocation(), 5, 0.1, 0.1, 0.1, 0);
-            target.getWorld().spawnParticle(Particle.FIREWORKS_SPARK, target.getLocation(), 10, 0.2, 0.2, 0.2, 0.05);
+            // Hit flash
+            target.getWorld().spawnParticle(Particle.EXPLOSION_EMITTER, target.getLocation(), 5, 0.1, 0.1, 0.1, 0);
+            target.getWorld().spawnParticle(Particle.FIREWORK, target.getLocation(), 10, 0.2, 0.2, 0.2, 0.05);
         }
 
         if (targets.isEmpty()) {
-            // 即使没打中也播放尾音
-            player.sendMessage("§7奧爆衝擊釋放，但未命中目標。");
+            // Play the ending sound even if nothing was hit
+            player.sendMessage("§7Arcane Blast released, but it didn't hit any target.");
         }
     }
 
     private void useAstralShield(Player player) {
         if (!checkCooldown(player, "astral_shield", StarShards_AstralShield_CD)) return;
-        player.sendMessage("§b✨ 星界護盾已激活！");
+        player.sendMessage("§b✨ Astral Shield activated!");
         player.getWorld().playSound(player.getLocation(), Sound.BLOCK_ENCHANTMENT_TABLE_USE, 1.0f, 1.5f);
-        player.getWorld().spawnParticle(Particle.ENCHANTMENT_TABLE, player.getLocation().add(0, 1, 0), 30, 0.5, 0.5, 0.5, 0.1);
-        // A3: 删除原 player.setInvulnerable(true/false) 方案，改为记录无敌到期时间戳，
-        // 由 onEntityDamage 中的事件取消逻辑实现无敌期（避免长期占用原版 invulnerable 标记）
+        player.getWorld().spawnParticle(Particle.ENCHANT, player.getLocation().add(0, 1, 0), 30, 0.5, 0.5, 0.5, 0.1);
+        // A3: removed the old player.setInvulnerable(true/false) approach, and now we save the invincibility end timestamp instead,
+        // and the invincibility period is done by the event cancel logic in onEntityDamage (so we don't hold the vanilla invulnerable flag for a long time)
         invulnerableUntil.put(player.getUniqueId(),
                 System.currentTimeMillis() + StarShards_AstralShield_During * 1000L);
 
@@ -515,7 +515,7 @@ public class StarShardsSword extends SimpleSlimefunItem<ItemUseHandler> implemen
             public void run() {
                 holyProtectedPlayers.remove(player.getUniqueId());
                 if (player.isOnline()) {
-                    player.sendMessage(ChatColor.GRAY + "§7星界護盾已消散...");
+                    player.sendMessage(ChatColor.GRAY + "§7Astral Shield has faded...");
                 }
             }
         }.runTaskLater(MagicExpansion.getInstance(), StarShards_AstralShield_During*20L);
@@ -535,22 +535,22 @@ public class StarShardsSword extends SimpleSlimefunItem<ItemUseHandler> implemen
             }
         }
         if (dest == null) {
-            player.sendMessage("§c前方無障礙物，無法傳送！");
+            player.sendMessage("§cNo obstacle ahead, can't teleport!");
             return;
         }
         player.teleport(dest);
-        // 起跳残影 + 落地冲击波
+        // Jump afterimage + landing shockwave
         player.getWorld().spawnParticle(Particle.PORTAL, player.getLocation(), 40, 0.5, 0.5, 0.5, 0.1);
         player.getWorld().playSound(dest, Sound.ENTITY_GENERIC_EXPLODE, 0.9f, 1.2f);
-        player.getWorld().spawnParticle(Particle.EXPLOSION_LARGE, dest, 12, 0.3, 0.3, 0.3, 0);
+        player.getWorld().spawnParticle(Particle.EXPLOSION, dest, 12, 0.3, 0.3, 0.3, 0);
         player.getWorld().spawnParticle(Particle.PORTAL, dest, 40, 0.5, 0.5, 0.5, 0.1);
         player.getWorld().spawnParticle(Particle.CLOUD, dest, 15, 0.2, 0.2, 0.2, 0.01);
         for (Entity e : dest.getWorld().getNearbyEntities(dest, 2.0, 2.0, 2.0)) {
             if (e instanceof LivingEntity le && e != player) {
-                // A8: 短暂眩晕（失明 + 减速）
-                le.addPotionEffect(new PotionEffect(PotionEffectType.CONFUSION, 20, 0));
-                le.addPotionEffect(new PotionEffect(PotionEffectType.SLOW, 40, 0));
-                // 冲击击退（背离落点）
+                // A8: brief stun (blindness + slowness)
+                le.addPotionEffect(new PotionEffect(PotionEffectType.NAUSEA, 20, 0));
+                le.addPotionEffect(new PotionEffect(PotionEffectType.SLOWNESS, 40, 0));
+                // Shockwave knockback (away from the landing point)
                 Vector k = e.getLocation().toVector().subtract(dest.toVector());
                 if (k.lengthSquared() < 0.01) {
                     k = new Vector(Math.random() - 0.5, 0, Math.random() - 0.5);
@@ -562,15 +562,15 @@ public class StarShardsSword extends SimpleSlimefunItem<ItemUseHandler> implemen
     }
 
     /**
-     * A4: 玩家退出时的会话数据清理（由 PlayerCleanupListener 统一调用）：
-     * 清除技能冷却、冷却提示限频时间戳、星界护盾无敌期、圣盾名单等 per-player 状态，
-     * 防止 Map 残留离线玩家数据造成内存泄漏。
+     * A4: session data cleanup when a player leaves (called by PlayerCleanupListener):
+     * clears per-player state such as skill cooldowns, cooldown message rate-limit timestamps, Astral Shield invincibility, the Holy Shield list, etc.,
+     * so the Maps don't keep offline players' data and cause a memory leak.
      */
     public static void cleanup(UUID uuid) {
-        cooldowns.remove(uuid);           // 清理技能冷却数据
-        lastMessageTime.remove(uuid);     // 清理冷却提示限频时间戳
-        invulnerableUntil.remove(uuid);   // 清理星界护盾无敌期时间戳
-        holyProtectedPlayers.remove(uuid);// 清理圣盾玩家名单
+        cooldowns.remove(uuid);           // Clear the skill cooldown data
+        lastMessageTime.remove(uuid);     // Clear the cooldown message rate-limit timestamp
+        invulnerableUntil.remove(uuid);   // Clear the Astral Shield invincibility timestamp
+        holyProtectedPlayers.remove(uuid);// Clear the Holy Shield player list
     }
 
     @Override

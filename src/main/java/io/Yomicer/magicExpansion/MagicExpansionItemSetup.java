@@ -28,7 +28,7 @@ import io.Yomicer.magicExpansion.items.skyBlock.SingleCubeOrigin;
 import io.Yomicer.magicExpansion.items.summonBossItem.FireZombie;
 import io.Yomicer.magicExpansion.items.summonBossItem.WindElf;
 import io.Yomicer.magicExpansion.items.tools.*;
-// 主分类已还原为原生 NestedItemGroup,不再使用自绘主组
+// Main category uses the built-in NestedItemGroup again instead of a custom main group
 import io.Yomicer.magicExpansion.items.groups.HiddenNestedItemGroup;
 import io.Yomicer.magicExpansion.items.groups.MagicExpansionGuideGroup;
 import io.Yomicer.magicExpansion.items.groups.VirtualGuideGroup;
@@ -88,7 +88,7 @@ public final class MagicExpansionItemSetup {
     }
     public static final MagicExpansionGuideGroup magicexpansion = new MagicExpansionGuideGroup(
             new NamespacedKey(MagicExpansion.getInstance(), "magicexpansion"),
-            new CustomItemStack(doGlow(Material.LIGHT),"§x§F§D§B§7§D§4§kll§x§F§D§B§7§D§4魔§x§F§A§7§E§B§3法§x§F§F§6§9§B§42.§x§F§F§6§9§B§40§x§F§D§B§7§D§4§kll")
+            new CustomItemStack(doGlow(Material.LIGHT),"§x§F§D§B§7§D§4§kll§x§F§D§B§7§D§4Magic §x§F§F§6§9§B§42.0§x§F§D§B§7§D§4§kll")
     );
     public static final SubItemGroup magicexpansionattachmentinfo = GuideMenuGroups.get("attachmentinfo");
     public static final SubItemGroup magicexpansioncontribution = GuideMenuGroups.get("contribution");
@@ -141,109 +141,109 @@ public final class MagicExpansionItemSetup {
 
 
 
-    // 定义一个新的配方类型
+    // Define a new recipe type
     public static final RecipeType SPECIAL_RECIPE_TYPE = new RecipeType(
             new NamespacedKey(MagicExpansion.getInstance(), "magicexpansion_special_recipe_type"),
-            new CustomItemStack(Material.TOTEM_OF_UNDYING,"§x§F§D§B§7§D§4无§x§F§A§7§E§B§3法§x§F§F§6§9§B§4合§x§F§F§6§9§B§4成",getGradientName("痴情的人啊"),getGradientName("请再等一世吧")), // 图标
+            new CustomItemStack(Material.TOTEM_OF_UNDYING,"§x§F§D§B§7§D§4No §x§F§A§7§E§B§3Magic §x§F§F§6§9§B§4Crafting",getGradientName("Oh, my lovesick friend"),getGradientName("Please wait one more lifetime")), // Icon
             (input, output) -> {});
 
-    // 光能激发器
+    // Light Energy Activator
     public static final RecipeType LIGHT_TRANSFORM_BASIC = new RecipeType(
             new NamespacedKey(MagicExpansion.getInstance(), "magicexpansion_light_transform_basic"),
-            new CustomItemStack(Material.AMETHYST_BLOCK,getGradientName("光能激发器"),getGradientName("散发着幽异的光芒。"),"",getGradientName("功能: 使用电力激发光能"),
-                    getGradientName("能源需求: 每秒钟消耗少量电力从光源中提取光能"),getGradientName(""),getGradientName("“有限光源，有限的能源...”")),
+            new CustomItemStack(Material.AMETHYST_BLOCK,getGradientName("Light Energy Activator"),getGradientName("It gives off a strange glow."),"",getGradientName("Function: Uses power to activate light energy"),
+                    getGradientName("Power use: Uses a little power each second to draw energy from light sources"),getGradientName(""),getGradientName("“Limited light, limited power...”")),
             (input, output) -> {});
 
-    // 魔法建筑工坊
+    // Magic Building Workshop
     public static final RecipeType PRE_BUILDINGS_MACHINE = new RecipeType(
             new NamespacedKey(MagicExpansion.getInstance(), "magicexpansion_pre_buildings_machine"),
-            new CustomItemStack(Material.PINK_GLAZED_TERRACOTTA,getGradientName("魔法建筑工坊"),getGradientName("一座神秘的工坊，里面藏有许多图纸。"),"",getGradientName("只要你能提供材料，他就能给你建造出来。"),
-                    getGradientName(""),getGradientName("功能: 制作预制建筑"),getGradientName("能源需求: 每秒钟消耗少量电力")
-                    ,getGradientName(""),getGradientName("是魔法之力？还是远古工匠的智慧结晶？"),getGradientName("无论如何，这座工坊流传着一些未知的秘密。")),
+            new CustomItemStack(Material.PINK_GLAZED_TERRACOTTA,getGradientName("Magic Building Workshop"),getGradientName("A mysterious workshop filled with blueprints."),"",getGradientName("Bring the materials, and it can build it for you."),
+                    getGradientName(""),getGradientName("Function: Builds prefab structures"),getGradientName("Power use: Uses a little power each second")
+                    ,getGradientName(""),getGradientName("Is it magic, or the work of ancient craftsmen?"),getGradientName("Either way, this workshop holds many secrets.")),
             (input, output) -> {});
 
-    // 魔法建筑工坊
+    // Magic Building Workshop
     public static final RecipeType PRE_BUILDINGS_MACHINE_RESOURCE_ADVANCED = new RecipeType(
             new NamespacedKey(MagicExpansion.getInstance(), "magicexpansion_pre_buildings_resource_machine"),
-            new CustomItemStack(Material.SEA_LANTERN,getGradientName("魔法材料工坊"),getGradientName("一座神秘的工坊，里面藏有许多高精密仪器。"),"",getGradientName("只要你能提供材料，他就能给你压缩材料。"),
-                    getGradientName(""),getGradientName("功能: 制作预制建筑"),getGradientName("能源需求: 每秒钟消耗大量电力")
-                    ,getGradientName(""),getGradientName("是魔法之力？还是远古工匠的智慧结晶？"),getGradientName("无论如何，这座工坊流传着一些未知的秘密。")),
+            new CustomItemStack(Material.SEA_LANTERN,getGradientName("Magic Material Workshop"),getGradientName("A mysterious workshop filled with precision tools."),"",getGradientName("Bring the materials, and it can compress them for you."),
+                    getGradientName(""),getGradientName("Function: Builds prefab structures"),getGradientName("Power use: Uses a lot of power each second")
+                    ,getGradientName(""),getGradientName("Is it magic, or the work of ancient craftsmen?"),getGradientName("Either way, this workshop holds many secrets.")),
             (input, output) -> {});
 
-    // 终极魔法建筑工坊
+    // Ultimate Magic Building Workshop
     public static final RecipeType PRE_BUILDINGS_MACHINE_ADVANCED = new RecipeType(
             new NamespacedKey(MagicExpansion.getInstance(), "magicexpansion_pre_buildings_machine_advance"),
-            new CustomItemStack(Material.CARTOGRAPHY_TABLE,getGradientName("终极魔法建筑工坊"),getGradientName("一座神秘的工坊，里面藏有许多图纸。"),"",getGradientName("只要你能提供材料，他就能给你建造出来。"),
-                    getGradientName(""),getGradientName("功能: 制作预制建筑"),getGradientName("能源需求: 每秒钟消耗大量电力")
-                    ,getGradientName(""),getGradientName("是魔法之力？还是远古工匠的智慧结晶？"),getGradientName("无论如何，这座工坊流传着一些未知的秘密。")),
+            new CustomItemStack(Material.CARTOGRAPHY_TABLE,getGradientName("Ultimate Magic Building Workshop"),getGradientName("A mysterious workshop filled with blueprints."),"",getGradientName("Bring the materials, and it can build it for you."),
+                    getGradientName(""),getGradientName("Function: Builds prefab structures"),getGradientName("Power use: Uses a lot of power each second")
+                    ,getGradientName(""),getGradientName("Is it magic, or the work of ancient craftsmen?"),getGradientName("Either way, this workshop holds many secrets.")),
             (input, output) -> {});
 
-    // 五行资源采集器
+    // Five Elements Resource Miner
     public static final RecipeType FIVE_ELEMENT_MINER = new RecipeType(
             new NamespacedKey(MagicExpansion.getInstance(), "magicexpansion_five_element_miner"),
             new CustomItemStack(new CustomItemStack(CustomHead.getHead("846472b7bd8de52a101584ea2dd7db190d417ca548bb6568379acebdd02b1799"),
-                    getGradientName("五行元素资源开采机"),getGradientName(" "),getGradientName("一种特殊的资源开采机"),
-                    getGradientName("从区块中开采出五行资源"),getGradientName("可以开采出不能被矿镐挖出的资源"),getGradientName(" ")
-                    ,getGradientName("确保你已经进行了 GEO 地形扫描"))),
+                    getGradientName("Five Elements Resource Miner"),getGradientName(" "),getGradientName("A special resource miner"),
+                    getGradientName("Mines Five Elements resources from chunks"),getGradientName("Can mine resources that pickaxes cannot break"),getGradientName(" ")
+                    ,getGradientName("Make sure you've scanned the area with GEO"))),
             (input, output) -> {});
 
-    // 五行资源采集器
+    // Five Elements Resource Miner
     public static final RecipeType INGOT_PURE_MACHINE = new RecipeType(
             new NamespacedKey(MagicExpansion.getInstance(), "magicexpansion_ingot_pure_machine"),
             new CustomItemStack(new CustomItemStack(Material.SMOKER,
-                    getGradientName("魔法元素提纯机"),getGradientName("去除掉绝大部分杂质以及小部分纯净物质？"))),
+                    getGradientName("Magic Element Purifier"),getGradientName("Removes most impurities... and a little bit of the pure stuff?"))),
             (input, output) -> {});
 
-    //  掉落物
+    //  Drops
     public static final RecipeType MAGICEXPANSION_MOB_DROP = new RecipeType(
             new NamespacedKey(MagicExpansion.getInstance(), "magicexpansion_mob_drop"),
-            new CustomItemStack(Material.TOTEM_OF_UNDYING,ColorGradient.getGradientName("魔法生物掉落"),getGradientName("通过召唤魔法生物"),getGradientName("并将其击败"),getGradientName("有概率获取")), // 图标
+            new CustomItemStack(Material.TOTEM_OF_UNDYING,ColorGradient.getGradientName("Magic Creature Drops"),getGradientName("Summon a magic creature"),getGradientName("and defeat it"),getGradientName("for a chance to get this")), // Icon
             (input, output) -> {});
 
-    //  掉落物
+    //  Drops
     public static final RecipeType ORIGIN_MATERIAL_GEN_MAKER_ALPHA = new RecipeType(
             new NamespacedKey(MagicExpansion.getInstance(), "magicexpansion_origin_material_gen_maker_alpha"),
-            MagicExpansionItems.ORIGIN_MATERIAL_GEN_MAKER_ALPHA, // 图标
+            MagicExpansionItems.ORIGIN_MATERIAL_GEN_MAKER_ALPHA, // Icon
             (input, output) -> {});
     public static final RecipeType ORIGIN_MATERIAL_GEN_MAKER_BETA = new RecipeType(
             new NamespacedKey(MagicExpansion.getInstance(), "magicexpansion_origin_material_gen_maker_beta"),
-            MagicExpansionItems.ORIGIN_MATERIAL_GEN_MAKER_BETA, // 图标
+            MagicExpansionItems.ORIGIN_MATERIAL_GEN_MAKER_BETA, // Icon
             (input, output) -> {});
     public static final RecipeType ORIGIN_MATERIAL_GEN_MAKER_LITE = new RecipeType(
             new NamespacedKey(MagicExpansion.getInstance(), "magicexpansion_origin_material_gen_maker_lite"),
-            MagicExpansionItems.ORIGIN_MATERIAL_GEN_MAKER_LITE, // 图标
+            MagicExpansionItems.ORIGIN_MATERIAL_GEN_MAKER_LITE, // Icon
             (input, output) -> {});
 
-    /** 芦穗获取方式(配方类型图标 = 青竹竿, 配方中间 = 青竹竿鱼饵说明) */
+    /** How to get Reed Tassel (recipe icon = Green Bamboo Rod; recipe center = its bait info) */
     public static final RecipeType REED_TASSEL_OBTAIN = new RecipeType(
             new NamespacedKey(MagicExpansion.getInstance(), "magicexpansion_reed_tassel_obtain"),
             new CustomItemStack(Material.FISHING_ROD,
-                    getGradientNameVer2("青竹竿"),
-                    getGradientNameVer2("通过 青竹竿 钓鱼获取")),
+                    getGradientNameVer2("Green Bamboo Rod"),
+                    getGradientNameVer2("Catch fish with the Green Bamboo Rod")),
             (input, output) -> {});
 
-    /** 雪魄珠获取方式(配方类型图标 = 寒江雪竿, 配方中间 = 寒江雪鱼饵说明) */
+    /** How to get Snow Pearl (recipe icon = Snowy River Rod; recipe center = its bait info) */
     public static final RecipeType XUEPOZHU_OBTAIN = new RecipeType(
             new NamespacedKey(MagicExpansion.getInstance(), "magicexpansion_xuepo_zhu_obtain"),
             new CustomItemStack(Material.FISHING_ROD,
-                    getGradientNameVer2("寒江雪"),
-                    getGradientNameVer2("通过 寒江雪 钓鱼获取")),
+                    getGradientNameVer2("Snowy River Rod"),
+                    getGradientNameVer2("Catch fish with the Snowy River Rod")),
             (input, output) -> {});
 
-    /** 白芦羽获取方式(配方类型图标 = 芦花钓竿, 配方中间 = 芦花钓鱼饵说明) */
+    /** How to get White Reed Feather (recipe icon = Reed Blossom Rod; recipe center = its bait info) */
     public static final RecipeType BAILUYU_OBTAIN = new RecipeType(
             new NamespacedKey(MagicExpansion.getInstance(), "magicexpansion_bailuyu_obtain"),
             new CustomItemStack(Material.FISHING_ROD,
-                    getGradientNameVer2("芦花钓"),
-                    getGradientNameVer2("通过 芦花钓 钓鱼获取")),
+                    getGradientNameVer2("Reed Blossom Rod"),
+                    getGradientNameVer2("Catch fish with the Reed Blossom Rod")),
             (input, output) -> {});
 
-    /** 雨披针获取方式(配方类型图标 = 细雨·斜风竿, 配方中间 = 细雨·斜风鱼饵说明) */
+    /** How to get Rain Pin (recipe icon = Drizzle and Breeze Rod; recipe center = its bait info) */
     public static final RecipeType YUPIZHEN_OBTAIN = new RecipeType(
             new NamespacedKey(MagicExpansion.getInstance(), "magicexpansion_yupizhen_obtain"),
             new CustomItemStack(Material.FISHING_ROD,
-                    getGradientNameVer2("细雨·斜风"),
-                    getGradientNameVer2("通过 细雨·斜风 钓鱼获取")),
+                    getGradientNameVer2("Drizzle and Breeze"),
+                    getGradientNameVer2("Catch fish with Drizzle and Breeze")),
             (input, output) -> {});
 
     private MagicExpansionItemSetup() {
@@ -252,11 +252,11 @@ public final class MagicExpansionItemSetup {
 
     public static void setup(@Nonnull MagicExpansion plugin) {
 
-        // 注册魔法2.0主分类(自绘一级菜单入口)
+        // Register the Magic 2.0 main category (custom top-level menu)
         magicexpansion.register(plugin);
 
 
-        // 容器组占位物品:由菜单注册表统一注册(所有一级容器组)
+        // Container group placeholder items are registered by the menu registry
         GuideMenuGroups.registerPlaceholders(plugin);
 
 
@@ -264,14 +264,14 @@ public final class MagicExpansionItemSetup {
 
 
 
-        //版本信息
+        //Version info
         new UnplaceableBlock(magicexpansioncontribution, MagicExpansionItems.MAGIC_EXPANSION_INFO, SPECIAL_RECIPE_TYPE, new ItemStack[] {
                 null, null, null,
                 null, null, null,
                 null, null, null
         }).register(plugin);
 
-        //magicsolo头颅
+        //MagicSolo head
         new UnplaceableBlock(magicexpansioncontribution, MagicExpansionItems.MAGIC_EXPANSION_AUTHOR, SPECIAL_RECIPE_TYPE, new ItemStack[] {
                 null, null, null,
                 null, null, null,
@@ -334,103 +334,103 @@ public final class MagicExpansionItemSetup {
 
 
 
-        //更新日志
+        //Changelog
         new UnplaceableBlock(magicexpansionupdateinfo, MagicExpansionItems.UPDATE_LOG_2025_06_23, SPECIAL_RECIPE_TYPE, new ItemStack[] {
                 null, null, null,
                 null, null, null,
                 null, null, null
         }).register(plugin);
-        //更新日志
+        //Changelog
         new UnplaceableBlock(magicexpansionupdateinfo, MagicExpansionItems.UPDATE_LOG_2025_06_29, SPECIAL_RECIPE_TYPE, new ItemStack[] {
                 null, null, null,
                 null, null, null,
                 null, null, null
         }).register(plugin);
-        //更新日志
+        //Changelog
         new UnplaceableBlock(magicexpansionupdateinfo, MagicExpansionItems.UPDATE_LOG_2025_07_12, SPECIAL_RECIPE_TYPE, new ItemStack[] {
                 null, null, null,
                 null, null, null,
                 null, null, null
         }).register(plugin);
-        //更新日志
+        //Changelog
         new UnplaceableBlock(magicexpansionupdateinfo, MagicExpansionItems.UPDATE_LOG_2025_07_23, SPECIAL_RECIPE_TYPE, new ItemStack[] {
                 null, null, null,
                 null, null, null,
                 null, null, null
         }).register(plugin);
-        //更新日志
+        //Changelog
         new UnplaceableBlock(magicexpansionupdateinfo, MagicExpansionItems.UPDATE_LOG_2025_07_25, SPECIAL_RECIPE_TYPE, new ItemStack[] {
                 null, null, null,
                 null, null, null,
                 null, null, null
         }).register(plugin);
-        //更新日志
+        //Changelog
         new UnplaceableBlock(magicexpansionupdateinfo, MagicExpansionItems.UPDATE_LOG_2025_07_26, SPECIAL_RECIPE_TYPE, new ItemStack[] {
                 null, null, null,
                 null, null, null,
                 null, null, null
         }).register(plugin);
-        //更新日志
+        //Changelog
         new UnplaceableBlock(magicexpansionupdateinfo, MagicExpansionItems.UPDATE_LOG_2025_08_01, SPECIAL_RECIPE_TYPE, new ItemStack[] {
                 null, null, null,
                 null, null, null,
                 null, null, null
         }).register(plugin);
-        //更新日志
+        //Changelog
         new UnplaceableBlock(magicexpansionupdateinfo, MagicExpansionItems.UPDATE_LOG_2025_08_27, SPECIAL_RECIPE_TYPE, new ItemStack[] {
                 null, null, null,
                 null, null, null,
                 null, null, null
         }).register(plugin);
-        //更新日志
+        //Changelog
         new UnplaceableBlock(magicexpansionupdateinfo, MagicExpansionItems.UPDATE_LOG_2025_08_29, SPECIAL_RECIPE_TYPE, new ItemStack[] {
                 null, null, null,
                 null, null, null,
                 null, null, null
         }).register(plugin);
-        //更新日志
+        //Changelog
         new UnplaceableBlock(magicexpansionupdateinfo, MagicExpansionItems.UPDATE_LOG_2025_08_30, SPECIAL_RECIPE_TYPE, new ItemStack[] {
                 null, null, null,
                 null, null, null,
                 null, null, null
         }).register(plugin);
-        //更新日志
+        //Changelog
         new UnplaceableBlock(magicexpansionupdateinfo, UPDATE_LOG_2025_09_02, SPECIAL_RECIPE_TYPE, new ItemStack[] {
                 null, null, null,
                 null, null, null,
                 null, null, null
         }).register(plugin);
-        //更新日志
+        //Changelog
         new UnplaceableBlock(magicexpansionupdateinfo, UPDATE_LOG_2025_09_05, SPECIAL_RECIPE_TYPE, new ItemStack[] {
                 null, null, null,
                 null, null, null,
                 null, null, null
         }).register(plugin);
-        //更新日志
+        //Changelog
         new UnplaceableBlock(magicexpansionupdateinfo, UPDATE_LOG_2025_09_09, SPECIAL_RECIPE_TYPE, new ItemStack[] {
                 null, null, null,
                 null, null, null,
                 null, null, null
         }).register(plugin);
-        //更新日志
+        //Changelog
         new UnplaceableBlock(magicexpansionupdateinfo, UPDATE_LOG_2025_09_13, SPECIAL_RECIPE_TYPE, new ItemStack[] {
                 null, null, null,
                 null, null, null,
                 null, null, null
         }).register(plugin);
-        //更新日志
+        //Changelog
         new UnplaceableBlock(magicexpansionupdateinfo, UPDATE_LOG_2025_09_14, SPECIAL_RECIPE_TYPE, new ItemStack[] {
                 null, null, null,
                 null, null, null,
                 null, null, null
         }).register(plugin);
-        //更新日志
+        //Changelog
         new UnplaceableBlock(magicexpansionupdateinfo, UPDATE_LOG_2025_09_18, SPECIAL_RECIPE_TYPE, new ItemStack[] {
                 null, null, null,
                 null, null, null,
                 null, null, null
         }).register(plugin);
-        //更新日志
+        //Changelog
         new UnplaceableBlock(magicexpansionupdateinfo, UPDATE_LOG_2025_09_20, SPECIAL_RECIPE_TYPE, new ItemStack[] {
                 null, null, null,
                 null, null, null,
@@ -660,21 +660,21 @@ public final class MagicExpansionItemSetup {
 
 
 
-        //快捷机器提示
+        //Quick machine tips
         new UnplaceableBlock(magicexpansionquickmachine, MagicExpansionItems.MAGIC_EXPANSION_QUICK_MACHINE_INFO, SPECIAL_RECIPE_TYPE, new ItemStack[] {
                 null, null, null,
                 null, null, null,
                 null, null, null
         }).register(plugin);
 
-        //初级万能魔法合成材料
+        //Basic universal magic crafting material
         new UnplaceableBlock(magicexpansionresourcedlc, MAGIC_EXPANSION_TO_MAGIC_ITEM_BASIC, RecipeType.ENHANCED_CRAFTING_TABLE, new ItemStack[] {
                 SlimefunItems.RAINBOW_WOOL, AMETHYST_SHARD, SlimefunItems.RAINBOW_WOOL,
                 AMETHYST_SHARD, SlimefunItems.MAGIC_EYE_OF_ENDER, AMETHYST_SHARD,
                 SlimefunItems.RAINBOW_WOOL, AMETHYST_SHARD, SlimefunItems.RAINBOW_WOOL
         }).register(plugin);
 
-        //进阶万能魔法合成材料
+        //Advanced universal magic crafting material
         new UnplaceableBlock(magicexpansionresourcedlc, MagicExpansionItems.MAGIC_EXPANSION_TO_MAGIC_ITEM_ADVANCED, RecipeType.ENHANCED_CRAFTING_TABLE, new ItemStack[] {
                 DIAMOND, MAGIC_EXPANSION_TO_MAGIC_ITEM_BASIC, MagicExpansionItems.QUARTZ,
                 MAGIC_EXPANSION_TO_MAGIC_ITEM_BASIC, MagicExpansionItems.ELEMENT_INGOT, MAGIC_EXPANSION_TO_MAGIC_ITEM_BASIC,
@@ -682,7 +682,7 @@ public final class MagicExpansionItemSetup {
         }).register(plugin);
 
 
-        //魔法交互核心
+        //Magic Interaction Core
         new UnplaceableBlock(magicexpansionresource, MagicExpansionItems.MAGIC_EXPANSION_INTERACTIVE_CORE, RecipeType.ENHANCED_CRAFTING_TABLE, new ItemStack[] {
                 MagicExpansionItems.QUARTZ, SlimefunItems.POWER_CRYSTAL, MagicExpansionItems.QUARTZ,
                 SlimefunItems.ADVANCED_CIRCUIT_BOARD, MagicExpansionItems.ELEMENT_INGOT, SlimefunItems.ADVANCED_CIRCUIT_BOARD,
@@ -691,35 +691,35 @@ public final class MagicExpansionItemSetup {
 
 
         // Tools
-        //镰刀
+        //Scythe
         new Scythe(magicexpansionspecialitem, MagicExpansionItems.SCYTHE, RecipeType.ENHANCED_CRAFTING_TABLE, new ItemStack[] {
                 null, new ItemStack(Material.IRON_INGOT), new ItemStack(Material.IRON_INGOT),
                 null, new ItemStack(Material.IRON_INGOT), null,
                 null, new ItemStack(Material.STICK), null
         }).register(plugin);
-        //无尽打火石
+        //Endless Flint and Steel
         new InfiniteTool(magicexpansionspecialitem, MagicExpansionItems.INFINITY_FLINT_AND_STEEL, RecipeType.ENHANCED_CRAFTING_TABLE, new ItemStack[] {
                 MagicExpansionItems.IRON_INGOT,MagicExpansionItems.IRON_INGOT, MagicExpansionItems.IRON_INGOT,
                 MagicExpansionItems.IRON_INGOT,new ItemStack(Material.FLINT),MagicExpansionItems.IRON_INGOT,
                 MagicExpansionItems.IRON_INGOT,MagicExpansionItems.IRON_INGOT,MagicExpansionItems.IRON_INGOT
         }).register(plugin);
-        // 随机实体蛋
+        // Random Mob Egg
         new MagicExpansionRandomSummon(magicexpansionspecialitem, MagicExpansionItems.MAGIC_EXPANSION_RANDOM_SPAWNER, RecipeType.ENHANCED_CRAFTING_TABLE, new ItemStack[] {
                 SlimefunItems.MAGIC_LUMP_3, SlimefunItems.ENDER_LUMP_3, SlimefunItems.MAGIC_LUMP_3,
                 SlimefunItems.ENDER_LUMP_3, BasicCreateItem("MAGIC_REDSTONE"), SlimefunItems.ENDER_LUMP_3,
                 SlimefunItems.MAGIC_LUMP_3, SlimefunItems.ENDER_LUMP_3, SlimefunItems.MAGIC_LUMP_3
         }).register(plugin);
 
-        //饵料袋(云梦袋): lore 在注册时统一使用魔法二代渐变色
+        //Bait bag (Cloud Dream Bag): lore uses the Magic 2.0 gradient when registered
         SlimefunItemStack baitBagStack = (SlimefunItemStack) MagicExpansionItems.BAIT_BAG.clone();
         ItemMeta baitBagMeta = baitBagStack.getItemMeta();
         baitBagMeta.setLore(List.of(
-                getGradientNameVer2("梦里垂纶，云间藏饵"),
-                getGradientNameVer2("一囊收尽两界水云"),
-                getGradientNameVer2("愿者，自有饵来"),
-                getGradientNameVer2("此袋所藏，皆是钓者与水的旧约"),
+                getGradientNameVer2("Fish in dreams, hide bait in the clouds"),
+                getGradientNameVer2("One bag holds waters and clouds from both worlds"),
+                getGradientNameVer2("For those who wait, the bait will come"),
+                getGradientNameVer2("This bag holds the old bond between anglers and water"),
                 "",
-                getGradientNameVer2("用于存放所有钓鱼佬系列的鱼饵")
+                getGradientNameVer2("Stores all bait from the Angler series")
         ));
         baitBagStack.setItemMeta(baitBagMeta);
         new BaitBag(magicexpansionspecialitem, baitBagStack, RecipeType.ENHANCED_CRAFTING_TABLE, new ItemStack[] {
@@ -728,25 +728,25 @@ public final class MagicExpansionItemSetup {
                 new ItemStack(Material.LEATHER), new ItemStack(Material.LEATHER), new ItemStack(Material.LEATHER)
         }).register(plugin);
 
-        //虚空之触
+        //Touch of the Void
         new VoidTouch(magicexpansionspecialitem, MagicExpansionItems.VOID_TOUCH, RecipeType.ENHANCED_CRAFTING_TABLE, new ItemStack[] {
                 PURE_ELEMENT_EARTH, MagicExpansionItems.PURE_ELEMENT_INGOT, PURE_ELEMENT_EARTH,
                 MagicExpansionItems.AMETHYST_SHARD, MagicExpansionItems.MAGIC_EXPANSION_RANDOM_SPAWNER, MagicExpansionItems.AMETHYST_SHARD,
                 PURE_ELEMENT_EARTH, MagicExpansionItems.BASIC_ENCHANT_STONE, PURE_ELEMENT_EARTH
         }).register(plugin);
-        //虚空之触-脚本专用
+        //Touch of the Void-For scripts only
         new VoidTouchScript(magicexpansionspecialitem, MagicExpansionItems.VOID_TOUCH_SCRIPT, RecipeType.ENHANCED_CRAFTING_TABLE, new ItemStack[] {
                 PURE_ELEMENT_WATER, MagicExpansionItems.PURE_ELEMENT_INGOT, PURE_ELEMENT_WATER,
                 MagicExpansionItems.AMETHYST_SHARD, MagicExpansionItems.MAGIC_EXPANSION_RANDOM_SPAWNER, MagicExpansionItems.AMETHYST_SHARD,
                 PURE_ELEMENT_WATER, MagicExpansionItems.BASIC_ENCHANT_STONE, PURE_ELEMENT_WATER
         }).register(plugin);
-        //五行之触
+        //Touch of Five Elements
         new FiveElementTouch(magicexpansionspecialitem, MagicExpansionItems.FIVE_ELEMENT_TOUCH, RecipeType.ENHANCED_CRAFTING_TABLE, new ItemStack[] {
                 MagicExpansionItems.PURE_ELEMENT_INGOT, MagicExpansionItems.PURE_ELEMENT_INGOT, MagicExpansionItems.PURE_ELEMENT_INGOT,
                 MagicExpansionItems.VOID_TOUCH, MagicExpansionItems.PURE_FIVE_ELEMENT, MagicExpansionItems.VOID_TOUCH,
                 MagicExpansionItems.PURE_ELEMENT_INGOT, MagicExpansionItems.PURE_ELEMENT_INGOT, MagicExpansionItems.PURE_ELEMENT_INGOT
         }).register(plugin);
-        //五行之触-逆
+        //Touch of Five Elements-Reverse
         new FiveElementTouchLeftClick(magicexpansionspecialitem, MagicExpansionItems.FIVE_ELEMENT_TOUCH_RIGHT_CLICK, RecipeType.ENHANCED_CRAFTING_TABLE, new ItemStack[] {
                 MagicExpansionItems.MAGIC_EXPANSION_MAGIC_SUGAR_1, MagicExpansionItems.MAGIC_EXPANSION_MAGIC_SUGAR_1, MagicExpansionItems.MAGIC_EXPANSION_MAGIC_SUGAR_1,
                 MagicExpansionItems.MAGIC_EXPANSION_MAGIC_SUGAR_1, MagicExpansionItems.FIVE_ELEMENT_TOUCH, MagicExpansionItems.MAGIC_EXPANSION_MAGIC_SUGAR_1,
@@ -755,7 +755,7 @@ public final class MagicExpansionItemSetup {
 
 
 
-        //生死簿
+        //Book of Life and Death
         new DeathLifeBook(magicexpansionspecialitem, MagicExpansionItems.DEATH_LIFE_BOOK, RecipeType.ENHANCED_CRAFTING_TABLE, new ItemStack[] {
                 PURE_ELEMENT_FIRE, PURE_FIVE_ELEMENT, COAL,
                 FIVE_ELEMENT_TOUCH_RIGHT_CLICK, MAGIC_EXPANSION_MAGIC_SUGAR_10, FIVE_ELEMENT_TOUCH,
@@ -763,7 +763,7 @@ public final class MagicExpansionItemSetup {
         }).register(plugin);
 
 
-        //生死簿
+        //Book of Life and Death
         new ItemNameTag(magicexpansionspecialitem, MagicExpansionItems.ITEM_NAME_TAG, RecipeType.ENHANCED_CRAFTING_TABLE, new ItemStack[] {
                 new ItemStack(Material.WHITE_WOOL), new ItemStack(Material.NAME_TAG), null,
                 null, null, null,
@@ -771,36 +771,36 @@ public final class MagicExpansionItemSetup {
         }).register(plugin);
 
 
-        // 附魔信息
+        // Enchant info
         new UnplaceableBlock(magicexpansionenergy, MagicExpansionItems.MAGIC_EXPANSION_ENCHANTING_TABLE_INFO, SPECIAL_RECIPE_TYPE, new ItemStack[] {
                 null,null,null,
                 null,null,null,
                 null,null,null
         }).register(plugin);
 
-        // 附魔列表
+        // Enchant list
         new UnplaceableBlock(magicexpansionenergy, MagicExpansionItems.MAGIC_EXPANSION_ENCHANTING_TABLE_LIST, SPECIAL_RECIPE_TYPE, new ItemStack[] {
                 null,null,null,
                 null,null,null,
                 null,null,null
         }).register(plugin);
 
-        // 魔法附魔台
+        // Magic Enchanting Table
         new EnchantingTable(magicexpansionenergy, MagicExpansionItems.MAGIC_EXPANSION_ENCHANTING_TABLE, RecipeType.ENHANCED_CRAFTING_TABLE, new ItemStack[] {
                 new ItemStack(Material.ENDER_EYE), AdvancedCreateItem("MAGIC_COSMIC_DUST"), new ItemStack(Material.ENDER_EYE),
                 AdvancedCreateItem("MAGIC_COSMIC_DUST"), new ItemStack(Material.ENCHANTING_TABLE), AdvancedCreateItem("MAGIC_COSMIC_DUST"),
                 new ItemStack(Material.ENDER_EYE), AdvancedCreateItem("MAGIC_COSMIC_DUST"), new ItemStack(Material.ENDER_EYE)
-        }, getGradientName( "魔法附魔台"),getGradientName("魔法附魔台")).register(plugin);
+        }, getGradientName( "Magic Enchanting Table"),getGradientName("Magic Enchanting Table")).register(plugin);
 
-        // 无厘头魔法糖
+        // Silly Magic Candy
         new UnplaceableBlock(magicexpansionnonsensical, MagicExpansionItems.MAGIC_EXPANSION_MAGIC_SUGAR_1, RecipeType.ENHANCED_CRAFTING_TABLE, new ItemStack[] {
                 SlimefunItems.MAGIC_SUGAR, SlimefunItems.MAGIC_SUGAR, SlimefunItems.MAGIC_SUGAR,
                 SlimefunItems.MAGIC_SUGAR, SlimefunItems.MAGIC_SUGAR, SlimefunItems.MAGIC_SUGAR,
                 SlimefunItems.MAGIC_SUGAR, SlimefunItems.MAGIC_SUGAR, SlimefunItems.MAGIC_SUGAR
         }).register(plugin);
-        // 1. 先创建一个数组，按顺序存放所有魔法糖常量
+        // 1. First create an array to store all magic candy constants in order
         SlimefunItemStack[] sugarLevels = {
-                null, // 占位：让索引从 1 开始
+                null, // Placeholder: start the index at 1
                 MagicExpansionItems.MAGIC_EXPANSION_MAGIC_SUGAR_1,
                 MagicExpansionItems.MAGIC_EXPANSION_MAGIC_SUGAR_2,
                 MagicExpansionItems.MAGIC_EXPANSION_MAGIC_SUGAR_3,
@@ -839,7 +839,7 @@ public final class MagicExpansionItemSetup {
                 MagicExpansionItems.MAGIC_EXPANSION_MAGIC_SUGAR_36,
                 MagicExpansionItems.MAGIC_EXPANSION_MAGIC_SUGAR_37,
         };
-        // 2. 用 for 循环注册所有升级配方
+        // 2. Use a for loop to register all upgrade recipes
         for (int n = 1; n <= 2; n++) {
             ItemStack[] recipe = {
                     sugarLevels[n], sugarLevels[n], sugarLevels[n],
@@ -854,7 +854,7 @@ public final class MagicExpansionItemSetup {
                     recipe
             ).register(plugin);
         }
-        // 2. 用 for 循环注册所有升级配方
+        // 2. Use a for loop to register all upgrade recipes
         for (int n = 3; n <= 34; n++) {
             ItemStack[] recipe = {
                     sugarLevels[n], sugarLevels[n], sugarLevels[n],
@@ -869,7 +869,7 @@ public final class MagicExpansionItemSetup {
                     recipe
             ).register(plugin);
         }
-        // 2. 用 for 循环注册所有升级配方
+        // 2. Use a for loop to register all upgrade recipes
         for (int n = 35; n <= 36; n++) {
             ItemStack[] recipe = {
                     sugarLevels[n], sugarLevels[n], sugarLevels[n],
@@ -885,23 +885,23 @@ public final class MagicExpansionItemSetup {
             ).register(plugin);
         }
 
-        // 量子纠缠态·甘蔗
+        // Quantum Entanglement·Sugar Cane
         new UnplaceableBlock(magicexpansionnonsensical, MagicExpansionItems.MAGIC_EXPANSION_MAGIC_SUGAR_CANE, RecipeType.ENHANCED_CRAFTING_TABLE, new ItemStack[] {
                 new ItemStack(Material.SUGAR_CANE),new ItemStack(Material.SUGAR_CANE),new ItemStack(Material.SUGAR_CANE),
                 new ItemStack(Material.SUGAR_CANE),MAGIC_EXPANSION_MAGIC_SUGAR_37,new ItemStack(Material.SUGAR_CANE),
                 new ItemStack(Material.SUGAR_CANE),new ItemStack(Material.SUGAR_CANE),new ItemStack(Material.SUGAR_CANE)
         }).register(plugin);
 
-        // 递归记忆纤维
+        // Recursive Memory Fiber
         new UnplaceableBlock(magicexpansionnonsensical, MagicExpansionItems.MAGIC_EXPANSION_FINAL_STRING_1, RecipeType.ENHANCED_CRAFTING_TABLE, new ItemStack[] {
                 MAGIC_EXPANSION_MAGIC_SUGAR_21,MAGIC_EXPANSION_MAGIC_SUGAR_21,MAGIC_EXPANSION_MAGIC_SUGAR_21,
                 MAGIC_EXPANSION_MAGIC_SUGAR_21,new ItemStack(Material.STRING),MAGIC_EXPANSION_MAGIC_SUGAR_21,
                 MAGIC_EXPANSION_MAGIC_SUGAR_21,MAGIC_EXPANSION_MAGIC_SUGAR_21,MAGIC_EXPANSION_MAGIC_SUGAR_21
         }).register(plugin);
 
-        // 1. 先创建一个数组，按顺序存放所有魔法糖常量
+        // 1. First create an array to store all magic candy constants in order
         SlimefunItemStack[] stringLevels = {
-                null, // 占位：让索引从 1 开始
+                null, // Placeholder: start the index at 1
                 MAGIC_EXPANSION_FINAL_STRING_1,
                 MAGIC_EXPANSION_FINAL_STRING_2,
                 MAGIC_EXPANSION_FINAL_STRING_3,
@@ -925,7 +925,7 @@ public final class MagicExpansionItemSetup {
                 MAGIC_EXPANSION_FINAL_STRING_21
 
         };
-        // 2. 用 for 循环注册所有升级配方
+        // 2. Use a for loop to register all upgrade recipes
         for (int n = 1; n <= 2; n++) {
             ItemStack[] recipe = {
                     stringLevels[n], stringLevels[n], stringLevels[n],
@@ -940,7 +940,7 @@ public final class MagicExpansionItemSetup {
                     recipe
             ).register(plugin);
         }
-        // 2. 用 for 循环注册所有升级配方
+        // 2. Use a for loop to register all upgrade recipes
         for (int n = 3; n <= 18; n++) {
             ItemStack[] recipe = {
                     stringLevels[n], stringLevels[n], stringLevels[n],
@@ -955,7 +955,7 @@ public final class MagicExpansionItemSetup {
                     recipe
             ).register(plugin);
         }
-        // 2. 用 for 循环注册所有升级配方
+        // 2. Use a for loop to register all upgrade recipes
         for (int n = 19; n <= 20; n++) {
             ItemStack[] recipe = {
                     stringLevels[n], stringLevels[n], stringLevels[n],
@@ -971,36 +971,36 @@ public final class MagicExpansionItemSetup {
             ).register(plugin);
         }
 
-        // 终焉之丝
+        // End Thread
         new UnplaceableBlock(magicexpansionnonsensical, MagicExpansionItems.FISHING_ROD_FINAL_STRING, RecipeType.ENHANCED_CRAFTING_TABLE, new ItemStack[] {
                 MAGIC_EXPANSION_FINAL_STRING_21,MAGIC_EXPANSION_FINAL_STRING_21,MAGIC_EXPANSION_FINAL_STRING_21,
                 MAGIC_EXPANSION_FINAL_STRING_21,new ItemStack(Material.STRING),MAGIC_EXPANSION_FINAL_STRING_21,
                 MAGIC_EXPANSION_FINAL_STRING_21,MAGIC_EXPANSION_FINAL_STRING_21,MAGIC_EXPANSION_FINAL_STRING_21
         }).register(plugin);
-        // 终焉之丝
+        // End Thread
         new UnplaceableBlock(magicexpansionnonsensical, MagicExpansionItems.FISHING_ROD_FINAL_HOOK, RecipeType.NULL, new ItemStack[] {
                 null,null,null,
-                null,new CustomItemStack(new ItemStack(Material.FISHING_ROD),"§b可被任意高阶鱼杆钓取",getGradientName("钓起他不需要任何鱼饵~")),null,
+                null,new CustomItemStack(new ItemStack(Material.FISHING_ROD),"§bCan be caught with any high-tier fishing rod",getGradientName("No bait needed to catch it~")),null,
                 null,null,null
         }).register(plugin);
 
-        // 终焉之钩
+        // End Hook
         new HiddenItem(magicexpansionnonsensical, MagicExpansionItems.FISHING_ROD_FISH_ANYTHING, RecipeType.NULL, new ItemStack[] {
                 null,null,null,
-                null,new CustomItemStack(new ItemStack(Material.FISHING_ROD),"§b可以被魔法系列鱼杆钓起",getGradientName("图片仅供参考")),null,
+                null,new CustomItemStack(new ItemStack(Material.FISHING_ROD),"§bCan be caught with Magic Series fishing rods",getGradientName("Image for reference only")),null,
                 null,null,null
         }).register(plugin);
 
 
 
 
-        // 自定义
+        // Custom
         new FishingRod(magicexpansiondreamerrod, MagicExpansionItems.FISHING_ROD_LOG, RecipeType.ENHANCED_CRAFTING_TABLE, new ItemStack[] {
                 null,null,new ItemStack(Material.OAK_LOG),
                 null,new ItemStack(Material.CHERRY_LOG),new ItemStack(Material.STRING),
                 new ItemStack(Material.BIRCH_LOG),null, AMETHYST_SHARD
         }, new HashMap<>() {{
-            put(Enchantment.LUCK, 1);
+            put(Enchantment.LUCK_OF_THE_SEA, 1);
             put(Enchantment.LURE, 5);
         }}, false,
                 Map.of(
@@ -1015,18 +1015,18 @@ public final class MagicExpansionItemSetup {
                                 new WeightedItem(new ItemStack(Material.MANGROVE_LOG), 3),
                                 new WeightedItem(new ItemStack(Material.CRIMSON_STEM), 3),
                                 new WeightedItem(new ItemStack(Material.WARPED_STEM), 3),
-                                new WeightedItem(new CustomItemStack(new ItemStack(Material.PRISMARINE_SHARD,1),getGradientNameVer2("鱼饵·记忆碎片"),("§f这个鱼饵可以钓到任何物品"),("§f他存在于过去或者是未来"),("§f你现在看到的他并非真正的他")
+                                new WeightedItem(new CustomItemStack(new ItemStack(Material.PRISMARINE_SHARD,1),getGradientNameVer2("Bait: Memory Fragment"),("§fThis bait can catch any item"),("§fIt exists in the past or the future"),("§fWhat you see now isn't its true form")
                                 ), 1)
                         )
                 ), List.of()).register(plugin);
 
-        // 萌新钓竿
+        // Beginner Fishing Rod
         new FishingRod(magicexpansiondreamerrod, MagicExpansionItems.FISHING_ROD_NEW_PLAYER, RecipeType.ENHANCED_CRAFTING_TABLE, new ItemStack[] {
                 null,null,STICK,
                 null,STICK,new ItemStack(Material.STRING),
                 STICK,null,SlimefunItems.MAGIC_SUGAR
         }, new HashMap<>() {{
-            put(Enchantment.LUCK, 1);
+            put(Enchantment.LUCK_OF_THE_SEA, 1);
             put(Enchantment.LURE, 2);
         }}, false,
                 Map.of(
@@ -1067,19 +1067,19 @@ public final class MagicExpansionItemSetup {
                                 new WeightedItem(RANDOM_FISH_EPIC_POOL_INDUSTRY, 1),
                                 new WeightedItem(RANDOM_FISH_EPIC, 1),
                                 new WeightedItem(FISH_LEGENDARY_EEL_POWER, 1),
-                                new WeightedItem(new CustomItemStack(new ItemStack(Material.PRISMARINE_SHARD,1),getGradientNameVer2("鱼饵·记忆碎片"),("§f这个鱼饵可以钓到任何物品"),("§f他存在于过去或者是未来"),("§f你现在看到的他并非真正的他")
+                                new WeightedItem(new CustomItemStack(new ItemStack(Material.PRISMARINE_SHARD,1),getGradientNameVer2("Bait: Memory Fragment"),("§fThis bait can catch any item"),("§fIt exists in the past or the future"),("§fWhat you see now isn't its true form")
                                 ), 18)
                         ),
                         "bread", List.of(
-                                new WeightedItem(new CustomItemStack(new ItemStack(Material.COD),"§b迷路的生鳕鱼",getGradientName("这是谁家的鳕鱼？")
+                                new WeightedItem(new CustomItemStack(new ItemStack(Material.COD),"§bLost Raw Cod",getGradientName("Whose cod is this?")
                                 ), 200),
-                                new WeightedItem(new CustomItemStack(new ItemStack(Material.SALMON),"§b晕头转向的生鲑鱼",getGradientName("有没有听过洄鲑阵法？")
+                                new WeightedItem(new CustomItemStack(new ItemStack(Material.SALMON),"§bDizzy Raw Salmon",getGradientName("Ever heard of the Salmon Loop formation?")
                                 ), 200),
-                                new WeightedItem(new CustomItemStack(new ItemStack(Material.TROPICAL_FISH),"§b有1.4的热带鱼",getGradientName("热带鱼是怎么跑到中远河里的？")
+                                new WeightedItem(new CustomItemStack(new ItemStack(Material.TROPICAL_FISH),"§bA Tropical Fish with 1.4",getGradientName("How did a tropical fish end up in a river?")
                                 ), 50),
-                                new WeightedItem(new CustomItemStack(new ItemStack(Material.PUFFERFISH),"§b发绿的河豚",getGradientName("这东西可不能乱吃哦~")
+                                new WeightedItem(new CustomItemStack(new ItemStack(Material.PUFFERFISH),"§bGreen Pufferfish",getGradientName("Don't just eat this stuff~")
                                 ), 90),
-                                new WeightedItem(new CustomItemStack(new ItemStack(Material.POTION),"§b神秘的药剂",getGradientName("也许能喝吧？")
+                                new WeightedItem(new CustomItemStack(new ItemStack(Material.POTION),"§bMysterious Potion",getGradientName("Maybe it's safe to drink?")
                                 ), 40),
                                 new WeightedItem(new ItemStack(Material.HONEY_BOTTLE,15), 30),
                                 new WeightedItem(RANDOM_FISH_COMMON, 400),
@@ -1091,15 +1091,15 @@ public final class MagicExpansionItemSetup {
                                 new WeightedItem(RANDOM_FISH_RARE_POOL_INDUSTRY, 27)
                         ),
                         "fishLureBasic", List.of(
-                                new WeightedItem(new CustomItemStack(Material.GLOW_BERRIES, "§a萤火草穗", getGradientName("夜间会发出微光，传说能引诱好奇的鱼")
+                                new WeightedItem(new CustomItemStack(Material.GLOW_BERRIES, "§aFirefly Grass Tassel", getGradientName("Glows at night and is said to attract curious fish")
                                 ), 80),
-                                new WeightedItem(new CustomItemStack(Material.MOSS_CARPET, "§a水苔绒", getGradientName("柔软湿润，是小鱼最爱藏身之处")
+                                new WeightedItem(new CustomItemStack(Material.MOSS_CARPET, "§aWater Moss", getGradientName("Soft and damp, a favorite hiding spot for small fish")
                                 ), 60),
-                                new WeightedItem(new CustomItemStack(Material.SLIME_BALL, "§a蛙鸣壳", getGradientName("轻轻一捏就会发出‘咕呱’声，鱼儿以为是同类")
+                                new WeightedItem(new CustomItemStack(Material.SLIME_BALL, "§aFrog Call Shell", getGradientName("Squeeze it to make a croak; fish think it's one of their own")
                                 ), 40),
-                                new WeightedItem(new CustomItemStack(Material.POPPY, "§a露珠莲瓣", getGradientName("带着晨露的清香，能净化水域的浊气")
+                                new WeightedItem(new CustomItemStack(Material.POPPY, "§aDewdrop Lotus Petal", getGradientName("Smells like morning dew and helps clear murky water")
                                 ), 80),
-                                new WeightedItem(new CustomItemStack(Material.PRISMARINE_SHARD, "§a鱼鳞尘", ("§f在阳光下闪烁微光，是鱼群身份的信号")
+                                new WeightedItem(new CustomItemStack(Material.PRISMARINE_SHARD, "§aFish Scale Dust", ("§fShimmers in sunlight and signals which school a fish belongs to")
                                 ), 50),
                                 new WeightedItem(RANDOM_FISH_COMMON, 160),
                                 new WeightedItem(RANDOM_FISH_UNCOMMON, 140),
@@ -1147,17 +1147,17 @@ public final class MagicExpansionItemSetup {
                                 new WeightedItem(SlimefunItems.BOOSTED_URANIUM, 15)
                         ),
                         "fishLureDust", List.of(
-                                new WeightedItem(new CustomItemStack(Material.RED_SAND, "§6磨碎的铜砂", getGradientName("带有微弱金属光泽，是铜脉鱼的气息信标")
+                                new WeightedItem(new CustomItemStack(Material.RED_SAND, "§6Ground Copper Sand", getGradientName("Has a faint metallic shine that attracts copper-vein fish")
                                 ), 30),
-                                new WeightedItem(new CustomItemStack(Material.RED_DYE, "§6铁锈粉末", getGradientName("从废弃矿械上刮下的锈尘，鱼儿能感知到‘同类’的存在")
+                                new WeightedItem(new CustomItemStack(Material.RED_DYE, "§6Rust Powder", getGradientName("Scraped from old mining gear; fish sense the familiar scent")
                                 ), 30),
-                                new WeightedItem(new CustomItemStack(Material.GLOW_INK_SAC, "§6金粉残渣", getGradientName("淘金后的尾料，仍残留着‘富矿区’的魔力波动")
+                                new WeightedItem(new CustomItemStack(Material.GLOW_INK_SAC, "§6Gold Dust Residue", getGradientName("Leftover from gold panning, still carrying traces of rich ore")
                                 ), 70),
-                                new WeightedItem(new CustomItemStack(Material.QUARTZ, "§6石英碎屑", getGradientName("来自下界矿脉的晶体碎片，能稳定矿粉的能量场")
+                                new WeightedItem(new CustomItemStack(Material.QUARTZ, "§6Quartz Shards", getGradientName("Crystal bits from Nether veins that help stabilize ore dust energy")
                                 ), 60),
-                                new WeightedItem(new CustomItemStack(Material.COAL, "§6碳晶颗粒", getGradientName("深埋地壳的古老植物遗骸，为矿粉提供能量基底")
+                                new WeightedItem(new CustomItemStack(Material.COAL, "§6Carbon Crystal Grains", getGradientName("Ancient plant remains deep underground that provide energy for ore dust")
                                 ), 30),
-                                new WeightedItem(new CustomItemStack(Material.NETHER_STAR, "§d星辰铁微尘", ("§f极其稀有，传说来自陨星核心，能大幅提升引诱力")
+                                new WeightedItem(new CustomItemStack(Material.NETHER_STAR, "§dStardust Iron Dust", ("§fVery rare, said to come from a meteor's core. Greatly boosts attraction")
                                 ), 6),
                                 new WeightedItem(RANDOM_FISH_COMMON, 90),
                                 new WeightedItem(RANDOM_FISH_UNCOMMON, 50),
@@ -1168,17 +1168,17 @@ public final class MagicExpansionItemSetup {
                                 new WeightedItem(RANDOM_FISH_EPIC, 1)
                         ),
                         "fishLureOre", List.of(
-                                new WeightedItem(new CustomItemStack(Material.COPPER_INGOT, "§b原生铜脉碎片", getGradientName("并非冶炼所得，而是从岩层中直接剥离的天然导电矿络")
+                                new WeightedItem(new CustomItemStack(Material.COPPER_INGOT, "§bRaw Copper Vein Fragment", getGradientName("Not smelted; a natural conductive vein taken straight from rock")
                                 ), 20),
-                                new WeightedItem(new CustomItemStack(Material.IRON_INGOT, "§b赤铁矿核", ("§f保留了完整晶体结构的高纯度铁核，能散发‘金属心跳’般的信号")
+                                new WeightedItem(new CustomItemStack(Material.IRON_INGOT, "§bHematite Core", ("§fA high-purity iron core that sends out a signal like a metallic heartbeat")
                                 ), 30),
-                                new WeightedItem(new CustomItemStack(Material.GOLD_INGOT, "§b金脉结晶", getGradientName("在高压下自然形成的网状金晶，是‘富矿区’的活体信标")
+                                new WeightedItem(new CustomItemStack(Material.GOLD_INGOT, "§bGold Vein Crystal", getGradientName("A naturally formed web of gold crystals that signals a rich ore area")
                                 ), 70),
-                                new WeightedItem(new CustomItemStack(Material.AMETHYST_SHARD, "§b深岩晶核", getGradientName("来自地壳深处的共振晶体，能放大矿石信号的传播范围")
+                                new WeightedItem(new CustomItemStack(Material.AMETHYST_SHARD, "§bDeep Rock Crystal Core", getGradientName("A resonant crystal from deep underground that boosts ore signals")
                                 ), 60),
-                                new WeightedItem(new CustomItemStack(Material.COAL_BLOCK, "§b熔岩碳心", getGradientName("在岩浆旁碳化千年的木心，蕴含地热能量，稳定矿核活性")
+                                new WeightedItem(new CustomItemStack(Material.COAL_BLOCK, "§bLava Carbon Core", getGradientName("Wood carbonized near lava for ages, holding heat that keeps ore cores active")
                                 ), 30),
-                                new WeightedItem(new CustomItemStack(Material.NETHER_STAR, "§5星核残片", getGradientName("传说来自坠落恒星的核心碎片，能模拟‘地核级’矿脉信号")
+                                new WeightedItem(new CustomItemStack(Material.NETHER_STAR, "§5Star Core Fragment", getGradientName("A piece of a fallen star's core that can mimic deep-core ore signals")
                                 ), 6),
                                 new WeightedItem(RANDOM_FISH_COMMON, 90),
                                 new WeightedItem(RANDOM_FISH_UNCOMMON, 50),
@@ -1189,21 +1189,21 @@ public final class MagicExpansionItemSetup {
                                 new WeightedItem(RANDOM_FISH_EPIC, 1)
                         ),
                         "fishLureAlloyIngot", List.of(
-                                new WeightedItem(new CustomItemStack(new ItemStack(Material.BOWL),"§6马桶盖",getGradientName("远古净秽仪式的圣环，开启则通幽界，闭合即封污浊。"),getGradientName("凡人不知，它曾是神明如厕时的结界之门。")
+                                new WeightedItem(new CustomItemStack(new ItemStack(Material.BOWL),"§6Toilet Lid",getGradientName("A sacred ring from an ancient cleansing ritual. Open it to reach the spirit world; close it to seal away filth."),getGradientName("Few know it was once a portal used by gods in the bathroom.")
                                 ), 23),
-                                new WeightedItem(new CustomItemStack(new ItemStack(Material.YELLOW_DYE),"§e香蕉皮",getGradientName("滑倒过三位国王、两只独角兽和一个自诩永不跌倒的冒险者。"),getGradientName("传说它来自月光下微笑的黄金树，专为命运的踉跄而生。")
+                                new WeightedItem(new CustomItemStack(new ItemStack(Material.YELLOW_DYE),"§eBanana Peel",getGradientName("It has tripped three kings, two unicorns, and one adventurer who never falls."),getGradientName("Legend says it came from a smiling golden tree under moonlight, made for life's little stumbles.")
                                 ), 23),
-                                new WeightedItem(new CustomItemStack(new ItemStack(Material.IRON_SHOVEL),"§a马桶搋子",getGradientName("深渊吸魂者的仿造品，每一次下压都在封印来自下水道的低语。"),getGradientName("真正的强者，用它不止通管道，更通灵界。"),getGradientName("ber~ber~ber~")
+                                new WeightedItem(new CustomItemStack(new ItemStack(Material.IRON_SHOVEL),"§aPlunger",getGradientName("A copy of an abyss soul-sucker. Every push seals whispers from the sewer."),getGradientName("The truly strong use it to clear pipes and reach the spirit world."),getGradientName("ber~ber~ber~")
                                 ), 23),
-                                new WeightedItem(new CustomItemStack(CustomHead.getHead("1421f1514da756c8c6c7c0b83a79265c26c9ece66b3bad8fbd94bd96d7040d7e"),"§b海鳗",getGradientName("深海裂隙中游动的活电鞭，脊髓里流淌着远古雷神的残魂。"),getGradientName("渔民称它“黑潮之怒”，碰触者浑身抽搐，口吐电文。")
+                                new WeightedItem(new CustomItemStack(CustomHead.getHead("1421f1514da756c8c6c7c0b83a79265c26c9ece66b3bad8fbd94bd96d7040d7e"),"§bEel",getGradientName("A living electric whip from deep-sea cracks, carrying the spirit of an ancient thunder god."),getGradientName("Fishers call it “Black Tide's Rage.” Touch it and you'll twitch and spit sparks.")
                                 ), 23),
-                                new WeightedItem(new CustomItemStack(CustomHead.getHead("a1f71182915f5f862189a81f690acde4f671075db267eb6128fd1b4a84da8d7c"),"§c冷殇的轮椅",getGradientName("传说中专为“挂机玩家”打造的神装，装上它，连睡觉都能通关最终Boss。"),getGradientName("——不是你太强，是轮椅替你扛下了所有的难度。")
+                                new WeightedItem(new CustomItemStack(CustomHead.getHead("a1f71182915f5f862189a81f690acde4f671075db267eb6128fd1b4a84da8d7c"),"§cCold Sorrow's Wheelchair",getGradientName("A legendary ride made for AFK players. With it, you can beat the final boss in your sleep."),getGradientName("— You're not overpowered; the wheelchair handles all the hard parts.")
                                 ), 23),
-                                new WeightedItem(new CustomItemStack(new ItemStack(Material.COCOA_BEANS),"§c屎"
+                                new WeightedItem(new CustomItemStack(new ItemStack(Material.COCOA_BEANS),"§cPoop"
                                 ), 23),
-                                new WeightedItem(new CustomItemStack(CustomHead.MAGICSOLO.getItem(),getGradientName("magicsolo"),getGradientName("南柯一梦终须醒，浮生若梦皆是空~"),getGradientName("南柯一梦若浮生，不梦前世不梦今~")
+                                new WeightedItem(new CustomItemStack(CustomHead.MAGICSOLO.getItem(),getGradientName("magicsolo"),getGradientName("Every dream must end; life is just a dream~"),getGradientName("Life is a dream; no past lives, no present dreams~")
                                 ), 23),
-                                new WeightedItem(new CustomItemStack(new ItemStack(Material.GOLDEN_SHOVEL),"§e金铲铲",getGradientName("你是想要人口呢？"),getGradientName("还是想要纹章呢？")
+                                new WeightedItem(new CustomItemStack(new ItemStack(Material.GOLDEN_SHOVEL),"§eGolden Shovel",getGradientName("Do you want more units?"),getGradientName("Or do you want an emblem?")
                                 ), 23),
                                 new WeightedItem(RANDOM_FISH_COMMON, 38),
                                 new WeightedItem(RANDOM_FISH_UNCOMMON, 31),
@@ -1213,19 +1213,19 @@ public final class MagicExpansionItemSetup {
                                 new WeightedItem(RANDOM_FISH_EPIC_POOL_ALLOY_INGOT, 5),
                                 new WeightedItem(RANDOM_FISH_EPIC, 9),
                                 new WeightedItem(RANDOM_FISH_EPIC_POOL_INDUSTRY, 3),
-                                new WeightedItem(new CustomItemStack(new ItemStack(Material.PRISMARINE_SHARD,1),getGradientNameVer2("鱼饵·记忆碎片"),("§f这个鱼饵可以钓到任何物品"),("§f他存在于过去或者是未来"),("§f你现在看到的他并非真正的他")
+                                new WeightedItem(new CustomItemStack(new ItemStack(Material.PRISMARINE_SHARD,1),getGradientNameVer2("Bait: Memory Fragment"),("§fThis bait can catch any item"),("§fIt exists in the past or the future"),("§fWhat you see now isn't its true form")
                                 ), 1)
                         ),
                         "default", List.of(
-                                new WeightedItem(new CustomItemStack(new ItemStack(Material.SUGAR_CANE,2),"§b腐烂的甘蔗",getGradientName("河里怎么会有甘蔗呢？")), 8),
-                                new WeightedItem(new CustomItemStack(new ItemStack(Material.STICK,2),"§b锟斤拷",getGradientName("这是什么东西呢？")), 8),
-                                new WeightedItem(new CustomItemStack(new ItemStack(Material.INK_SAC,2),"§b新鲜的墨囊",getGradientName("谁家好人把墨囊丢在河里啊？")), 8),
-                                new WeightedItem(new CustomItemStack(new ItemStack(Material.CAKE,2),"§b隔夜的蛋糕",getGradientName("蛋糕吃不完了？")), 8),
-                                new WeightedItem(new CustomItemStack(new ItemStack(Material.REDSTONE,8),"§b8-bit 红石",getGradientName("一把刚好8个？")), 8),
-                                new WeightedItem(new CustomItemStack(new ItemStack(Material.DISPENSER,2),"§b粘液科技要用到的发射器",getGradientName("放地上就好了？")), 8),
+                                new WeightedItem(new CustomItemStack(new ItemStack(Material.SUGAR_CANE,2),"§bRotten Sugar Cane",getGradientName("Why is there sugar cane in the river?")), 8),
+                                new WeightedItem(new CustomItemStack(new ItemStack(Material.STICK,2),"§bGarbled Text",getGradientName("What is this thing?")), 8),
+                                new WeightedItem(new CustomItemStack(new ItemStack(Material.INK_SAC,2),"§bFresh Ink Sac",getGradientName("Who would throw an ink sac into a river?")), 8),
+                                new WeightedItem(new CustomItemStack(new ItemStack(Material.CAKE,2),"§bDay-Old Cake",getGradientName("Couldn't finish the cake?")), 8),
+                                new WeightedItem(new CustomItemStack(new ItemStack(Material.REDSTONE,8),"§b8-bit Redstone",getGradientName("Exactly eight in a stack?")), 8),
+                                new WeightedItem(new CustomItemStack(new ItemStack(Material.DISPENSER,2),"§bSlimefun Dispenser",getGradientName("Just put it on the ground?")), 8),
                                 new WeightedItem(RANDOM_FISH_COMMON, 2),
                                 new WeightedItem(RANDOM_FISH_UNCOMMON, 1),
-                                new WeightedItem(new CustomItemStack(new ItemStack(Material.COCOA_BEANS),getGradientName("一个TNT")), 2)
+                                new WeightedItem(new CustomItemStack(new ItemStack(Material.COCOA_BEANS),getGradientName("One TNT")), 2)
 
 
                         )
@@ -1239,13 +1239,13 @@ public final class MagicExpansionItemSetup {
 
 
 
-        // 风语者之竿
+        // Windtalker's Rod
         new FishingRod(magicexpansiondreamerrod, MagicExpansionItems.FISHING_ROD_WIND_SPEAKER, RecipeType.ENHANCED_CRAFTING_TABLE, new ItemStack[] {
                 null,null,WATER_ELEMENT,
                 null,FISHING_ROD_NEW_PLAYER,WIND_SPIRIT,
                 FISHING_STICK_STAR_IRON,null,AMETHYST_SHARD
         }, new HashMap<>() {{
-            put(Enchantment.LUCK, 5);
+            put(Enchantment.LUCK_OF_THE_SEA, 5);
             put(Enchantment.LURE, 5);
         }}, false,
                 Map.of(
@@ -1321,19 +1321,19 @@ public final class MagicExpansionItemSetup {
                                 new WeightedItem(RANDOM_FISH_EPIC_POOL_INDUSTRY, 300),
                                 new WeightedItem(RANDOM_FISH_EPIC, 300),
                                 new WeightedItem(FISH_LEGENDARY_EEL_POWER, 300),
-                                new WeightedItem(new CustomItemStack(new ItemStack(Material.PRISMARINE_SHARD,1),getGradientNameVer2("鱼饵·记忆碎片"),("§f这个鱼饵可以钓到任何物品"),("§f他存在于过去或者是未来"),("§f你现在看到的他并非真正的他")
+                                new WeightedItem(new CustomItemStack(new ItemStack(Material.PRISMARINE_SHARD,1),getGradientNameVer2("Bait: Memory Fragment"),("§fThis bait can catch any item"),("§fIt exists in the past or the future"),("§fWhat you see now isn't its true form")
                                 ), 1800)
                         ),
                         "bread", List.of(
-                                new WeightedItem(new CustomItemStack(new ItemStack(Material.COD,3),"§b迷路的生鳕鱼",getGradientName("这是谁家的鳕鱼？")
+                                new WeightedItem(new CustomItemStack(new ItemStack(Material.COD,3),"§bLost Raw Cod",getGradientName("Whose cod is this?")
                                 ), 20),
-                                new WeightedItem(new CustomItemStack(new ItemStack(Material.SALMON,3),"§b晕头转向的生鲑鱼",getGradientName("有没有听过洄鲑阵法？")
+                                new WeightedItem(new CustomItemStack(new ItemStack(Material.SALMON,3),"§bDizzy Raw Salmon",getGradientName("Ever heard of the Salmon Loop formation?")
                                 ), 20),
-                                new WeightedItem(new CustomItemStack(new ItemStack(Material.TROPICAL_FISH,3),"§b有1.4的热带鱼",getGradientName("热带鱼是怎么跑到中远河里的？")
+                                new WeightedItem(new CustomItemStack(new ItemStack(Material.TROPICAL_FISH,3),"§bA Tropical Fish with 1.4",getGradientName("How did a tropical fish end up in a river?")
                                 ), 5),
-                                new WeightedItem(new CustomItemStack(new ItemStack(Material.PUFFERFISH,3),"§b发绿的河豚",getGradientName("这东西可不能乱吃哦~")
+                                new WeightedItem(new CustomItemStack(new ItemStack(Material.PUFFERFISH,3),"§bGreen Pufferfish",getGradientName("Don't just eat this stuff~")
                                 ), 9),
-                                new WeightedItem(new CustomItemStack(new ItemStack(Material.POTION,3),"§b神秘的药剂",getGradientName("也许能喝吧？")
+                                new WeightedItem(new CustomItemStack(new ItemStack(Material.POTION,3),"§bMysterious Potion",getGradientName("Maybe it's safe to drink?")
                                 ), 4),
                                 new WeightedItem(new ItemStack(Material.HONEY_BOTTLE,256), 30),
                                 new WeightedItem(RANDOM_FISH_COMMON, 10),
@@ -1343,19 +1343,19 @@ public final class MagicExpansionItemSetup {
                                 new WeightedItem(RANDOM_FISH_RARE_POOL_DUST, 18),
                                 new WeightedItem(RANDOM_FISH_RARE_POOL_ORE, 18),
                                 new WeightedItem(RANDOM_FISH_RARE_POOL_INDUSTRY, 16),
-                                new WeightedItem(new CustomItemStack(new ItemStack(Material.PRISMARINE_SHARD,1),getGradientNameVer2("鱼饵·记忆碎片"),("§f这个鱼饵可以钓到任何物品"),("§f他存在于过去或者是未来"),("§f你现在看到的他并非真正的他")
+                                new WeightedItem(new CustomItemStack(new ItemStack(Material.PRISMARINE_SHARD,1),getGradientNameVer2("Bait: Memory Fragment"),("§fThis bait can catch any item"),("§fIt exists in the past or the future"),("§fWhat you see now isn't its true form")
                                 ), 1)
                         ),
                         "fishLureBasic", List.of(
-                                new WeightedItem(new CustomItemStack(new ItemStack(Material.GLOW_BERRIES,3), "§a萤火草穗", getGradientName("夜间会发出微光，传说能引诱好奇的鱼")
+                                new WeightedItem(new CustomItemStack(new ItemStack(Material.GLOW_BERRIES,3), "§aFirefly Grass Tassel", getGradientName("Glows at night and is said to attract curious fish")
                                 ), 8),
-                                new WeightedItem(new CustomItemStack(new ItemStack(Material.MOSS_CARPET,3), "§a水苔绒", getGradientName("柔软湿润，是小鱼最爱藏身之处")
+                                new WeightedItem(new CustomItemStack(new ItemStack(Material.MOSS_CARPET,3), "§aWater Moss", getGradientName("Soft and damp, a favorite hiding spot for small fish")
                                 ), 6),
-                                new WeightedItem(new CustomItemStack(new ItemStack(Material.SLIME_BALL,3), "§a蛙鸣壳", getGradientName("轻轻一捏就会发出‘咕呱’声，鱼儿以为是同类")
+                                new WeightedItem(new CustomItemStack(new ItemStack(Material.SLIME_BALL,3), "§aFrog Call Shell", getGradientName("Squeeze it to make a croak; fish think it's one of their own")
                                 ), 4),
-                                new WeightedItem(new CustomItemStack(new ItemStack(Material.POPPY,3), "§a露珠莲瓣", getGradientName("带着晨露的清香，能净化水域的浊气")
+                                new WeightedItem(new CustomItemStack(new ItemStack(Material.POPPY,3), "§aDewdrop Lotus Petal", getGradientName("Smells like morning dew and helps clear murky water")
                                 ), 8),
-                                new WeightedItem(new CustomItemStack(new ItemStack(Material.PRISMARINE_SHARD,3), "§a鱼鳞尘", ("§f在阳光下闪烁微光，是鱼群身份的信号")
+                                new WeightedItem(new CustomItemStack(new ItemStack(Material.PRISMARINE_SHARD,3), "§aFish Scale Dust", ("§fShimmers in sunlight and signals which school a fish belongs to")
                                 ), 5),
                                 new WeightedItem(RANDOM_FISH_COMMON, 20),
                                 new WeightedItem(RANDOM_FISH_UNCOMMON, 18),
@@ -1364,7 +1364,7 @@ public final class MagicExpansionItemSetup {
                                 new WeightedItem(RANDOM_FISH_RARE_POOL_INDUSTRY, 15),
                                 new WeightedItem(RANDOM_FISH_EPIC, 8),
                                 new WeightedItem(RANDOM_FISH_EPIC_POOL_INDUSTRY, 8),
-                                new WeightedItem(new CustomItemStack(new ItemStack(Material.PRISMARINE_SHARD,1),getGradientNameVer2("鱼饵·记忆碎片"),("§f这个鱼饵可以钓到任何物品"),("§f他存在于过去或者是未来"),("§f你现在看到的他并非真正的他")
+                                new WeightedItem(new CustomItemStack(new ItemStack(Material.PRISMARINE_SHARD,1),getGradientNameVer2("Bait: Memory Fragment"),("§fThis bait can catch any item"),("§fIt exists in the past or the future"),("§fWhat you see now isn't its true form")
                                 ), 1),
 
                                 new WeightedItem(SlimefunItems.REINFORCED_ALLOY_INGOT, 9),
@@ -1405,17 +1405,17 @@ public final class MagicExpansionItemSetup {
                                 new WeightedItem(SlimefunItems.BOOSTED_URANIUM, 9)
                         ),
                         "fishLureDust", List.of(
-                                new WeightedItem(new CustomItemStack(new ItemStack(Material.RED_SAND,3), "§6磨碎的铜砂", getGradientName("带有微弱金属光泽，是铜脉鱼的气息信标")
+                                new WeightedItem(new CustomItemStack(new ItemStack(Material.RED_SAND,3), "§6Ground Copper Sand", getGradientName("Has a faint metallic shine that attracts copper-vein fish")
                                 ), 3),
-                                new WeightedItem(new CustomItemStack(new ItemStack(Material.RED_DYE,3), "§6铁锈粉末", getGradientName("从废弃矿械上刮下的锈尘，鱼儿能感知到‘同类’的存在")
+                                new WeightedItem(new CustomItemStack(new ItemStack(Material.RED_DYE,3), "§6Rust Powder", getGradientName("Scraped from old mining gear; fish sense the familiar scent")
                                 ), 3),
-                                new WeightedItem(new CustomItemStack(new ItemStack(Material.GLOW_INK_SAC,3), "§6金粉残渣", getGradientName("淘金后的尾料，仍残留着‘富矿区’的魔力波动")
+                                new WeightedItem(new CustomItemStack(new ItemStack(Material.GLOW_INK_SAC,3), "§6Gold Dust Residue", getGradientName("Leftover from gold panning, still carrying traces of rich ore")
                                 ), 7),
-                                new WeightedItem(new CustomItemStack(new ItemStack(Material.QUARTZ,3), "§6石英碎屑", getGradientName("来自下界矿脉的晶体碎片，能稳定矿粉的能量场")
+                                new WeightedItem(new CustomItemStack(new ItemStack(Material.QUARTZ,3), "§6Quartz Shards", getGradientName("Crystal bits from Nether veins that help stabilize ore dust energy")
                                 ), 6),
-                                new WeightedItem(new CustomItemStack(new ItemStack(Material.COAL,3), "§6碳晶颗粒", getGradientName("深埋地壳的古老植物遗骸，为矿粉提供能量基底")
+                                new WeightedItem(new CustomItemStack(new ItemStack(Material.COAL,3), "§6Carbon Crystal Grains", getGradientName("Ancient plant remains deep underground that provide energy for ore dust")
                                 ), 3),
-                                new WeightedItem(new CustomItemStack(new ItemStack(Material.NETHER_STAR,3), "§d星辰铁微尘", ("§f极其稀有，传说来自陨星核心，能大幅提升引诱力")
+                                new WeightedItem(new CustomItemStack(new ItemStack(Material.NETHER_STAR,3), "§dStardust Iron Dust", ("§fVery rare, said to come from a meteor's core. Greatly boosts attraction")
                                 ), 5),
                                 new WeightedItem(RANDOM_FISH_COMMON, 12),
                                 new WeightedItem(RANDOM_FISH_UNCOMMON, 3),
@@ -1424,21 +1424,21 @@ public final class MagicExpansionItemSetup {
                                 new WeightedItem(RANDOM_FISH_RARE_POOL_INDUSTRY, 1),
                                 new WeightedItem(RANDOM_FISH_EPIC, 3),
                                 new WeightedItem(RANDOM_FISH_EPIC_POOL_INDUSTRY, 3),
-                                new WeightedItem(new CustomItemStack(new ItemStack(Material.PRISMARINE_SHARD,1),getGradientNameVer2("鱼饵·记忆碎片"),("§f这个鱼饵可以钓到任何物品"),("§f他存在于过去或者是未来"),("§f你现在看到的他并非真正的他")
+                                new WeightedItem(new CustomItemStack(new ItemStack(Material.PRISMARINE_SHARD,1),getGradientNameVer2("Bait: Memory Fragment"),("§fThis bait can catch any item"),("§fIt exists in the past or the future"),("§fWhat you see now isn't its true form")
                                 ), 1)
                         ),
                         "fishLureOre", List.of(
-                                new WeightedItem(new CustomItemStack(new ItemStack(Material.COPPER_INGOT,3), "§b原生铜脉碎片", getGradientName("并非冶炼所得，而是从岩层中直接剥离的天然导电矿络")
+                                new WeightedItem(new CustomItemStack(new ItemStack(Material.COPPER_INGOT,3), "§bRaw Copper Vein Fragment", getGradientName("Not smelted; a natural conductive vein taken straight from rock")
                                 ), 2),
-                                new WeightedItem(new CustomItemStack(new ItemStack(Material.IRON_INGOT,3), "§b赤铁矿核", ("§f保留了完整晶体结构的高纯度铁核，能散发‘金属心跳’般的信号")
+                                new WeightedItem(new CustomItemStack(new ItemStack(Material.IRON_INGOT,3), "§bHematite Core", ("§fA high-purity iron core that sends out a signal like a metallic heartbeat")
                                 ), 3),
-                                new WeightedItem(new CustomItemStack(new ItemStack(Material.GOLD_INGOT,3), "§b金脉结晶", getGradientName("在高压下自然形成的网状金晶，是‘富矿区’的活体信标")
+                                new WeightedItem(new CustomItemStack(new ItemStack(Material.GOLD_INGOT,3), "§bGold Vein Crystal", getGradientName("A naturally formed web of gold crystals that signals a rich ore area")
                                 ), 7),
-                                new WeightedItem(new CustomItemStack(new ItemStack(Material.AMETHYST_SHARD,3), "§b深岩晶核", getGradientName("来自地壳深处的共振晶体，能放大矿石信号的传播范围")
+                                new WeightedItem(new CustomItemStack(new ItemStack(Material.AMETHYST_SHARD,3), "§bDeep Rock Crystal Core", getGradientName("A resonant crystal from deep underground that boosts ore signals")
                                 ), 6),
-                                new WeightedItem(new CustomItemStack(new ItemStack(Material.COAL_BLOCK,3), "§b熔岩碳心", getGradientName("在岩浆旁碳化千年的木心，蕴含地热能量，稳定矿核活性")
+                                new WeightedItem(new CustomItemStack(new ItemStack(Material.COAL_BLOCK,3), "§bLava Carbon Core", getGradientName("Wood carbonized near lava for ages, holding heat that keeps ore cores active")
                                 ), 3),
-                                new WeightedItem(new CustomItemStack(new ItemStack(Material.NETHER_STAR,3), "§5星核残片", getGradientName("传说来自坠落恒星的核心碎片，能模拟‘地核级’矿脉信号")
+                                new WeightedItem(new CustomItemStack(new ItemStack(Material.NETHER_STAR,3), "§5Star Core Fragment", getGradientName("A piece of a fallen star's core that can mimic deep-core ore signals")
                                 ), 5),
                                 new WeightedItem(RANDOM_FISH_COMMON, 12),
                                 new WeightedItem(RANDOM_FISH_UNCOMMON, 3),
@@ -1447,25 +1447,25 @@ public final class MagicExpansionItemSetup {
                                 new WeightedItem(RANDOM_FISH_RARE_POOL_INDUSTRY, 1),
                                 new WeightedItem(RANDOM_FISH_EPIC, 3),
                                 new WeightedItem(RANDOM_FISH_EPIC_POOL_INDUSTRY, 3),
-                                new WeightedItem(new CustomItemStack(new ItemStack(Material.PRISMARINE_SHARD,1),getGradientNameVer2("鱼饵·记忆碎片"),("§f这个鱼饵可以钓到任何物品"),("§f他存在于过去或者是未来"),("§f你现在看到的他并非真正的他")
+                                new WeightedItem(new CustomItemStack(new ItemStack(Material.PRISMARINE_SHARD,1),getGradientNameVer2("Bait: Memory Fragment"),("§fThis bait can catch any item"),("§fIt exists in the past or the future"),("§fWhat you see now isn't its true form")
                                 ), 1)
                         ),
                         "fishLureAlloyIngot", List.of(
-                                new WeightedItem(new CustomItemStack(new ItemStack(Material.BOWL),"§6马桶盖",getGradientName("远古净秽仪式的圣环，开启则通幽界，闭合即封污浊。"),getGradientName("凡人不知，它曾是神明如厕时的结界之门。")
+                                new WeightedItem(new CustomItemStack(new ItemStack(Material.BOWL),"§6Toilet Lid",getGradientName("A sacred ring from an ancient cleansing ritual. Open it to reach the spirit world; close it to seal away filth."),getGradientName("Few know it was once a portal used by gods in the bathroom.")
                                 ), 15),
-                                new WeightedItem(new CustomItemStack(new ItemStack(Material.YELLOW_DYE),"§e香蕉皮",getGradientName("滑倒过三位国王、两只独角兽和一个自诩永不跌倒的冒险者。"),getGradientName("传说它来自月光下微笑的黄金树，专为命运的踉跄而生。")
+                                new WeightedItem(new CustomItemStack(new ItemStack(Material.YELLOW_DYE),"§eBanana Peel",getGradientName("It has tripped three kings, two unicorns, and one adventurer who never falls."),getGradientName("Legend says it came from a smiling golden tree under moonlight, made for life's little stumbles.")
                                 ), 15),
-                                new WeightedItem(new CustomItemStack(new ItemStack(Material.IRON_SHOVEL),"§a马桶搋子",getGradientName("深渊吸魂者的仿造品，每一次下压都在封印来自下水道的低语。"),getGradientName("真正的强者，用它不止通管道，更通灵界。"),getGradientName("ber~ber~ber~")
+                                new WeightedItem(new CustomItemStack(new ItemStack(Material.IRON_SHOVEL),"§aPlunger",getGradientName("A copy of an abyss soul-sucker. Every push seals whispers from the sewer."),getGradientName("The truly strong use it to clear pipes and reach the spirit world."),getGradientName("ber~ber~ber~")
                                 ), 15),
-                                new WeightedItem(new CustomItemStack(CustomHead.getHead("1421f1514da756c8c6c7c0b83a79265c26c9ece66b3bad8fbd94bd96d7040d7e"),"§b海鳗",getGradientName("深海裂隙中游动的活电鞭，脊髓里流淌着远古雷神的残魂。"),getGradientName("渔民称它“黑潮之怒”，碰触者浑身抽搐，口吐电文。")
+                                new WeightedItem(new CustomItemStack(CustomHead.getHead("1421f1514da756c8c6c7c0b83a79265c26c9ece66b3bad8fbd94bd96d7040d7e"),"§bEel",getGradientName("A living electric whip from deep-sea cracks, carrying the spirit of an ancient thunder god."),getGradientName("Fishers call it “Black Tide's Rage.” Touch it and you'll twitch and spit sparks.")
                                 ), 15),
-                                new WeightedItem(new CustomItemStack(CustomHead.getHead("a1f71182915f5f862189a81f690acde4f671075db267eb6128fd1b4a84da8d7c"),"§c冷殇的轮椅",getGradientName("传说中专为“挂机玩家”打造的神装，装上它，连睡觉都能通关最终Boss。"),getGradientName("——不是你太强，是轮椅替你扛下了所有的难度。")
+                                new WeightedItem(new CustomItemStack(CustomHead.getHead("a1f71182915f5f862189a81f690acde4f671075db267eb6128fd1b4a84da8d7c"),"§cCold Sorrow's Wheelchair",getGradientName("A legendary ride made for AFK players. With it, you can beat the final boss in your sleep."),getGradientName("— You're not overpowered; the wheelchair handles all the hard parts.")
                                 ), 15),
-                                new WeightedItem(new CustomItemStack(new ItemStack(Material.COCOA_BEANS),"§c屎"
+                                new WeightedItem(new CustomItemStack(new ItemStack(Material.COCOA_BEANS),"§cPoop"
                                 ), 15),
-                                new WeightedItem(new CustomItemStack(CustomHead.MAGICSOLO.getItem(),getGradientName("magicsolo"),getGradientName("南柯一梦终须醒，浮生若梦皆是空~"),getGradientName("南柯一梦若浮生，不梦前世不梦今~")
+                                new WeightedItem(new CustomItemStack(CustomHead.MAGICSOLO.getItem(),getGradientName("magicsolo"),getGradientName("Every dream must end; life is just a dream~"),getGradientName("Life is a dream; no past lives, no present dreams~")
                                 ), 15),
-                                new WeightedItem(new CustomItemStack(new ItemStack(Material.GOLDEN_SHOVEL),"§e金铲铲",getGradientName("你是想要人口呢？"),getGradientName("还是想要纹章呢？")
+                                new WeightedItem(new CustomItemStack(new ItemStack(Material.GOLDEN_SHOVEL),"§eGolden Shovel",getGradientName("Do you want more units?"),getGradientName("Or do you want an emblem?")
                                 ), 15),
                                 new WeightedItem(RANDOM_FISH_COMMON, 21),
                                 new WeightedItem(RANDOM_FISH_UNCOMMON, 25),
@@ -1475,21 +1475,21 @@ public final class MagicExpansionItemSetup {
                                 new WeightedItem(RANDOM_FISH_EPIC_POOL_ALLOY_INGOT, 16),
                                 new WeightedItem(RANDOM_FISH_EPIC, 10),
                                 new WeightedItem(RANDOM_FISH_EPIC_POOL_INDUSTRY, 10),
-                                new WeightedItem(new CustomItemStack(new ItemStack(Material.PRISMARINE_SHARD,1),getGradientNameVer2("鱼饵·记忆碎片"),("§f这个鱼饵可以钓到任何物品"),("§f他存在于过去或者是未来"),("§f你现在看到的他并非真正的他")
+                                new WeightedItem(new CustomItemStack(new ItemStack(Material.PRISMARINE_SHARD,1),getGradientNameVer2("Bait: Memory Fragment"),("§fThis bait can catch any item"),("§fIt exists in the past or the future"),("§fWhat you see now isn't its true form")
                                 ), 1)
                         ),
                         "default", List.of(
-                                new WeightedItem(new CustomItemStack(new ItemStack(Material.SUGAR_CANE,8),"§b腐烂的甘蔗",getGradientName("河里怎么会有甘蔗呢？")
+                                new WeightedItem(new CustomItemStack(new ItemStack(Material.SUGAR_CANE,8),"§bRotten Sugar Cane",getGradientName("Why is there sugar cane in the river?")
                                 ), 6),
-                                new WeightedItem(new CustomItemStack(new ItemStack(Material.STICK,8),"§b锟斤拷",getGradientName("这是什么东西呢？")
+                                new WeightedItem(new CustomItemStack(new ItemStack(Material.STICK,8),"§bGarbled Text",getGradientName("What is this thing?")
                                 ), 6),
-                                new WeightedItem(new CustomItemStack(new ItemStack(Material.INK_SAC,8),"§b新鲜的墨囊",getGradientName("谁家好人把墨囊丢在河里啊？")
+                                new WeightedItem(new CustomItemStack(new ItemStack(Material.INK_SAC,8),"§bFresh Ink Sac",getGradientName("Who would throw an ink sac into a river?")
                                 ), 6),
-                                new WeightedItem(new CustomItemStack(new ItemStack(Material.CAKE,8),"§b隔夜的蛋糕",getGradientName("蛋糕吃不完了？")
+                                new WeightedItem(new CustomItemStack(new ItemStack(Material.CAKE,8),"§bDay-Old Cake",getGradientName("Couldn't finish the cake?")
                                 ), 6),
-                                new WeightedItem(new CustomItemStack(new ItemStack(Material.REDSTONE,8),"§b8-bit 红石",getGradientName("一把刚好8个？")
+                                new WeightedItem(new CustomItemStack(new ItemStack(Material.REDSTONE,8),"§b8-bit Redstone",getGradientName("Exactly eight in a stack?")
                                 ), 6),
-                                new WeightedItem(new CustomItemStack(new ItemStack(Material.DISPENSER,8),"§b粘液科技要用到的发射器",getGradientName("放地上就好了？")
+                                new WeightedItem(new CustomItemStack(new ItemStack(Material.DISPENSER,8),"§bSlimefun Dispenser",getGradientName("Just put it on the ground?")
                                 ), 6),
                                 new WeightedItem(RANDOM_FISH_COMMON, 8),
                                 new WeightedItem(RANDOM_FISH_UNCOMMON, 8),
@@ -1499,7 +1499,7 @@ public final class MagicExpansionItemSetup {
                                 new WeightedItem(RANDOM_FISH_EPIC, 3),
                                 new WeightedItem(RANDOM_FISH_EPIC_POOL_INDUSTRY, 3),
                                 new WeightedItem(FISHING_ROD_FINAL_HOOK, 1),
-                                new WeightedItem(new CustomItemStack(new ItemStack(Material.PRISMARINE_SHARD,1),getGradientNameVer2("鱼饵·记忆碎片"),("§f这个鱼饵可以钓到任何物品"),("§f他存在于过去或者是未来"),("§f你现在看到的他并非真正的他")
+                                new WeightedItem(new CustomItemStack(new ItemStack(Material.PRISMARINE_SHARD,1),getGradientNameVer2("Bait: Memory Fragment"),("§fThis bait can catch any item"),("§fIt exists in the past or the future"),("§fWhat you see now isn't its true form")
                                 ), 1)
                         )
                 ),Arrays.asList(SlimefunItems.MAGIC_SUGAR,new ItemStack(Material.BREAD),
@@ -1522,7 +1522,7 @@ public final class MagicExpansionItemSetup {
                             new WeightedItem(RANDOM_FISH_EPIC_POOL_ALLOY_INGOT, 1),
                             new WeightedItem(RANDOM_FISH_LEGENDARY, 1),
                             new WeightedItem(FISH_LEGENDARY_EEL_POWER, 1),
-                            new WeightedItem(new CustomItemStack(new ItemStack(Material.PRISMARINE_SHARD,8),getGradientNameVer2("鱼饵·记忆碎片"),("§f这个鱼饵可以钓到任何物品"),("§f他存在于过去或者是未来"),("§f你现在看到的他并非真正的他")
+                            new WeightedItem(new CustomItemStack(new ItemStack(Material.PRISMARINE_SHARD,8),getGradientNameVer2("Bait: Memory Fragment"),("§fThis bait can catch any item"),("§fIt exists in the past or the future"),("§fWhat you see now isn't its true form")
                             ), 1)
                     ),
                     "default", List.of(
@@ -1537,11 +1537,11 @@ public final class MagicExpansionItemSetup {
                             new WeightedItem(RANDOM_FISH_LEGENDARY, 3),
                             new WeightedItem(FISH_LEGENDARY_EEL_POWER, 1),
                             new WeightedItem(FISHING_ROD_FINAL_HOOK, 1),
-                            new WeightedItem(new CustomItemStack(new ItemStack(Material.PRISMARINE_SHARD,5),getGradientNameVer2("鱼饵·记忆碎片"),("§f这个鱼饵可以钓到任何物品"),("§f他存在于过去或者是未来"),("§f你现在看到的他并非真正的他")
+                            new WeightedItem(new CustomItemStack(new ItemStack(Material.PRISMARINE_SHARD,5),getGradientNameVer2("Bait: Memory Fragment"),("§fThis bait can catch any item"),("§fIt exists in the past or the future"),("§fWhat you see now isn't its true form")
                             ), 3)
                     )
             );
-            USABLE_LURES =List.of(new CustomItemStack(new ItemStack(Material.PRISMARINE_SHARD,1),getGradientNameVer2("鱼饵·记忆碎片"),("§f这个鱼饵可以钓到任何物品"),("§f他存在于过去或者是未来"),("§f你现在看到的他并非真正的他")
+            USABLE_LURES =List.of(new CustomItemStack(new ItemStack(Material.PRISMARINE_SHARD,1),getGradientNameVer2("Bait: Memory Fragment"),("§fThis bait can catch any item"),("§fIt exists in the past or the future"),("§fWhat you see now isn't its true form")
             ));
         } else {
             lootTable = Map.of(
@@ -1557,39 +1557,39 @@ public final class MagicExpansionItemSetup {
                             new WeightedItem(RANDOM_FISH_LEGENDARY, 3),
                             new WeightedItem(FISH_LEGENDARY_EEL_POWER, 1),
                             new WeightedItem(FISHING_ROD_FINAL_HOOK, 1),
-                            new WeightedItem(new CustomItemStack(new ItemStack(Material.PRISMARINE_SHARD,5),getGradientNameVer2("鱼饵·记忆碎片"),("§f这个鱼饵可以钓到任何物品"),("§f他存在于过去或者是未来"),("§f你现在看到的他并非真正的他")
+                            new WeightedItem(new CustomItemStack(new ItemStack(Material.PRISMARINE_SHARD,5),getGradientNameVer2("Bait: Memory Fragment"),("§fThis bait can catch any item"),("§fIt exists in the past or the future"),("§fWhat you see now isn't its true form")
                             ), 3)
                     )
             );
-            USABLE_LURES =List.of(new CustomItemStack(new ItemStack(Material.PRISMARINE_SHARD,1),getGradientNameVer2("鱼饵·记忆碎片"),("§f这个鱼饵可以钓到任何物品"),("§f他存在于过去或者是未来"),("§f你现在看到的他并非真正的他"),(""),("§6§l当前未启用")
+            USABLE_LURES =List.of(new CustomItemStack(new ItemStack(Material.PRISMARINE_SHARD,1),getGradientNameVer2("Bait: Memory Fragment"),("§fThis bait can catch any item"),("§fIt exists in the past or the future"),("§fWhat you see now isn't its true form"),(""),("§6§lNot enabled yet")
             ));
         }
 
 
-        // 终焉鱼杆
+        // End Fishing Rod
         new FishingRod(magicexpansiondreamerrod, MagicExpansionItems.FISHING_ROD_FINAL_STICK, RecipeType.ENHANCED_CRAFTING_TABLE, new ItemStack[] {
                 null,null,MAGIC_EXPANSION_MAGIC_SUGAR_CANE,
                 null,MAGIC_EXPANSION_MAGIC_SUGAR_CANE,FISHING_ROD_FINAL_STRING,
                 MAGIC_EXPANSION_MAGIC_SUGAR_CANE,null, FISHING_ROD_FINAL_HOOK
         }, new HashMap<>() {{
-            put(Enchantment.LUCK, 25);
+            put(Enchantment.LUCK_OF_THE_SEA, 25);
             put(Enchantment.LURE, 5);
         }}, false,
                 lootTable,USABLE_LURES).register(plugin);
 
 
 
-        //新系列鱼竿  水云间
+        //New Fishing Rod Series  Water Cloud
         new FishingRodWaterCloud(magicexpansionwatercloudrod, MagicExpansionItems.FISHING_ROD_BETWEEN_WATER_CLOUD_CYAN_BAMBOO, RecipeType.ENHANCED_CRAFTING_TABLE, new ItemStack[] {
                 null,null,MagicExpansionItems.BAMBOO_JOINT,
                 null,MagicExpansionItems.BAMBOO_JOINT,MagicExpansionItems.MAGIC_THREAD,
                 MagicExpansionItems.BAMBOO_JOINT,null,MAGIC_EXPANSION_MAGIC_SUGAR_1
         }, new HashMap<>() {{
-            put(Enchantment.LUCK, 1);
+            put(Enchantment.LUCK_OF_THE_SEA, 1);
             put(Enchantment.LURE, 2);
         }}, false, 0,
                 Map.of(
-                        // 淬霞
+                        // Sunset Glow
                         "CuiXia", List.of(
                                 new WeightedItem(SlimefunItems.REINFORCED_ALLOY_INGOT, 222),
                                 new WeightedItem(SlimefunItems.DAMASCUS_STEEL_INGOT, 222),
@@ -1626,7 +1626,7 @@ public final class MagicExpansionItemSetup {
                                 new WeightedItem(new ItemStack(Material.BONE,15), 667),
                                 new WeightedItem(MagicExpansionItems.REED_TASSEL, 40)
                         ),
-                        // 微尘
+                        // Dust
                         "WeiChen", List.of(
                                 new WeightedItem(SlimefunItems.IRON_DUST, 370),
                                 new WeightedItem(SlimefunItems.GOLD_DUST, 370),
@@ -1645,7 +1645,7 @@ public final class MagicExpansionItemSetup {
                                 new WeightedItem(new ItemStack(Material.BONE,15), 1110),
                                 new WeightedItem(MagicExpansionItems.REED_TASSEL, 40)
                         ),
-                        // 熔火
+                        // Molten Fire
                         "RongHuo", List.of(
                                 new WeightedItem(SlimefunItems.COPPER_INGOT, 381),
                                 new WeightedItem(SlimefunItems.TIN_INGOT, 381),
@@ -1664,7 +1664,7 @@ public final class MagicExpansionItemSetup {
                                 new WeightedItem(MagicExpansionItems.REED_TASSEL, 40)
 
                         ),
-                        // 跃金
+                        // Golden Leap
                         "YueJin", List.of(
                                 new WeightedItem(SlimefunItems.GOLD_24K, 345),
                                 new WeightedItem(SlimefunItems.GOLD_22K, 345),
@@ -1685,7 +1685,7 @@ public final class MagicExpansionItemSetup {
                                 new WeightedItem(new ItemStack(Material.BONE,15), 1030),
                                 new WeightedItem(MagicExpansionItems.REED_TASSEL, 40)
                         ),
-                        // 星核
+                        // Star Core
                         "XingHe", List.of(
                                 new WeightedItem(SlimefunItems.MAGNESIUM_SALT, 345),
                                 new WeightedItem(SlimefunItems.OIL_BUCKET, 345),
@@ -1710,13 +1710,13 @@ public final class MagicExpansionItemSetup {
                 Arrays.asList(FISH_LURE_BETWEEN_WATER_CLOUD_CUIXIA,FISH_LURE_BETWEEN_WATER_CLOUD_WEICHEN,FISH_LURE_BETWEEN_WATER_CLOUD_RONGHUO,
                         FISH_LURE_BETWEEN_WATER_CLOUD_YUEJIN,FISH_LURE_BETWEEN_WATER_CLOUD_XINGHE)).register(plugin);
 
-        //水云间·芦花钓(暂定:先独立内联一份与青竹竿相同的鱼饵池,后续可单独调整)
+        //Water Cloud·Reed Blossom Rod(tentative:first copy the same bait pool as the Green Bamboo Rod,can be adjusted later)
         new FishingRodWaterCloud(magicexpansionwatercloudrod, MagicExpansionItems.FISHING_ROD_BETWEEN_WATER_CLOUD_REED, RecipeType.ENHANCED_CRAFTING_TABLE, new ItemStack[] {
                 null,null,MagicExpansionItems.REED_TASSEL,
                 null,MagicExpansionItems.FISHING_ROD_BETWEEN_WATER_CLOUD_CYAN_BAMBOO,MagicExpansionItems.MAGIC_THREAD,
                 MagicExpansionItems.REED_TASSEL,null,MAGIC_EXPANSION_MAGIC_SUGAR_1
         }, new HashMap<>() {{
-            put(Enchantment.LUCK, 2);
+            put(Enchantment.LUCK_OF_THE_SEA, 2);
             put(Enchantment.LURE, 2);
         }}, false, 1,
                 buildReedLootTable(),
@@ -1724,13 +1724,13 @@ public final class MagicExpansionItemSetup {
                         FISH_LURE_BETWEEN_WATER_CLOUD_REED_LUXUE,FISH_LURE_BETWEEN_WATER_CLOUD_REED_WEILU,
                         FISH_LURE_BETWEEN_WATER_CLOUD_REED_BAILU,FISH_LURE_BETWEEN_WATER_CLOUD_REED_LUYA)).register(plugin);
 
-        //水云间·寒江雪(二代鱼竿, 承接芦花钓: 芦花钓 + 白芦羽 + 魔法线 → 寒江雪)
+        //Water Cloud·Snowy River Rod(second-generation rod, follows the Reed Blossom Rod: Reed Blossom Rod + White Reed Feather + Magic Thread → Snowy River Rod)
         new FishingRodWaterCloud(magicexpansionwatercloudrod, MagicExpansionItems.FISHING_ROD_BETWEEN_WATER_CLOUD_HANJIANG, RecipeType.ENHANCED_CRAFTING_TABLE, new ItemStack[] {
                 null,null,MagicExpansionItems.FISH_SPECIAL_ACTION_BETWEEN_WATER_CLOUD_BAILUYU,
                 null,MagicExpansionItems.FISHING_ROD_BETWEEN_WATER_CLOUD_REED,MagicExpansionItems.MAGIC_THREAD,
                 MagicExpansionItems.FISH_SPECIAL_ACTION_BETWEEN_WATER_CLOUD_BAILUYU,null,MAGIC_EXPANSION_MAGIC_SUGAR_1
         }, new HashMap<>() {{
-            put(Enchantment.LUCK, 3);
+            put(Enchantment.LUCK_OF_THE_SEA, 3);
             put(Enchantment.LURE, 3);
         }}, false, 2,
                 buildHanjiangLootTable(),
@@ -1738,13 +1738,13 @@ public final class MagicExpansionItemSetup {
                         FISH_LURE_BETWEEN_WATER_CLOUD_HANJIANG_LUOXU,FISH_LURE_BETWEEN_WATER_CLOUD_HANJIANG_BINGPO,
                         FISH_LURE_BETWEEN_WATER_CLOUD_HANJIANG_CHUJI,FISH_LURE_BETWEEN_WATER_CLOUD_HANJIANG_CHUILUN)).register(plugin);
 
-        //水云间·细雨·斜风(二代鱼竿, 承接寒江雪: 寒江雪 + 雪魄珠 + 魔法线 → 细雨·斜风)
+        //Water Cloud·Drizzle·Breeze(second-generation rod, follows the Snowy River Rod: Snowy River Rod + Snow Pearl + Magic Thread → Drizzle·Breeze)
         new FishingRodWaterCloud(magicexpansionwatercloudrod, MagicExpansionItems.FISHING_ROD_BETWEEN_WATER_CLOUD_XIYU, RecipeType.ENHANCED_CRAFTING_TABLE, new ItemStack[] {
                 null,null,MagicExpansionItems.FISH_SPECIAL_ACTION_BETWEEN_WATER_CLOUD_HANJIANG_XUEPOZHU,
                 null,MagicExpansionItems.FISHING_ROD_BETWEEN_WATER_CLOUD_HANJIANG,MagicExpansionItems.MAGIC_THREAD,
                 MagicExpansionItems.FISH_SPECIAL_ACTION_BETWEEN_WATER_CLOUD_HANJIANG_XUEPOZHU,null,MAGIC_EXPANSION_MAGIC_SUGAR_1
         }, new HashMap<>() {{
-            put(Enchantment.LUCK, 4);
+            put(Enchantment.LUCK_OF_THE_SEA, 4);
             put(Enchantment.LURE, 4);
         }}, false, 3,
                 buildXiyuLootTable(),
@@ -1752,55 +1752,55 @@ public final class MagicExpansionItemSetup {
                         FISH_LURE_BETWEEN_WATER_CLOUD_XIYU_YANYU,FISH_LURE_BETWEEN_WATER_CLOUD_XIYU_LIANBAI,
                         FISH_LURE_BETWEEN_WATER_CLOUD_XIYU_XIAOFENG,FISH_LURE_BETWEEN_WATER_CLOUD_XIYU_XIEYING)).register(plugin);
 
-        //水云间·育种池(第二层: 消耗两条二代鱼 → 一条子代鱼, 杂交算法见 FishBreedPool)
+        //Water Cloud·Breeding Pool(second layer: uses two second-generation fish → to make one offspring fish, see the hybrid algorithm in FishBreedPool)
         new FishBreedPool(magicexpansionrecipemachine, MagicExpansionItems.FISH_BREED_POOL, RecipeType.ENHANCED_CRAFTING_TABLE, new ItemStack[] {
                 new ItemStack(Material.GLASS), new ItemStack(Material.GLASS), new ItemStack(Material.GLASS),
                 new ItemStack(Material.GLASS), new ItemStack(Material.WATER_BUCKET), new ItemStack(Material.GLASS),
                 new ItemStack(Material.GLASS), new ItemStack(Material.GLASS), new ItemStack(Material.GLASS)
         }).register(plugin);
 
-        //星辰木
+        //Starwood
         new UnplaceableBlock(magicexpansionresource, FISHING_STICK_STAR_IRON, RecipeType.ENHANCED_CRAFTING_TABLE, new ItemStack[] {
-                null, STICK, new CustomItemStack(Material.PRISMARINE_SHARD, "§a鱼鳞尘", ("§f在阳光下闪烁微光，是鱼群身份的信号")),
-                STICK, new CustomItemStack(Material.NETHER_STAR, "§d星辰铁微尘", ("§f极其稀有，传说来自陨星核心，能大幅提升引诱力")),STICK,
-                new CustomItemStack(Material.IRON_INGOT, "§b赤铁矿核", ("§f保留了完整晶体结构的高纯度铁核，能散发‘金属心跳’般的信号")), STICK, null
+                null, STICK, new CustomItemStack(Material.PRISMARINE_SHARD, "§aFish Scale Dust", ("§fShimmers in sunlight and signals which school a fish belongs to")),
+                STICK, new CustomItemStack(Material.NETHER_STAR, "§dStardust Iron Dust", ("§fVery rare, said to come from a meteor's core. Greatly boosts attraction")),STICK,
+                new CustomItemStack(Material.IRON_INGOT, "§bHematite Core", ("§fA high-purity iron core that sends out a signal like a metallic heartbeat")), STICK, null
         }).register(plugin);
 
 
-        //魔法擦拭巾
+        //Magic Wipe
         new EnchantmentEraser(magicexpansionspecialitem, ENCHANTMENT_ERASER, RecipeType.ENHANCED_CRAFTING_TABLE, new ItemStack[] {
                 new ItemStack(Material.PAPER), REDSTONE, null,
                 null, null, null,
                 null, null, null
         }).register(plugin);
-        //增重鱼饲料
+        //Fish Weight Feed
         new FishWeightEnhancer(magicexpansionspecialitem, FISH_WEIGHT_ENHANCER, RecipeType.ENHANCED_CRAFTING_TABLE, new ItemStack[] {
                 FISH_LURE_BASIC, MAGIC_EXPANSION_MAGIC_SUGAR_7, FISH_LURE_ORE,
                 new ItemStack(Material.BROWN_MUSHROOM), new ItemStack(Material.BOWL), new ItemStack(Material.RED_MUSHROOM),
                 FISH_LURE_DUST, new ItemStack(Material.SUGAR_CANE), FISH_LURE_ALLOY_INGOT
         }).register(plugin);
 
-        //神秘知识点
+        //Mysterious Knowledge
         new ResearchUnlocker(magicexpansionspecialitem, RESEARCH_UNLOCKER_PAPER, RecipeType.ENHANCED_CRAFTING_TABLE, new ItemStack[] {
                 EARTH_ELEMENT, PURE_ELEMENT_INGOT, WOOD_ELEMENT,
                 WATER_ELEMENT, SlimefunGuide.getItem(SlimefunGuideMode.SURVIVAL_MODE), FIRE_ELEMENT,
                 SlimefunItems.FILLED_FLASK_OF_KNOWLEDGE, GOLD_ELEMENT, SlimefunItems.FILLED_FLASK_OF_KNOWLEDGE
         }).register(plugin);
-        //全息文字清理
+        //Hologram Text Cleanup
         new WordClear(magicexpansionspecialitem, WORD_CLEAR, RecipeType.ENHANCED_CRAFTING_TABLE, new ItemStack[] {
                 REDSTONE, REDSTONE, REDSTONE,
                 REDSTONE, SlimefunItems.HOLOGRAM_PROJECTOR, REDSTONE,
                 REDSTONE, REDSTONE, REDSTONE
         }).register(plugin);
 
-        //工业空间核心
+        //Industrial Space Core
         new UnplaceableBlock(magicexpansionresource, PRESS_CORE_ALPHA, RecipeType.ENHANCED_CRAFTING_TABLE, new ItemStack[] {
                 INFINITY_FLINT_AND_STEEL, BASIC_ENCHANT_STONE, PURE_ELEMENT_INGOT,
                 FIVE_ELEMENT, SPACE_INFINITY_MAGIC, FIVE_ELEMENT,
                 PURE_ELEMENT_INGOT, FIVE_ELEMENT, INFINITY_FLINT_AND_STEEL
         }).register(plugin);
 
-        //奇迹 · 市集
+        //Miracle · Market
         new PortableShop(magicexpansionspecialitem, PORTABLE_SHOP, RecipeType.ENHANCED_CRAFTING_TABLE, new ItemStack[] {
                 MAGIC_EXPANSION_MAGIC_SUGAR_1, MAGIC_EXPANSION_MAGIC_SUGAR_1, MAGIC_EXPANSION_MAGIC_SUGAR_1,
                 MAGIC_EXPANSION_MAGIC_SUGAR_1, new ItemStack(Material.BOOK), MAGIC_EXPANSION_MAGIC_SUGAR_1,
@@ -1808,76 +1808,76 @@ public final class MagicExpansionItemSetup {
         }).register(plugin);
 
 
-        //共创说明
+        //Community Contribution Notes
         new UnplaceableBlock(magicexpansioncooperatecreate, COOPERATE_CREATION_INFO, RecipeType.NULL, new ItemStack[] {
                 null, null, null,
                 null, null, null,
                 null, null, null
         }).register(plugin);
-        //钓鱼说明
+        //Fishing Notes
         new UnplaceableBlock(magicexpansiondreamerguide, FISHING_INFO, RecipeType.NULL, new ItemStack[] {
                 null, null, null,
                 null, null, null,
                 null, null, null
         }).register(plugin);
-        //水云间·新钓鱼体系指导书
+        //Water Cloud·newFishingsystem guide
         new UnplaceableBlock(magicexpansionwatercloudguide, FISHING_GUIDE_BETWEEN_WATER_CLOUD, RecipeType.NULL, new ItemStack[] {
                 null, null, null,
                 null, null, null,
                 null, null, null
         }).register(plugin);
-        //水云间·钓鱼指南书(内容暂空)
+        //Water Cloud·FishingGuidebook(content is currently empty)
         new FishingBookWaterCloud(magicexpansionwatercloudguide, FISHING_BOOK_BETWEEN_WATER_CLOUD, RecipeType.NULL, new ItemStack[] {
                 null, null, null,
                 null, null, null,
                 null, null, null
         }).register(plugin);
-        //鱼类说明
+        //Fish Info
         new UnplaceableBlock(magicexpansiondreamerguide, FISH_CATEGORY_INFO, RecipeType.NULL, new ItemStack[] {
                 null, null, null,
                 null, null, null,
                 null, null, null
         }).register(plugin);
 
-        //鱼book
+        //Fish Book
         new FishingBook(magicexpansiondreamerguide, FISHING_BOOK, RecipeType.NULL, new ItemStack[] {
                 null, null, null,
-                null, new CustomItemStack(new ItemStack(doGlow(Material.FISHING_ROD)),getGradientName("通过指令获取"), ColorGradient.getGradientName("/mxf guide"),getGradientName("输入该指令即可获取钓鱼指南")), null,
+                null, new CustomItemStack(new ItemStack(doGlow(Material.FISHING_ROD)),getGradientName("Get it with a command"), ColorGradient.getGradientName("/mxf guide"),getGradientName("Enter this command to get the fishing guide")), null,
                 null, null, null
         }).register(plugin);
 
-        // 普通鱼
+        // Common Fish
         new CommonFish(magicexpansiondreamerguide, RANDOM_FISH_COMMON, RecipeType.NULL, new ItemStack[] {
                 null,null,null,
-                null,new CustomItemStack(new ItemStack(doGlow(Material.FISHING_ROD)),getGradientName("钓鱼有概率获取"), ColorGradient.getGradientName("通过魔法2.0系列鱼杆钓取"),getGradientName("很常见的鱼")),null,
+                null,new CustomItemStack(new ItemStack(doGlow(Material.FISHING_ROD)),getGradientName("May be obtained while fishing"), ColorGradient.getGradientName("Catch it with a Magic 2.0 fishing rod"),getGradientName("A very common fish")),null,
                 null,null,null
         }).register(plugin);
-        // 罕见鱼
+        // Uncommon Fish
         new CommonFish(magicexpansiondreamerguide, RANDOM_FISH_UNCOMMON, RecipeType.NULL, new ItemStack[] {
                 null,null,null,
-                null,new CustomItemStack(new ItemStack(doGlow(Material.FISHING_ROD)),getGradientName("钓鱼有概率获取"), ColorGradient.getGradientName("通过魔法2.0系列鱼杆钓取"),getGradientName("比较罕见的鱼")),null,
+                null,new CustomItemStack(new ItemStack(doGlow(Material.FISHING_ROD)),getGradientName("May be obtained while fishing"), ColorGradient.getGradientName("Catch it with a Magic 2.0 fishing rod"),getGradientName("A fairly rare fish")),null,
                 null,null,null
         }).register(plugin);
-        // 稀有鱼
+        // Rare Fish
         new CommonFish(magicexpansiondreamerguide, RANDOM_FISH_RARE, RecipeType.NULL, new ItemStack[] {
                 null,null,null,
-                null,new CustomItemStack(new ItemStack(doGlow(Material.FISHING_ROD)),getGradientName("钓鱼有概率获取"), ColorGradient.getGradientName("通过魔法2.0系列鱼杆钓取"),getGradientName("出没地点隐秘，且停留时间极短，可能对某些鱼饵有一定兴趣")),null,
+                null,new CustomItemStack(new ItemStack(doGlow(Material.FISHING_ROD)),getGradientName("May be obtained while fishing"), ColorGradient.getGradientName("Catch it with a Magic 2.0 fishing rod"),getGradientName("Hard to find and stays only briefly. It may like certain bait")),null,
                 null,null,null
         }).register(plugin);
 
         new CommonFishHidden(magicexpansiondreamerguide, RANDOM_FISH_RARE_POOL_DUST, RecipeType.NULL, new ItemStack[] {
                 null,null,null,
-                null,new CustomItemStack(new ItemStack(doGlow(Material.FISHING_ROD)),getGradientName("钓鱼有概率获取"), ColorGradient.getGradientName("通过魔法2.0系列鱼杆钓取"),getGradientName("出没地点隐秘，且停留时间极短，可能对某些鱼饵有一定兴趣")),null,
+                null,new CustomItemStack(new ItemStack(doGlow(Material.FISHING_ROD)),getGradientName("May be obtained while fishing"), ColorGradient.getGradientName("Catch it with a Magic 2.0 fishing rod"),getGradientName("Hard to find and stays only briefly. It may like certain bait")),null,
                 null,null,null
         }).register(plugin);
         new CommonFishHidden(magicexpansiondreamerguide, RANDOM_FISH_RARE_POOL_ORE, RecipeType.NULL, new ItemStack[] {
                 null,null,null,
-                null,new CustomItemStack(new ItemStack(doGlow(Material.FISHING_ROD)),getGradientName("钓鱼有概率获取"), ColorGradient.getGradientName("通过魔法2.0系列鱼杆钓取"),getGradientName("出没地点隐秘，且停留时间极短，可能对某些鱼饵有一定兴趣")),null,
+                null,new CustomItemStack(new ItemStack(doGlow(Material.FISHING_ROD)),getGradientName("May be obtained while fishing"), ColorGradient.getGradientName("Catch it with a Magic 2.0 fishing rod"),getGradientName("Hard to find and stays only briefly. It may like certain bait")),null,
                 null,null,null
         }).register(plugin);
         new CommonFishHidden(magicexpansiondreamerguide, RANDOM_FISH_RARE_POOL_INDUSTRY, RecipeType.NULL, new ItemStack[] {
                 null,null,null,
-                null,new CustomItemStack(new ItemStack(doGlow(Material.FISHING_ROD)),getGradientName("钓鱼有概率获取"), ColorGradient.getGradientName("通过魔法2.0系列鱼杆钓取"),getGradientName("出没地点隐秘，且停留时间极短，可能对某些鱼饵有一定兴趣")),null,
+                null,new CustomItemStack(new ItemStack(doGlow(Material.FISHING_ROD)),getGradientName("May be obtained while fishing"), ColorGradient.getGradientName("Catch it with a Magic 2.0 fishing rod"),getGradientName("Hard to find and stays only briefly. It may like certain bait")),null,
                 null,null,null
         }).register(plugin);
 
@@ -1886,10 +1886,10 @@ public final class MagicExpansionItemSetup {
 
 
 
-        // 史诗鱼
+        // Epic Fish
         new CommonFish(magicexpansiondreamerguide, RANDOM_FISH_EPIC, RecipeType.NULL, new ItemStack[] {
                 null,null,null,
-                null,new CustomItemStack(new ItemStack(doGlow(Material.FISHING_ROD)),getGradientName("钓鱼有概率获取"), ColorGradient.getGradientName("通过魔法2.0系列鱼杆钓取"),getGradientName("极少有人能证明它真的存在，不使用特殊鱼饵几乎无法碰见")),null,
+                null,new CustomItemStack(new ItemStack(doGlow(Material.FISHING_ROD)),getGradientName("May be obtained while fishing"), ColorGradient.getGradientName("Catch it with a Magic 2.0 fishing rod"),getGradientName("Few can prove it exists. It's almost impossible to find without special bait")),null,
                 null,null,null
         }).register(plugin);
 
@@ -1897,48 +1897,48 @@ public final class MagicExpansionItemSetup {
 
         new CommonFishHidden(magicexpansiondreamerguide, RANDOM_FISH_EPIC_POOL_INDUSTRY, RecipeType.NULL, new ItemStack[] {
                 null,null,null,
-                null,new CustomItemStack(new ItemStack(doGlow(Material.FISHING_ROD)),getGradientName("钓鱼有概率获取"), ColorGradient.getGradientName("通过魔法2.0系列鱼杆钓取"),getGradientName("出没地点隐秘，且停留时间极短，可能对某些鱼饵有一定兴趣")),null,
+                null,new CustomItemStack(new ItemStack(doGlow(Material.FISHING_ROD)),getGradientName("May be obtained while fishing"), ColorGradient.getGradientName("Catch it with a Magic 2.0 fishing rod"),getGradientName("Hard to find and stays only briefly. It may like certain bait")),null,
                 null,null,null
         }).register(plugin);
         new CommonFishHidden(magicexpansiondreamerguide, RANDOM_FISH_EPIC_POOL_ALLOY_INGOT, RecipeType.NULL, new ItemStack[] {
                 null,null,null,
-                null,new CustomItemStack(new ItemStack(doGlow(Material.FISHING_ROD)),getGradientName("钓鱼有概率获取"), ColorGradient.getGradientName("通过魔法2.0系列鱼杆钓取"),getGradientName("出没地点隐秘，且停留时间极短，可能对某些鱼饵有一定兴趣")),null,
+                null,new CustomItemStack(new ItemStack(doGlow(Material.FISHING_ROD)),getGradientName("May be obtained while fishing"), ColorGradient.getGradientName("Catch it with a Magic 2.0 fishing rod"),getGradientName("Hard to find and stays only briefly. It may like certain bait")),null,
                 null,null,null
         }).register(plugin);
 
 
 
-        // 传说鱼
+        // Legendary Fish
         new CommonFish(magicexpansiondreamerguide, RANDOM_FISH_LEGENDARY, RecipeType.NULL, new ItemStack[] {
                 null,null,null,
-                null,new CustomItemStack(new ItemStack(doGlow(Material.FISHING_ROD)),getGradientName("钓鱼有概率获取"), ColorGradient.getGradientName("通过魔法2.0系列鱼杆钓取"),getGradientName("只存在于古老传说中，现实是否存疑，只有传说中的鱼饵才有些许概率能够遇到")),null,
+                null,new CustomItemStack(new ItemStack(doGlow(Material.FISHING_ROD)),getGradientName("May be obtained while fishing"), ColorGradient.getGradientName("Catch it with a Magic 2.0 fishing rod"),getGradientName("It exists only in old legends. It may not be real, and only legendary bait gives you a small chance to find it")),null,
                 null,null,null
         }).register(plugin);
-        // 传说鱼
+        // Legendary Fish
         new PowerEel(magicexpansionspecialitem, FISH_LEGENDARY_EEL_POWER, RecipeType.NULL, new ItemStack[] {
                 null,null,null,
-                null,new CustomItemStack(new ItemStack(doGlow(Material.FISHING_ROD)),getGradientName("钓鱼有概率获取"), ColorGradient.getGradientName("通过魔法2.0系列鱼杆钓取"),getGradientName("只存在于古老传说中，现实是否存疑，只有传说中的鱼饵才有些许概率能够遇到")),null,
+                null,new CustomItemStack(new ItemStack(doGlow(Material.FISHING_ROD)),getGradientName("May be obtained while fishing"), ColorGradient.getGradientName("Catch it with a Magic 2.0 fishing rod"),getGradientName("It exists only in old legends. It may not be real, and only legendary bait gives you a small chance to find it")),null,
                 null,null,null
         }).register(plugin);
-        // 基础饵料
+        // Basic Bait
         new UnplaceableBlock(magicexpansiondreamerlure, FISH_LURE_BASIC, RecipeType.ENHANCED_CRAFTING_TABLE, new ItemStack[] {
                 new ItemStack(Material.SWEET_BERRIES),BONE_MEAL,new ItemStack(Material.CARROT),
                 BONE_MEAL,new ItemStack(Material.APPLE),BONE_MEAL,
                 new ItemStack(Material.POTATO),BONE_MEAL,new ItemStack(Material.MELON_SLICE)
         }).register(plugin);
-        // 混合矿粉饵料
+        // Mixed Ore Dust Bait
         new UnplaceableBlock(magicexpansiondreamerlure, FISH_LURE_DUST, RecipeType.ENHANCED_CRAFTING_TABLE, new ItemStack[] {
                 SlimefunItems.COPPER_DUST,SlimefunItems.IRON_DUST,SlimefunItems.GOLD_DUST,
                 SlimefunItems.SILVER_DUST,FISH_LURE_BASIC,SlimefunItems.MAGNESIUM_DUST,
                 SlimefunItems.ZINC_DUST,SlimefunItems.TIN_DUST,SlimefunItems.ALUMINUM_DUST
         },sfItemAmount(FISH_LURE_DUST,16)).register(plugin);
-        // 混合矿物饵料
+        // Mixed Mineral Bait
         new UnplaceableBlock(magicexpansiondreamerlure, FISH_LURE_ORE, RecipeType.ENHANCED_CRAFTING_TABLE, new ItemStack[] {
                 new ItemStack(Material.DIAMOND),new ItemStack(Material.GOLD_INGOT),new ItemStack(Material.IRON_INGOT),
                 new ItemStack(Material.EMERALD),FISH_LURE_BASIC,new ItemStack(Material.QUARTZ),
                 new ItemStack(Material.AMETHYST_SHARD),new ItemStack(Material.LAPIS_LAZULI),new ItemStack(Material.GLOWSTONE_DUST)
         },sfItemAmount(FISH_LURE_ORE,16)).register(plugin);
-        // 混合合金锭
+        // Mixed Alloy Ingots
         new UnplaceableBlock(magicexpansiondreamerlure, FISH_LURE_ALLOY_INGOT, RecipeType.ENHANCED_CRAFTING_TABLE, new ItemStack[] {
                 FISH_LURE_DUST,JIN_KE_LA,FISH_LURE_ORE,
                 JIN_KE_LA,FISH_LURE_BASIC,JIN_KE_LA,
@@ -1952,8 +1952,8 @@ public final class MagicExpansionItemSetup {
 
 
 
-        // 水云间系列-鱼获
-        // 所有鱼饵的特殊钓物已统一由芦穗(REED_TASSEL)取代, 占位物不再注册
+        // Water CloudSeries Fish Catches
+        // Special catches from all bait are now handled by Reed Tassel(REED_TASSEL)replaced, placeholder items are no longer registered
 
 
 
@@ -1963,7 +1963,7 @@ public final class MagicExpansionItemSetup {
 
 
 
-        //新系列鱼饵相关 水云间   暂定为合成
+        //New series bait Water Cloud   currently planned as craftable
 
         //1
         new UnplaceableBlock(magicexpansionwatercloudlure, FISH_LURE_BETWEEN_WATER_CLOUD_CUIXIA, RecipeType.ENHANCED_CRAFTING_TABLE, new ItemStack[] {
@@ -2034,155 +2034,155 @@ public final class MagicExpansionItemSetup {
                 SlimefunItems.MAGIC_SUGAR,SlimefunItems.MAGIC_SUGAR,SlimefunItems.MAGIC_SUGAR
         },sfItemAmount(FISH_LURE_BETWEEN_WATER_CLOUD_XINGHE,64)).register(plugin);
 
-        //水云间·芦花钓专用鱼饵·蒹葭(魔法糖×8 + 书 → 64, 注册在青竹竿五饵之后保持粘液书同竿相邻)
+        //Water Cloud·Reed Blossom Rodspecial bait·Reeds(Magic Candy×8 + Book → 64, Registerkeep the Slimefun book next to the rod, after the five Green Bamboo Rod baits)
         new UnplaceableBlock(magicexpansionwatercloudlure, FISH_LURE_BETWEEN_WATER_CLOUD_REED_JIANJIA, RecipeType.ENHANCED_CRAFTING_TABLE, new ItemStack[] {
                 SlimefunItems.MAGIC_SUGAR,SlimefunItems.MAGIC_SUGAR,SlimefunItems.MAGIC_SUGAR,
                 SlimefunItems.MAGIC_SUGAR,new ItemStack(Material.BOOK),SlimefunItems.MAGIC_SUGAR,
                 SlimefunItems.MAGIC_SUGAR,SlimefunItems.MAGIC_SUGAR,SlimefunItems.MAGIC_SUGAR
         },sfItemAmount(FISH_LURE_BETWEEN_WATER_CLOUD_REED_JIANJIA,64)).register(plugin);
 
-        //水云间·芦花钓专用鱼饵·芦雪(魔法糖×8 + 雪球 → 64, 主题材料呼应"风雪")
+        //Water Cloud·Reed Blossom Rodspecial bait·Reed Snow(Magic Candy×8 + Snowball → 64, themeMaterialmatches"Wind and Snow")
         new UnplaceableBlock(magicexpansionwatercloudlure, FISH_LURE_BETWEEN_WATER_CLOUD_REED_LUXUE, RecipeType.ENHANCED_CRAFTING_TABLE, new ItemStack[] {
                 SlimefunItems.MAGIC_SUGAR,SlimefunItems.MAGIC_SUGAR,SlimefunItems.MAGIC_SUGAR,
                 SlimefunItems.MAGIC_SUGAR,new ItemStack(Material.SNOWBALL),SlimefunItems.MAGIC_SUGAR,
                 SlimefunItems.MAGIC_SUGAR,SlimefunItems.MAGIC_SUGAR,SlimefunItems.MAGIC_SUGAR
         },sfItemAmount(FISH_LURE_BETWEEN_WATER_CLOUD_REED_LUXUE,64)).register(plugin);
 
-        //水云间·芦花钓专用鱼饵·苇露(魔法糖×8 + 玻璃瓶 → 64, 主题材料呼应"晨露")
+        //Water Cloud·Reed Blossom Rodspecial bait·Reed Dew(Magic Candy×8 + Glass Bottle → 64, themeMaterialmatches"Morning Dew")
         new UnplaceableBlock(magicexpansionwatercloudlure, FISH_LURE_BETWEEN_WATER_CLOUD_REED_WEILU, RecipeType.ENHANCED_CRAFTING_TABLE, new ItemStack[] {
                 SlimefunItems.MAGIC_SUGAR,SlimefunItems.MAGIC_SUGAR,SlimefunItems.MAGIC_SUGAR,
                 SlimefunItems.MAGIC_SUGAR,new ItemStack(Material.GLASS_BOTTLE),SlimefunItems.MAGIC_SUGAR,
                 SlimefunItems.MAGIC_SUGAR,SlimefunItems.MAGIC_SUGAR,SlimefunItems.MAGIC_SUGAR
         },sfItemAmount(FISH_LURE_BETWEEN_WATER_CLOUD_REED_WEILU,64)).register(plugin);
 
-        //水云间·芦花钓专用鱼饵·白露(魔法糖×8 + 羽毛 → 64, 主题材料呼应"霜白")
+        //Water Cloud·Reed Blossom Rodspecial bait·White Dew(Magic Candy×8 + Feather → 64, themeMaterialmatches"Frost White")
         new UnplaceableBlock(magicexpansionwatercloudlure, FISH_LURE_BETWEEN_WATER_CLOUD_REED_BAILU, RecipeType.ENHANCED_CRAFTING_TABLE, new ItemStack[] {
                 SlimefunItems.MAGIC_SUGAR,SlimefunItems.MAGIC_SUGAR,SlimefunItems.MAGIC_SUGAR,
                 SlimefunItems.MAGIC_SUGAR,new ItemStack(Material.FEATHER),SlimefunItems.MAGIC_SUGAR,
                 SlimefunItems.MAGIC_SUGAR,SlimefunItems.MAGIC_SUGAR,SlimefunItems.MAGIC_SUGAR
         },sfItemAmount(FISH_LURE_BETWEEN_WATER_CLOUD_REED_BAILU,64)).register(plugin);
 
-        //水云间·芦花钓专用鱼饵·芦芽(魔法糖×8 + 竹子 → 64, 主题材料呼应"新篁")
+        //Water Cloud·Reed Blossom Rodspecial bait·Reed Sprout(Magic Candy×8 + Bamboo → 64, themeMaterialmatches"Young Bamboo")
         new UnplaceableBlock(magicexpansionwatercloudlure, FISH_LURE_BETWEEN_WATER_CLOUD_REED_LUYA, RecipeType.ENHANCED_CRAFTING_TABLE, new ItemStack[] {
                 SlimefunItems.MAGIC_SUGAR,SlimefunItems.MAGIC_SUGAR,SlimefunItems.MAGIC_SUGAR,
                 SlimefunItems.MAGIC_SUGAR,new ItemStack(Material.BAMBOO),SlimefunItems.MAGIC_SUGAR,
                 SlimefunItems.MAGIC_SUGAR,SlimefunItems.MAGIC_SUGAR,SlimefunItems.MAGIC_SUGAR
         },sfItemAmount(FISH_LURE_BETWEEN_WATER_CLOUD_REED_LUYA,64)).register(plugin);
 
-        //水云间·寒江雪(第二代)专用鱼饵·凝霜(魔法糖×8 + 雪球 → 64, 主题"霜")
+        //Water Cloud·Snowy River Rod(second-generation)special bait·Frost(Magic Candy×8 + Snowball → 64, theme"Frost")
         new UnplaceableBlock(magicexpansionwatercloudlure, FISH_LURE_BETWEEN_WATER_CLOUD_HANJIANG_NINGSHUANG, RecipeType.ENHANCED_CRAFTING_TABLE, new ItemStack[] {
                 SlimefunItems.MAGIC_SUGAR,SlimefunItems.MAGIC_SUGAR,SlimefunItems.MAGIC_SUGAR,
                 SlimefunItems.MAGIC_SUGAR,new ItemStack(Material.SNOWBALL),SlimefunItems.MAGIC_SUGAR,
                 SlimefunItems.MAGIC_SUGAR,SlimefunItems.MAGIC_SUGAR,SlimefunItems.MAGIC_SUGAR
         },sfItemAmount(FISH_LURE_BETWEEN_WATER_CLOUD_HANJIANG_NINGSHUANG,64)).register(plugin);
 
-        //水云间·寒江雪专用鱼饵·落絮(魔法糖×8 + 羽毛 → 64, 主题"絮")
+        //Water Cloud·Snowy River Rodspecial bait·Falling Fluff(Magic Candy×8 + Feather → 64, theme"Fluff")
         new UnplaceableBlock(magicexpansionwatercloudlure, FISH_LURE_BETWEEN_WATER_CLOUD_HANJIANG_LUOXU, RecipeType.ENHANCED_CRAFTING_TABLE, new ItemStack[] {
                 SlimefunItems.MAGIC_SUGAR,SlimefunItems.MAGIC_SUGAR,SlimefunItems.MAGIC_SUGAR,
                 SlimefunItems.MAGIC_SUGAR,new ItemStack(Material.FEATHER),SlimefunItems.MAGIC_SUGAR,
                 SlimefunItems.MAGIC_SUGAR,SlimefunItems.MAGIC_SUGAR,SlimefunItems.MAGIC_SUGAR
         },sfItemAmount(FISH_LURE_BETWEEN_WATER_CLOUD_HANJIANG_LUOXU,64)).register(plugin);
 
-        //水云间·寒江雪专用鱼饵·冰魄(魔法糖×8 + 冰 → 64, 主题"冰")
+        //Water Cloud·Snowy River Rodspecial bait·Ice Soul(Magic Candy×8 + Ice → 64, theme"Ice")
         new UnplaceableBlock(magicexpansionwatercloudlure, FISH_LURE_BETWEEN_WATER_CLOUD_HANJIANG_BINGPO, RecipeType.ENHANCED_CRAFTING_TABLE, new ItemStack[] {
                 SlimefunItems.MAGIC_SUGAR,SlimefunItems.MAGIC_SUGAR,SlimefunItems.MAGIC_SUGAR,
                 SlimefunItems.MAGIC_SUGAR,new ItemStack(Material.ICE),SlimefunItems.MAGIC_SUGAR,
                 SlimefunItems.MAGIC_SUGAR,SlimefunItems.MAGIC_SUGAR,SlimefunItems.MAGIC_SUGAR
         },sfItemAmount(FISH_LURE_BETWEEN_WATER_CLOUD_HANJIANG_BINGPO,64)).register(plugin);
 
-        //水云间·寒江雪专用鱼饵·初霁(魔法糖×8 + 萤石粉 → 64, 主题"霁光")
+        //Water Cloud·Snowy River Rodspecial bait·Clear Skies(Magic Candy×8 + Glowstone Dust → 64, theme"Clear Skies")
         new UnplaceableBlock(magicexpansionwatercloudlure, FISH_LURE_BETWEEN_WATER_CLOUD_HANJIANG_CHUJI, RecipeType.ENHANCED_CRAFTING_TABLE, new ItemStack[] {
                 SlimefunItems.MAGIC_SUGAR,SlimefunItems.MAGIC_SUGAR,SlimefunItems.MAGIC_SUGAR,
                 SlimefunItems.MAGIC_SUGAR,new ItemStack(Material.GLOWSTONE_DUST),SlimefunItems.MAGIC_SUGAR,
                 SlimefunItems.MAGIC_SUGAR,SlimefunItems.MAGIC_SUGAR,SlimefunItems.MAGIC_SUGAR
         },sfItemAmount(FISH_LURE_BETWEEN_WATER_CLOUD_HANJIANG_CHUJI,64)).register(plugin);
 
-        //水云间·寒江雪专用鱼饵·垂纶(魔法糖×8 + 木棍 → 64, 主题"孤钓")
+        //Water Cloud·Snowy River Rodspecial bait·Fishing(Magic Candy×8 + Stick → 64, theme"Lone Fishing")
         new UnplaceableBlock(magicexpansionwatercloudlure, FISH_LURE_BETWEEN_WATER_CLOUD_HANJIANG_CHUILUN, RecipeType.ENHANCED_CRAFTING_TABLE, new ItemStack[] {
                 SlimefunItems.MAGIC_SUGAR,SlimefunItems.MAGIC_SUGAR,SlimefunItems.MAGIC_SUGAR,
                 SlimefunItems.MAGIC_SUGAR,new ItemStack(Material.STICK),SlimefunItems.MAGIC_SUGAR,
                 SlimefunItems.MAGIC_SUGAR,SlimefunItems.MAGIC_SUGAR,SlimefunItems.MAGIC_SUGAR
         },sfItemAmount(FISH_LURE_BETWEEN_WATER_CLOUD_HANJIANG_CHUILUN,64)).register(plugin);
 
-        //水云间·细雨·斜风专用鱼饵·风丝(魔法糖×8 + 线 → 64, 主题"丝")
+        //Water Cloud·Drizzle·Breezespecial bait·Wind Thread(Magic Candy×8 + String → 64, theme"Thread")
         new UnplaceableBlock(magicexpansionwatercloudlure, FISH_LURE_BETWEEN_WATER_CLOUD_XIYU_FENGSI, RecipeType.ENHANCED_CRAFTING_TABLE, new ItemStack[] {
                 SlimefunItems.MAGIC_SUGAR,SlimefunItems.MAGIC_SUGAR,SlimefunItems.MAGIC_SUGAR,
                 SlimefunItems.MAGIC_SUGAR,new ItemStack(Material.STRING),SlimefunItems.MAGIC_SUGAR,
                 SlimefunItems.MAGIC_SUGAR,SlimefunItems.MAGIC_SUGAR,SlimefunItems.MAGIC_SUGAR
         },sfItemAmount(FISH_LURE_BETWEEN_WATER_CLOUD_XIYU_FENGSI,64)).register(plugin);
 
-        //水云间·细雨·斜风专用鱼饵·烟雨(魔法糖×8 + 灰染料 → 64, 主题"烟雨")
+        //Water Cloud·Drizzle·Breezespecial bait·Misty Rain(Magic Candy×8 + Gray Dye → 64, theme"Misty Rain")
         new UnplaceableBlock(magicexpansionwatercloudlure, FISH_LURE_BETWEEN_WATER_CLOUD_XIYU_YANYU, RecipeType.ENHANCED_CRAFTING_TABLE, new ItemStack[] {
                 SlimefunItems.MAGIC_SUGAR,SlimefunItems.MAGIC_SUGAR,SlimefunItems.MAGIC_SUGAR,
                 SlimefunItems.MAGIC_SUGAR,new ItemStack(Material.GRAY_DYE),SlimefunItems.MAGIC_SUGAR,
                 SlimefunItems.MAGIC_SUGAR,SlimefunItems.MAGIC_SUGAR,SlimefunItems.MAGIC_SUGAR
         },sfItemAmount(FISH_LURE_BETWEEN_WATER_CLOUD_XIYU_YANYU,64)).register(plugin);
 
-        //水云间·细雨·斜风专用鱼饵·涟白(魔法糖×8 + 睡莲 → 64, 主题"涟")
+        //Water Cloud·Drizzle·Breezespecial bait·White Ripples(Magic Candy×8 + Lily Pad → 64, theme"Ripples")
         new UnplaceableBlock(magicexpansionwatercloudlure, FISH_LURE_BETWEEN_WATER_CLOUD_XIYU_LIANBAI, RecipeType.ENHANCED_CRAFTING_TABLE, new ItemStack[] {
                 SlimefunItems.MAGIC_SUGAR,SlimefunItems.MAGIC_SUGAR,SlimefunItems.MAGIC_SUGAR,
                 SlimefunItems.MAGIC_SUGAR,new ItemStack(Material.LILY_PAD),SlimefunItems.MAGIC_SUGAR,
                 SlimefunItems.MAGIC_SUGAR,SlimefunItems.MAGIC_SUGAR,SlimefunItems.MAGIC_SUGAR
         },sfItemAmount(FISH_LURE_BETWEEN_WATER_CLOUD_XIYU_LIANBAI,64)).register(plugin);
 
-        //水云间·细雨·斜风专用鱼饵·晓风(魔法糖×8 + 羽毛 → 64, 主题"晓")
+        //Water Cloud·Drizzle·Breezespecial bait·Morning Breeze(Magic Candy×8 + Feather → 64, theme"Dawn")
         new UnplaceableBlock(magicexpansionwatercloudlure, FISH_LURE_BETWEEN_WATER_CLOUD_XIYU_XIAOFENG, RecipeType.ENHANCED_CRAFTING_TABLE, new ItemStack[] {
                 SlimefunItems.MAGIC_SUGAR,SlimefunItems.MAGIC_SUGAR,SlimefunItems.MAGIC_SUGAR,
                 SlimefunItems.MAGIC_SUGAR,new ItemStack(Material.FEATHER),SlimefunItems.MAGIC_SUGAR,
                 SlimefunItems.MAGIC_SUGAR,SlimefunItems.MAGIC_SUGAR,SlimefunItems.MAGIC_SUGAR
         },sfItemAmount(FISH_LURE_BETWEEN_WATER_CLOUD_XIYU_XIAOFENG,64)).register(plugin);
 
-        //水云间·细雨·斜风专用鱼饵·斜影(魔法糖×8 + 橡树苗 → 64, 主题"影")
+        //Water Cloud·Drizzle·Breezespecial bait·Slanted Shadow(Magic Candy×8 + Oak Sapling → 64, theme"Shadow")
         new UnplaceableBlock(magicexpansionwatercloudlure, FISH_LURE_BETWEEN_WATER_CLOUD_XIYU_XIEYING, RecipeType.ENHANCED_CRAFTING_TABLE, new ItemStack[] {
                 SlimefunItems.MAGIC_SUGAR,SlimefunItems.MAGIC_SUGAR,SlimefunItems.MAGIC_SUGAR,
                 SlimefunItems.MAGIC_SUGAR,new ItemStack(Material.OAK_SAPLING),SlimefunItems.MAGIC_SUGAR,
                 SlimefunItems.MAGIC_SUGAR,SlimefunItems.MAGIC_SUGAR,SlimefunItems.MAGIC_SUGAR
         },sfItemAmount(FISH_LURE_BETWEEN_WATER_CLOUD_XIYU_XIEYING,64)).register(plugin);
 
-        //水云间材料·青竹节
+        //Water CloudMaterial·Green Bamboo Segment
         new UnplaceableBlock(magicexpansionwatercloudmaterial, MagicExpansionItems.BAMBOO_JOINT, RecipeType.ENHANCED_CRAFTING_TABLE, new ItemStack[] {
                 SlimefunItems.REINFORCED_ALLOY_INGOT,new ItemStack(Material.BAMBOO),SlimefunItems.REINFORCED_ALLOY_INGOT,
                 new ItemStack(Material.BAMBOO),MAGIC_EXPANSION_MAGIC_SUGAR_1,new ItemStack(Material.BAMBOO),
                 SlimefunItems.REINFORCED_ALLOY_INGOT,new ItemStack(Material.BAMBOO),SlimefunItems.REINFORCED_ALLOY_INGOT
         }).register(plugin);
 
-        //水云间材料·芦穗(不可合成, 配方类型与配方中展示获取方式)
+        //Water CloudMaterial·Reed Tassel(not craftable, recipe type and recipe show how to obtain it)
         new ReedTassel(magicexpansionwatercloudmaterial, MagicExpansionItems.REED_TASSEL, REED_TASSEL_OBTAIN, new ItemStack[] {
                 null,null,null,
                 null,new CustomItemStack(Material.ORANGE_DYE,
-                        getGradientNameVer2("青竹竿鱼饵"),
-                        getGradientNameVer2("使用 淬霞、微尘 等鱼饵获取")),null,
+                        getGradientNameVer2("Green Bamboo Rod Bait"),
+                        getGradientNameVer2("Get it with bait like Sunset Glow or Dust")),null,
                 null,null,null
         }).register(plugin);
 
-        //水云间·特殊钓物·白芦羽(不可合成, 芦花钓各饵钓获; 为合成寒江雪竿关键材料)
+        //Water Cloud·special fishing drops·White Reed Feather(not craftable, Reed Blossom Rodcaught with each type of bait; needed to craftSnowy River RodRodkey material)
         new BaiLuYu(magicexpansionwatercloudmaterial, MagicExpansionItems.FISH_SPECIAL_ACTION_BETWEEN_WATER_CLOUD_BAILUYU, BAILUYU_OBTAIN, new ItemStack[] {
                 null,null,null,
                 null,new CustomItemStack(Material.FEATHER,
-                        getGradientNameVer2("芦花钓鱼饵"),
-                        getGradientNameVer2("使用 蒹葭、芦雪 等鱼饵获取")),null,
+                        getGradientNameVer2("Reed Blossom Rod Bait"),
+                        getGradientNameVer2("Get it with bait like Reed and Snow")),null,
                 null,null,null
         }).register(plugin);
 
-        //水云间·特殊钓物·雪魄珠(不可合成, 由寒江雪各饵钓获; 为合成细雨·斜风竿关键材料)
+        //Water Cloud·special fishing drops·Snow Pearl(not craftable, fromSnowy River Rodcaught with each type of bait; needed to craftDrizzle·BreezeRodkey material)
         new XuePaoZhu(magicexpansionwatercloudmaterial, MagicExpansionItems.FISH_SPECIAL_ACTION_BETWEEN_WATER_CLOUD_HANJIANG_XUEPOZHU, XUEPOZHU_OBTAIN, new ItemStack[] {
                 null,null,null,
                 null,new CustomItemStack(Material.GHAST_TEAR,
-                        getGradientNameVer2("寒江雪鱼饵"),
-                        getGradientNameVer2("使用 凝霜、落絮 等鱼饵获取")),null,
+                        getGradientNameVer2("Snowy River Rod Bait"),
+                        getGradientNameVer2("Get it with bait like Frost and Falling Fluff")),null,
                 null,null,null
         }).register(plugin);
 
-        //水云间·特殊钓物·雨披针(不可合成, 由细雨·斜风各饵钓获; 为合成太公钓竿关键材料)
+        //Water Cloud·special fishing drops·Rain Pin(not craftable, fromDrizzle·Breezecaught with each type of bait; needed to craftGrandmaster Fishing Rodkey material)
         new YuPiZhen(magicexpansionwatercloudmaterial, MagicExpansionItems.FISH_SPECIAL_ACTION_BETWEEN_WATER_CLOUD_XIYU_YUPIZHEN, YUPIZHEN_OBTAIN, new ItemStack[] {
                 null,null,null,
                 null,new CustomItemStack(Material.BLAZE_ROD,
-                        getGradientNameVer2("细雨·斜风鱼饵"),
-                        getGradientNameVer2("使用 风丝、烟雨 等鱼饵获取")),null,
+                        getGradientNameVer2("Drizzle and Breeze Bait"),
+                        getGradientNameVer2("Get it with bait like Wind Thread or Misty Rain")),null,
                 null,null,null
         }).register(plugin);
 
-        //水云间材料·魔法线
+        //Water CloudMaterial·Magic Thread
         new UnplaceableBlock(magicexpansionwatercloudmaterial, MagicExpansionItems.MAGIC_THREAD, RecipeType.ENHANCED_CRAFTING_TABLE, new ItemStack[] {
                 SlimefunItems.MAGIC_LUMP_1,MAGIC_EXPANSION_MAGIC_SUGAR_1,SlimefunItems.MAGIC_LUMP_1,
                 MAGIC_EXPANSION_MAGIC_SUGAR_1,new ItemStack(Material.STRING),MAGIC_EXPANSION_MAGIC_SUGAR_1,
@@ -2201,7 +2201,7 @@ public final class MagicExpansionItemSetup {
 
 
 
-        //新增35种能源连接器（玻璃相关形态）
+        //Added 35 energy connector types (glass variants)
         new EnergyConnectorHidden(magicexpansionpower, ENERGY_CONNECTOR_GLASS, RecipeType.ENHANCED_CRAFTING_TABLE, new ItemStack[] {
                 new ItemStack(Material.GLASS),new ItemStack(Material.GLASS),new ItemStack(Material.GLASS),
                 new ItemStack(Material.GLASS),sfItemAmount(SlimefunItems.ENERGY_CONNECTOR,1),new ItemStack(Material.GLASS),
@@ -2222,7 +2222,7 @@ public final class MagicExpansionItemSetup {
         */
         registerHiddenRecipe(plugin, magicexpansionpower, ENERGY_CONNECTOR_GLASS_PANE);
         registerHiddenRecipe(plugin, magicexpansionpower, ENERGY_CONNECTOR_TINTED_GLASS);
-        // 染色玻璃
+        // Stained Glass
         registerHiddenRecipe(plugin, magicexpansionpower, ENERGY_CONNECTOR_WHITE_STAINED_GLASS);
         registerHiddenRecipe(plugin, magicexpansionpower, ENERGY_CONNECTOR_ORANGE_STAINED_GLASS);
         registerHiddenRecipe(plugin, magicexpansionpower, ENERGY_CONNECTOR_MAGENTA_STAINED_GLASS);
@@ -2240,7 +2240,7 @@ public final class MagicExpansionItemSetup {
         registerHiddenRecipe(plugin, magicexpansionpower, ENERGY_CONNECTOR_RED_STAINED_GLASS);
         registerHiddenRecipe(plugin, magicexpansionpower, ENERGY_CONNECTOR_BLACK_STAINED_GLASS);
 
-        // 染色玻璃板
+        // Stained Glass Pane
         registerHiddenRecipe(plugin, magicexpansionpower, ENERGY_CONNECTOR_WHITE_STAINED_GLASS_PANE);
         registerHiddenRecipe(plugin, magicexpansionpower, ENERGY_CONNECTOR_ORANGE_STAINED_GLASS_PANE);
         registerHiddenRecipe(plugin, magicexpansionpower, ENERGY_CONNECTOR_MAGENTA_STAINED_GLASS_PANE);
@@ -2268,54 +2268,54 @@ public final class MagicExpansionItemSetup {
 
 
 
-        // 双面胶
+        // Double-sided Tape
         new DoubleSidedTape(magicexpansionspecialitem, MagicExpansionItems.DOUBLE_SIDED_TAPE, RecipeType.ENHANCED_CRAFTING_TABLE, new ItemStack[] {
                 null,new ItemStack(Material.SLIME_BALL),null,
                 null,new ItemStack(Material.PAPER),null,
                 null,null,null
         }).register(plugin);
-        // 薛定谔的相框
+        // Schrodinger's Item Frame
         new SchrodingerFrame(magicexpansionspecialitem, MagicExpansionItems.SCHRODINGER_FRAME_ONE, RecipeType.ENHANCED_CRAFTING_TABLE, new ItemStack[] {
                 null,new ItemStack(Material.ITEM_FRAME),null,
                 null,new ItemStack(Material.PAPER),null,
                 null,null,null
         },true, "schrodinger_frame").register(plugin);
-        // 薛定谔的相框
+        // Schrodinger's Item Frame
         new SchrodingerFrame(magicexpansionspecialitem, MagicExpansionItems.SCHRODINGER_FRAME_INFINITE, RecipeType.ENHANCED_CRAFTING_TABLE, new ItemStack[] {
                 SCHRODINGER_FRAME_ONE,SCHRODINGER_FRAME_ONE,SCHRODINGER_FRAME_ONE,
                 SCHRODINGER_FRAME_ONE,MAGIC_EXPANSION_MAGIC_SUGAR_1,SCHRODINGER_FRAME_ONE,
                 SCHRODINGER_FRAME_ONE,SCHRODINGER_FRAME_ONE,SCHRODINGER_FRAME_ONE
         },false, "schrodinger_frame_infinite").register(plugin);
-        // 以太秘匣传输器
+        // Aether Chest Transporter
         new CargoFragmentDistributor(magicexpansionenergy, MagicExpansionItems.SEND_ITEMS_TO_PLAYER_MACHINE, RecipeType.ENHANCED_CRAFTING_TABLE, new ItemStack[] {
                 new ItemStack(Material.HOPPER),CARGO_TERMINAL,new ItemStack(Material.HOPPER),
                 new ItemStack(Material.HOPPER),FIVE_ELEMENT_TOUCH,new ItemStack(Material.HOPPER),
                 new ItemStack(Material.HOPPER),new ItemStack(Material.HOPPER),new ItemStack(Material.HOPPER)
         }).register(plugin);
-        // 以太秘匣传输器-SF
+        // Aether Chest Transporter-SF
         new SfCargoFragmentDistributor(magicexpansionenergy, MagicExpansionItems.SEND_ITEMS_TO_PLAYER_MACHINE_SF, RecipeType.ENHANCED_CRAFTING_TABLE, new ItemStack[] {
                 new ItemStack(Material.HOPPER),CARGO_TERMINAL,new ItemStack(Material.HOPPER),
                 new ItemStack(Material.HOPPER),FIVE_ELEMENT_TOUCH,new ItemStack(Material.HOPPER),
                 new ItemStack(Material.HOPPER),new ItemStack(Material.SLIME_BALL),new ItemStack(Material.HOPPER)
         }).register(plugin);
-        //便携式以太秘匣传输器
+        //Portable Aether Chest Transporter
         new PortableCargoTransporter(magicexpansionspecialitem, MagicExpansionItems.PORTABLE_CARGO_TRANSPORTER, RecipeType.ENHANCED_CRAFTING_TABLE, new ItemStack[] {
                 new ItemStack(Material.HOPPER),CARGO_TERMINAL,new ItemStack(Material.HOPPER),
                 new ItemStack(Material.HOPPER),FIVE_ELEMENT_TOUCH,new ItemStack(Material.HOPPER),
                 new ItemStack(Material.HOPPER),new ItemStack(Material.REDSTONE_BLOCK),new ItemStack(Material.HOPPER)
         }).register(plugin);
 
-        // 脚本序列化工具
+        // Script Serialization Tool
         new CustomSequenceTool(magicexpansionspecialitem, MagicExpansionItems.CUSTOM_SEQUENCE_TOOL, RecipeType.ENHANCED_CRAFTING_TABLE, new ItemStack[] {
                 SlimefunItems.PROGRAMMABLE_ANDROID_3,SlimefunItems.GPS_TRANSMITTER_4,SlimefunItems.PROGRAMMABLE_ANDROID_3,
                 MAGIC_EXPANSION_MAGIC_SUGAR_3,SlimefunItems.PROGRAMMABLE_ANDROID_3,MAGIC_EXPANSION_MAGIC_SUGAR_3,
                 SlimefunItems.PROGRAMMABLE_ANDROID_3,MAGIC_EXPANSION_MAGIC_SUGAR_3,SlimefunItems.PROGRAMMABLE_ANDROID_3
         }).register(plugin);
 
-        // 脚本序列化工具
+        // Script Serialization Tool
         new UnplaceableBlock(magicexpansionresource, MagicExpansionItems.WORLD_CORE, RecipeType.NULL, new ItemStack[] {
                 null, null, null,
-                null,new CustomItemStack(new ItemStack(Material.ENCHANTING_TABLE), "§x§E§8§4§2§3§D终极魔法祭坛","§a多方块结构","§b/mxalter guide获取相关配方书") ,null,
+                null,new CustomItemStack(new ItemStack(Material.ENCHANTING_TABLE), "§x§E§8§4§2§3§DUltimate Magic Altar","§aMultiblock structure","§bUse /mxalter guide to get the recipe book") ,null,
                 null, null,null
         }).register(plugin);
 
@@ -2323,21 +2323,21 @@ public final class MagicExpansionItemSetup {
 
 
 
-        // 烈火僵尸BOSS
+        // Fire Zombie Boss
         new FireZombie(magicexpansionboss, MagicExpansionItems.FIRE_ZOMBIE, SPECIAL_RECIPE_TYPE, new ItemStack[] {
                 null,null,null,
                 null,null,null,
                 null,null,null
         }).register(plugin);
 
-        // 僵尸类BOSS身体
+        // Zombie Boss Body
         new SlimefunItem(magicexpansionboss, MagicExpansionItems.FIREZOMBIE_BODY, RecipeType.ENHANCED_CRAFTING_TABLE, new ItemStack[] {
                 SlimefunItems.ENDER_LUMP_3,SlimefunItems.LAVA_CRYSTAL,SlimefunItems.ENDER_LUMP_3,
                 SlimefunItems.MAGIC_LUMP_3,SlimefunItems.NECROTIC_SKULL,SlimefunItems.MAGIC_LUMP_3,
                 SlimefunItems.ENDER_LUMP_3,SlimefunItems.ESSENCE_OF_AFTERLIFE,SlimefunItems.ENDER_LUMP_3
         }).register(plugin);
 
-        // 烈火僵尸头颅
+        // Fire Zombie Head
         new SlimefunItem(magicexpansionboss, MagicExpansionItems.FIREZOMBIE_HEAD, RecipeType.ENHANCED_CRAFTING_TABLE, new ItemStack[] {
                 new ItemStack(Material.MOSS_BLOCK),new ItemStack(Material.ROTTEN_FLESH),new ItemStack(Material.MOSS_BLOCK),
                 new ItemStack(Material.ROTTEN_FLESH),new ItemStack(Material.MOSS_BLOCK),new ItemStack(Material.ROTTEN_FLESH),
@@ -2350,21 +2350,21 @@ public final class MagicExpansionItemSetup {
         new FireZombieMB(magicexpansionboss, MagicExpansionItems.FIRE_ZOMBIE_MB).register(plugin);
 
 
-        // 风灵BOSS
+        // Wind Elf Boss
         new WindElf(magicexpansionboss, MagicExpansionItems.WIND_ELF_SPAWN, SPECIAL_RECIPE_TYPE, new ItemStack[] {
                 null,null,null,
                 null,null,null,
                 null,null,null
         }).register(plugin);
 
-        // 僵尸类BOSS身体
+        // Zombie Boss Body
         new SlimefunItem(magicexpansionboss, MagicExpansionItems.WIND_ELF_BODY, RecipeType.ENHANCED_CRAFTING_TABLE, new ItemStack[] {
                 MagicExpansionItems.WATER_ELEMENT,new ItemStack(Material.STRING),MagicExpansionItems.WATER_ELEMENT,
                 new ItemStack(Material.STRING),SlimefunItems.BLANK_RUNE,new ItemStack(Material.STRING),
                 MagicExpansionItems.WATER_ELEMENT,new ItemStack(Material.STRING),MagicExpansionItems.WATER_ELEMENT
         }).register(plugin);
 
-        // 烈火僵尸头颅
+        // Fire Zombie Head
         new SlimefunItem(magicexpansionboss, MagicExpansionItems.WIND_ELF_HEAD, RecipeType.ENHANCED_CRAFTING_TABLE, new ItemStack[] {
                 new ItemStack(Material.LIGHT_BLUE_DYE),new ItemStack(Material.STRING),new ItemStack(Material.LIGHT_BLUE_DYE),
                 new ItemStack(Material.STRING),new ItemStack(Material.LIGHT_BLUE_DYE),new ItemStack(Material.STRING),
@@ -2373,13 +2373,13 @@ public final class MagicExpansionItemSetup {
 
         new WindElfMB(magicexpansionboss, MagicExpansionItems.WIND_ELF_MB).register(plugin);
 
-        //风灵技能
+        //Wind Elf Skills
         new UnplaceableBlock(magicexpansionboss, MagicExpansionItems.WIND_ELF_SKILL, SPECIAL_RECIPE_TYPE, new ItemStack[] {
                 null, null, null,
                 null, null, null,
                 null, null, null
         }).register(plugin);
-        //风灵防御
+        //Wind Elf Defense
         new UnplaceableBlock(magicexpansionboss, MagicExpansionItems.WIND_ELF_DEFENSE, SPECIAL_RECIPE_TYPE, new ItemStack[] {
                 null, null, null,
                 null, null, null,
@@ -2388,13 +2388,13 @@ public final class MagicExpansionItemSetup {
 
 
 
-        // 星辰铁   1级青金石
+        // Star Iron   Level 1 Lapis Lazuli
         new UnplaceableBlock(magicexpansionforge, MagicExpansionItems.BASIC_ENCHANT_STONE, MAGICEXPANSION_MOB_DROP, new ItemStack[] {
                 null, null, null,
                 null, newItem.themed(Material.ZOMBIE_SPAWN_EGG, get("Items.BASIC_ENCHANT_STONE_DROP.Name"), getList("Items.BASIC_ENCHANT_STONE_DROP.Lore")),null,
                 null, null,null
         }).register(plugin);
-        // 风灵之息
+        // Wind Elf's Breath
         new UnplaceableBlock(magicexpansionforge, MagicExpansionItems.WIND_SPIRIT, MAGICEXPANSION_MOB_DROP, new ItemStack[] {
                 null, null, null,
                 null, newItem.themed(Material.ALLAY_SPAWN_EGG, get("Items.WIND_SPIRIT_DROP.Name"), getList("Items.WIND_SPIRIT_DROP.Lore")),null,
@@ -2404,7 +2404,7 @@ public final class MagicExpansionItemSetup {
 
         new StarShardsSword(magicexpansionforge, MagicExpansionItems.WEAPON_STAR_SHARDS_SWORD, RecipeType.NULL, new ItemStack[] {
                 null, null, null,
-                null,new CustomItemStack(new ItemStack(Material.ENCHANTING_TABLE), "§x§E§8§4§2§3§D终极魔法祭坛","§a多方块结构","§b/mxalter guide获取相关配方书") ,null,
+                null,new CustomItemStack(new ItemStack(Material.ENCHANTING_TABLE), "§x§E§8§4§2§3§DUltimate Magic Altar","§aMultiblock structure","§bUse /mxalter guide to get the recipe book") ,null,
                 null, null,null
         }).register(plugin);
 
@@ -2447,7 +2447,7 @@ public final class MagicExpansionItemSetup {
                 new MagicCrop.WeightedDrop(DREAM_KERNEL, 3)
         ),19,30).register(plugin);
 
-        //矿粉相关魔法植物
+        //Magic plants for ore dust
 
         new MagicCrop(magicexpansionfoodresource, WHEAT_COPPER, RecipeType.ENHANCED_CRAFTING_TABLE, new ItemStack[] {
                 SlimefunItems.COPPER_DUST, WOOD_ELEMENT,SlimefunItems.COPPER_DUST,
@@ -2549,7 +2549,7 @@ public final class MagicExpansionItemSetup {
         ),5,11).register(plugin);
 
 
-        //矿锭相关魔法植物
+        //Magic plants for ore ingots
 
         new MagicCrop(magicexpansionfoodresource, WHEAT_COPPER_INGOT, RecipeType.ENHANCED_CRAFTING_TABLE, new ItemStack[] {
                 COAL, WHEAT_COPPER,COAL,
@@ -2642,7 +2642,7 @@ public final class MagicExpansionItemSetup {
                 new MagicCrop.WeightedDrop(ORE_INGOT_CRYSTAL, 1)
         ),7,18).register(plugin);
 
-        //合金锭相关魔法植物
+        //Magic plants for alloy ingots
         new MagicCrop(magicexpansionfoodresource, WHEAT_BRONZE_INGOT, RecipeType.ENHANCED_CRAFTING_TABLE, new ItemStack[] {
                 WHEAT_COPPER, POTATO_TIN,WHEAT_COPPER_INGOT,
                 null, null,null,
@@ -2679,68 +2679,68 @@ public final class MagicExpansionItemSetup {
 
 
 
-        // 材料 魔法材料   魔法铁锭
+        // Material Magic Material   Magic Iron Ingot
         new UnplaceableBlock(magicexpansionresource, MagicExpansionItems.IRON_INGOT, RecipeType.ENHANCED_CRAFTING_TABLE, new ItemStack[] {
                 SlimefunItems.MAGIC_LUMP_1, SlimefunItems.IRON_DUST, SlimefunItems.MAGIC_LUMP_1,
                 SlimefunItems.IRON_DUST, new ItemStack(Material.IRON_INGOT),SlimefunItems.IRON_DUST,
                 SlimefunItems.MAGIC_LUMP_1, SlimefunItems.IRON_DUST,SlimefunItems.MAGIC_LUMP_1
         }).register(plugin);
-        //魔法金锭
+        //Magic Gold Ingot
         new UnplaceableBlock(magicexpansionresource, MagicExpansionItems.GOLD_INGOT, RecipeType.ENHANCED_CRAFTING_TABLE, new ItemStack[] {
                 SlimefunItems.MAGIC_LUMP_1, SlimefunItems.GOLD_DUST, SlimefunItems.MAGIC_LUMP_1,
                 SlimefunItems.GOLD_DUST, new ItemStack(Material.GOLD_INGOT),SlimefunItems.GOLD_DUST,
                 SlimefunItems.MAGIC_LUMP_1, SlimefunItems.GOLD_DUST,SlimefunItems.MAGIC_LUMP_1
         }).register(plugin);
-        //魔法铜锭
+        //Magic Copper Ingot
         new UnplaceableBlock(magicexpansionresource, MagicExpansionItems.COPPER_INGOT, RecipeType.ENHANCED_CRAFTING_TABLE, new ItemStack[] {
                 SlimefunItems.MAGIC_LUMP_1, SlimefunItems.COPPER_DUST, SlimefunItems.MAGIC_LUMP_1,
                 SlimefunItems.COPPER_DUST, SlimefunItems.COPPER_INGOT,SlimefunItems.COPPER_DUST,
                 SlimefunItems.MAGIC_LUMP_1, SlimefunItems.COPPER_DUST,SlimefunItems.MAGIC_LUMP_1
         }).register(plugin);
-        //魔法锡锭
+        //Magic Tin Ingot
         new UnplaceableBlock(magicexpansionresource, MagicExpansionItems.TIN_INGOT, RecipeType.ENHANCED_CRAFTING_TABLE, new ItemStack[] {
                 SlimefunItems.MAGIC_LUMP_1, SlimefunItems.TIN_DUST, SlimefunItems.MAGIC_LUMP_1,
                 SlimefunItems.TIN_DUST, SlimefunItems.TIN_INGOT,SlimefunItems.TIN_DUST,
                 SlimefunItems.MAGIC_LUMP_1, SlimefunItems.TIN_DUST,SlimefunItems.MAGIC_LUMP_1
         }).register(plugin);
-        //魔法银锭
+        //Magic Silver Ingot
         new UnplaceableBlock(magicexpansionresource, MagicExpansionItems.SILVER_INGOT, RecipeType.ENHANCED_CRAFTING_TABLE, new ItemStack[] {
                 SlimefunItems.MAGIC_LUMP_1, SlimefunItems.SILVER_DUST, SlimefunItems.MAGIC_LUMP_1,
                 SlimefunItems.SILVER_DUST, SlimefunItems.SILVER_INGOT,SlimefunItems.SILVER_DUST,
                 SlimefunItems.MAGIC_LUMP_1, SlimefunItems.SILVER_DUST,SlimefunItems.MAGIC_LUMP_1
         }).register(plugin);
-        //魔法铅锭
+        //Magic Lead Ingot
         new UnplaceableBlock(magicexpansionresource, MagicExpansionItems.LEAD_INGOT, RecipeType.ENHANCED_CRAFTING_TABLE, new ItemStack[] {
                 SlimefunItems.MAGIC_LUMP_1, SlimefunItems.LEAD_DUST, SlimefunItems.MAGIC_LUMP_1,
                 SlimefunItems.LEAD_DUST, SlimefunItems.LEAD_INGOT,SlimefunItems.LEAD_DUST,
                 SlimefunItems.MAGIC_LUMP_1, SlimefunItems.LEAD_DUST,SlimefunItems.MAGIC_LUMP_1
         }).register(plugin);
-        //魔法铝锭
+        //Magic Aluminum Ingot
         new UnplaceableBlock(magicexpansionresource, MagicExpansionItems.ALUMINUM_INGOT, RecipeType.ENHANCED_CRAFTING_TABLE, new ItemStack[] {
                 SlimefunItems.MAGIC_LUMP_1, SlimefunItems.ALUMINUM_DUST, SlimefunItems.MAGIC_LUMP_1,
                 SlimefunItems.ALUMINUM_DUST, SlimefunItems.ALUMINUM_INGOT,SlimefunItems.ALUMINUM_DUST,
                 SlimefunItems.MAGIC_LUMP_1, SlimefunItems.ALUMINUM_DUST,SlimefunItems.MAGIC_LUMP_1
         }).register(plugin);
-        //魔法锌锭
+        //Magic Zinc Ingot
         new UnplaceableBlock(magicexpansionresource, MagicExpansionItems.ZINC_INGOT, RecipeType.ENHANCED_CRAFTING_TABLE, new ItemStack[] {
                 SlimefunItems.MAGIC_LUMP_1, SlimefunItems.ZINC_DUST, SlimefunItems.MAGIC_LUMP_1,
                 SlimefunItems.ZINC_DUST, SlimefunItems.ZINC_INGOT,SlimefunItems.ZINC_DUST,
                 SlimefunItems.MAGIC_LUMP_1, SlimefunItems.ZINC_DUST,SlimefunItems.MAGIC_LUMP_1
         }).register(plugin);
-        //魔法镁锭
+        //Magic Magnesium Ingot
         new UnplaceableBlock(magicexpansionresource, MagicExpansionItems.MAGNESIUM_INGOT, RecipeType.ENHANCED_CRAFTING_TABLE, new ItemStack[] {
                 SlimefunItems.MAGIC_LUMP_1, SlimefunItems.MAGNESIUM_DUST, SlimefunItems.MAGIC_LUMP_1,
                 SlimefunItems.MAGNESIUM_DUST, SlimefunItems.MAGNESIUM_INGOT,SlimefunItems.MAGNESIUM_DUST,
                 SlimefunItems.MAGIC_LUMP_1, SlimefunItems.MAGNESIUM_DUST,SlimefunItems.MAGIC_LUMP_1
         }).register(plugin);
-        //元素锭
+        //Element Ingot
         new UnplaceableBlock(magicexpansionresource, MagicExpansionItems.ELEMENT_INGOT, RecipeType.SMELTERY, new ItemStack[] {
                 MagicExpansionItems.IRON_INGOT, MagicExpansionItems.GOLD_INGOT, MagicExpansionItems.COPPER_INGOT,
                 MagicExpansionItems.TIN_INGOT, MagicExpansionItems.SILVER_INGOT, MagicExpansionItems.LEAD_INGOT,
                 MagicExpansionItems.ALUMINUM_INGOT, MagicExpansionItems.ZINC_INGOT, MagicExpansionItems.MAGNESIUM_INGOT
         }).register(plugin);
 
-        //魔法红石
+        //Magic Redstone
         registerVanResource(plugin,MagicExpansionItems.REDSTONE, new ItemStack(Material.REDSTONE));
         registerVanResource(plugin,MagicExpansionItems.DIAMOND, new ItemStack(Material.DIAMOND));
         registerVanResource(plugin,MagicExpansionItems.LAPIS_LAZULI, new ItemStack(Material.LAPIS_LAZULI));
@@ -2756,61 +2756,61 @@ public final class MagicExpansionItemSetup {
         registerVanResource(plugin,MagicExpansionItems.DIRT, new ItemStack(Material.DIRT));
         registerVanResource(plugin,MagicExpansionItems.GLOWSTONE_DUST, new ItemStack(Material.GLOWSTONE_DUST));
 
-        // 魔法橡木木板
+        // Magic Oak Planks
         new UnplaceableBlock(magicexpansionresource, MagicExpansionItems.OAK_PLANKS, RecipeType.ENHANCED_CRAFTING_TABLE, new ItemStack[] {
                 SlimefunItems.MAGIC_LUMP_1, new ItemStack(Material.OAK_PLANKS) , null,
                 null, null ,null,
                 null, null,null
         }).register(plugin);
 
-        // 红石火把
+        // Redstone Torch
         new UnplaceableBlock(magicexpansionresource, MagicExpansionItems.REDSTONE_TORCH, RecipeType.ENHANCED_CRAFTING_TABLE, new ItemStack[] {
                 null, MagicExpansionItems.REDSTONE, null,
                 null, MagicExpansionItems.STICK ,null,
                 null, null,null
         }).register(plugin);
-        // 拉杆
+        // Lever
         new UnplaceableBlock(magicexpansionresource, MagicExpansionItems.LEVER, RecipeType.ENHANCED_CRAFTING_TABLE, new ItemStack[] {
                 null, MagicExpansionItems.STICK, null,
                 null, MagicExpansionItems.COBBLESTONE ,null,
                 null, null,null
         }).register(plugin);
-        // 按钮
+        // Button
         new UnplaceableBlock(magicexpansionresource, MagicExpansionItems.BUTTON, RecipeType.ENHANCED_CRAFTING_TABLE, new ItemStack[] {
                 null, null , null,
                 null, MagicExpansionItems.COBBLESTONE ,null,
                 null, null,null
         }).register(plugin);
 
-        // 翠木核心
+        // Jade Wood Core
         new UnplaceableBlock(magicexpansionresource, MagicExpansionItems.LOG_MIX, RecipeType.ENHANCED_CRAFTING_TABLE, new ItemStack[] {
                 new ItemStack(Material.OAK_LOG), new ItemStack(Material.SPRUCE_LOG) , new ItemStack(Material.BIRCH_LOG),
                 new ItemStack(Material.JUNGLE_LOG), MagicExpansionItems.BONE ,new ItemStack(Material.ACACIA_LOG),
                 new ItemStack(Material.DARK_OAK_LOG), new ItemStack(Material.MANGROVE_LOG),new ItemStack(Material.CHERRY_LOG)
         }).register(plugin);
 
-        // 红石处理元件
+        // Redstone Processor
         new UnplaceableBlock(magicexpansionresource, MagicExpansionItems.REDSTONE_EXECUTE_ELEMENT, RecipeType.ENHANCED_CRAFTING_TABLE, new ItemStack[] {
                 MagicExpansionItems.REDSTONE_TORCH, MagicExpansionItems.LEVER , MagicExpansionItems.REDSTONE_TORCH,
                 MagicExpansionItems.OAK_PLANKS, MagicExpansionItems.REDSTONE ,MagicExpansionItems.OAK_PLANKS,
                 MagicExpansionItems.ELEMENT_INGOT, MagicExpansionItems.IRON_INGOT,MagicExpansionItems.ELEMENT_INGOT
         }).register(plugin);
 
-        // 原版机器核心
+        // Vanilla Machine Core
         new UnplaceableBlock(magicexpansionresource, MagicExpansionItems.CORE_ORIGIN, RecipeType.ENHANCED_CRAFTING_TABLE, new ItemStack[] {
                 MagicExpansionItems.ELEMENT_INGOT, SlimefunItems.MAGICAL_GLASS , MagicExpansionItems.COBBLESTONE,
                 SlimefunItems.ENDER_LUMP_3, MagicExpansionItems.REDSTONE_EXECUTE_ELEMENT ,SlimefunItems.ENDER_LUMP_3,
                 MagicExpansionItems.COBBLESTONE, SlimefunItems.MAGICAL_GLASS,MagicExpansionItems.ELEMENT_INGOT
         }).register(plugin);
 
-        //光之核心
+        //Light Core
         new UnplaceableBlock(magicexpansionresource, MagicExpansionItems.LIGHT_CORE, RecipeType.SMELTERY, new ItemStack[] {
                 MagicExpansionItems.IRON_INGOT, MagicExpansionItems.GOLD_INGOT, MagicExpansionItems.COPPER_INGOT,
                 MagicExpansionItems.TIN_INGOT, new ItemStack(Material.GLOWSTONE_DUST), MagicExpansionItems.LEAD_INGOT,
                 MagicExpansionItems.ALUMINUM_INGOT, MagicExpansionItems.ZINC_INGOT, MagicExpansionItems.MAGNESIUM_INGOT
         }).register(plugin);
 
-        //光能α
+        //Light Energy Alpha
         new UnplaceableBlock(magicexpansionresource, MagicExpansionItems.LIGHT_ENERGY_ALPHA, LIGHT_TRANSFORM_BASIC, new ItemStack[] {
                 new ItemStack(Material.LIGHT,32),MagicExpansionItems.MAGNESIUM_INGOT, null,
                 null,null,null,
@@ -2823,7 +2823,7 @@ public final class MagicExpansionItemSetup {
                 new ItemStack(Material.CARROT,1),new ItemStack(Material.WHEAT,1),new ItemStack(Material.ROTTEN_FLESH,1),
         }).register(plugin);
 
-        //石英核心
+        //Quartz Core
         new UnplaceableBlock(magicexpansionresource, MagicExpansionItems.QUARTZ_CORE, RecipeType.ENHANCED_CRAFTING_TABLE, new ItemStack[] {
                 MagicExpansionItems.ELEMENT_INGOT,MagicExpansionItems.ELEMENT_INGOT, MagicExpansionItems.ELEMENT_INGOT,
                 MagicExpansionItems.ELEMENT_INGOT,MagicExpansionItems.QUARTZ,MagicExpansionItems.ELEMENT_INGOT,
@@ -2831,38 +2831,38 @@ public final class MagicExpansionItemSetup {
         }).register(plugin);
 
 
-        //紊乱的发电机核心
+        //Unstable Generator Core
         new Capacitor(magicexpansionpower,1314520, MagicExpansionItems.POWER_CORE, RecipeType.ENHANCED_CRAFTING_TABLE, new ItemStack[] {
                 MagicExpansionItems.ELEMENT_INGOT,SlimefunItems.ENERGIZED_CAPACITOR, MagicExpansionItems.ELEMENT_INGOT,
                 MagicExpansionItems.COPPER_INGOT,AdvancedCreateItem("MAGIC_COSMIC_DUST"),MagicExpansionItems.ZINC_INGOT,
                 MagicExpansionItems.ELEMENT_INGOT,MagicExpansionItems.AMETHYST_SHARD,MagicExpansionItems.ELEMENT_INGOT,
         }).register(plugin);
 
-        //幸运电容
+        //Lucky Capacitor
         new LuckCapacitor(magicexpansionpower,2147483647, MagicExpansionItems.PURE_INGOT_POWER_CORE, RecipeType.ENHANCED_CRAFTING_TABLE, new ItemStack[] {
                 MagicExpansionItems.PURE_ELEMENT_INGOT, PURE_FIVE_ELEMENT, MagicExpansionItems.PURE_ELEMENT_INGOT,
                 MagicExpansionItems.PURE_ELEMENT_INGOT,SlimefunItems.ENERGIZED_CAPACITOR,MagicExpansionItems.PURE_ELEMENT_INGOT,
                 MagicExpansionItems.PURE_ELEMENT_INGOT,MagicExpansionItems.PURE_ELEMENT_INGOT,MagicExpansionItems.PURE_ELEMENT_INGOT,
         },1,1314521,1).register(plugin);
-        //厄运电容
+        //Bad Luck Capacitor
         new LuckCapacitor(magicexpansionpower,2147483647, BAD_LUCK_CAPACITY, RecipeType.ENHANCED_CRAFTING_TABLE, new ItemStack[] {
                 PURE_LEAD, PURE_ELEMENT_EARTH, PURE_LEAD,
                 PURE_LEAD,PURE_INGOT_POWER_CORE,PURE_LEAD,
                 PURE_LEAD,PURE_LEAD,PURE_LEAD,
         },1,1314521,-1).register(plugin);
-        //潘多拉电容
+        //Pandora Capacitor
         new LuckCapacitor(magicexpansionpower,2147483647, PANDORA_CAPACITY, RecipeType.ENHANCED_CRAFTING_TABLE, new ItemStack[] {
                 PURE_ELEMENT_INGOT, PURE_ELEMENT_INGOT, PURE_ELEMENT_INGOT,
                 PURE_INGOT_POWER_CORE,PURE_FIVE_ELEMENT,BAD_LUCK_CAPACITY,
                 PURE_ELEMENT_INGOT,PURE_ELEMENT_INGOT,PURE_ELEMENT_INGOT,
         },1,1314521,2).register(plugin);
-        //基础魔法电容
+        //Basic Magic Capacitor
         new LuckCapacitor(magicexpansionpower,2147483647, MAGIC_CAPACITY_BASIC, RecipeType.ENHANCED_CRAFTING_TABLE, new ItemStack[] {
                 MAGIC_EXPANSION_MAGIC_SUGAR_9, PURE_FIVE_ELEMENT, MAGIC_EXPANSION_MAGIC_SUGAR_9,
                 BAD_LUCK_CAPACITY,PANDORA_CAPACITY,PURE_INGOT_POWER_CORE,
                 MAGIC_EXPANSION_MAGIC_SUGAR_9,PURE_FIVE_ELEMENT,MAGIC_EXPANSION_MAGIC_SUGAR_9,
         },1145141919,Integer.MAX_VALUE,1).register(plugin);
-        //终极魔法电容
+        //Ultimate Magic Capacitor
         new LuckCapacitor(magicexpansionpower,2147483647, MAGIC_CAPACITY_ULTRA, RecipeType.ENHANCED_CRAFTING_TABLE, new ItemStack[] {
                 MAGIC_EXPANSION_MAGIC_SUGAR_11, PURE_FIVE_ELEMENT, MAGIC_EXPANSION_MAGIC_SUGAR_11,
                 POWER_CARD,SlimefunItems.SMALL_CAPACITOR,POWER_CARD,
@@ -2870,19 +2870,19 @@ public final class MagicExpansionItemSetup {
         },Integer.MAX_VALUE,Integer.MAX_VALUE,1).register(plugin);
 
 
-        //53格空白容器
+        //53Blank Slot Container
         new CHEST_BLOCK(magicexpansionenergy, WHITE_SLOTS_CHEST_53, RecipeType.ENHANCED_CRAFTING_TABLE, new ItemStack[] {
                 new ItemStack(Material.CHEST),REDSTONE,new ItemStack(Material.CHEST),
                 null, null, null,
                 null, null, null,
         }).register(plugin);
-        //翻页储物箱
+        //Paged Storage Chest
         new PageChest(magicexpansionspecialitem, MagicExpansionItems.PAGE_CHEST, RecipeType.ENHANCED_CRAFTING_TABLE, new ItemStack[] {
                 new ItemStack(Material.CHEST), MAGIC_EXPANSION_MAGIC_SUGAR_1, new ItemStack(Material.CHEST),
                 MAGIC_EXPANSION_MAGIC_SUGAR_1, MAGIC_EXPANSION_TO_MAGIC_ITEM_BASIC, MAGIC_EXPANSION_MAGIC_SUGAR_1,
                 new ItemStack(Material.CHEST), MAGIC_EXPANSION_MAGIC_SUGAR_1, new ItemStack(Material.CHEST),
         }).register(plugin);
-        //以太秘匣提取器
+        //Aether Chest Extractor
         new CargoFragmentExtract(magicexpansionspecialitem, CARGO_FRAGMENT_EXTRACT, RecipeType.ENHANCED_CRAFTING_TABLE, new ItemStack[] {
                 AMETHYST_SHARD,SEND_ITEMS_TO_PLAYER_MACHINE,AMETHYST_SHARD,
                 null, null, null,
@@ -2890,7 +2890,7 @@ public final class MagicExpansionItemSetup {
         }).register(plugin);
 
 
-        //跨年烟花·元旦
+        //New Year Fireworks·New Year's Day
         new NewYearsDayFireworkYuanDan(magicexpansioncommemorate, NEW_YEARS_DAY_FIREWORK_YUAN_DAN, RecipeType.ENHANCED_CRAFTING_TABLE, new ItemStack[] {
                 new ItemStack(Material.GUNPOWDER),MAGIC_EXPANSION_MAGIC_SUGAR_1,null,
                 null, null, null,
@@ -2911,7 +2911,7 @@ public final class MagicExpansionItemSetup {
 
 
 
-        //电卡
+        //Power Card
         new PowerCard(magicexpansionspecialitem,MagicExpansionItems.POWER_CARD, RecipeType.ENHANCED_CRAFTING_TABLE, new ItemStack[] {
                 MagicExpansionItems.PURE_ELEMENT_INGOT, PURE_FIVE_ELEMENT, MagicExpansionItems.PURE_ELEMENT_INGOT,
                 MagicExpansionItems.PURE_INGOT_POWER_CORE,new ItemStack(Material.PAPER),MagicExpansionItems.PURE_INGOT_POWER_CORE,
@@ -2919,7 +2919,7 @@ public final class MagicExpansionItemSetup {
         }).register(plugin);
 
 
-        //无尽空间魔法
+        //Endless Space Magic
         new UnplaceableBlock(magicexpansionprebuildingresource, MagicExpansionItems.SPACE_INFINITY_MAGIC, RecipeType.ENHANCED_CRAFTING_TABLE, new ItemStack[] {
                 MagicExpansionItems.AMETHYST_SHARD,MagicExpansionItems.LIGHT_CORE, MagicExpansionItems.AMETHYST_SHARD,
                 MagicExpansionItems.LIGHT_CORE,BasicCreateItem("MAGIC_REDSTONE"),MagicExpansionItems.LIGHT_CORE,
@@ -3040,60 +3040,60 @@ public final class MagicExpansionItemSetup {
 
 
 
-        //GEO资源
+        //GEOResource
 
         new MagicGeoResourceDefault(magicexpansionresource, MagicExpansionItems.GOLD_ELEMENT, FIVE_ELEMENT_MINER, new ItemStack[] {
                 null,null,null,
-                null,new CustomItemStack(new ItemStack(Material.NETHER_STAR), "&c&l注意：&c&l原版资源采集器无法开采此资源","需要使用五行资源开采机"),null,
+                null,new CustomItemStack(new ItemStack(Material.NETHER_STAR), "&c&lNote: Vanilla resource miners can't mine this resource","You need the Five Elements Resource Miner"),null,
                 null,null,null
-        },"金元素",false,1314,520)
+        },"Gold Element",false,1314,520)
                 .register(plugin);
 
         new MagicGeoResourceDefault(magicexpansionresource, MagicExpansionItems.WOOD_ELEMENT, FIVE_ELEMENT_MINER, new ItemStack[] {
                 null,null,null,
-                null,new CustomItemStack(new ItemStack(Material.NETHER_STAR), "&c&l注意：&c&l原版资源采集器无法开采此资源","需要使用五行资源开采机"),null,
+                null,new CustomItemStack(new ItemStack(Material.NETHER_STAR), "&c&lNote: Vanilla resource miners can't mine this resource","You need the Five Elements Resource Miner"),null,
                 null,null,null
-        },"木元素",false,1314,520)
+        },"Wood Element",false,1314,520)
                 .register(plugin);
 
         new MagicGeoResourceDefault(magicexpansionresource, MagicExpansionItems.WATER_ELEMENT, FIVE_ELEMENT_MINER, new ItemStack[] {
                 null,null,null,
-                null,new CustomItemStack(new ItemStack(Material.NETHER_STAR), "&c&l注意：&c&l原版资源采集器无法开采此资源","需要使用五行资源开采机"),null,
+                null,new CustomItemStack(new ItemStack(Material.NETHER_STAR), "&c&lNote: Vanilla resource miners can't mine this resource","You need the Five Elements Resource Miner"),null,
                 null,null,null
-        },"水元素",false,1314,520)
+        },"Water Element",false,1314,520)
                 .register(plugin);
 
         new MagicGeoResourceDefault(magicexpansionresource, MagicExpansionItems.FIRE_ELEMENT, FIVE_ELEMENT_MINER, new ItemStack[] {
                 null,null,null,
-                null,new CustomItemStack(new ItemStack(Material.NETHER_STAR), "&c&l注意：&c&l原版资源采集器无法开采此资源","需要使用五行资源开采机"),null,
+                null,new CustomItemStack(new ItemStack(Material.NETHER_STAR), "&c&lNote: Vanilla resource miners can't mine this resource","You need the Five Elements Resource Miner"),null,
                 null,null,null
-        },"火元素",false,1314,520)
+        },"Fire Element",false,1314,520)
                 .register(plugin);
 
         new MagicGeoResourceDefault(magicexpansionresource, MagicExpansionItems.EARTH_ELEMENT, FIVE_ELEMENT_MINER, new ItemStack[] {
                 null,null,null,
-                null,new CustomItemStack(new ItemStack(Material.NETHER_STAR), "&c&l注意：&c&l原版资源采集器无法开采此资源","需要使用五行资源开采机"),null,
+                null,new CustomItemStack(new ItemStack(Material.NETHER_STAR), "&c&lNote: Vanilla resource miners can't mine this resource","You need the Five Elements Resource Miner"),null,
                 null,null,null
-        },"土元素",false,1314,520)
+        },"Earth Element",false,1314,520)
                 .register(plugin);
 
         new MagicGeoResourceDefault(magicexpansionrscmagic, MagicExpansionItems.RSC_MAGIC_REDSTONE, FIVE_ELEMENT_MINER, new ItemStack[] {
                 null,null,null,
-                null,new CustomItemStack(new ItemStack(Material.NETHER_STAR), "&c&l注意：&c&l原版资源采集器无法开采此资源","需要使用魔法资源开采机-优化版"),null,
+                null,new CustomItemStack(new ItemStack(Material.NETHER_STAR), "&c&lNote: Vanilla resource miners can't mine this resource","You need the upgraded Magic Resource Miner"),null,
                 null,null,null
-        },"魔法红石-RSC",false,1314,520)
+        },"Magic Redstone - RSC",false,1314,520)
                 .register(plugin);
         new MagicGeoResourceDefault(magicexpansionrscmagic, MagicExpansionItems.RSC_MAGIC_COSMIC_DUST, FIVE_ELEMENT_MINER, new ItemStack[] {
                 null,null,null,
-                null,new CustomItemStack(new ItemStack(Material.NETHER_STAR), "&c&l注意：&c&l原版资源采集器无法开采此资源","需要使用魔法资源开采机-优化版"),null,
+                null,new CustomItemStack(new ItemStack(Material.NETHER_STAR), "&c&lNote: Vanilla resource miners can't mine this resource","You need the upgraded Magic Resource Miner"),null,
                 null,null,null
-        },"宇宙尘-RSC",false,1314,520)
+        },"Cosmic Dust - RSC",false,1314,520)
                 .register(plugin);
         new MagicGeoResourceDefault(magicexpansionrscmagic, MagicExpansionItems.RSC_MAGIC_SOUL, FIVE_ELEMENT_MINER, new ItemStack[] {
                 null,null,null,
-                null,new CustomItemStack(new ItemStack(Material.NETHER_STAR), "&c&l注意：&c&l原版资源采集器无法开采此资源","需要使用魔法资源开采机-优化版"),null,
+                null,new CustomItemStack(new ItemStack(Material.NETHER_STAR), "&c&lNote: Vanilla resource miners can't mine this resource","You need the upgraded Magic Resource Miner"),null,
                 null,null,null
-        },"灵魂-RSC",false,1314,520)
+        },"Soul - RSC",false,1314,520)
                 .register(plugin);
 
         new UnplaceableBlock(magicexpansionresource, MagicExpansionItems.FIVE_ELEMENT, RecipeType.ENHANCED_CRAFTING_TABLE, new ItemStack[] {
@@ -3104,7 +3104,7 @@ public final class MagicExpansionItemSetup {
 
 
 
-        //纯净元素
+        //Pure Element
         new UnplaceableBlock(
                 magicexpansionresource,
                 MagicExpansionItems.PURE_IRON,
@@ -3280,14 +3280,14 @@ public final class MagicExpansionItemSetup {
 
 
 
-        //幻翼抑制器
+        //Phantom Membrane Suppressor
         new EntityKillMachine(magicexpansionenergy, MagicExpansionItems.PHANTON_SUPPRESSION, RecipeType.ENHANCED_CRAFTING_TABLE, new ItemStack[] {
                 MagicExpansionItems.ELEMENT_INGOT,new ItemStack(Material.PHANTOM_MEMBRANE), MagicExpansionItems.ELEMENT_INGOT,
                 MagicExpansionItems.AMETHYST_SHARD,MagicExpansionItems.LIGHT_ENERGY_ALPHA,MagicExpansionItems.AMETHYST_SHARD,
                 MagicExpansionItems.OAK_PLANKS,MagicExpansionItems.INFINITY_FLINT_AND_STEEL,MagicExpansionItems.OAK_PLANKS
-        },1314,260, EntityType.PHANTOM, "幻翼").register(plugin);
+        },1314,260, EntityType.PHANTOM, "Phantom Membrane").register(plugin);
 
-        //rsc资源强转换
+        //rscResource Converter
         new ForceTwoToRsc(magicexpansionrscmagic, MagicExpansionItems.TWO_TO_MAGIC_GEO_MACHINE_FORCE, RecipeType.ENHANCED_CRAFTING_TABLE, new ItemStack[] {
                 new ItemStack(Material.REDSTONE), new ItemStack(Material.REDSTONE), new ItemStack(Material.SUGAR),
                 new ItemStack(Material.REDSTONE), new ItemStack(Material.FURNACE), new ItemStack(Material.SUGAR),
@@ -3301,7 +3301,7 @@ public final class MagicExpansionItemSetup {
 
 
 
-        //木头发生器
+        //Wood Generator
         new ResourceMachine(magicexpansionresourcegenerator, MagicExpansionItems.RESOURCE_MACHINE_WOOD_BASIC, RecipeType.ENHANCED_CRAFTING_TABLE, new ItemStack[] {
                 MagicExpansionItems.ELEMENT_INGOT,SlimefunItems.BIG_CAPACITOR,MagicExpansionItems.REDSTONE,
                 MagicExpansionItems.ZINC_INGOT,MagicExpansionItems.LOG_MIX,MagicExpansionItems.ZINC_INGOT,
@@ -3319,7 +3319,7 @@ public final class MagicExpansionItemSetup {
                         new ItemStack(Material.MANGROVE_LEAVES,2),new ItemStack(Material.CHERRY_LEAVES,2)})
                 .register(plugin);
 
-        //木头发生器
+        //Wood Generator
         new ResourceMachine(magicexpansionresourcegenerator, MagicExpansionItems.RESOURCE_MACHINE_WOOD_ULTRA, RecipeType.ENHANCED_CRAFTING_TABLE, new ItemStack[] {
                 MagicExpansionItems.AMETHYST_SHARD,SlimefunItems.AIR_RUNE,MagicExpansionItems.AMETHYST_SHARD,
                 MagicExpansionItems.RESOURCE_MACHINE_WOOD_BASIC,MagicExpansionItems.PURE_ELEMENT_WOOD,MagicExpansionItems.RESOURCE_MACHINE_WOOD_BASIC,
@@ -3337,7 +3337,7 @@ public final class MagicExpansionItemSetup {
                         new ItemStack(Material.MANGROVE_LEAVES,64),new ItemStack(Material.CHERRY_LEAVES,64)})
                 .register(plugin);
 
-        //光源发生器
+        //Light Source Generator
         new ResourceMachine(magicexpansionresourcegenerator, MagicExpansionItems.LIGHT_GEN_BASIC, RecipeType.ENHANCED_CRAFTING_TABLE, new ItemStack[] {
                 MagicExpansionItems.ELEMENT_INGOT,SlimefunItems.BIG_CAPACITOR,MagicExpansionItems.AMETHYST_SHARD,
                 MagicExpansionItems.GOLD_INGOT,MagicExpansionItems.LIGHT_CORE,MagicExpansionItems.GOLD_INGOT,
@@ -3353,7 +3353,7 @@ public final class MagicExpansionItemSetup {
                 })
                 .register(plugin);
 
-        //刷线机
+        //String Farm
         new ResourceMachine(magicexpansionresourcegenerator, MagicExpansionItems.STRING_GEN_BASIC, RecipeType.ENHANCED_CRAFTING_TABLE, new ItemStack[] {
                 new ItemStack(Material.OAK_TRAPDOOR),new ItemStack(Material.WATER_BUCKET),new ItemStack(Material.LEVER),
                 new ItemStack(Material.TRIPWIRE_HOOK),new ItemStack(Material.STRING),new ItemStack(Material.TRIPWIRE_HOOK),
@@ -3366,7 +3366,7 @@ public final class MagicExpansionItemSetup {
                 .setItemStackOutputs(new ItemStack[] {new ItemStack(Material.STRING,2)
                 })
                 .register(plugin);
-        //刷线机
+        //String Farm
         new ResourceMachine(magicexpansionresourcegenerator, MagicExpansionItems.STRING_GEN_ULTRA, RecipeType.ENHANCED_CRAFTING_TABLE, new ItemStack[] {
                 MagicExpansionItems.AMETHYST_SHARD,SlimefunItems.WATER_RUNE,MagicExpansionItems.AMETHYST_SHARD,
                 MagicExpansionItems.STRING_GEN_BASIC,MagicExpansionItems.WATER_ELEMENT,MagicExpansionItems.STRING_GEN_BASIC,
@@ -3399,7 +3399,7 @@ public final class MagicExpansionItemSetup {
         registerBasicElectricMan(plugin, MagicExpansionItems.MINE_MAN_MAGNESIUM_DUST_BASIC, MagicExpansionItems.MAGNESIUM_INGOT, SlimefunItems.MAGNESIUM_DUST);
 
 
-        //矿锭x9
+        //Ore Ingotx9
         registerBasicElectricMan(plugin, MagicExpansionItems.MINE_MAN_IRON_INGOT_BASIC, MagicExpansionItems.MINE_MAN_IRON_DUST_BASIC, Material.IRON_INGOT,1,1,1);
         registerBasicElectricMan(plugin, MagicExpansionItems.MINE_MAN_GOLD_INGOT_BASIC, MagicExpansionItems.MINE_MAN_GOLD_DUST_BASIC, Material.GOLD_INGOT,1,1,1);
         registerBasicElectricMan(plugin, MagicExpansionItems.MINE_MAN_COPPER_INGOT_BASIC, MagicExpansionItems.MINE_MAN_COPPER_DUST_BASIC, SlimefunItems.COPPER_INGOT,1,1);
@@ -3410,7 +3410,7 @@ public final class MagicExpansionItemSetup {
         registerBasicElectricMan(plugin, MagicExpansionItems.MINE_MAN_ZINC_INGOT_BASIC, MagicExpansionItems.MINE_MAN_ZINC_DUST_BASIC, SlimefunItems.ZINC_INGOT,1,1);
         registerBasicElectricMan(plugin, MagicExpansionItems.MINE_MAN_MAGNESIUM_INGOT_BASIC, MagicExpansionItems.MINE_MAN_MAGNESIUM_DUST_BASIC, SlimefunItems.MAGNESIUM_INGOT,1,1);
 
-        //下界合金锭
+        //Netherite Ingot
         new ResourceMachine(magicexpansionelectricbot, MagicExpansionItems.MINE_MAN_NETHERITE_INGOT_BASIC, RecipeType.ENHANCED_CRAFTING_TABLE, new ItemStack[] {
                 MagicExpansionItems.MINE_MAN_GOLD_INGOT_BASIC,new ItemStack(Material.CRAFTING_TABLE),MagicExpansionItems.MINE_MAN_NETHERITE_SCRAP_BASIC,
                 null,null,null,
@@ -3424,7 +3424,7 @@ public final class MagicExpansionItemSetup {
                         ,new ItemStack(Material.FLINT,2),new ItemStack(Material.BONE_BLOCK),new ItemStack(Material.CLAY,2)})
                 .register(plugin);
 
-        //矿脉机器人
+        //Ore Vein Robot
         new ResourceRandomOneMachine(magicexpansionelectricbot, MagicExpansionItems.MINE_MAN_MINERAL_BASIC, RecipeType.ENHANCED_CRAFTING_TABLE, new ItemStack[] {
                 SlimefunItems.PROGRAMMABLE_ANDROID_3,new ItemStack(Material.NETHERITE_PICKAXE),MagicExpansionItems.SINGLE_CUBE_ORE,
                 null,null,null,
@@ -3442,7 +3442,7 @@ public final class MagicExpansionItemSetup {
                         new ItemStack(Material.DIAMOND_ORE,1),new ItemStack(Material.DEEPSLATE_DIAMOND_ORE,1),new ItemStack(Material.NETHER_GOLD_ORE,1),
                         new ItemStack(Material.NETHER_QUARTZ_ORE,1),new ItemStack(Material.ANCIENT_DEBRIS,1),})
                 .register(plugin);
-        //矿脉机器人
+        //Ore Vein Robot
         new ResourceRandomOneMachine(magicexpansionelectricbot, MagicExpansionItems.MINE_MAN_MINERAL_ULTRA, RecipeType.ENHANCED_CRAFTING_TABLE, new ItemStack[] {
                 MagicExpansionItems.PURE_ELEMENT_GOLD,MagicExpansionItems.PURE_ELEMENT_GOLD,MagicExpansionItems.PURE_ELEMENT_GOLD,
                 MagicExpansionItems.MINE_MAN_MINERAL_BASIC,MagicExpansionItems.PURE_FIVE_ELEMENT,MagicExpansionItems.MINE_MAN_MINERAL_BASIC,
@@ -3461,7 +3461,7 @@ public final class MagicExpansionItemSetup {
                         new ItemStack(Material.NETHER_QUARTZ_ORE,64),new ItemStack(Material.ANCIENT_DEBRIS,64),})
                 .register(plugin);
 
-        //矿脉机器人
+        //Ore Vein Robot
         new RightClickMan(magicexpansionenergy, MagicExpansionItems.RIGHT_CLICK_MAN, RecipeType.ENHANCED_CRAFTING_TABLE, new ItemStack[] {
                 MagicExpansionItems.REDSTONE_TORCH,MagicExpansionItems.AMETHYST_SHARD,MagicExpansionItems.REDSTONE_TORCH,
                 MagicExpansionItems.LEVER,SlimefunItems.PROGRAMMABLE_ANDROID,MagicExpansionItems.LEVER,
@@ -3469,7 +3469,7 @@ public final class MagicExpansionItemSetup {
         }).register(plugin);
 
 
-        //五行聚灵阵-基础
+        //Five Elements Gathering Array-Basic
         new ResourceRandomOneMachine(magicexpansionresourcegenerator, FIVE_ELEMENT_GEN_BASIC, RecipeType.ENHANCED_CRAFTING_TABLE, new ItemStack[] {
                 PURE_ELEMENT_INGOT,MagicExpansionItems.INGOT_PURE_MACHINE,PURE_ELEMENT_INGOT,
                 PURE_FIVE_ELEMENT,PURE_INGOT_POWER_CORE,MAGIC_EXPANSION_MAGIC_SUGAR_7,
@@ -3483,7 +3483,7 @@ public final class MagicExpansionItemSetup {
                         sfItemAmount(WATER_ELEMENT,1),sfItemAmount(FIRE_ELEMENT,1),
                         sfItemAmount(EARTH_ELEMENT,1),})
                 .register(plugin);
-        //印书厂
+        //Book Printer
         new ResourceRandomOneMachine(magicexpansionresourcegenerator, SLIME_BOOK_GEN_ADVANCE, RecipeType.ENHANCED_CRAFTING_TABLE, new ItemStack[] {
                 PURE_ELEMENT_INGOT,new ItemStack(Material.BOOK),PURE_ELEMENT_INGOT,
                 PURE_ELEMENT_WOOD,PURE_INGOT_POWER_CORE,PURE_ELEMENT_WOOD,
@@ -3498,26 +3498,26 @@ public final class MagicExpansionItemSetup {
 
         new OriginMaterialGen(magicexpansionresourcegenerator, ORIGIN_MATERIAL_GEN, ORIGIN_MATERIAL_GEN_MAKER_ALPHA, new ItemStack[] {
                 sfItemAmount(PURE_ELEMENT_GOLD,31),sfItemAmount(MAGIC_CAPACITY_ULTRA,1),sfItemAmount(PURE_ELEMENT_WOOD,31),
-                sfItemAmount(PURE_ELEMENT_WATER,31),new CustomItemStack(Material.PAPER, ColorGradient.getGradientNameVer2("任何原版物品"),  ColorGradient.getGradientNameVer2("合成材料决定了演化台的最终产出"), "" , ColorGradient.getGradientNameVer2("或许这本就是剧本吧")),sfItemAmount(PURE_ELEMENT_FIRE,31),
+                sfItemAmount(PURE_ELEMENT_WATER,31),new CustomItemStack(Material.PAPER, ColorGradient.getGradientNameVer2("Any vanilla item"),  ColorGradient.getGradientNameVer2("The materials used decide the Evolution Table's final output"), "" , ColorGradient.getGradientNameVer2("Maybe this was all part of the plan")),sfItemAmount(PURE_ELEMENT_FIRE,31),
                 sfItemAmount(PURE_FIVE_ELEMENT,9),sfItemAmount(PURE_ELEMENT_EARTH,31),sfItemAmount(MAGIC_EXPANSION_MAGIC_SUGAR_19,9)
         })
                 .setCraftSecond(1)
                 .setCapacity(131452)
                 .setConsumption(26000)
                 .setProcessingSpeed(1)
-                .setItemStackOutputs(new ItemStack[] {new CustomItemStack(Material.PAPER, ColorGradient.getGradientNameVer2("任何原版物品 x 99 x 36"),  ColorGradient.getGradientNameVer2("不要怀疑你的眼睛，就是99"),  ColorGradient.getGradientNameVer2("产出取决于合成演化台时的材料"), "" , ColorGradient.getGradientNameVer2("或许这本就是剧本吧"))})
+                .setItemStackOutputs(new ItemStack[] {new CustomItemStack(Material.PAPER, ColorGradient.getGradientNameVer2("Any vanilla item x 99 x 36"),  ColorGradient.getGradientNameVer2("You're seeing it right: 99"),  ColorGradient.getGradientNameVer2("Output depends on the materials used to craft the Evolution Table"), "" , ColorGradient.getGradientNameVer2("Maybe this was all part of the plan"))})
                 .register(plugin);
 
         new OriginMaterialGenUltra(magicexpansionresourcegenerator, ORIGIN_MATERIAL_GEN_ULTRA, ORIGIN_MATERIAL_GEN_MAKER_BETA, new ItemStack[] {
                 sfItemAmount(ITEM_ORIGIN_BACK_TRACK,1),sfItemAmount(MAGIC_CAPACITY_ULTRA,1),sfItemAmount(MAGIC_EXPANSION_MAGIC_SUGAR_31,31),
-                sfItemAmount(PURE_ELEMENT_WATER,1),new CustomItemStack(Material.PAPER, ColorGradient.getGradientNameVer2("任何物品"),  ColorGradient.getGradientNameVer2("合成材料决定了演化台的最终产出"), "" , ColorGradient.getGradientNameVer2("或许这本就是剧本吧")),sfItemAmount(PURE_ELEMENT_FIRE,1),
+                sfItemAmount(PURE_ELEMENT_WATER,1),new CustomItemStack(Material.PAPER, ColorGradient.getGradientNameVer2("Any item"),  ColorGradient.getGradientNameVer2("The materials used decide the Evolution Table's final output"), "" , ColorGradient.getGradientNameVer2("Maybe this was all part of the plan")),sfItemAmount(PURE_ELEMENT_FIRE,1),
                 sfItemAmount(PURE_FIVE_ELEMENT,31),sfItemAmount(PURE_ELEMENT_EARTH,31),sfItemAmount(MAGIC_EXPANSION_MAGIC_SUGAR_19,31)
         })
                 .setCraftSecond(1)
                 .setCapacity(131452)
                 .setConsumption(26000)
                 .setProcessingSpeed(1)
-                .setItemStackOutputs(new ItemStack[] {new CustomItemStack(Material.PAPER, ColorGradient.getGradientNameVer2("任何物品 x 64 x 36"),  ColorGradient.getGradientNameVer2("不要怀疑你的眼睛，就是64"),  ColorGradient.getGradientNameVer2("产出取决于合成演化台时的材料"), "" , ColorGradient.getGradientNameVer2("或许这本就是剧本吧"))})
+                .setItemStackOutputs(new ItemStack[] {new CustomItemStack(Material.PAPER, ColorGradient.getGradientNameVer2("Any item x 64 x 36"),  ColorGradient.getGradientNameVer2("You're seeing it right: 64"),  ColorGradient.getGradientNameVer2("Output depends on the materials used to craft the Evolution Table"), "" , ColorGradient.getGradientNameVer2("Maybe this was all part of the plan"))})
                 .register(plugin);
 
 
@@ -3526,14 +3526,14 @@ public final class MagicExpansionItemSetup {
 
         new OriginMaterialGenLite(magicexpansionresourcegenerator, ORIGIN_MATERIAL_GEN_LITE, ORIGIN_MATERIAL_GEN_MAKER_LITE, new ItemStack[] {
                 sfItemAmount(GOLD_ELEMENT,11),sfItemAmount(BAD_LUCK_CAPACITY,1),sfItemAmount(WOOD_ELEMENT,45),
-                sfItemAmount(WATER_ELEMENT,14),new CustomItemStack(Material.PAPER, ColorGradient.getGradientNameVer2("任何原版物品"),  ColorGradient.getGradientNameVer2("合成材料决定了演化台的最终产出"), "" , ColorGradient.getGradientNameVer2("或许这本就是剧本吧")),sfItemAmount(FIRE_ELEMENT,19),
+                sfItemAmount(WATER_ELEMENT,14),new CustomItemStack(Material.PAPER, ColorGradient.getGradientNameVer2("Any vanilla item"),  ColorGradient.getGradientNameVer2("The materials used decide the Evolution Table's final output"), "" , ColorGradient.getGradientNameVer2("Maybe this was all part of the plan")),sfItemAmount(FIRE_ELEMENT,19),
                 sfItemAmount(FIVE_ELEMENT,8),sfItemAmount(EARTH_ELEMENT,19),sfItemAmount(PURE_ELEMENT_INGOT,10)
         })
                 .setCraftSecond(0)
                 .setCapacity(131452)
                 .setConsumption(26)
                 .setProcessingSpeed(1)
-                .setItemStackOutputs(new ItemStack[] {new CustomItemStack(Material.PAPER, ColorGradient.getGradientNameVer2("任何原版物品 x 1"),  ColorGradient.getGradientNameVer2("比较简陋的演化台"),  ColorGradient.getGradientNameVer2("产出取决于合成演化台时的材料"), "" , ColorGradient.getGradientNameVer2("或许这本就是剧本吧"))})
+                .setItemStackOutputs(new ItemStack[] {new CustomItemStack(Material.PAPER, ColorGradient.getGradientNameVer2("Any vanilla item x 1"),  ColorGradient.getGradientNameVer2("A basic Evolution Table"),  ColorGradient.getGradientNameVer2("Output depends on the materials used to craft the Evolution Table"), "" , ColorGradient.getGradientNameVer2("Maybe this was all part of the plan"))})
                 .register(plugin);
 
         new OriginMaterialGenStack(magicexpansionenergy, ORIGIN_MATERIAL_GEN_LITE_PRESS, RecipeType.ENHANCED_CRAFTING_TABLE, new ItemStack[] {
@@ -3545,13 +3545,13 @@ public final class MagicExpansionItemSetup {
                 .setCapacity(131452)
                 .setConsumption(26000)
                 .setProcessingSpeed(1)
-                .setItemStackOutputs(new ItemStack[] {new CustomItemStack(Material.PAPER, ColorGradient.getGradientNameVer2("可并行多个 万物演化台·源起"),  ColorGradient.getGradientNameVer2("一种特殊的演化台,本身并不产出任何物品"),  ColorGradient.getGradientNameVer2("产出取决于合成演化台时的材料"), "" , ColorGradient.getGradientNameVer2("或许这本就是剧本吧"))})
+                .setItemStackOutputs(new ItemStack[] {new CustomItemStack(Material.PAPER, ColorGradient.getGradientNameVer2("Can run multiple Origin Evolution Tables at once"),  ColorGradient.getGradientNameVer2("A special Evolution Table that doesn't produce items by itself"),  ColorGradient.getGradientNameVer2("Output depends on the materials used to craft the Evolution Table"), "" , ColorGradient.getGradientNameVer2("Maybe this was all part of the plan"))})
                 .register(plugin);
 
 
 
 
-        //木头转换机
+        //Wood Converter
         new RecipeMachine(magicexpansionrecipemachine, MagicExpansionItems.WOOD_TRANSFORM_BASIC, RecipeType.ENHANCED_CRAFTING_TABLE, new ItemStack[] {
                 MagicExpansionItems.ELEMENT_INGOT,SlimefunItems.BIG_CAPACITOR,MagicExpansionItems.AMETHYST_SHARD,
                 MagicExpansionItems.DIRT,MagicExpansionItems.LOG_MIX,MagicExpansionItems.BONE_MEAL,
@@ -3595,7 +3595,7 @@ public final class MagicExpansionItemSetup {
                         new ItemStack[] {new ItemStack(Material.OAK_LEAVES,16)})
                 .register(plugin);
 
-        //终极翠木转换机
+        //Ultimate Jade Wood Converter
         new RecipeMachine(magicexpansionrecipemachine, MagicExpansionItems.WOOD_TRANSFORM_ULTRA, RecipeType.ENHANCED_CRAFTING_TABLE, new ItemStack[] {
                 MagicExpansionItems.AMETHYST_SHARD,SlimefunItems.AIR_RUNE,MagicExpansionItems.AMETHYST_SHARD,
                 MagicExpansionItems.WOOD_TRANSFORM_BASIC,MagicExpansionItems.WOOD_ELEMENT,MagicExpansionItems.WOOD_TRANSFORM_BASIC,
@@ -3641,7 +3641,7 @@ public final class MagicExpansionItemSetup {
 
 
 
-        //光能激发器
+        //Light Energy Activator
         new RecipeMachine(magicexpansionrecipemachine, MagicExpansionItems.LIGHT_TRANSFORM_BASIC, RecipeType.ENHANCED_CRAFTING_TABLE, new ItemStack[] {
                 MagicExpansionItems.ELEMENT_INGOT,SlimefunItems.BIG_CAPACITOR,MagicExpansionItems.QUARTZ,
                 MagicExpansionItems.ALUMINUM_INGOT,MagicExpansionItems.LIGHT_CORE,MagicExpansionItems.LEAD_INGOT,
@@ -3654,7 +3654,7 @@ public final class MagicExpansionItemSetup {
                         new ItemStack[] {MagicExpansionItems.LIGHT_ENERGY_ALPHA})
                 .register(plugin);
 
-        //光能溯源器
+        //Light Energy Tracer
         new RecipeMachine(magicexpansionrecipemachine, MagicExpansionItems.LIGHT_EXTRACT_BASIC, RecipeType.ENHANCED_CRAFTING_TABLE, new ItemStack[] {
                 MagicExpansionItems.OAK_PLANKS,SlimefunItems.BIG_CAPACITOR,MagicExpansionItems.OAK_PLANKS,
                 MagicExpansionItems.GOLD_INGOT,MagicExpansionItems.LIGHT_CORE,MagicExpansionItems.SILVER_INGOT,
@@ -3696,7 +3696,7 @@ public final class MagicExpansionItemSetup {
                 .register(plugin);
 
 
-        //魔法建筑工坊
+        //Magic Building Workshop
         new RecipeMachine(magicexpansionenergy, MagicExpansionItems.PRE_BUILDINGS_MACHINE, RecipeType.ENHANCED_CRAFTING_TABLE, new ItemStack[] {
                 MagicExpansionItems.ELEMENT_INGOT,SlimefunItems.BIG_CAPACITOR,MagicExpansionItems.ELEMENT_INGOT,
                 MagicExpansionItems.ELEMENT_INGOT,MagicExpansionItems.CORE_ORIGIN,MagicExpansionItems.ELEMENT_INGOT,
@@ -3806,7 +3806,7 @@ public final class MagicExpansionItemSetup {
                 .register(plugin);
 
 
-        //纯净硅源机
+        //Pure Silicon Generator
         new RecipeMachine(magicexpansionrecipemachine, MagicExpansionItems.QUARTZ_PURE_MACHINE_BAISC, RecipeType.ENHANCED_CRAFTING_TABLE, new ItemStack[] {
                 MagicExpansionItems.ELEMENT_INGOT,SlimefunItems.BIG_CAPACITOR,MagicExpansionItems.ELEMENT_INGOT,
                 MagicExpansionItems.ELEMENT_INGOT,MagicExpansionItems.QUARTZ_CORE,MagicExpansionItems.ELEMENT_INGOT,
@@ -3839,7 +3839,7 @@ public final class MagicExpansionItemSetup {
                         new ItemStack[] {new ItemStack(Material.QUARTZ_BLOCK)})
                 .register(plugin);
 
-        //终极纯净硅源机
+        //Ultimate Pure Silicon Generator
         new RecipeMachine(magicexpansionrecipemachine, MagicExpansionItems.QUARTZ_PURE_MACHINE_ULTRA, RecipeType.ENHANCED_CRAFTING_TABLE, new ItemStack[] {
                 MagicExpansionItems.AMETHYST_SHARD,MagicExpansionItems.QUARTZ,MagicExpansionItems.AMETHYST_SHARD,
                 MagicExpansionItems.QUARTZ_PURE_MACHINE_BAISC,MagicExpansionItems.FIVE_ELEMENT,MagicExpansionItems.QUARTZ_PURE_MACHINE_BAISC,
@@ -3872,7 +3872,7 @@ public final class MagicExpansionItemSetup {
                         new ItemStack[] {new ItemStack(Material.QUARTZ_BLOCK,64)})
                 .register(plugin);
 
-        //一体化·矿粉产线
+        //Integrated·Ore Dust Production Line
         new RecipeRandomMachine(magicexpansionrecipemachine, MagicExpansionItems.INTEGRATION_ORIGIN_SLIME_MINERAL_POWDER_LINE, RecipeType.ENHANCED_CRAFTING_TABLE, new ItemStack[] {
                 MagicExpansionItems.OAK_PLANKS,SlimefunItems.ELECTRIC_GOLD_PAN_3,MagicExpansionItems.OAK_PLANKS,
                 SlimefunItems.ELECTRIC_DUST_WASHER_3,MagicExpansionItems.AMETHYST_SHARD,SlimefunItems.ELECTRIC_ORE_GRINDER_3,
@@ -3913,7 +3913,7 @@ public final class MagicExpansionItemSetup {
                 .addRecipe(1, new ItemStack[] {new ItemStack(Material.SAND)},
                         new ItemStack[] {SlimefunItems.SALT})
                 .register(plugin);
-        //一体化·矿粉产线-输入输出分离
+        //Integrated·Ore Dust Production Line-Separate Input and Output
         new RecipeRandomMachineDefault(magicexpansionrecipemachine, MagicExpansionItems.INTEGRATION_ORIGIN_SLIME_MINERAL_POWDER_LINE_DEFAULT, RecipeType.ENHANCED_CRAFTING_TABLE, new ItemStack[] {
                 null,MAGIC_EXPANSION_MAGIC_SUGAR_2,null,
                 null,INTEGRATION_ORIGIN_SLIME_MINERAL_POWDER_LINE,null,
@@ -3955,7 +3955,7 @@ public final class MagicExpansionItemSetup {
                         new ItemStack[] {SlimefunItems.SALT})
                 .register(plugin);
 
-        //一体化·矿粉产线·ULTRA
+        //Integrated·Ore Dust Production Line·ULTRA
         new RecipeRandomMachine(magicexpansionrecipemachine, MagicExpansionItems.INTEGRATION_ORIGIN_SLIME_MINERAL_POWDER_LINE_ULTRA, RecipeType.ENHANCED_CRAFTING_TABLE, new ItemStack[] {
                 MagicExpansionItems.ELEMENT_INGOT,MagicExpansionItems.INTEGRATION_ORIGIN_SLIME_MINERAL_POWDER_LINE,MagicExpansionItems.ELEMENT_INGOT,
                 MagicExpansionItems.INTEGRATION_ORIGIN_SLIME_MINERAL_POWDER_LINE,MagicExpansionItems.SPEED_ELEMENT_64,MagicExpansionItems.INTEGRATION_ORIGIN_SLIME_MINERAL_POWDER_LINE,
@@ -3997,7 +3997,7 @@ public final class MagicExpansionItemSetup {
                         new ItemStack[] {sfItemAmount(SlimefunItems.SALT,64)})
                 .register(plugin);
 
-        //一体化·矿粉产线·ULTRA-输入输出分离
+        //Integrated·Ore Dust Production Line·ULTRA-Separate Input and Output
         new RecipeRandomMachineDefault(magicexpansionrecipemachine, INTEGRATION_ORIGIN_SLIME_MINERAL_POWDER_LINE_ULTRA_DEFAULT, RecipeType.ENHANCED_CRAFTING_TABLE, new ItemStack[] {
                 null,MAGIC_EXPANSION_MAGIC_SUGAR_2,null,
                 null,INTEGRATION_ORIGIN_SLIME_MINERAL_POWDER_LINE_ULTRA,null,
@@ -4043,7 +4043,7 @@ public final class MagicExpansionItemSetup {
 
 
 
-        // 预制树-说明
+        // Prefab Tree-Notes
         new UnplaceableBlock(magicexpansionprebuilding, MagicExpansionItems.PRE_BUILDING_TREE_INFO, SPECIAL_RECIPE_TYPE, new ItemStack[] {
                 null,null,null,
                 null,null,null,
@@ -4059,118 +4059,118 @@ public final class MagicExpansionItemSetup {
         registerPreBuildingTree(plugin, MagicExpansionItems.PRE_BUILDING_MANGROVE_TREE, "oak_tree", "OAK", "MANGROVE", 1, new ItemStack(Material.MANGROVE_PROPAGULE));
         registerPreBuildingTree(plugin, MagicExpansionItems.PRE_BUILDING_CHERRY_TREE, "oak_tree", "OAK", "CHERRY", 1, new ItemStack(Material.CHERRY_SAPLING));
 
-        // 预制建筑-永雏塔菲
+        // Prefab Building-Yongchu Taffy
         new PreBuildingTree(magicexpansionprebuilding, MagicExpansionItems.PRE_BUILDING_TAFEI, PRE_BUILDINGS_MACHINE, new ItemStack[] {
                 MagicExpansionItems.REDSTONE_1,sfItemAmount(MagicExpansionItems.IRON_INGOT_1,2),MagicExpansionItems.OAK_LOG_1,
                 MagicExpansionItems.LIGHT_1,MagicExpansionItems.COLOR_WOOL_1,MagicExpansionItems.COLOR_CONCRETE_1,
-                MagicExpansionItems.COLOR_TERRACOTTA_1,null,new CustomItemStack(CustomHead.getHead("a92974681687689da7dda3f19b7e4a53fe0dd09befd7fa8838744384c9d1ac71"),getGradientName("此配方为无序配方"))
+                MagicExpansionItems.COLOR_TERRACOTTA_1,null,new CustomItemStack(CustomHead.getHead("a92974681687689da7dda3f19b7e4a53fe0dd09befd7fa8838744384c9d1ac71"),getGradientName("This recipe can be arranged in any order"))
         },"tafei",5).register(plugin);
-        // 预制建筑-维什戴尔
+        // Prefab Building-Wisadel
         new PreBuildingTree(magicexpansionprebuilding, MagicExpansionItems.PRE_BUILDING_WISH_DALE, PRE_BUILDINGS_MACHINE, new ItemStack[] {
                 MagicExpansionItems.REDSTONE_1,sfItemAmount(MagicExpansionItems.IRON_INGOT_1,2),MagicExpansionItems.OAK_LOG_1,
                 MagicExpansionItems.LIGHT_1,MagicExpansionItems.COLOR_TERRACOTTA_1,MagicExpansionItems.COLOR_CONCRETE_1,
-                new ItemStack(Material.RED_WOOL),null,new CustomItemStack(CustomHead.getHead("a92974681687689da7dda3f19b7e4a53fe0dd09befd7fa8838744384c9d1ac71"),getGradientName("此配方为无序配方"))
+                new ItemStack(Material.RED_WOOL),null,new CustomItemStack(CustomHead.getHead("a92974681687689da7dda3f19b7e4a53fe0dd09befd7fa8838744384c9d1ac71"),getGradientName("This recipe can be arranged in any order"))
         },"wish_dale",5).register(plugin);
-        // 预制建筑-千岛爱音
+        // Prefab Building-Chishima Anon
         new PreBuildingTree(magicexpansionprebuilding, MagicExpansionItems.PRE_BUILDING_ANON, PRE_BUILDINGS_MACHINE, new ItemStack[] {
                 sfItemAmount(MagicExpansionItems.COLOR_LEAVES_1,15),sfItemAmount(MagicExpansionItems.COLOR_TERRACOTTA_1,2),MagicExpansionItems.OAK_LOG_1,
                 MagicExpansionItems.COLOR_WOOL_1,MagicExpansionItems.STONE_1,MagicExpansionItems.GLASS_1,
-                NamedTagBuilder.nameTag("anon"),null,new CustomItemStack(CustomHead.getHead("a92974681687689da7dda3f19b7e4a53fe0dd09befd7fa8838744384c9d1ac71"),getGradientName("此配方为无序配方"))
+                NamedTagBuilder.nameTag("anon"),null,new CustomItemStack(CustomHead.getHead("a92974681687689da7dda3f19b7e4a53fe0dd09befd7fa8838744384c9d1ac71"),getGradientName("This recipe can be arranged in any order"))
         },"anon",5).register(plugin);
 
 
-        // 预制建筑-dora像素画
+        // Prefab Building-doraPixel Art
         new PreBuildingTree(magicexpansionprebuilding, MagicExpansionItems.PRE_BUILDING_DORA_PICTURE, PRE_BUILDINGS_MACHINE, new ItemStack[] {
                 new ItemStack(Material.PINK_CONCRETE,64),new ItemStack(Material.BLACK_CONCRETE,64),new ItemStack(Material.SNOW_BLOCK,64),
                 new ItemStack(Material.SMOOTH_QUARTZ,64),new ItemStack(Material.PINK_CONCRETE_POWDER,64),new ItemStack(Material.PURPLE_CONCRETE_POWDER,64),
-                new ItemStack(Material.CHERRY_PLANKS,64),new ItemStack(Material.PURPLE_CONCRETE,64),new CustomItemStack(CustomHead.getHead("a92974681687689da7dda3f19b7e4a53fe0dd09befd7fa8838744384c9d1ac71"),getGradientName("此配方为无序配方"))
+                new ItemStack(Material.CHERRY_PLANKS,64),new ItemStack(Material.PURPLE_CONCRETE,64),new CustomItemStack(CustomHead.getHead("a92974681687689da7dda3f19b7e4a53fe0dd09befd7fa8838744384c9d1ac71"),getGradientName("This recipe can be arranged in any order"))
         },"dora_picture",5).register(plugin);
 
-        // 预制建筑-橡木小屋
+        // Prefab Building-Oak Cabin
         new PreBuildingTree(magicexpansionprebuilding, MagicExpansionItems.PRE_BUILDING_HOUSE_OAK, PRE_BUILDINGS_MACHINE, new ItemStack[] {
                 sfItemAmount(MagicExpansionItems.STONE_BRICKS_1,4),sfItemAmount(MagicExpansionItems.COLOR_LOG_1,7),sfItemAmount(MagicExpansionItems.IRON_INGOT_1,3),
                 MagicExpansionItems.LIGHT_1,MagicExpansionItems.COBBLESTONE_1,new ItemStack(Material.OAK_LEAVES,32),
-                null,null,new CustomItemStack(CustomHead.getHead("a92974681687689da7dda3f19b7e4a53fe0dd09befd7fa8838744384c9d1ac71"),getGradientName("此配方为无序配方"))
+                null,null,new CustomItemStack(CustomHead.getHead("a92974681687689da7dda3f19b7e4a53fe0dd09befd7fa8838744384c9d1ac71"),getGradientName("This recipe can be arranged in any order"))
         },"oak_house",5).register(plugin);
-        // 预制建筑-云杉小屋
+        // Prefab Building-Spruce Cabin
         new PreBuildingTree(magicexpansionprebuilding, MagicExpansionItems.PRE_BUILDING_HOUSE_SPRUCE, PRE_BUILDINGS_MACHINE, new ItemStack[] {
                 sfItemAmount(MagicExpansionItems.STONE_BRICKS_1,4),sfItemAmount(MagicExpansionItems.COLOR_LOG_1,7),sfItemAmount(MagicExpansionItems.IRON_INGOT_1,3),
                 MagicExpansionItems.LIGHT_1,MagicExpansionItems.COBBLESTONE_1,new ItemStack(Material.SPRUCE_LEAVES,32),
-                null,null,new CustomItemStack(CustomHead.getHead("a92974681687689da7dda3f19b7e4a53fe0dd09befd7fa8838744384c9d1ac71"),getGradientName("此配方为无序配方"))
+                null,null,new CustomItemStack(CustomHead.getHead("a92974681687689da7dda3f19b7e4a53fe0dd09befd7fa8838744384c9d1ac71"),getGradientName("This recipe can be arranged in any order"))
         },"spruce_house",5).register(plugin);
-        // 预制建筑-樱花小屋
+        // Prefab Building-Cherry Blossom Cabin
         new PreBuildingTree(magicexpansionprebuilding, MagicExpansionItems.PRE_BUILDING_HOUSE_CHERRY, PRE_BUILDINGS_MACHINE, new ItemStack[] {
                 sfItemAmount(MagicExpansionItems.STONE_BRICKS_1,4),sfItemAmount(MagicExpansionItems.COLOR_LOG_1,7),sfItemAmount(MagicExpansionItems.IRON_INGOT_1,3),
                 MagicExpansionItems.LIGHT_1,MagicExpansionItems.COBBLESTONE_1,new ItemStack(Material.CHERRY_LEAVES,32),
-                null,null,new CustomItemStack(CustomHead.getHead("a92974681687689da7dda3f19b7e4a53fe0dd09befd7fa8838744384c9d1ac71"),getGradientName("此配方为无序配方"))
+                null,null,new CustomItemStack(CustomHead.getHead("a92974681687689da7dda3f19b7e4a53fe0dd09befd7fa8838744384c9d1ac71"),getGradientName("This recipe can be arranged in any order"))
         },"cherry_house",5).register(plugin);
-        // 预制建筑-红树小屋
+        // Prefab Building-Mangrove Cabin
         new PreBuildingTree(magicexpansionprebuilding, MagicExpansionItems.PRE_BUILDING_HOUSE_MANGROVE, PRE_BUILDINGS_MACHINE, new ItemStack[] {
                 sfItemAmount(MagicExpansionItems.STONE_BRICKS_1,4),sfItemAmount(MagicExpansionItems.COLOR_LOG_1,7),sfItemAmount(MagicExpansionItems.IRON_INGOT_1,3),
                 MagicExpansionItems.LIGHT_1,MagicExpansionItems.COBBLESTONE_1,new ItemStack(Material.MANGROVE_LEAVES,32),
-                null,null,new CustomItemStack(CustomHead.getHead("a92974681687689da7dda3f19b7e4a53fe0dd09befd7fa8838744384c9d1ac71"),getGradientName("此配方为无序配方"))
+                null,null,new CustomItemStack(CustomHead.getHead("a92974681687689da7dda3f19b7e4a53fe0dd09befd7fa8838744384c9d1ac71"),getGradientName("This recipe can be arranged in any order"))
         },"mangrove_house",5).register(plugin);
-        // 预制建筑-苔藓小屋
+        // Prefab Building-Moss Cabin
         new PreBuildingTree(magicexpansionprebuilding, MagicExpansionItems.PRE_BUILDING_HOUSE_MOSS, PRE_BUILDINGS_MACHINE, new ItemStack[] {
                 sfItemAmount(MagicExpansionItems.STONE_BRICKS_1,4),sfItemAmount(MagicExpansionItems.COLOR_LOG_1,7),sfItemAmount(MagicExpansionItems.IRON_INGOT_1,3),
                 MagicExpansionItems.LIGHT_1,MagicExpansionItems.COBBLESTONE_1,new ItemStack(Material.MOSS_BLOCK,32),
-                null,null,new CustomItemStack(CustomHead.getHead("a92974681687689da7dda3f19b7e4a53fe0dd09befd7fa8838744384c9d1ac71"),getGradientName("此配方为无序配方"))
+                null,null,new CustomItemStack(CustomHead.getHead("a92974681687689da7dda3f19b7e4a53fe0dd09befd7fa8838744384c9d1ac71"),getGradientName("This recipe can be arranged in any order"))
         },"moss_house",5).register(plugin);
-        // 预制建筑-风车小屋
+        // Prefab Building-Windmill
         new PreBuildingTree(magicexpansionprebuilding, MagicExpansionItems.PRE_BUILDING_HOUSE_WIND_CAR, PRE_BUILDINGS_MACHINE, new ItemStack[] {
                 sfItemAmount(MagicExpansionItems.STONE_BRICKS_1,4),sfItemAmount(MagicExpansionItems.COLOR_LOG_1,7),sfItemAmount(MagicExpansionItems.IRON_INGOT_1,3),
                 MagicExpansionItems.LIGHT_1,MagicExpansionItems.COBBLESTONE_1,new ItemStack(Material.WHITE_WOOL,32),
-                null,null,new CustomItemStack(CustomHead.getHead("a92974681687689da7dda3f19b7e4a53fe0dd09befd7fa8838744384c9d1ac71"),getGradientName("此配方为无序配方"))
+                null,null,new CustomItemStack(CustomHead.getHead("a92974681687689da7dda3f19b7e4a53fe0dd09befd7fa8838744384c9d1ac71"),getGradientName("This recipe can be arranged in any order"))
         },"wind_car_house",5).register(plugin);
 
 
-        // 预制建筑-小酒吧
+        // Prefab Building-Small Bar
         new PreBuildingTree(magicexpansionprebuilding, MagicExpansionItems.PRE_BUILDING_WINE_BAR, PRE_BUILDINGS_MACHINE, new ItemStack[] {
                 sfItemAmount(MagicExpansionItems.COLOR_LOG_1,21),sfItemAmount(MagicExpansionItems.COLOR_TERRACOTTA_1,7),sfItemAmount(MagicExpansionItems.GLASS_1,2),
                 sfItemAmount(MagicExpansionItems.OAK_LOG_1,2),sfItemAmount(MagicExpansionItems.IRON_INGOT_1,2),sfItemAmount(MagicExpansionItems.COLOR_WOOL_1,1),
-                NamedTagBuilder.nameTag("WineBar"),null,new CustomItemStack(CustomHead.getHead("a92974681687689da7dda3f19b7e4a53fe0dd09befd7fa8838744384c9d1ac71"),getGradientName("此配方为无序配方"))
+                NamedTagBuilder.nameTag("WineBar"),null,new CustomItemStack(CustomHead.getHead("a92974681687689da7dda3f19b7e4a53fe0dd09befd7fa8838744384c9d1ac71"),getGradientName("This recipe can be arranged in any order"))
         },"wine_bar",5).register(plugin);
-        // 预制建筑-钓鱼港口
+        // Prefab Building-FishingPort
         new PreBuildingTree(magicexpansionprebuilding, MagicExpansionItems.PRE_BUILDING_FISHING_PORT, PRE_BUILDINGS_MACHINE, new ItemStack[] {
                 sfItemAmount(MagicExpansionItems.COLOR_LOG_1,2),sfItemAmount(MagicExpansionItems.COBBLESTONE_1,2),sfItemAmount(MagicExpansionItems.LIGHT_1,1),
                 sfItemAmount(MagicExpansionItems.OAK_LOG_1,1),sfItemAmount(MagicExpansionItems.COLOR_LEAVES_1,1),NamedTagBuilder.nameTag("FishingPort"),
-                null,null,new CustomItemStack(CustomHead.getHead("a92974681687689da7dda3f19b7e4a53fe0dd09befd7fa8838744384c9d1ac71"),getGradientName("此配方为无序配方"))
+                null,null,new CustomItemStack(CustomHead.getHead("a92974681687689da7dda3f19b7e4a53fe0dd09befd7fa8838744384c9d1ac71"),getGradientName("This recipe can be arranged in any order"))
         },"fishing_port",5).register(plugin);
-        // 预制建筑-烘焙房
+        // Prefab Building-Bakery
         new PreBuildingTree(magicexpansionprebuilding, MagicExpansionItems.PRE_BUILDING_BAKERY, PRE_BUILDINGS_MACHINE, new ItemStack[] {
                 sfItemAmount(MagicExpansionItems.COLOR_TERRACOTTA_1,4),sfItemAmount(MagicExpansionItems.COLOR_LOG_1,2),sfItemAmount(MagicExpansionItems.STONE_BRICKS_1,3),
                 sfItemAmount(MagicExpansionItems.OAK_LOG_1,1),sfItemAmount(MagicExpansionItems.IRON_INGOT_1,1),sfItemAmount(MagicExpansionItems.COLOR_WOOL_1,1),
-                NamedTagBuilder.nameTag("Bakery"),null,new CustomItemStack(CustomHead.getHead("a92974681687689da7dda3f19b7e4a53fe0dd09befd7fa8838744384c9d1ac71"),getGradientName("此配方为无序配方"))
+                NamedTagBuilder.nameTag("Bakery"),null,new CustomItemStack(CustomHead.getHead("a92974681687689da7dda3f19b7e4a53fe0dd09befd7fa8838744384c9d1ac71"),getGradientName("This recipe can be arranged in any order"))
         },"bakery",5).register(plugin);
-        // 预制建筑-kfc-small
+        // Prefab Building-kfc-small
         new PreBuildingTree(magicexpansionprebuilding, MagicExpansionItems.PRE_BUILDING_KFC_SMALL, PRE_BUILDINGS_MACHINE, new ItemStack[] {
                 sfItemAmount(MagicExpansionItems.COLOR_CONCRETE_1,10),sfItemAmount(MagicExpansionItems.GLASS_1,2),sfItemAmount(MagicExpansionItems.COLOR_LOG_1,6),
                 sfItemAmount(MagicExpansionItems.COLOR_LEAVES_1,1),sfItemAmount(MagicExpansionItems.COBBLESTONE_1,1),sfItemAmount(MagicExpansionItems.COLOR_WOOL_1,1),
-                NamedTagBuilder.nameTag("KFCSmall"),null,new CustomItemStack(CustomHead.getHead("a92974681687689da7dda3f19b7e4a53fe0dd09befd7fa8838744384c9d1ac71"),getGradientName("此配方为无序配方"))
+                NamedTagBuilder.nameTag("KFCSmall"),null,new CustomItemStack(CustomHead.getHead("a92974681687689da7dda3f19b7e4a53fe0dd09befd7fa8838744384c9d1ac71"),getGradientName("This recipe can be arranged in any order"))
         },"kfc_little",5).register(plugin);
-        // 预制建筑-蜜雪冰城
+        // Prefab Building-Mixue Ice Cream & Tea
         new PreBuildingTree(magicexpansionprebuilding, MagicExpansionItems.PRE_BUILDING_LITTLE_MI_XUE, PRE_BUILDINGS_MACHINE, new ItemStack[] {
                 sfItemAmount(MagicExpansionItems.COLOR_CONCRETE_1,6),sfItemAmount(MagicExpansionItems.GLASS_1,1),sfItemAmount(MagicExpansionItems.COLOR_WOOL_1,2),
                 sfItemAmount(MagicExpansionItems.OAK_LOG_1,1),sfItemAmount(MagicExpansionItems.IRON_INGOT_1,1),sfItemAmount(MagicExpansionItems.COBBLESTONE_1,1),
-                NamedTagBuilder.nameTag("MiXueBingCheng"),null,new CustomItemStack(CustomHead.getHead("a92974681687689da7dda3f19b7e4a53fe0dd09befd7fa8838744384c9d1ac71"),getGradientName("此配方为无序配方"))
+                NamedTagBuilder.nameTag("MiXueBingCheng"),null,new CustomItemStack(CustomHead.getHead("a92974681687689da7dda3f19b7e4a53fe0dd09befd7fa8838744384c9d1ac71"),getGradientName("This recipe can be arranged in any order"))
         },"little_mi_xue",5).register(plugin);
-        // 预制建筑-日式町屋
+        // Prefab Building-Japanese Townhouse
         new PreBuildingTree(magicexpansionprebuilding, MagicExpansionItems.PRE_BUILDING_JAPAN_HOUSE, PRE_BUILDINGS_MACHINE, new ItemStack[] {
                 sfItemAmount(MagicExpansionItems.COBBLESTONE_1,5),sfItemAmount(MagicExpansionItems.COLOR_LOG_1,4),sfItemAmount(MagicExpansionItems.COLOR_TERRACOTTA_1,2),
                 sfItemAmount(MagicExpansionItems.IRON_INGOT_1,2),sfItemAmount(MagicExpansionItems.COLOR_WOOL_1,1),NamedTagBuilder.nameTag("JapanHouse"),
-                null,null,new CustomItemStack(CustomHead.getHead("a92974681687689da7dda3f19b7e4a53fe0dd09befd7fa8838744384c9d1ac71"),getGradientName("此配方为无序配方"))
+                null,null,new CustomItemStack(CustomHead.getHead("a92974681687689da7dda3f19b7e4a53fe0dd09befd7fa8838744384c9d1ac71"),getGradientName("This recipe can be arranged in any order"))
         },"japan_house_1",5).register(plugin);
-        // 预制建筑-农场谷仓
+        // Prefab Building-Farm Barn
         new PreBuildingTree(magicexpansionprebuilding, MagicExpansionItems.PRE_BUILDING_FARM_BARN, PRE_BUILDINGS_MACHINE, new ItemStack[] {
                 sfItemAmount(MagicExpansionItems.COLOR_LOG_1,6),sfItemAmount(MagicExpansionItems.GLASS_1,1),sfItemAmount(MagicExpansionItems.COBBLESTONE_1,2),
                 sfItemAmount(MagicExpansionItems.COLOR_LEAVES_1,1),new ItemStack(Material.IRON_INGOT,31),NamedTagBuilder.nameTag("FarmBarn"),
-                null,null,new CustomItemStack(CustomHead.getHead("a92974681687689da7dda3f19b7e4a53fe0dd09befd7fa8838744384c9d1ac71"),getGradientName("此配方为无序配方"))
+                null,null,new CustomItemStack(CustomHead.getHead("a92974681687689da7dda3f19b7e4a53fe0dd09befd7fa8838744384c9d1ac71"),getGradientName("This recipe can be arranged in any order"))
         },"farm_barn",5).register(plugin);
-        // 预制建筑-水果店
+        // Prefab Building-Fruit Shop
         new PreBuildingTree(magicexpansionprebuilding, MagicExpansionItems.PRE_BUILDING_FRUIT_SHOP, PRE_BUILDINGS_MACHINE, new ItemStack[] {
                 sfItemAmount(MagicExpansionItems.COLOR_CONCRETE_1,3),sfItemAmount(MagicExpansionItems.GLASS_1,3),sfItemAmount(MagicExpansionItems.COLOR_TERRACOTTA_1,1),
                 sfItemAmount(MagicExpansionItems.OAK_LOG_1,2),new ItemStack(Material.QUARTZ_BLOCK,64),sfItemAmount(MagicExpansionItems.COBBLESTONE_1,1),
-                NamedTagBuilder.nameTag("FruitShop"),null,new CustomItemStack(CustomHead.getHead("a92974681687689da7dda3f19b7e4a53fe0dd09befd7fa8838744384c9d1ac71"),getGradientName("此配方为无序配方"))
+                NamedTagBuilder.nameTag("FruitShop"),null,new CustomItemStack(CustomHead.getHead("a92974681687689da7dda3f19b7e4a53fe0dd09befd7fa8838744384c9d1ac71"),getGradientName("This recipe can be arranged in any order"))
         },"fruit_shop",5).register(plugin);
 
 
@@ -4182,92 +4182,92 @@ public final class MagicExpansionItemSetup {
 
 
 
-        // 预制建筑-村民爱与交易所
+        // Prefab Building-Villager Love and Trading Post
         new PreBuildingTree(magicexpansionprebuilding, MagicExpansionItems.PRE_BUILDING_VILLAGE_LOVE_AND_TRADE_HOUSE, PRE_BUILDINGS_MACHINE_ADVANCED, new ItemStack[] {
                 MagicExpansionItems.STONE_2,MagicExpansionItems.IRON_INGOT_2,sfItemAmount(MagicExpansionItems.OAK_LOG_1,16),
                 sfItemAmount(MagicExpansionItems.REDSTONE_1,5),MagicExpansionItems.GLASS_1,MagicExpansionItems.COLOR_WOOL_1
-                ,MagicExpansionItems.SPACE_INFINITY_MAGIC,null,new CustomItemStack(CustomHead.getHead("a92974681687689da7dda3f19b7e4a53fe0dd09befd7fa8838744384c9d1ac71"),getGradientName("此配方为无序配方"))
+                ,MagicExpansionItems.SPACE_INFINITY_MAGIC,null,new CustomItemStack(CustomHead.getHead("a92974681687689da7dda3f19b7e4a53fe0dd09befd7fa8838744384c9d1ac71"),getGradientName("This recipe can be arranged in any order"))
         },"village_love_trade_house",60).register(plugin);
-        // 预制建筑-潜影贝农场
+        // Prefab Building-Shulker Farm
         new PreBuildingTree(magicexpansionprebuilding, MagicExpansionItems.PRE_BUILDING_SHULKER_FARM, PRE_BUILDINGS_MACHINE_ADVANCED, new ItemStack[] {
                 MagicExpansionItems.STONE_2,MagicExpansionItems.IRON_INGOT_1,sfItemAmount(MagicExpansionItems.OAK_LOG_1,16),
                 MagicExpansionItems.REDSTONE_1,MagicExpansionItems.COBBLESTONE_1,MagicExpansionItems.HOPPER_1,
-                new ItemStack(Material.STRING,15),MagicExpansionItems.SPACE_INFINITY_MAGIC,new CustomItemStack(CustomHead.getHead("a92974681687689da7dda3f19b7e4a53fe0dd09befd7fa8838744384c9d1ac71"),getGradientName("此配方为无序配方"))
+                new ItemStack(Material.STRING,15),MagicExpansionItems.SPACE_INFINITY_MAGIC,new CustomItemStack(CustomHead.getHead("a92974681687689da7dda3f19b7e4a53fe0dd09befd7fa8838744384c9d1ac71"),getGradientName("This recipe can be arranged in any order"))
         },"shulker_farm",60).register(plugin);
-        // 预制建筑-麦当劳
+        // Prefab Building-McDonald's
         new PreBuildingTree(magicexpansionprebuilding, MagicExpansionItems.PRE_BUILDING_MCDONALDS, PRE_BUILDINGS_MACHINE_ADVANCED, new ItemStack[] {
                 sfItemAmount(MagicExpansionItems.COLOR_CONCRETE_1,48),sfItemAmount(MagicExpansionItems.COLOR_TERRACOTTA_1,6),sfItemAmount(MagicExpansionItems.COLOR_WOOL_1,6),
                 sfItemAmount(MagicExpansionItems.IRON_INGOT_1,8),sfItemAmount(MagicExpansionItems.COLOR_LOG_2,1),sfItemAmount(MagicExpansionItems.REDSTONE_2,1),
-                NamedTagBuilder.nameTag("Mcdonalds"),MagicExpansionItems.SPACE_INFINITY_MAGIC,new CustomItemStack(CustomHead.getHead("a92974681687689da7dda3f19b7e4a53fe0dd09befd7fa8838744384c9d1ac71"),getGradientName("此配方为无序配方"))
+                NamedTagBuilder.nameTag("Mcdonalds"),MagicExpansionItems.SPACE_INFINITY_MAGIC,new CustomItemStack(CustomHead.getHead("a92974681687689da7dda3f19b7e4a53fe0dd09befd7fa8838744384c9d1ac71"),getGradientName("This recipe can be arranged in any order"))
         },"mcdonalds",60).register(plugin);
 
-        //先写大型的
-        // 预制建筑-月兔商店
+        //Add the large ones first
+        // Prefab Building-Moon Rabbit Shop
         new PreBuildingTree(magicexpansionprebuilding, MagicExpansionItems.PRE_BUILDING_MOON_RABBIT_SHOP, PRE_BUILDINGS_MACHINE_ADVANCED, new ItemStack[] {
                 sfItemAmount(MagicExpansionItems.COLOR_CONCRETE_1,4),sfItemAmount(MagicExpansionItems.COLOR_TERRACOTTA_1,36),sfItemAmount(MagicExpansionItems.COLOR_WOOL_1,2),
                 sfItemAmount(MagicExpansionItems.STONE_2,2),sfItemAmount(MagicExpansionItems.OAK_LOG_1,1),sfItemAmount(MagicExpansionItems.IRON_INGOT_1,2),
-                NamedTagBuilder.nameTag("MoonRabbitShop"),MagicExpansionItems.SPACE_INFINITY_MAGIC,new CustomItemStack(CustomHead.getHead("a92974681687689da7dda3f19b7e4a53fe0dd09befd7fa8838744384c9d1ac71"),getGradientName("此配方为无序配方"))
+                NamedTagBuilder.nameTag("MoonRabbitShop"),MagicExpansionItems.SPACE_INFINITY_MAGIC,new CustomItemStack(CustomHead.getHead("a92974681687689da7dda3f19b7e4a53fe0dd09befd7fa8838744384c9d1ac71"),getGradientName("This recipe can be arranged in any order"))
         },"moon_rabbit_shop",60).register(plugin);
-        // 预制建筑-中型马厩
+        // Prefab Building-Medium Stable
         new PreBuildingTree(magicexpansionprebuilding, MagicExpansionItems.PRE_BUILDING_MIDDLE_HORSE_HOUSE, PRE_BUILDINGS_MACHINE_ADVANCED, new ItemStack[] {
                 sfItemAmount(MagicExpansionItems.COLOR_LOG_1,10),sfItemAmount(MagicExpansionItems.COLOR_LEAVES_1,2),sfItemAmount(MagicExpansionItems.IRON_INGOT_1,2),
                 sfItemAmount(MagicExpansionItems.STONE_2,2),sfItemAmount(MagicExpansionItems.COBBLESTONE_1,1),sfItemAmount(MagicExpansionItems.STONE_BRICKS_1,2),
-                NamedTagBuilder.nameTag("MiddleHorseHouse"),MagicExpansionItems.SPACE_INFINITY_MAGIC,new CustomItemStack(CustomHead.getHead("a92974681687689da7dda3f19b7e4a53fe0dd09befd7fa8838744384c9d1ac71"),getGradientName("此配方为无序配方"))
+                NamedTagBuilder.nameTag("MiddleHorseHouse"),MagicExpansionItems.SPACE_INFINITY_MAGIC,new CustomItemStack(CustomHead.getHead("a92974681687689da7dda3f19b7e4a53fe0dd09befd7fa8838744384c9d1ac71"),getGradientName("This recipe can be arranged in any order"))
         },"middle_horse_house",60).register(plugin);
-        // 预制建筑-四合院
+        // Prefab Building-Courtyard House
         new PreBuildingTree(magicexpansionprebuilding, MagicExpansionItems.PRE_BUILDING_SI_HE_YUAN, PRE_BUILDINGS_MACHINE_ADVANCED, new ItemStack[] {
                 sfItemAmount(MagicExpansionItems.COLOR_CONCRETE_1,14),sfItemAmount(MagicExpansionItems.COLOR_LEAVES_1,6),sfItemAmount(MagicExpansionItems.IRON_INGOT_1,3),
                 sfItemAmount(MagicExpansionItems.COBBLESTONE_1,5),sfItemAmount(MagicExpansionItems.STONE_BRICKS_1,8),sfItemAmount(MagicExpansionItems.OAK_LOG_1,5),
-                NamedTagBuilder.nameTag("SiHeYuan"),MagicExpansionItems.SPACE_INFINITY_MAGIC,new CustomItemStack(CustomHead.getHead("a92974681687689da7dda3f19b7e4a53fe0dd09befd7fa8838744384c9d1ac71"),getGradientName("此配方为无序配方"))
+                NamedTagBuilder.nameTag("SiHeYuan"),MagicExpansionItems.SPACE_INFINITY_MAGIC,new CustomItemStack(CustomHead.getHead("a92974681687689da7dda3f19b7e4a53fe0dd09befd7fa8838744384c9d1ac71"),getGradientName("This recipe can be arranged in any order"))
         },"si_he_yuan",60).register(plugin);
-        // 预制建筑-KFC中型
+        // Prefab Building-KFCMedium
         new PreBuildingTree(magicexpansionprebuilding, MagicExpansionItems.PRE_BUILDING_KFC_MIDDLE, PRE_BUILDINGS_MACHINE_ADVANCED, new ItemStack[] {
                 sfItemAmount(MagicExpansionItems.COLOR_CONCRETE_1,23),sfItemAmount(MagicExpansionItems.COBBLESTONE_1,9),sfItemAmount(MagicExpansionItems.IRON_INGOT_1,19),
                 sfItemAmount(MagicExpansionItems.COLOR_LOG_1,5),sfItemAmount(MagicExpansionItems.COLOR_WOOL_1,3),sfItemAmount(MagicExpansionItems.STONE_1,2),
-                NamedTagBuilder.nameTag("KFCMiddle"),MagicExpansionItems.SPACE_INFINITY_MAGIC,new CustomItemStack(CustomHead.getHead("a92974681687689da7dda3f19b7e4a53fe0dd09befd7fa8838744384c9d1ac71"),getGradientName("此配方为无序配方"))
+                NamedTagBuilder.nameTag("KFCMiddle"),MagicExpansionItems.SPACE_INFINITY_MAGIC,new CustomItemStack(CustomHead.getHead("a92974681687689da7dda3f19b7e4a53fe0dd09befd7fa8838744384c9d1ac71"),getGradientName("This recipe can be arranged in any order"))
         },"kfc_middle",60).register(plugin);
-        // 预制建筑-大雪王
+        // Prefab Building-Snow King
         new PreBuildingTree(magicexpansionprebuilding, MagicExpansionItems.PRE_BUILDING_LARGE_SNOW_KING, PRE_BUILDINGS_MACHINE_ADVANCED, new ItemStack[] {
                 sfItemAmount(MagicExpansionItems.COLOR_CONCRETE_1,25),sfItemAmount(MagicExpansionItems.STONE_BRICKS_1,21),sfItemAmount(COLOR_LEAVES_1,18),
                 sfItemAmount(MagicExpansionItems.COLOR_LOG_1,3),sfItemAmount(MagicExpansionItems.COLOR_WOOL_1,2),sfItemAmount(MagicExpansionItems.COBBLESTONE_1,2),
-                NamedTagBuilder.nameTag("LargeSnowKing"),MagicExpansionItems.SPACE_INFINITY_MAGIC,new CustomItemStack(CustomHead.getHead("a92974681687689da7dda3f19b7e4a53fe0dd09befd7fa8838744384c9d1ac71"),getGradientName("此配方为无序配方"))
+                NamedTagBuilder.nameTag("LargeSnowKing"),MagicExpansionItems.SPACE_INFINITY_MAGIC,new CustomItemStack(CustomHead.getHead("a92974681687689da7dda3f19b7e4a53fe0dd09befd7fa8838744384c9d1ac71"),getGradientName("This recipe can be arranged in any order"))
         },"large_snow_king",60).register(plugin);
-        // 预制建筑-中型别墅
+        // Prefab Building-Medium Villa
         new PreBuildingTree(magicexpansionprebuilding, MagicExpansionItems.PRE_BUILDING_MIDDLE_VILLA, PRE_BUILDINGS_MACHINE_ADVANCED, new ItemStack[] {
                 sfItemAmount(MagicExpansionItems.COLOR_LOG_2,1),sfItemAmount(MagicExpansionItems.COLOR_CONCRETE_2,1),sfItemAmount(MagicExpansionItems.STONE_BRICKS_1,7),
                 sfItemAmount(MagicExpansionItems.OAK_LOG_1,8),sfItemAmount(MagicExpansionItems.IRON_INGOT_1,2),new ItemStack(Material.DRAGON_EGG),
-                NamedTagBuilder.nameTag("MiddleVilla"),MagicExpansionItems.SPACE_INFINITY_MAGIC,new CustomItemStack(CustomHead.getHead("a92974681687689da7dda3f19b7e4a53fe0dd09befd7fa8838744384c9d1ac71"),getGradientName("此配方为无序配方"))
+                NamedTagBuilder.nameTag("MiddleVilla"),MagicExpansionItems.SPACE_INFINITY_MAGIC,new CustomItemStack(CustomHead.getHead("a92974681687689da7dda3f19b7e4a53fe0dd09befd7fa8838744384c9d1ac71"),getGradientName("This recipe can be arranged in any order"))
         },"middle_villa_1",60).register(plugin);
-        // 预制建筑-樱花商店
+        // Prefab Building-Cherry Blossom Shop
         new PreBuildingTree(magicexpansionprebuilding, MagicExpansionItems.PRE_BUILDING_SAKURA_SHOP, PRE_BUILDINGS_MACHINE_ADVANCED, new ItemStack[] {
                 sfItemAmount(MagicExpansionItems.COLOR_CONCRETE_1,1),sfItemAmount(MagicExpansionItems.COLOR_TERRACOTTA_1,4),sfItemAmount(MagicExpansionItems.COLOR_LOG_1,6),
                 sfItemAmount(MagicExpansionItems.GLASS_1,4),sfItemAmount(MagicExpansionItems.COLOR_LEAVES_1,5),sfItemAmount(MagicExpansionItems.COBBLESTONE_1,7),
-                NamedTagBuilder.nameTag("SakuraShop"),MagicExpansionItems.SPACE_INFINITY_MAGIC,new CustomItemStack(CustomHead.getHead("a92974681687689da7dda3f19b7e4a53fe0dd09befd7fa8838744384c9d1ac71"),getGradientName("此配方为无序配方"))
+                NamedTagBuilder.nameTag("SakuraShop"),MagicExpansionItems.SPACE_INFINITY_MAGIC,new CustomItemStack(CustomHead.getHead("a92974681687689da7dda3f19b7e4a53fe0dd09befd7fa8838744384c9d1ac71"),getGradientName("This recipe can be arranged in any order"))
         },"sakura_shop",60).register(plugin);
-        // 预制建筑-蟹堡王
+        // Prefab Building-Krusty Krab
         new PreBuildingTree(magicexpansionprebuilding, MagicExpansionItems.PRE_BUILDING_KRUSTY_KRAB, PRE_BUILDINGS_MACHINE_ADVANCED, new ItemStack[] {
                 sfItemAmount(MagicExpansionItems.OAK_LOG_1,35),sfItemAmount(MagicExpansionItems.COBBLESTONE_1,16),sfItemAmount(MagicExpansionItems.COLOR_WOOL_1,3),
                 sfItemAmount(MagicExpansionItems.GLASS_1,7),sfItemAmount(MagicExpansionItems.IRON_INGOT_1,3),sfItemAmount(MagicExpansionItems.LIGHT_1,3),
-                NamedTagBuilder.nameTag("KrustyKrab"),MagicExpansionItems.SPACE_INFINITY_MAGIC,new CustomItemStack(CustomHead.getHead("a92974681687689da7dda3f19b7e4a53fe0dd09befd7fa8838744384c9d1ac71"),getGradientName("此配方为无序配方"))
+                NamedTagBuilder.nameTag("KrustyKrab"),MagicExpansionItems.SPACE_INFINITY_MAGIC,new CustomItemStack(CustomHead.getHead("a92974681687689da7dda3f19b7e4a53fe0dd09befd7fa8838744384c9d1ac71"),getGradientName("This recipe can be arranged in any order"))
         },"krusty_krab",60).register(plugin);
 
 
 
 
 
-//        // 预制树-橡木树
+//        // Prefab Tree-Oak Tree
 //        new PreBuildingTree(magicexpansionprebuilding, MagicExpansionItems.PRE_BUILDING_OAK_TREE, SPECIAL_RECIPE_TYPE, new ItemStack[] {
 //                null,null,null,
 //                null,null,null,
 //                null,null,null
 //        },"oak_tree").register(plugin);
-//        // 预制树-云杉树
+//        // Prefab Tree-Spruce Tree
 //        new PreBuildingTree(magicexpansionprebuilding, MagicExpansionItems.PRE_BUILDING_SPRUCE_TREE, SPECIAL_RECIPE_TYPE, new ItemStack[] {
 //                null,null,null,
 //                null,null,null,
 //                null,null,null
 //        },"oak_tree","OAK","SPRUCE").register(plugin);
-//        // 预制树-樱花树
+//        // Prefab Tree-Cherry Blossom Tree
 //        new PreBuildingTree(magicexpansionprebuilding, MagicExpansionItems.PRE_BUILDING_CHERRY_TREE, SPECIAL_RECIPE_TYPE, new ItemStack[] {
 //                null,null,null,
 //                null,null,null,
@@ -4279,8 +4279,8 @@ public final class MagicExpansionItemSetup {
 
 
 
-        //MIHOYO角色，要放在激光扫描仪下面
-        //星光扫描仪-盲盒拆解器
+        //MIHOYOCharacter，Place it below the Laser Scanner
+        //Starlight Scanner-Mystery Box Disassembler
         new RandomBoxMachine(magicexpansionenergy, MagicExpansionItems.MIHOYO_STAR_RAY_MACHINE, RecipeType.ENHANCED_CRAFTING_TABLE, new ItemStack[] {
                 new ItemStack(Material.IRON_INGOT),MagicExpansionItems.LIGHT_CORE,new ItemStack(Material.IRON_INGOT),
                 MagicExpansionItems.LIGHT_CORE,new ItemStack(Material.LIGHT),MagicExpansionItems.LIGHT_CORE,
@@ -4295,7 +4295,7 @@ public final class MagicExpansionItemSetup {
                 .addRecipe(0, new ItemStack[]{sfItemAmount(FIREZOMBIE_BODY,20),sfItemAmount(FIREZOMBIE_HEAD,10)}, new ItemStack[]{BASIC_ENCHANT_STONE})
                 .addRecipe(0, new ItemStack[]{sfItemAmount(WIND_ELF_BODY,20),sfItemAmount(WIND_ELF_HEAD,10)}, new ItemStack[]{WIND_SPIRIT})
                 .register(plugin);
-        //崩铁
+        //Honkai: Star Rail
         new HonkaiStarRailBox(magicexpansionhonkai, MagicExpansionItems.HONKAI_STAR_RAIL_BOX, RecipeType.ENHANCED_CRAFTING_TABLE, new ItemStack[] {
                 new ItemStack(Material.IRON_INGOT),new ItemStack(Material.GUNPOWDER),new ItemStack(Material.IRON_INGOT),
                 new ItemStack(Material.GUNPOWDER),SlimefunItems.MAGIC_SUGAR,new ItemStack(Material.GUNPOWDER),
@@ -4304,43 +4304,43 @@ public final class MagicExpansionItemSetup {
 
         new SlimefunItem(magicexpansionhonkai, MagicExpansionItems.JING_LIU, SPECIAL_RECIPE_TYPE, new ItemStack[] {
                 null,null,null,
-                null,new CustomItemStack(CustomHead.BLUE_GIFT_BOX.getItem(), "&c&l注意：&c&l该物品可从崩铁盲盒中抽取"),null,
+                null,new CustomItemStack(CustomHead.BLUE_GIFT_BOX.getItem(), "&c&lNote: This item can be found in the Honkai Star Rail mystery box"),null,
                 null,null,null
         }).register(plugin);
 
         new SlimefunItem(magicexpansionhonkai, MagicExpansionItems.SILVER_WOLF, SPECIAL_RECIPE_TYPE, new ItemStack[] {
                 null,null,null,
-                null,new CustomItemStack(CustomHead.BLUE_GIFT_BOX.getItem(), "&c&l注意：&c&l该物品可从崩铁盲盒中抽取"),null,
+                null,new CustomItemStack(CustomHead.BLUE_GIFT_BOX.getItem(), "&c&lNote: This item can be found in the Honkai Star Rail mystery box"),null,
                 null,null,null
         }).register(plugin);
 
         new SlimefunItem(magicexpansionhonkai, MagicExpansionItems.KAFKA, SPECIAL_RECIPE_TYPE, new ItemStack[] {
                 null,null,null,
-                null,new CustomItemStack(CustomHead.BLUE_GIFT_BOX.getItem(), "&c&l注意：&c&l该物品可从崩铁盲盒中抽取"),null,
+                null,new CustomItemStack(CustomHead.BLUE_GIFT_BOX.getItem(), "&c&lNote: This item can be found in the Honkai Star Rail mystery box"),null,
                 null,null,null
         }).register(plugin);
 
         new SlimefunItem(magicexpansionhonkai, MagicExpansionItems.SUNDAY, SPECIAL_RECIPE_TYPE, new ItemStack[] {
                 null,null,null,
-                null,new CustomItemStack(CustomHead.BLUE_GIFT_BOX.getItem(), "&c&l注意：&c&l该物品可从崩铁盲盒中抽取"),null,
+                null,new CustomItemStack(CustomHead.BLUE_GIFT_BOX.getItem(), "&c&lNote: This item can be found in the Honkai Star Rail mystery box"),null,
                 null,null,null
         }).register(plugin);
 
         new SlimefunItem(magicexpansionhonkai, MagicExpansionItems.LUNAE, SPECIAL_RECIPE_TYPE, new ItemStack[] {
                 null,null,null,
-                null,new CustomItemStack(CustomHead.BLUE_GIFT_BOX.getItem(), "&c&l注意：&c&l该物品可从崩铁盲盒中抽取"),null,
+                null,new CustomItemStack(CustomHead.BLUE_GIFT_BOX.getItem(), "&c&lNote: This item can be found in the Honkai Star Rail mystery box"),null,
                 null,null,null
         }).register(plugin);
 
         new SlimefunItem(magicexpansionhonkai, MagicExpansionItems.HUOHUO, SPECIAL_RECIPE_TYPE, new ItemStack[] {
                 null,null,null,
-                null,new CustomItemStack(CustomHead.BLUE_GIFT_BOX.getItem(), "&c&l注意：&c&l该物品可从崩铁盲盒中抽取"),null,
+                null,new CustomItemStack(CustomHead.BLUE_GIFT_BOX.getItem(), "&c&lNote: This item can be found in the Honkai Star Rail mystery box"),null,
                 null,null,null
         }).register(plugin);
 
 
 
-        //空岛系列
+        //Skyblock Series
         new SingleCubeOrigin(magicexpansionskyblock, MagicExpansionItems.SINGLE_CUBE_ORIGIN, RecipeType.ENHANCED_CRAFTING_TABLE, new ItemStack[] {
                 MagicExpansionItems.TIN_INGOT,MagicExpansionItems.GOLD_INGOT, MagicExpansionItems.COPPER_INGOT,
                 MagicExpansionItems.ALUMINUM_INGOT,new ItemStack(Material.DIRT),MagicExpansionItems.LEAD_INGOT,
@@ -4356,25 +4356,25 @@ public final class MagicExpansionItemSetup {
 
 
 
-        //空岛系列-钻石工具
+        //Skyblock Series-Diamond Tools
         new InfiniteTool(magicexpansionskyblock, MagicExpansionItems.SINGLE_DIAMOND_PICKAXE, RecipeType.ENHANCED_CRAFTING_TABLE, new ItemStack[] {
                 MagicExpansionItems.DIAMOND,MagicExpansionItems.DIAMOND, MagicExpansionItems.DIAMOND,
                 null,MagicExpansionItems.STICK,null,
                 null,MagicExpansionItems.STICK,null,
         }).register(plugin);
-        //空岛系列-钻石工具
+        //Skyblock Series-Diamond Tools
         new InfiniteTool(magicexpansionskyblock, MagicExpansionItems.SINGLE_DIAMOND_AXE, RecipeType.ENHANCED_CRAFTING_TABLE, new ItemStack[] {
                 null,MagicExpansionItems.DIAMOND, MagicExpansionItems.DIAMOND,
                 null,MagicExpansionItems.STICK,MagicExpansionItems.DIAMOND,
                 null,MagicExpansionItems.STICK,null,
         }).register(plugin);
-        //空岛系列-钻石工具
+        //Skyblock Series-Diamond Tools
         new InfiniteTool(magicexpansionskyblock, MagicExpansionItems.SINGLE_DIAMOND_SHOVEL, RecipeType.ENHANCED_CRAFTING_TABLE, new ItemStack[] {
                 null,MagicExpansionItems.DIAMOND,null,
                 null,MagicExpansionItems.STICK,null,
                 null,MagicExpansionItems.STICK,null,
         }).register(plugin);
-        //空岛系列-钻石工具
+        //Skyblock Series-Diamond Tools
         new InfiniteTool(magicexpansionskyblock, MagicExpansionItems.SINGLE_DIAMOND_HOE, RecipeType.ENHANCED_CRAFTING_TABLE, new ItemStack[] {
                 null,MagicExpansionItems.DIAMOND, MagicExpansionItems.DIAMOND,
                 null,MagicExpansionItems.STICK,null,
@@ -4384,27 +4384,27 @@ public final class MagicExpansionItemSetup {
 
 
 
-        //粘液刻投影
+        //Slimefun Projection
         new SfTimingsMachine(magicexpansionenergy, MagicExpansionItems.SF_TIMINGS_HOLOGRAM, RecipeType.ENHANCED_CRAFTING_TABLE, new ItemStack[] {
                 new ItemStack(Material.SLIME_BALL),new ItemStack(Material.SLIME_BALL),new ItemStack(Material.SLIME_BALL),
                 new ItemStack(Material.SLIME_BALL),SlimefunItems.HOLOGRAM_PROJECTOR,new ItemStack(Material.SLIME_BALL),
                 new ItemStack(Material.SLIME_BALL),new ItemStack(Material.SLIME_BALL),new ItemStack(Material.SLIME_BALL)
         }).register(plugin);
-        //粘液刻投影
+        //Slimefun Projection
         new TestMusicRightClick(magicexpansionspecialitem, MagicExpansionItems.MUSIC_TEST, RecipeType.ENHANCED_CRAFTING_TABLE, new ItemStack[] {
                 new ItemStack(Material.RABBIT),new ItemStack(Material.COOKED_RABBIT),new ItemStack(Material.RABBIT),
                 new ItemStack(Material.COOKED_RABBIT),new ItemStack(Material.SLIME_BALL),new ItemStack(Material.COOKED_RABBIT),
                 new ItemStack(Material.RABBIT),new ItemStack(Material.COOKED_RABBIT),new ItemStack(Material.RABBIT)
         }).register(plugin);
 
-        //魔法存储终端
+        //item notesstorageterminal
         new CargoCore(magicexpansionenergy, MagicExpansionItems.CARGO_TERMINAL, RecipeType.ENHANCED_CRAFTING_TABLE, new ItemStack[] {
                 SlimefunItems.CARGO_MANAGER,SlimefunItems.CRAFTER_SMART_PORT,SlimefunItems.CARGO_MANAGER,
                 SlimefunItems.CARGO_INPUT_NODE,SlimefunItems.CARGO_MANAGER,SlimefunItems.CARGO_OUTPUT_NODE_2,
                 SlimefunItems.CARGO_MANAGER,FIVE_ELEMENT_TOUCH,SlimefunItems.CARGO_MANAGER
         }).register(plugin);
 
-        //测试存储
+        //Test Storage
         new CargoCoreMore(magicexpansionenergy, CARGO_TERMINAL_RENEW, RecipeType.ENHANCED_CRAFTING_TABLE, new ItemStack[] {
                 new ItemStack(Material.CHEST),PURE_FIVE_ELEMENT,new ItemStack(Material.CHEST),
                 PURE_ELEMENT_INGOT,CARGO_TERMINAL,PURE_ELEMENT_INGOT,
@@ -4412,22 +4412,22 @@ public final class MagicExpansionItemSetup {
         }).register(plugin);
 
 
-        //存储碎片
+        //Storage Fragment
         new CargoFragment(magicexpansionspecialitem, MagicExpansionItems.CARGO_FRAGMENT, RecipeType.NULL, new ItemStack[] {
                 null,null,null,
-                null,new CustomItemStack(new ItemStack(Material.NOTE_BLOCK,1), getGradientName("魔法存储终端"), getGradientName("通过破坏存储终端掉落 ")),null,
+                null,new CustomItemStack(new ItemStack(Material.NOTE_BLOCK,1), getGradientName("Magic Storage Terminal"), getGradientName("Dropped when you break the Storage Terminal")),null,
                 null,null,null
         }).register(plugin);
 
 
 
-        //抽奖机
+        //Lottery Machine
         new DrawMachine(magicexpansionenergy, MagicExpansionItems.DRAW_MACHINE, RecipeType.ENHANCED_CRAFTING_TABLE, new ItemStack[] {
                 ELEMENT_INGOT, new ItemStack(Material.DISPENSER), ELEMENT_INGOT,
                 REDSTONE, new ItemStack(Material.CAULDRON), REDSTONE,
                 ELEMENT_INGOT, REDSTONE, ELEMENT_INGOT
         }).register(plugin);
-        //抽奖机
+        //Lottery Machine
         new MagicWand(magicexpansionspecialitem, MAGIC_WAND, RecipeType.ENHANCED_CRAFTING_TABLE, new ItemStack[] {
                 MAGIC_EXPANSION_MAGIC_SUGAR_2, new ItemStack(Material.BLAZE_ROD), MAGIC_EXPANSION_MAGIC_SUGAR_2,
                 MAGIC_EXPANSION_MAGIC_SUGAR_2, new ItemStack(Material.BLAZE_ROD), MAGIC_EXPANSION_MAGIC_SUGAR_2,
@@ -4446,7 +4446,7 @@ public final class MagicExpansionItemSetup {
 
 
 
-        //GEO资源挖掘机，要放在GEO资源下面
+        //GEOResource Miner，Place it under GEOResourcebelow
 
         new GEOMiner(magicexpansionenergy, MagicExpansionItems.GEO_MINER_PLUS, RecipeType.ENHANCED_CRAFTING_TABLE, new ItemStack[] {
                 MagicExpansionItems.ELEMENT_INGOT, SlimefunItems.GEO_MINER, MagicExpansionItems.ELEMENT_INGOT,
@@ -4469,7 +4469,7 @@ public final class MagicExpansionItemSetup {
                 .setProcessingSpeed(1)
                 .register(plugin);
 
-        //条件注册，1.21魔法兼容问题
+        //ConditionRegister，1.21Magic compatibility issue
             new RSCMagicMiner(magicexpansionrscmagic, MagicExpansionItems.RSC_MAGIC_MINER, RecipeType.ENHANCED_CRAFTING_TABLE, new ItemStack[]{
                     null,SlimefunItems.GEO_MINER, null,
                     null, SlimefunItems.OUTPUT_CHEST, null,
@@ -4489,7 +4489,7 @@ public final class MagicExpansionItemSetup {
 
     private static void registerUIBlockInContribution(SlimefunItemStack itemStack, MagicExpansion plugin) {
         new UnplaceableBlock(
-                magicexpansioncontribution, // 假设这是某个已定义的贡献对象
+                magicexpansioncontribution, // Assume this is a defined contribution object
                 itemStack,
                 RecipeType.NULL,
                 new ItemStack[] {
@@ -4510,7 +4510,7 @@ public final class MagicExpansionItemSetup {
 
 
 
-    //粘液物品
+    //Slimefun item
     private static void  registerBasicElectricMan(
             MagicExpansion plugin,
             SlimefunItemStack item,
@@ -4519,7 +4519,7 @@ public final class MagicExpansionItemSetup {
     ){
 
 
-        //电力矿工-输出
+        //Electric Miner-Output
         new ResourceMachine(
                 magicexpansionelectricbot,
                 item,
@@ -4537,7 +4537,7 @@ public final class MagicExpansionItemSetup {
                 ,new ItemStack(Material.FLINT,2),new ItemStack(Material.BONE),new ItemStack(Material.CLAY,2)})
                 .register(plugin);
     }
-    //原版物品
+    //Vanilla item
     private static void  registerBasicElectricMan(
             MagicExpansion plugin,
             SlimefunItemStack item,
@@ -4546,7 +4546,7 @@ public final class MagicExpansionItemSetup {
     ){
 
 
-        //电力矿工-输出
+        //Electric Miner-Output
         new ResourceMachine(
                 magicexpansionelectricbot,
                 item,
@@ -4565,7 +4565,7 @@ public final class MagicExpansionItemSetup {
                 .register(plugin);
     }
 
-    //矿锭-粘液
+    //Ore Ingot-Slimefun
     private static void  registerBasicElectricMan(
             MagicExpansion plugin,
             SlimefunItemStack item,
@@ -4576,7 +4576,7 @@ public final class MagicExpansionItemSetup {
     ){
 
 
-        //电力矿工-输出
+        //Electric Miner-Output
         new ResourceMachine(
                 magicexpansionelectricbot,
                 item,
@@ -4594,7 +4594,7 @@ public final class MagicExpansionItemSetup {
                         ,new ItemStack(Material.FLINT,2),new ItemStack(Material.BONE),new ItemStack(Material.CLAY,2)})
                 .register(plugin);
     }
-    //矿锭-原版
+    //Ore Ingot-vanilla
     private static void  registerBasicElectricMan(
             MagicExpansion plugin,
             SlimefunItemStack item,
@@ -4606,7 +4606,7 @@ public final class MagicExpansionItemSetup {
     ){
 
 
-        //电力矿工-输出
+        //Electric Miner-Output
         new ResourceMachine(
                 magicexpansionelectricbot,
                 item,
@@ -4625,7 +4625,7 @@ public final class MagicExpansionItemSetup {
                 .register(plugin);
     }
 
-    //下届-原版
+    //Nether-vanilla
     private static void  registerBasicElectricMan(
             MagicExpansion plugin,
             SlimefunItemStack item,
@@ -4635,7 +4635,7 @@ public final class MagicExpansionItemSetup {
     ){
 
 
-        //电力矿工-输出
+        //Electric Miner-Output
         new ResourceMachine(
                 magicexpansionelectricbot,
                 item,
@@ -4656,7 +4656,7 @@ public final class MagicExpansionItemSetup {
 
 
 
-    // 注册预制树General
+    // RegisterPrefab TreeGeneral
     private static void registerVanResource(
             MagicExpansion plugin,
             SlimefunItemStack item,
@@ -4673,7 +4673,7 @@ public final class MagicExpansionItemSetup {
                 }).register(plugin);
     }
 
-    // 注册预制树General
+    // RegisterPrefab TreeGeneral
     private static void registerPreBuildingTree(
             MagicExpansion plugin,
             SlimefunItemStack treeItem,
@@ -4735,7 +4735,7 @@ public final class MagicExpansionItemSetup {
 
 
 
-    /** 容器组占位物品:仅用于让原生分组页显示容器组,点击会被监听器拦截转为自绘三级菜单 */
+    /** Container group placeholder item:Only used to show container groups on the built-in category page,Clicks are caught by the listener and turned intocustom-drawnthird-level menu */
     private static void registerHiddenRecipe(MagicExpansion plugin, ItemGroup itemGroup, SlimefunItemStack item) {
         Material type = item.getType();
 
@@ -4751,12 +4751,12 @@ public final class MagicExpansionItemSetup {
 
 
     /**
-     * 芦花钓(水云间二代)钓物池。
-     * 蒹葭沿用原"魔法秘材"池；芦雪/苇露/白露/芦芽(二代)走共享通用池 + 专属鱼 + 元素素材 + 特殊钓物。
+     * Reed Blossom Rod(Water Cloudsecond-generation)fish catch pool。
+     * Reedsreuse the original"Magic Arcane Material"pool；Reed Snow/Reed Dew/White Dew/Reed Sprout(second-generation)use the shared pool + exclusivefish + element materials + special fishing drops。
      */
     private static Map<String, List<WeightedItem>> buildReedLootTable() {
         Map<String, List<WeightedItem>> table = new HashMap<>();
-        // 蒹葭(一代·魔法秘材, 保持原样)
+        // Reeds(first-generation·Magic Arcane Material, leave as is)
         table.put("JianJia", Arrays.asList(
                 new WeightedItem(SlimefunItems.MAGIC_LUMP_1, 222),
                 new WeightedItem(SlimefunItems.MAGIC_LUMP_2, 222),
@@ -4781,7 +4781,7 @@ public final class MagicExpansionItemSetup {
                 new WeightedItem(new ItemStack(Material.LILY_PAD, 15), 667),
                 new WeightedItem(MagicExpansionItems.FISH_SPECIAL_ACTION_BETWEEN_WATER_CLOUD_BAILUYU, 40)
         ));
-        // 芦雪(二代·风雪)
+        // Reed Snow(second-generation·Wind and Snow)
         table.put("LuXue", FishingRodWaterCloud.buildLootTable("LuXue",
                 Gen2Fish.LUXUE, Gen2Fish.LUWEIYING,
                 Arrays.asList(
@@ -4789,7 +4789,7 @@ public final class MagicExpansionItemSetup {
                         FishingRodWaterCloud.elementMaterial(new ItemStack(Material.WHITE_DYE), 304)
                 ),
                 MagicExpansionItems.FISH_SPECIAL_ACTION_BETWEEN_WATER_CLOUD_BAILUYU));
-        // 苇露(二代·晨露)
+        // Reed Dew(second-generation·Morning Dew)
         table.put("WeiLu", FishingRodWaterCloud.buildLootTable("WeiLu",
                 Gen2Fish.WEILU, Gen2Fish.CHENLULIN,
                 Arrays.asList(
@@ -4797,7 +4797,7 @@ public final class MagicExpansionItemSetup {
                         FishingRodWaterCloud.elementMaterial(new ItemStack(Material.LILY_PAD), 304)
                 ),
                 MagicExpansionItems.FISH_SPECIAL_ACTION_BETWEEN_WATER_CLOUD_BAILUYU));
-        // 白露(二代·霜白)
+        // White Dew(second-generation·Frost White)
         table.put("BaiLu", FishingRodWaterCloud.buildLootTable("BaiLu",
                 Gen2Fish.BAILU, Gen2Fish.SHUANGBAILIAN,
                 Arrays.asList(
@@ -4805,7 +4805,7 @@ public final class MagicExpansionItemSetup {
                         FishingRodWaterCloud.elementMaterial(new ItemStack(Material.FEATHER), 304)
                 ),
                 MagicExpansionItems.FISH_SPECIAL_ACTION_BETWEEN_WATER_CLOUD_BAILUYU));
-        // 芦芽(二代·新篁)
+        // Reed Sprout(second-generation·Young Bamboo)
         table.put("LuYa", FishingRodWaterCloud.buildLootTable("LuYa",
                 Gen2Fish.LUYA, Gen2Fish.XINHUANG,
                 Arrays.asList(
@@ -4817,12 +4817,12 @@ public final class MagicExpansionItemSetup {
     }
 
     /**
-     * 寒江雪(二代)钓物池。
-     * 各饵走共享通用池 + 专属鱼 + 元素素材 + 特殊钓物(雪魄珠)。
+     * Snowy River Rod(second-generation)fish catch pool。
+     * all bait uses the shared pool + exclusivefish + element materials + special fishing drops(Snow Pearl)。
      */
     private static Map<String, List<WeightedItem>> buildHanjiangLootTable() {
         Map<String, List<WeightedItem>> table = new HashMap<>();
-        // 凝霜(二代·霜)
+        // Frost(second-generation·Frost)
         table.put("NingShuang", FishingRodWaterCloud.buildLootTable("NingShuang",
                 Gen2Fish.SHUANGJIAO, Gen2Fish.NINGBOJING,
                 Arrays.asList(
@@ -4830,7 +4830,7 @@ public final class MagicExpansionItemSetup {
                         FishingRodWaterCloud.elementMaterial(new ItemStack(Material.SNOW_BLOCK), 304)
                 ),
                 MagicExpansionItems.FISH_SPECIAL_ACTION_BETWEEN_WATER_CLOUD_HANJIANG_XUEPOZHU));
-        // 落絮(二代·絮)
+        // Falling Fluff(second-generation·Fluff)
         table.put("LuoXu", FishingRodWaterCloud.buildLootTable("LuoXu",
                 Gen2Fish.XUXUE, Gen2Fish.CHENXULIN,
                 Arrays.asList(
@@ -4838,7 +4838,7 @@ public final class MagicExpansionItemSetup {
                         FishingRodWaterCloud.elementMaterial(new ItemStack(Material.WHITE_WOOL), 304)
                 ),
                 MagicExpansionItems.FISH_SPECIAL_ACTION_BETWEEN_WATER_CLOUD_HANJIANG_XUEPOZHU));
-        // 冰魄(二代·冰)
+        // Ice Soul(second-generation·Ice)
         table.put("BingPo", FishingRodWaterCloud.buildLootTable("BingPo",
                 Gen2Fish.BINGPO, Gen2Fish.XUANBINGLI,
                 Arrays.asList(
@@ -4846,7 +4846,7 @@ public final class MagicExpansionItemSetup {
                         FishingRodWaterCloud.elementMaterial(new ItemStack(Material.PACKED_ICE), 304)
                 ),
                 MagicExpansionItems.FISH_SPECIAL_ACTION_BETWEEN_WATER_CLOUD_HANJIANG_XUEPOZHU));
-        // 初霁(二代·霁)
+        // Clear Skies(second-generation·Clear Skies)
         table.put("ChuJi", FishingRodWaterCloud.buildLootTable("ChuJi",
                 Gen2Fish.JIGUANG, Gen2Fish.NUANYANGLIN,
                 Arrays.asList(
@@ -4854,7 +4854,7 @@ public final class MagicExpansionItemSetup {
                         FishingRodWaterCloud.elementMaterial(new ItemStack(Material.GLOWSTONE_DUST), 304)
                 ),
                 MagicExpansionItems.FISH_SPECIAL_ACTION_BETWEEN_WATER_CLOUD_HANJIANG_XUEPOZHU));
-        // 垂纶(二代·孤钓)
+        // Fishing(second-generation·Lone Fishing)
         table.put("ChuiLun", FishingRodWaterCloud.buildLootTable("ChuiLun",
                 Gen2Fish.SUODIAO, Gen2Fish.GUZHOU,
                 Arrays.asList(
@@ -4866,12 +4866,12 @@ public final class MagicExpansionItemSetup {
     }
 
     /**
-     * 细雨·斜风(二代)钓物池。
-     * 各饵走共享通用池 + 专属鱼 + 元素素材 + 特殊钓物(雨披针)。
+     * Drizzle·Breeze(second-generation)fish catch pool。
+     * all bait uses the shared pool + exclusivefish + element materials + special fishing drops(Rain Pin)。
      */
     private static Map<String, List<WeightedItem>> buildXiyuLootTable() {
         Map<String, List<WeightedItem>> table = new HashMap<>();
-        // 风丝(二代·丝)
+        // Wind Thread(second-generation·Thread)
         table.put("FengSi", FishingRodWaterCloud.buildLootTable("FengSi",
                 Gen2Fish.YOUSI, Gen2Fish.FENGXIAO,
                 Arrays.asList(
@@ -4879,7 +4879,7 @@ public final class MagicExpansionItemSetup {
                         FishingRodWaterCloud.elementMaterial(new ItemStack(Material.COBWEB), 304)
                 ),
                 MagicExpansionItems.FISH_SPECIAL_ACTION_BETWEEN_WATER_CLOUD_XIYU_YUPIZHEN));
-        // 烟雨(二代·雨)
+        // Misty Rain(second-generation·Rain)
         table.put("YanYu", FishingRodWaterCloud.buildLootTable("YanYu",
                 Gen2Fish.YANYU, Gen2Fish.WUYINLU,
                 Arrays.asList(
@@ -4887,7 +4887,7 @@ public final class MagicExpansionItemSetup {
                         FishingRodWaterCloud.elementMaterial(new ItemStack(Material.LILY_PAD), 304)
                 ),
                 MagicExpansionItems.FISH_SPECIAL_ACTION_BETWEEN_WATER_CLOUD_XIYU_YUPIZHEN));
-        // 涟白(二代·涟)
+        // White Ripples(second-generation·Ripples)
         table.put("LianBai", FishingRodWaterCloud.buildLootTable("LianBai",
                 Gen2Fish.LIANBAI, Gen2Fish.YINGBO,
                 Arrays.asList(
@@ -4895,7 +4895,7 @@ public final class MagicExpansionItemSetup {
                         FishingRodWaterCloud.elementMaterial(new ItemStack(Material.LILY_PAD), 304)
                 ),
                 MagicExpansionItems.FISH_SPECIAL_ACTION_BETWEEN_WATER_CLOUD_XIYU_YUPIZHEN));
-        // 晓风(二代·晓)
+        // Morning Breeze(second-generation·Dawn)
         table.put("XiaoFeng", FishingRodWaterCloud.buildLootTable("XiaoFeng",
                 Gen2Fish.XIAOFENG, Gen2Fish.POXIAOLIN,
                 Arrays.asList(
@@ -4903,7 +4903,7 @@ public final class MagicExpansionItemSetup {
                         FishingRodWaterCloud.elementMaterial(new ItemStack(Material.CLOCK), 304)
                 ),
                 MagicExpansionItems.FISH_SPECIAL_ACTION_BETWEEN_WATER_CLOUD_XIYU_YUPIZHEN));
-        // 斜影(二代·影)
+        // Slanted Shadow(second-generation·Shadow)
         table.put("XieYing", FishingRodWaterCloud.buildLootTable("XieYing",
                 Gen2Fish.XIEYING, Gen2Fish.ANLIU,
                 Arrays.asList(

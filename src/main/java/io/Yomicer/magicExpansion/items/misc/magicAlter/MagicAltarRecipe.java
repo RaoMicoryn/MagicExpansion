@@ -46,7 +46,7 @@ public class MagicAltarRecipe {
         return baseLayout;
     }
 
-    // 检查配方是否匹配 - 强制方位匹配
+    // Check if the recipe matches - positions must match exactly
     public boolean matches(ItemStack[][] inputItems) {
         if (inputItems.length != 9) return false;
 
@@ -59,19 +59,19 @@ public class MagicAltarRecipe {
                 ItemStack inputItem = inputSlots[slotIndex];
 
                 if (recipeItem != null) {
-                    // 检查输入物品是否精确匹配
+                    // Check if the input item matches exactly
                     if (inputItem == null ||
                             inputItem.getType() != recipeItem.getType() ||
                             inputItem.getAmount() != recipeItem.getAmount()) {
                         return false;
                     }
 
-                    // 检查NBT数据（如果有的话）
+                    // Check the NBT data (if there is any)
                     if (recipeItem.hasItemMeta() && !recipeItem.getItemMeta().equals(inputItem.getItemMeta())) {
                         return false;
                     }
                 } else {
-                    // 配方中该位置为空，但输入有物品
+                    // This spot in the recipe is empty, but there's an item in the input
                     if (inputItem != null) {
                         return false;
                     }
@@ -82,7 +82,7 @@ public class MagicAltarRecipe {
         return true;
     }
 
-    // 获取发射器显示物品
+    // Get the dispenser display item
     public ItemStack getDisplayItem(int dispenserIndex) {
         if (dispenserIndex < 0 || dispenserIndex >= 9) return null;
 
@@ -100,10 +100,10 @@ public class MagicAltarRecipe {
         ItemMeta meta = dispenser.getItemMeta();
 
         if (meta != null) {
-            meta.setDisplayName("§b发射器 #" + (dispenserIndex + 1));
+            meta.setDisplayName("§bDispenser #" + (dispenserIndex + 1));
 
             java.util.List<String> lore = new java.util.ArrayList<>();
-            lore.add("§7点击查看详细配置");
+            lore.add("§7Click to see the details");
 
             int itemCount = 0;
             for (int i = 0; i < 9; i++) {
@@ -111,7 +111,7 @@ public class MagicAltarRecipe {
                     itemCount++;
                 }
             }
-            lore.add("§7物品数量: " + itemCount + "/9");
+            lore.add("§7Item count: " + itemCount + "/9");
 
             meta.setLore(lore);
             dispenser.setItemMeta(meta);
@@ -120,7 +120,7 @@ public class MagicAltarRecipe {
         return dispenser;
     }
 
-    // 获取指定发射器槽位的物品
+    // Get the item in a specific dispenser slot
     public ItemStack getDispenserSlotItem(int dispenserIndex, int slotIndex) {
         if (dispenserIndex < 0 || dispenserIndex >= 9 || slotIndex < 0 || slotIndex >= 9) {
             return null;
@@ -128,7 +128,7 @@ public class MagicAltarRecipe {
         return dispenserItems[dispenserIndex][slotIndex];
     }
 
-    // 检查发射器是否为空
+    // Check if the dispenser is empty
     public boolean isDispenserEmpty(int dispenserIndex) {
         for (int i = 0; i < 9; i++) {
             if (dispenserItems[dispenserIndex][i] != null) {
@@ -138,7 +138,7 @@ public class MagicAltarRecipe {
         return true;
     }
 
-    // 获取发射器中物品数量
+    // Get the number of items in the dispenser
     public int getDispenserItemCount(int dispenserIndex) {
         int count = 0;
         for (int i = 0; i < 9; i++) {

@@ -15,39 +15,39 @@ public class EntitySpawner {
     private final Random random = new Random();
 
     /**
-     * 在玩家附近随机生成一个生物。
+     * Spawn a random mob near the player.
      *
-     * @param player 玩家对象
+     * @param player the player
      */
     public void spawnRandomEntityNearPlayer(Player player) {
-        // 获取玩家位置
+        // Get the player’s location
         Location playerLocation = player.getLocation();
 
-        // 计算随机偏移（3 格范围内，包括斜向）
-        double x = random.nextDouble(-5, 5); // 随机 X 偏移
-        double y = random.nextDouble(0, 1); // 随机 Y 偏移（避免过高或过低）
-        double z = random.nextDouble(-5, 5); // 随机 Z 偏移
+        // Pick a random offset around the player
+        double x = random.nextDouble(-5, 5); // Random X offset
+        double y = random.nextDouble(0, 1); // Random Y offset (keep it from spawning too high or too low)
+        double z = random.nextDouble(-5, 5); // Random Z offset
 
-        // 创建目标位置
+        // Set the spawn location
         Location spawnLocation = playerLocation.clone().add(x, y, z);
 
-        // 随机选择一个生物类型
+        // Pick a random mob type
         EntityType[] entityTypes = EntityType.values();
         EntityType randomEntityType = entityTypes[random.nextInt(entityTypes.length)];
 
-        // 确保选择的是可生成的实体
+        // Make sure the entity can spawn
         if (randomEntityType.isSpawnable()) {
             Entity spawnedEntity = player.getWorld().spawnEntity(spawnLocation, randomEntityType);
-            // 检查生成的实体是否是生物（LivingEntity）
+            // Check if the spawned entity is a living mob (LivingEntity)
             if (spawnedEntity instanceof org.bukkit.entity.LivingEntity) {
-                // 设置自定义名称
-                String entityName = "魔法实体·" + EntityHelper.getName(spawnedEntity); // 使用随机实体类型的名字作为基础
-                spawnedEntity.setCustomName(ColorGradient.getGradientName(entityName)); // 应用渐变颜色
-                spawnedEntity.setCustomNameVisible(true); // 让名字在游戏中可见
+                // Set a custom name
+                String entityName = "Magic Mob ·" + EntityHelper.getName(spawnedEntity); // Use the random entity type’s name
+                spawnedEntity.setCustomName(ColorGradient.getGradientName(entityName)); // Apply gradient colors
+                spawnedEntity.setCustomNameVisible(true); // Show the name in-game
             }
-            player.sendMessage(ColorGradient.getGradientName("已召唤魔法实体· " + randomEntityType.name()));
+            player.sendMessage(ColorGradient.getGradientName("Summoned Magic Mob · " + randomEntityType.name()));
         } else {
-            player.sendMessage(ColorGradient.getGradientName("召唤实体失败了~"));
+            player.sendMessage(ColorGradient.getGradientName("Could not summon the mob~"));
         }
     }
 

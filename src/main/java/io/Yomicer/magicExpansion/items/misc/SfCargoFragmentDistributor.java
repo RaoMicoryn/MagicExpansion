@@ -40,25 +40,25 @@ import static io.Yomicer.magicExpansion.utils.Utils.doGlow;
 
 public class SfCargoFragmentDistributor extends SlimefunItem implements EnergyNetComponent {
 
-    private final int inputSlot = 10; // CargoFragment 输入槽
-    private final int playerHeadSlot = 16; // 玩家头颅设置槽
+    private final int inputSlot = 10; // CargoFragment Input slot
+    private final int playerHeadSlot = 16; // Player head setting slot
     private final int[] borderSlots = {0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 11, 12, 13, 14, 15, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26};
-    private final int[] infoSlots = {27, 28, 29, 30, 31, 32, 33, 34, 35}; // 信息显示槽
+    private final int[] infoSlots = {27, 28, 29, 30, 31, 32, 33, 34, 35}; // Info display slot
 
-    // 存储每个机器的状态
+    // Store each machine's state
     private static final Map<Location, MachineState> machineStates = new HashMap<>();
-    private static final int SLOW_CHECK_INTERVAL = 10; // 慢速检测：10 tick = 5 秒
-    private static final int FAST_CHECK_INTERVAL = 1;   // 快速检测：1 tick = 0.5秒
+    private static final int SLOW_CHECK_INTERVAL = 10; // Slow check:10 tick = 5 sec
+    private static final int FAST_CHECK_INTERVAL = 1;   // Fast check:1 tick = 0.5 sec
 
-    // 头颅皮肤缓存
+    // Head skin cache
     private static final Map<String, ItemStack> playerHeadCache = new HashMap<>();
     private static final Map<String, Long> cacheTimestamps = new HashMap<>();
-    private static final long CACHE_DURATION = 10 * 60 * 1000; // 10分钟缓存
+    private static final long CACHE_DURATION = 10 * 60 * 1000; // 10 minute cache
 
     public SfCargoFragmentDistributor(ItemGroup category, SlimefunItemStack item, RecipeType recipeType, ItemStack[] recipe) {
         super(category, item, recipeType, recipe);
 
-        constructMenu("以太秘匣传输器（粘液刻版）");
+        constructMenu("Aether Casket Transporter (Slimefun tick version)");
         addItemHandler(onBlockPlace(), onBlockBreak());
     }
 
@@ -78,7 +78,7 @@ public class SfCargoFragmentDistributor extends SlimefunItem implements EnergyNe
     }
 
     /**
-     * 机器状态类
+     * Machine state class
      */
     private static class MachineState {
         int tickCount = 0;
@@ -93,7 +93,7 @@ public class SfCargoFragmentDistributor extends SlimefunItem implements EnergyNe
             if (shouldBeActive != isActive) {
                 isActive = shouldBeActive;
                 currentCheckInterval = shouldBeActive ? FAST_CHECK_INTERVAL : SLOW_CHECK_INTERVAL;
-                tickCount = 0; // 重置计数器
+                tickCount = 0; // Reset counter
             }
         }
 
@@ -108,7 +108,7 @@ public class SfCargoFragmentDistributor extends SlimefunItem implements EnergyNe
     }
 
     /**
-     * 处理机器逻辑
+     * Handle machine logic
      */
     protected void tick(Block block) {
         Location location = block.getLocation();
@@ -122,107 +122,107 @@ public class SfCargoFragmentDistributor extends SlimefunItem implements EnergyNe
         BlockMenu menu = StorageCacheUtils.getMenu(location);
         if (menu == null) return;
 
-        // 检查玩家设置
+        // Check player settings
         String playerName = getPlayerNameFromStorage(location);
         boolean playerValid = isPlayerValid(playerName);
 
-        // 检查 CargoFragment
+        // Check CargoFragment
         ItemStack fragment = menu.getItemInSlot(inputSlot);
         boolean hasFragment = isCargoFragmentValid(fragment);
 
-        // 更新机器状态
+        // Update machine state
         state.updateState(hasFragment, playerValid);
 
-        // 更新显示信息
+        // Update display info
         updateDisplayInfo(menu, state, playerName, hasFragment);
 
-        // 使用安全方法更新玩家头颅显示
+        // Use a safe method to update the player head display
         updatePlayerHeadSafely(menu, state, playerName);
 
-        // 如果条件满足，尝试分发
+        // If the condition is met, try to distribute
         if (state.isActive && hasFragment && playerValid) {
             distributeFragment(fragment, playerName, menu, location);
         }
     }
 
     /**
-     * 分发 CargoFragment 中的物品 - 尽量填满背包
+     * Distribute items in CargoFragment - fill the inventory as much as possible
      */
     private void distributeFragment(ItemStack fragment, String playerName, BlockMenu menu, Location machineLoc) {
         Player targetPlayer = Bukkit.getPlayerExact(playerName);
         if (targetPlayer == null) return;
 
-        // 从 CargoFragment 获取存储的物品和数量
+        // Get the stored item and amount from CargoFragment
         ItemStack storedItem = getStoredItemFromFragment(fragment);
         int storedAmount = getStoredAmountFromFragment(fragment);
 
         if (storedItem == null || storedAmount <= 0) {
-            // 无效的 CargoFragment，删除它
+            // Invalid CargoFragment, delete it
             menu.consumeItem(inputSlot, 1);
             return;
         }
 
-        // 计算背包剩余空间能容纳多少物品
+        // Calculate how many items the remaining inventory space can hold
         int availableSpace = calculateAvailableSpace(targetPlayer, storedItem);
         if (availableSpace <= 0) {
-            // 背包已满
+            // Inventory is full
             return;
         }
 
-        // 计算实际能分发的数量
+        // Calculate the amount that can actually be distributed
         int amountToGive = Math.min(storedAmount, availableSpace);
 
-        // 尝试填满背包
+        // Try to fill the inventory
         int actuallyGiven = fillPlayerInventory(targetPlayer, storedItem, amountToGive);
 
         if (actuallyGiven > 0) {
-            // 更新 CargoFragment 中的数量
+            // Update the amount in CargoFragment
             int newAmount = storedAmount - actuallyGiven;
             if (newAmount <= 0) {
-                // 数量为0，删除 CargoFragment
+                // Amount is 0, delete CargoFragment
                 menu.consumeItem(inputSlot, 1);
-                targetPlayer.sendMessage("§a✓ 已接收完所有物品: " + getItemDisplayName(storedItem));
+                targetPlayer.sendMessage("§a✓ Received all items: " + getItemDisplayName(storedItem));
             } else {
-                // 更新 CargoFragment 的数量
+                // Update the CargoFragment amount
                 updateFragmentAmount(fragment, newAmount);
-                targetPlayer.sendMessage("§a✓ 已接收物品: " + getItemDisplayName(storedItem) + " §7(剩余: " + newAmount + ")");
+                targetPlayer.sendMessage("§a✓ Received items: " + getItemDisplayName(storedItem) + " §7(Remaining: " + newAmount + ")");
             }
         }
     }
 
     /**
-     * 计算玩家背包剩余空间
+     * Calculate the player's remaining inventory space
      */
     private int calculateAvailableSpace(Player player, ItemStack item) {
         int totalSpace = 0;
 
-        // 检查背包所有槽位
+        // Check all inventory slots
         for (ItemStack inventoryItem : player.getInventory().getStorageContents()) {
             if (inventoryItem == null || inventoryItem.getType() == Material.AIR) {
-                // 空槽位，可以放一整组
+                // Empty slot, can hold a whole stack
                 totalSpace += item.getMaxStackSize();
             } else if (SlimefunUtils.isItemSimilar(inventoryItem, item, true, false)) {
-                // 相同物品，计算剩余空间
+                // Same item, work out the remaining space
                 int space = inventoryItem.getMaxStackSize() - inventoryItem.getAmount();
                 if (space > 0) {
                     totalSpace += space;
                 }
             }
-            // 不同物品的槽位不能堆叠，不计入可用空间
+            // Slots with different items can't stack, so they don't count as free space
         }
 
         return totalSpace;
     }
 
     /**
-     * 填满玩家背包
+     * Fill the player's inventory
      */
     private int fillPlayerInventory(Player player, ItemStack item, int maxAmount) {
         int totalGiven = 0;
         ItemStack singleItem = item.clone();
         singleItem.setAmount(1);
 
-        // 先填充已有物品的槽位（相同物品可以堆叠）
+        // Fill slots that already have the item first (same items can stack)
         for (int i = 0; i < player.getInventory().getSize(); i++) {
             if (totalGiven >= maxAmount) break;
 
@@ -239,7 +239,7 @@ public class SfCargoFragmentDistributor extends SlimefunItem implements EnergyNe
             }
         }
 
-        // 再填充空槽位
+        // Then fill empty slots
         for (int i = 0; i < player.getInventory().getSize(); i++) {
             if (totalGiven >= maxAmount) break;
 
@@ -259,7 +259,7 @@ public class SfCargoFragmentDistributor extends SlimefunItem implements EnergyNe
     }
 
     /**
-     * 检查玩家是否有效
+     * Check if the player is valid
      */
     private boolean isPlayerValid(String playerName) {
         if (playerName == null || playerName.isEmpty()) return false;
@@ -269,16 +269,16 @@ public class SfCargoFragmentDistributor extends SlimefunItem implements EnergyNe
     }
 
     /**
-     * 检查 CargoFragment 是否有效
+     * Check if the CargoFragment is valid
      */
     private boolean isCargoFragmentValid(ItemStack item) {
         if (item == null || item.getType() == Material.AIR) return false;
 
         SlimefunItem sfItem = SlimefunItem.getByItem(item);
         if (!(sfItem instanceof CargoFragment)) return false;
-        // 检查物品堆叠数量是否为1
+        // Check if the item stack amount is 1
         if (item.getAmount() != 1) return false;
-        // 检查是否有存储物品
+        // Check if there are stored items
         ItemStack storedItem = getStoredItemFromFragment(item);
         int storedAmount = getStoredAmountFromFragment(item);
 
@@ -286,7 +286,7 @@ public class SfCargoFragmentDistributor extends SlimefunItem implements EnergyNe
     }
 
     /**
-     * 从 CargoFragment 获取存储的物品
+     * Get the stored item from CargoFragment
      */
     private ItemStack getStoredItemFromFragment(ItemStack fragment) {
         ItemMeta meta = fragment.getItemMeta();
@@ -301,7 +301,7 @@ public class SfCargoFragmentDistributor extends SlimefunItem implements EnergyNe
     }
 
     /**
-     * 从 CargoFragment 获取存储的数量
+     * Get the stored amount from CargoFragment
      */
     private int getStoredAmountFromFragment(ItemStack fragment) {
         ItemMeta meta = fragment.getItemMeta();
@@ -314,7 +314,7 @@ public class SfCargoFragmentDistributor extends SlimefunItem implements EnergyNe
     }
 
     /**
-     * 更新 CargoFragment 的数量
+     * Update the CargoFragment amount
      */
     private void updateFragmentAmount(ItemStack fragment, int newAmount) {
         ItemMeta meta = fragment.getItemMeta();
@@ -324,12 +324,12 @@ public class SfCargoFragmentDistributor extends SlimefunItem implements EnergyNe
         NamespacedKey keyAmount = new NamespacedKey(MagicExpansion.getInstance(), "cargo_amount");
         container.set(keyAmount, PersistentDataType.INTEGER, newAmount);
 
-        // 更新 Lore 显示
+        // Update Lore display
         List<String> lore = meta.getLore();
         if (lore != null) {
             for (int i = 0; i < lore.size(); i++) {
-                if (lore.get(i).startsWith("§f数量: §a")) {
-                    lore.set(i, "§f数量: §a" + newAmount);
+                if (lore.get(i).startsWith("§fAmount: §a")) {
+                    lore.set(i, "§fAmount: §a" + newAmount);
                     break;
                 }
             }
@@ -340,7 +340,7 @@ public class SfCargoFragmentDistributor extends SlimefunItem implements EnergyNe
     }
 
     /**
-     * 从存储中获取玩家名
+     * Get the player name from storage
      */
     private String getPlayerNameFromStorage(Location location) {
         SlimefunBlockData data = StorageCacheUtils.getBlock(location);
@@ -350,31 +350,31 @@ public class SfCargoFragmentDistributor extends SlimefunItem implements EnergyNe
     }
 
     /**
-     * 优化玩家头颅获取
+     * Optimize player head fetching
      */
     private ItemStack createPlayerHeadWithCache(String playerName) {
         if (playerName == null || playerName.isEmpty()) {
             return createPlayerHeadDisplay(null);
         }
 
-        // 检查缓存是否有效
+        // Check if the cache is valid
         long currentTime = System.currentTimeMillis();
         if (playerHeadCache.containsKey(playerName)) {
             Long timestamp = cacheTimestamps.get(playerName);
             if (timestamp != null && (currentTime - timestamp) < CACHE_DURATION) {
-                // 返回缓存的副本
+                // Return a copy of the cache
                 return playerHeadCache.get(playerName).clone();
             } else {
-                // 缓存过期，移除
+                // Cache expired, remove
                 playerHeadCache.remove(playerName);
                 cacheTimestamps.remove(playerName);
             }
         }
 
-        // 创建新的头颅
+        // Create a new head
         ItemStack head = createPlayerHeadDisplay(playerName);
 
-        // 缓存新创建的头颅
+        // Cache the newly created head
         if (head != null) {
             playerHeadCache.put(playerName, head.clone());
             cacheTimestamps.put(playerName, currentTime);
@@ -386,45 +386,45 @@ public class SfCargoFragmentDistributor extends SlimefunItem implements EnergyNe
     private void updatePlayerHeadSafely(BlockMenu menu, MachineState state, String playerName) {
         ItemStack currentHead = menu.getItemInSlot(playerHeadSlot);
 
-        // 确定应该显示的玩家名
+        // Decide which player name to show
         String expectedPlayerName = (playerName != null && !playerName.isEmpty()) ? playerName : null;
 
-        // 检查是否需要更新
+        // Check if it needs updating
         boolean needsUpdate = false;
 
         if (currentHead == null || currentHead.getType() != Material.PLAYER_HEAD) {
-            // 当前不是玩家头颅，需要更新
+            // It's not a player head right now, needs updating
             needsUpdate = true;
         } else if (currentHead.hasItemMeta()) {
             ItemMeta meta = currentHead.getItemMeta();
             String currentDisplayName = meta.getDisplayName();
 
-            // 根据玩家名确定期望的显示名
+            // Work out the expected display name from the player name
             String expectedDisplayName = expectedPlayerName != null ?
-                    "§a目标玩家: " + expectedPlayerName : "§a点击设置目标玩家";
+                    "§aTarget player: " + expectedPlayerName : "§aClick to set target player";
 
-            // 如果显示名不匹配，需要更新
+            // If the display name doesn't match, it needs updating
             if (!currentDisplayName.equals(expectedDisplayName)) {
                 needsUpdate = true;
             }
 
-            // 检查Lore是否匹配
+            // Check if Lore matches
             if (!needsUpdate && meta.hasLore()) {
                 List<String> lore = meta.getLore();
                 boolean hasPlayerSet = expectedPlayerName != null;
                 boolean loreMatches = lore.size() >= 1 &&
-                        lore.get(0).equals(hasPlayerSet ? "§7已设置目标玩家" : "§7当前未设置玩家");
+                        lore.get(0).equals(hasPlayerSet ? "§7Target player set" : "§7No player set right now");
 
                 if (!loreMatches) {
                     needsUpdate = true;
                 }
             }
         } else {
-            // 没有元数据，需要更新
+            // No metadata, needs updating
             needsUpdate = true;
         }
 
-        // 如果需要更新，使用缓存方法创建新头颅
+        // If it needs updating, use the cached method to create a new head
         if (needsUpdate) {
             ItemStack newHead = createPlayerHeadWithCache(expectedPlayerName);
             menu.replaceExistingItem(playerHeadSlot, newHead);
@@ -432,7 +432,7 @@ public class SfCargoFragmentDistributor extends SlimefunItem implements EnergyNe
     }
 
     /**
-     * 保存玩家名到存储
+     * Save the player name to storage
      */
     private void savePlayerNameToStorage(Location location, String playerName) {
         if (location == null) return;
@@ -448,7 +448,7 @@ public class SfCargoFragmentDistributor extends SlimefunItem implements EnergyNe
     }
 
     /**
-     * 更新显示信息
+     * Update display info
      */
     private void updateDisplayInfo(BlockMenu menu, MachineState state, String playerName, boolean hasFragment) {
         String status;
@@ -456,40 +456,40 @@ public class SfCargoFragmentDistributor extends SlimefunItem implements EnergyNe
         Material displayMaterial;
 
         if (state.isActive) {
-            status = "§a§l运行中 - 高速模式";
-            details = "§7每tick检测分发";
+            status = "§a§lRunning - fast mode";
+            details = "§7Check and distribute every tick";
             displayMaterial = Material.LIME_STAINED_GLASS_PANE;
         } else if (hasFragment && playerName != null && !playerName.isEmpty()) {
-            status = "§c等待玩家上线";
-            details = "§7玩家: " + playerName;
+            status = "§cWaiting for the player to come online";
+            details = "§7Player: " + playerName;
             displayMaterial = Material.YELLOW_STAINED_GLASS_PANE;
         } else if (hasFragment) {
-            status = "§c未设置玩家";
-            details = "§7请点击玩家槽设置";
+            status = "§cNo player set";
+            details = "§7Please click the player slot to set";
             displayMaterial = Material.ORANGE_STAINED_GLASS_PANE;
         } else if (playerName != null && !playerName.isEmpty()) {
-            status = "§c等待以太秘匣";
-            details = "§7请放入以太秘匣";
+            status = "§cWaiting for an Aether Casket";
+            details = "§7Please put in an Aether Casket";
             displayMaterial = Material.ORANGE_STAINED_GLASS_PANE;
         } else {
-            status = "§7待机中 - 检测模式";
-            details = "§7每tick检测一次";
+            status = "§7Idle - detect mode";
+            details = "§7Detect once every tick";
             displayMaterial = Material.GRAY_STAINED_GLASS_PANE;
         }
 
-        // 更新信息显示槽
+        // Update info display slot
         ItemStack infoItem = new CustomItemStack(
                 displayMaterial,
-                "§6以太秘匣分发器",
+                "§6Aether Casket Distributor",
                 "",
-                "§f状态: " + status,
+                "§fStatus: " + status,
                 "§f" + details,
                 "",
-                "§e输入槽: §a放入以太秘匣",
-                "§e玩家槽: §a点击设置玩家",
+                "§eInput slot: §aPut into Aether Casket",
+                "§ePlayer slot: §aClick to set player",
                 "",
-                "§7分发速率: 每tick分发",
-                "§7检测速率: 每tick检测"
+                "§7Distribute rate: Distribute every tick",
+                "§7Detect rate: Detect every tick"
         );
 
         for (int slot : infoSlots) {
@@ -498,7 +498,7 @@ public class SfCargoFragmentDistributor extends SlimefunItem implements EnergyNe
     }
 
     /**
-     * 获取物品显示名
+     * Get item display name
      */
     private String getItemDisplayName(ItemStack item) {
         if (item.hasItemMeta() && item.getItemMeta().hasDisplayName()) {
@@ -514,8 +514,8 @@ public class SfCargoFragmentDistributor extends SlimefunItem implements EnergyNe
             public void onPlayerPlace(BlockPlaceEvent e) {
                 Location loc = e.getBlock().getLocation();
                 machineStates.put(loc, new MachineState());
-                // 如果机器数量增加很多，检查缓存大小
-                if (machineStates.size() % 10 == 0) { // 每10台机器检查一次
+                // If the machine amount went up a lot, check the cache size
+                if (machineStates.size() % 10 == 0) { // Check once every 10 machines
                     cleanExpiredCache();
                 }
             }
@@ -531,11 +531,11 @@ public class SfCargoFragmentDistributor extends SlimefunItem implements EnergyNe
                 if (inv != null) {
                     inv.dropItems(b.getLocation(), inputSlot);
                 }
-                // 如果机器数量增加很多，检查缓存大小
-                if (machineStates.size() % 10 == 0) { // 每10台机器检查一次
+                // If the machine amount went up a lot, check the cache size
+                if (machineStates.size() % 10 == 0) { // Check once every 10 machines
                     cleanExpiredCache();
                 }
-                // 从状态映射中移除
+                // Remove from the state map
                 machineStates.remove(b.getLocation());
             }
         };
@@ -566,57 +566,57 @@ public class SfCargoFragmentDistributor extends SlimefunItem implements EnergyNe
     }
 
     protected void constructMenu(BlockMenuPreset preset) {
-        // 设置边框 - 使用原来的紫色玻璃
-        ItemStack borderItem = new CustomItemStack(Material.PURPLE_STAINED_GLASS_PANE, "§5以太秘匣分发器");
+        // Set the border - use the original purple glass
+        ItemStack borderItem = new CustomItemStack(Material.PURPLE_STAINED_GLASS_PANE, "§5Aether Casket Distributor");
         for (int slot : borderSlots) {
             preset.addItem(slot, borderItem, (p, slot1, item, action) -> false);
         }
 
-        // 设置玩家头颅槽 - 点击设置玩家
+        // Set player head slot - click to set player
         ItemStack playerHeadItem = createPlayerHeadDisplay(null);
 
         preset.addItem(playerHeadSlot, playerHeadItem, (p, slot, item, action) -> {
-            // 使用玩家打开菜单时所在的方块位置
+            // Use the block location where the player opened the menu
             Block b = p.getTargetBlockExact(5);
             if (b == null) return false;
 
             Location location = b.getLocation();
 
-            // 获取 BlockMenu 实例
+            // Get BlockMenu instance
             BlockMenu menu = StorageCacheUtils.getMenu(location);
             if (menu == null) return false;
 
             if (action.isRightClicked()) {
-                // 右键清除玩家设置
+                // Right-click to clear player setting
                 savePlayerNameToStorage(location, null);
-                p.sendMessage("§a已清除目标玩家设置");
+                p.sendMessage("§aTarget player setting cleared");
 
-                // 更新显示 - 使用 BlockMenu 更新
+                // Update display - using BlockMenu update
                 menu.replaceExistingItem(playerHeadSlot, createPlayerHeadDisplay(null));
             } else {
-                // 左键设置当前玩家
+                // Left-click: set current player
                 savePlayerNameToStorage(location, p.getName());
-                p.sendMessage("§a已设置目标玩家: " + p.getName());
+                p.sendMessage("§aTarget player set: " + p.getName());
 
-                // 更新显示 - 使用 BlockMenu 更新
+                // Update display - using BlockMenu update
                 menu.replaceExistingItem(playerHeadSlot, createPlayerHeadDisplay(p.getName()));
             }
             return false;
         });
 
-        // 初始化信息显示
+        // Initialize info display
         ItemStack initialInfo = new CustomItemStack(
                 Material.GRAY_STAINED_GLASS_PANE,
-                "§6以太秘匣分发器",
+                "§6Aether Casket Distributor",
                 "",
-                "§f状态: §7待机中 - 低速模式",
-                "§f每5秒检测一次",
+                "§fStatus: §7Idle - slow mode",
+                "§fCheck once every 5 seconds",
                 "",
-                "§e输入槽: §a放入以太秘匣",
-                "§e玩家槽: §a点击设置玩家",
+                "§eInput slot: §aPut into Aether Casket",
+                "§ePlayer slot: §aClick to set player",
                 "",
-                "§7高速模式: 每tick分发",
-                "§7低速模式: 每5秒检测"
+                "§7Fast mode: Distribute every tick",
+                "§7Slow mode: Check every 5 seconds"
         );
 
         for (int slot : infoSlots) {
@@ -625,56 +625,56 @@ public class SfCargoFragmentDistributor extends SlimefunItem implements EnergyNe
     }
 
     /**
-     * 创建玩家头颅显示物品 - 修复版本，避免429错误
+     * Create player head display item - fixed version, avoids 429 errors
      */
     private ItemStack createPlayerHeadDisplay(String playerName) {
         ItemStack headItem;
 
         if (playerName != null && !playerName.isEmpty()) {
-            // 创建玩家头颅
+            // Create player head
             headItem = new ItemStack(Material.PLAYER_HEAD);
             SkullMeta skullMeta = (SkullMeta) headItem.getItemMeta();
 
             if (skullMeta != null) {
-                // 安全地设置玩家皮肤
+                // Safely set the player skin
                 try {
                     Player targetPlayer = Bukkit.getPlayerExact(playerName);
                     if (targetPlayer != null && targetPlayer.isOnline()) {
-                        // 使用在线玩家的皮肤
+                        // Use the online player's skin
                         skullMeta.setOwningPlayer(targetPlayer);
                     } else {
-                        // 对于离线玩家，使用默认皮肤避免API调用
+                        // For offline players, use the default skin to avoid API calls
                         skullMeta.setOwningPlayer(Bukkit.getOfflinePlayer("Steve"));
                     }
                 } catch (Exception e) {
-                    // 如果出现异常，记录日志但不中断程序
-                    MagicExpansion.getInstance().getLogger().warning("创建玩家头颅时出错: " + e.getMessage());
+                    // If an error happens, log it but don't stop the program
+                    MagicExpansion.getInstance().getLogger().warning("Error creating player head: " + e.getMessage());
                 }
 
-                skullMeta.setDisplayName("§a目标玩家: " + playerName);
+                skullMeta.setDisplayName("§aTarget player: " + playerName);
                 skullMeta.setLore(Arrays.asList(
-                        "§7已设置目标玩家",
+                        "§7Target player set",
                         "",
-                        "§e左键点击: 设置自己为目标",
-                        "§e右键点击: 清除目标设置"
+                        "§eLeft click: Set yourself as the target",
+                        "§eRight click: Clear target setting"
                 ));
 
                 headItem.setItemMeta(skullMeta);
             }
         } else {
-            // 未设置玩家
-            headItem = new CustomItemStack(Material.PLAYER_HEAD, "§a点击设置目标玩家",
-                    "§7当前未设置玩家",
+            // No player set
+            headItem = new CustomItemStack(Material.PLAYER_HEAD, "§aClick to set target player",
+                    "§7No player set right now",
                     "",
-                    "§e左键点击: 设置自己为目标",
-                    "§e右键点击: 清除目标设置");
+                    "§eLeft click: Set yourself as the target",
+                    "§eRight click: Clear target setting");
         }
 
         return headItem;
     }
 
     /**
-     * 清理过期缓存
+     * Clean up expired cache
      */
     public static void cleanExpiredCache() {
         long currentTime = System.currentTimeMillis();
@@ -699,10 +699,10 @@ public class SfCargoFragmentDistributor extends SlimefunItem implements EnergyNe
         return 0;
     }
 
-    // 从 Base64 还原物品的方法
+    // Method to restore an item from Base64
     private ItemStack itemFromBase64(String data) {
         try {
-            // 使用您项目中现有的 itemFromBase64 方法
+            // Use the existing itemFromBase64 method in your project
             return io.Yomicer.magicExpansion.utils.SameItemJudge.itemFromBase64(data);
         } catch (Exception e) {
             return null;

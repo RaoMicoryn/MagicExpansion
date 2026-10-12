@@ -54,8 +54,8 @@ import static io.Yomicer.magicExpansion.utils.ColorGradient.getGradientName;
 public class RSCMagicMiner extends AContainer implements RecipeDisplayItem , HologramOwner{
 
     private static final String HOLOGRAM_ENABLED_KEY = "hologram_enabled";
-    private static final ItemStack TOGGLE_ON = new CustomItemStack(Material.GREEN_DYE, "&a全息文字: &f开启", "&7点击关闭");
-    private static final ItemStack TOGGLE_OFF = new CustomItemStack(Material.GRAY_DYE, "&c全息文字: &f关闭", "&7点击开启");
+    private static final ItemStack TOGGLE_ON = new CustomItemStack(Material.GREEN_DYE, "&aHologram text: &fOn", "&7Click to turn off");
+    private static final ItemStack TOGGLE_OFF = new CustomItemStack(Material.GRAY_DYE, "&cHologram text: &fOff", "&7Click to turn on");
 
     private static final int[] INPUT_SLOTS = new int[] { 0,1,2,3, 9,10,11,12, 18,19,20,21, 27,28,29,30, 36,37,38,39, 45,46,47,48  };
     private static final int[] OUTPUT_SLOTS = new int[] { 5,6,7,8, 14,15,16,17, 23,24,25,26, 32,33,34,35, 41,42,43,44, 50,51,52,53 };
@@ -65,7 +65,7 @@ public class RSCMagicMiner extends AContainer implements RecipeDisplayItem , Hol
     private static final int[] BACKGROUND_SLOTS = new int[] { 49 };
 
     private static final ItemStack PROGRESS_ITEM = new ItemStack(Material.SOUL_LANTERN);
-    private static final ItemStack PROGRESS_STACK = new CustomItemStack(Material.SOUL_CAMPFIRE, getGradientName("信息"), getGradientName("类型：五行资源采集器"), getGradientName("所属附属：魔法"));
+    private static final ItemStack PROGRESS_STACK = new CustomItemStack(Material.SOUL_CAMPFIRE, getGradientName("Info"), getGradientName("Type: Five Elements Resource Collector"), getGradientName("Addon: Magic"));
 
     private final MachineProcessor<CraftingOperation> processor = new MachineProcessor<>(this);
 
@@ -167,9 +167,9 @@ public class RSCMagicMiner extends AContainer implements RecipeDisplayItem , Hol
             public void onPlayerPlace(BlockPlaceEvent e) {
                 SlimefunBlockData data = StorageCacheUtils.getBlock(e.getBlock().getLocation());
                 if (data != null) {
-                    data.setData(HOLOGRAM_ENABLED_KEY, "true"); // 显式初始化
+                    data.setData(HOLOGRAM_ENABLED_KEY, "true"); // Initialize explicitly
                 }
-                updateHologram(e.getBlock(), "&7待机中...");
+                updateHologram(e.getBlock(), "&7Idle...");
             }
         };
     }
@@ -191,14 +191,14 @@ public class RSCMagicMiner extends AContainer implements RecipeDisplayItem , Hol
     }
 
 
-    // ==================== B1 性能修复：区块资源数据缓存 ====================
-    // 原实现每 tick 都发起一次 getChunkDataAsync 异步查询；现按 "世界UUID:区块Key" 缓存
-    // "区块是否有数据" 的结果，约每 100 tick（5 秒）才重新查询一次，大幅降低 IO 与调度开销。
-    private static final long CHUNK_CACHE_TTL_MS = 5000; // 缓存刷新间隔 ≈ 100 tick
-    // 使用 ConcurrentHashMap：异步 tick 线程读取、主线程回调写入
+    // ==================== B1 Performance fix: chunk resource data cache ====================
+    // The old version ran an async getChunkDataAsync query every tick. Now results are cached by "world UUID:chunk key"
+    // The "does this chunk have data" result is only re-checked about every 100 ticks (5 seconds), which cuts IO and scheduling cost a lot.
+    private static final long CHUNK_CACHE_TTL_MS = 5000; // Cache refresh interval ≈ 100 ticks
+    // Uses ConcurrentHashMap: the async tick thread reads it and the main-thread callback writes it
     private final Map<String, ChunkCache> chunkDataCache = new java.util.concurrent.ConcurrentHashMap<>();
 
-    // 区块数据缓存条目：是否有数据 + 过期时间
+    // Chunk data cache entry: has data or not + expiry time
     private static final class ChunkCache {
         final boolean hasData;
         final long expireAt;
@@ -210,16 +210,16 @@ public class RSCMagicMiner extends AContainer implements RecipeDisplayItem , Hol
     }
 
     protected void tick(Block b) {
-        // B1: 先查缓存，命中且未过期则不再发起异步查询
+        // B1: Check the cache first. If it is a hit and not expired, skip the async query
         String cacheKey = b.getWorld().getUID() + ":" + b.getChunk().getChunkKey();
         long now = System.currentTimeMillis();
         ChunkCache cached = chunkDataCache.get(cacheKey);
         if (cached != null && now < cached.expireAt) {
             if (cached.hasData) {
-                // B2 修复：缓存命中路径同样只做判断与标记，startTick 调度回主线程执行
+                // B2 fix: The cache-hit path also only checks and marks; startTick is scheduled back onto the main thread
                 Bukkit.getScheduler().runTask(MagicExpansion.getInstance(), () -> startTick(b));
             } else {
-                updateHologram(b, "&4需要先进行地形扫描!");
+                updateHologram(b, "&4Scan the terrain first!");
             }
             return;
         }
@@ -229,13 +229,13 @@ public class RSCMagicMiner extends AContainer implements RecipeDisplayItem , Hol
                 .getChunkDataAsync(b.getChunk(), new IAsyncReadCallback<>() {
                     @Override
                     public void onResult(SlimefunChunkData result) {
-                        // B2 修复：异步回调中只做判断与缓存标记，不再直接操作 BlockMenu
+                        // B2 fix: The async callback only checks and marks the cache; it no longer touches BlockMenu directly
                         boolean hasData = !result.getAllData().isEmpty();
                         chunkDataCache.put(cacheKey, new ChunkCache(hasData, System.currentTimeMillis() + CHUNK_CACHE_TTL_MS));
                         if (!hasData) {
-                            updateHologram(b, "&4需要先进行地形扫描!");
+                            updateHologram(b, "&4Scan the terrain first!");
                         } else {
-                            // B2 修复：操作 BlockMenu 的 startTick 通过 runTask 调度回主线程
+                            // B2 fix: startTick, which uses BlockMenu, is scheduled back onto the main thread with runTask
                             Bukkit.getScheduler().runTask(MagicExpansion.getInstance(), () -> startTick(b));
                         }
                     }
@@ -244,7 +244,7 @@ public class RSCMagicMiner extends AContainer implements RecipeDisplayItem , Hol
 
     private void startTick(Block b){
         BlockMenu inv = StorageCacheUtils.getMenu(b.getLocation());
-        // B3 修复：区块加载时序窗口内可能取不到菜单，判空防御后再使用
+        // B3 fix: The menu may not be available while the chunk is still loading, so null-check it before use
         if (inv == null) {
             return;
         }
@@ -301,7 +301,7 @@ public class RSCMagicMiner extends AContainer implements RecipeDisplayItem , Hol
     private MachineRecipe tryProcessEarthLikeRecipe(BlockMenu inv, ItemStack inputItem, SlimefunItemStack outputItem, GEOResource resourceType, int seconds) {
         Block b = inv.getBlock();
 
-        // 检查输出槽是否能容纳结果
+        // Check that the output slots can hold the result
         if (!inv.fits(outputItem, getOutputSlots())) {
             return null;
         }
@@ -309,7 +309,7 @@ public class RSCMagicMiner extends AContainer implements RecipeDisplayItem , Hol
         for (int slot : getInputSlots()) {
             ItemStack itemInSlot = inv.getItemInSlot(slot);
 
-            // 检查输入槽是否有匹配的物品
+            // Check that the input slots have a matching item
             if (SlimefunUtils.isItemSimilar(itemInSlot, inputItem, true, false)) {
                 OptionalInt supplies = Slimefun.getGPSNetwork()
                         .getResourceManager()
@@ -317,33 +317,33 @@ public class RSCMagicMiner extends AContainer implements RecipeDisplayItem , Hol
 
 
                 if (supplies.isPresent() && supplies.getAsInt() > 0) {
-                    // 创建配方并消耗输入物品
+                    // Create the recipe and consume the input items
                     MachineRecipe recipe = new MachineRecipe(seconds, new ItemStack[] {inputItem}, new ItemStack[] {outputItem});
                     inv.consumeItem(slot);
 
-                    // 扣除资源
+                    // Subtract the resources
                     Slimefun.getGPSNetwork()
                             .getResourceManager()
                             .setSupplies(resourceType, b.getWorld(), b.getX() >> 4, b.getZ() >> 4, supplies.getAsInt() - 1);
-                    this.updateHologram(b, "&7开采中: &r" + resourceType.getName());
+                    this.updateHologram(b, "&7Mining: &r" + resourceType.getName());
 
                     return recipe;
                 } else {
-                    // 资源不足，把空桶之类的东西移到输出槽，避免重复尝试（防卡顿）
-                    // B4 修复：pushItem 前先用 fits 检查输出槽是否放得下，放不下则把材料放回原输入槽，绝不丢弃
+                    // Not enough resources. Move things like empty buckets to the output slot so it does not retry over and over (prevents lag)
+                    // B4 fix: Before pushItem, use fits to check that the output slot has room. If not, put the materials back in the original input slot and never discard them
                     ItemStack item = itemInSlot.clone();
                     if (inv.fits(item, getOutputSlots())) {
                         inv.replaceExistingItem(slot, null);
                         inv.pushItem(item, getOutputSlots());
                     }
-                    this.updateHologram(b, resourceType.getName()+ "&7 开采完成");
+                    this.updateHologram(b, resourceType.getName()+ "&7 Mining done");
                     return null;
                 }
             }
 
         }
 
-        return null; // 没有匹配的物品或资源不足
+        return null; // No matching item, or not enough resources
     }
 
     @Override
@@ -366,7 +366,7 @@ public class RSCMagicMiner extends AContainer implements RecipeDisplayItem , Hol
 
         preset.addItem(22, PROGRESS_STACK, ChestMenuUtils.getEmptyClickHandler());
 
-        // === 新增：开关按钮在 slot 4 ===
+        // === New: toggle button in slot 4 ===
         preset.addItem(4, TOGGLE_ON,
                 new ChestMenu.AdvancedMenuClickHandler() {
                     @Override
@@ -380,13 +380,13 @@ public class RSCMagicMiner extends AContainer implements RecipeDisplayItem , Hol
                         boolean now = !enabled;
                         data.setData(HOLOGRAM_ENABLED_KEY, String.valueOf(now));
 
-                        // 更新图标
+                        // Update the icon
                         menu.replaceExistingItem(4,
                                 now ? TOGGLE_ON
                                         : TOGGLE_OFF
                         );
 
-                        // 控制全息显示
+                        // Control the hologram display
                         if (now) {
                         } else {
                             removeHologram(b);
@@ -419,15 +419,15 @@ public class RSCMagicMiner extends AContainer implements RecipeDisplayItem , Hol
 
     private boolean isHologramEnabled(SlimefunBlockData data) {
         String value = data.getData(HOLOGRAM_ENABLED_KEY);
-        return value == null || Boolean.parseBoolean(value); // 默认开启
+        return value == null || Boolean.parseBoolean(value); // On by default
     }
 
 
     @Override
     public List<ItemStack> getDisplayRecipes() {
         List<ItemStack> display = new ArrayList<>();
-        display.add(new CustomItemStack(Material.KNOWLEDGE_BOOK, getGradientName("材料⇨")));
-        display.add(new CustomItemStack(Material.KNOWLEDGE_BOOK, getGradientName("产物(开采时间：5秒)⇨")));
+        display.add(new CustomItemStack(Material.KNOWLEDGE_BOOK, getGradientName("Materials⇨")));
+        display.add(new CustomItemStack(Material.KNOWLEDGE_BOOK, getGradientName("Output (mining time: 5 sec)⇨")));
         display.add(redstone_input);
         display.add(RSC_MAGIC_REDSTONE);
         display.add(soul_input);
@@ -467,8 +467,8 @@ public class RSCMagicMiner extends AContainer implements RecipeDisplayItem , Hol
 
     @Override
     public @NotNull String getMachineIdentifier() {
-        // B5 修复：原先与 FiveElementsMiner 返回相同标识，导致两者在 MachineProcessor 中互相覆盖进度；
-        // 改为本机器专属标识
+        // B5 fix: This used to return the same identifier as FiveElementsMiner, so the two overwrote each other's progress in MachineProcessor;
+        // Changed to an identifier specific to this machine
         return "MAGIC_EXPANSION_RSC_MAGIC_MINER";
     }
 }

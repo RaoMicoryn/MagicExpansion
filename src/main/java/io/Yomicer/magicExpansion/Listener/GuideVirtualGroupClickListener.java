@@ -18,16 +18,16 @@ import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 
 /**
- * 原生粘液书分组页的容器组点击拦截:
- * 容器组图标带 guide_virtual 标记,点击后取消原生物品页,改为打开自绘三级菜单
+ * Handle clicks on container groups in the default Slimefun guide:
+ * Container group icons have the guide_virtual tag. Clicking one opens the custom three-level menu instead of the default item page.
  */
 public class GuideVirtualGroupClickListener implements Listener {
 
     /**
-     * 兜底拦截:即使原生点击处理先打开了容器组物品页,打开瞬间也会被替换为自绘三级菜单。
-     * 收窄修复:仅当界面标题为容器组页面(标题 = 容器组显示名)时才劫持——
-     * 排除 JEG 搜索结果页等无关界面,防止搜索结果里出现"xxx · 入口"占位物品
-     * (名字含组名, 会被"鱼"等关键词搜索命中)时,翻页打开新界面被误劫持跳转到虚拟菜单。
+     * Fallback: if the default click handler opens the container group's item page first, replace it with the custom three-level menu right away.
+     * Narrowed fix: only take over screens whose title matches the container group name.
+     * Ignore unrelated screens, such as JEG search results, so placeholder items like "xxx · Entry" don't get picked up.
+     * If an item's name contains a group name and matches a search like "fish", changing pages should not wrongly open the virtual menu.
      */
     @EventHandler(priority = EventPriority.LOWEST)
     public void onOpen(InventoryOpenEvent e) {
@@ -35,13 +35,13 @@ public class GuideVirtualGroupClickListener implements Listener {
         Inventory inv = e.getInventory();
         String vid = findVirtualId(inv);
         if (vid == null) return;
-        // 收窄:非容器组页面的界面(如搜索结果页)不劫持,原样放行
+        // Only take over container group pages. Let other screens, like search results, work as usual.
         if (!GuideMenuGroups.isContainerGroupPageTitle(e.getView().getTitle())) return;
         e.setCancelled(true);
         openVirtualMenu(player, vid);
     }
 
-    /** 关闭菜单时停止彩虹变色任务 */
+    /** Stop the rainbow color effect when the menu closes. */
     @EventHandler
     public void onClose(InventoryCloseEvent e) {
         if (e.getPlayer() instanceof Player player) {
@@ -52,8 +52,8 @@ public class GuideVirtualGroupClickListener implements Listener {
     @EventHandler(priority = EventPriority.LOWEST)
     public void onClick(InventoryClickEvent e) {
         if (!(e.getWhoClicked() instanceof Player player)) return;
-        // 收窄修复: 仅当界面是魔法2.0自绘菜单(标题=复用的原版主页标题)时才劫持。
-        // 第三方机器菜单(标题为机器名)内若残留 guide_virtual 标记物品, 点击应原样放行, 避免被劫持打开主页。
+        // Narrowed fix: only take over the Magic 2.0 custom menu (it reuses the default home screen title).
+        // If a guide_virtual item remains in a third-party machine menu (titled with the machine name), let the click work normally instead of opening the home screen.
         if (!GuideCategoryMenu.isGuideMenuTitle(player, e.getView().getTitle())) return;
         ItemStack clicked = e.getCurrentItem();
         if (clicked == null) return;
@@ -64,7 +64,7 @@ public class GuideVirtualGroupClickListener implements Listener {
         openVirtualMenu(player, vid);
     }
 
-    /** 在物品页中查找占位物品对应的虚拟分组 id */
+    /** Find the virtual group ID linked to a placeholder item on the item page. */
     private String findVirtualId(Inventory inv) {
         for (ItemStack it : inv.getContents()) {
             if (it == null) continue;
@@ -76,7 +76,7 @@ public class GuideVirtualGroupClickListener implements Listener {
         return null;
     }
 
-    /** 重建干净历史链并打开自绘三级菜单 */
+    /** Reset the guide history and open the custom three-level menu. */
     private void openVirtualMenu(Player player, String vid) {
         PlayerProfile.get(player, profile -> {
             GuideHistory history = profile.getGuideHistory();

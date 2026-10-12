@@ -32,17 +32,17 @@ public class Language {
     }
 
     public static boolean loadConfig(Config cfg) {
-        // 加载语言数据
+        // Load language data
         Set<String> keys = cfg.getKeys(LANGUAGE_NAMESPACE);
-        if (keys.isEmpty()) return false; // 如果没有语言数据，返回 false
+        if (keys.isEmpty()) return false; // Return false if no language data is available
 
         for (String ns : keys) {
-            loadRecursively(cfg, ns); // 递归加载语言数据
+            loadRecursively(cfg, ns); // Load language data recursively
         }
 
-        // 打印日志并返回 true
-        // 修复(Q)：Logger.getLogger("消息文本") 误用（参数是 logger 名称不是消息），改为主类 logger 输出
-        MagicExpansion.getInstance().getLogger().info("MagicExpansion语言配置加载完毕~");
+        // Log the result and return true
+        // Fix: Logger.getLogger("message text") was misused (the argument is a logger name, not a message); use the main class logger instead
+        MagicExpansion.getInstance().getLogger().info("MagicExpansionLanguage configuration loaded successfully~");
         return true;
     }
 
@@ -53,7 +53,7 @@ public class Language {
             if (key.endsWith("lan")) {
                 LANGUAGE.put(path, config.getValue(String.join(".", LANGUAGE_NAMESPACE, nextPath)));
             } else if (key.endsWith("key") || key.endsWith("enable")) {
-                // 忽略这些键
+                // Ignore these keys
             } else if (key.endsWith("Lore") || key.endsWith("Name")) {
                 LANGUAGE.put(newItem.concat(path, ".", key), config.getValue(String.join(".", LANGUAGE_NAMESPACE, path, key)));
             } else {

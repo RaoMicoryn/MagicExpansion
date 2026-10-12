@@ -6,7 +6,7 @@ import org.bukkit.inventory.meta.ItemMeta;
 import org.jetbrains.annotations.Nullable;
 
 /**
- * 物品缓存基类（原 Lombok @ToString 改为手工 toString，用于调试输出）
+ * Base class for item caching (replaced Lombok @ToString with a manual toString method for debug output)
  */
 public class ItemStackCache {
 
@@ -48,7 +48,7 @@ public class ItemStackCache {
         return this.itemStack == null ? null : this.itemStack.getType();
     }
 
-    // 原 Lombok @ToString 手工展开：输出物品类型与缓存状态，便于日志排查
+    // Manual version of Lombok @ToString: shows the item type and cache status for debugging
     @Override
     public String toString() {
         return "ItemStackCache{itemStack=" + itemStack + ", metaCached=" + metaCached + "}";

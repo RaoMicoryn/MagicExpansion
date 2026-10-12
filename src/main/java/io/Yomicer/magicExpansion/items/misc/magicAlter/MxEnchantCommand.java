@@ -24,27 +24,27 @@ public class MxEnchantCommand implements TabExecutor {
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
         if (!(sender instanceof Player)) {
-            sender.sendMessage("§c只有玩家可以使用此命令!");
+            sender.sendMessage("§cOnly players can use this command!");
             return true;
         }
 
         Player player = (Player) sender;
 
         if (args.length == 0) {
-            player.sendMessage("§6/mxalter guide §7- 获取配方书");
-            player.sendMessage("§6/mxalter open_guide §7- 打开配方书");
+            player.sendMessage("§6/mxalter guide §7- Get the recipe book");
+            player.sendMessage("§6/mxalter open_guide §7- Open the recipe book");
             return true;
         }
 
         switch (args[0].toLowerCase()) {
             case "guide":
-                // 修复(N)：addItem 返回剩余物品时掉落地面，背包满不吞物品
+                // Fix (N): if addItem returns leftover items, drop them on the ground, so a full inventory doesn't eat items
                 java.util.Map<Integer, ItemStack> overflow =
                         player.getInventory().addItem(plugin.getPluginInitializer().getRecipeBookManager().createRecipeBook());
                 for (ItemStack rest : overflow.values()) {
                     player.getWorld().dropItemNaturally(player.getLocation(), rest);
                 }
-                player.sendMessage("§a已获得魔法祭坛配方指南!");
+                player.sendMessage("§aYou got the Magic Altar Recipe Guide!");
                 break;
 
             case "open_guide":
@@ -52,7 +52,7 @@ public class MxEnchantCommand implements TabExecutor {
                 break;
 
             default:
-                player.sendMessage("§c未知子命令! 使用 /mxenchant 查看可用命令");
+                player.sendMessage("§cUnknown subcommand! Use /mxenchant to see the available commands");
                 break;
         }
 
@@ -64,7 +64,7 @@ public class MxEnchantCommand implements TabExecutor {
         List<String> completions = new ArrayList<>();
 
         if (args.length == 1) {
-            // 第一个参数补全
+            // Tab-complete the first argument
             String[] subCommands = {"open_guide", "guide"};
             for (String subCommand : subCommands) {
                 if (subCommand.startsWith(args[0].toLowerCase())) {

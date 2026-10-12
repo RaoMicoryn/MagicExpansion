@@ -8,7 +8,7 @@ import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 
 /**
- * 隐藏容器:仅用于承载子分组,不在粘液书首页显示
+ * Hidden container: only used to hold sub-groups, not shown on the Slimefun Guide home page
  */
 public class HiddenNestedItemGroup extends NestedItemGroup {
 

@@ -30,11 +30,11 @@ import static io.Yomicer.magicExpansion.utils.SameItemJudge.itemFromBase64;
 import static io.Yomicer.magicExpansion.utils.SameItemJudge.itemToBase64;
 
 /**
- * 翻页储物箱
- * 玩家界面直接使用 Slimefun BlockMenu("items"), 与粘液货运操作的是同一个 inventory,
- * 货运的写入/取走实时可见, 不存在副本导致的刷物/不同步问题
- * 当前页数据在 BlockMenu 中, 其他页存 BlockStorage 自定义键, 翻页时互相读写
- * Shift+右键不会打开界面, 可用于放置粘液货运节点
+ * Page Chest
+ * The player UI directly uses Slimefun BlockMenu("items"), is the same one that Slimefun cargo works on inventory,
+ * Cargo writes/takes are visible in real time, No copy, so no item duplication/desync problems
+ * The current page data is in the BlockMenu, Other pages are stored in custom BlockStorage keys, they read/write each other when flipping pages
+ * Shift+Right-click won't open the UI, can be used to place Slimefun cargo nodes
  */
 public class PageChest extends AbstractContainer {
 
@@ -46,7 +46,7 @@ public class PageChest extends AbstractContainer {
 
     private static final int[] STORAGE_SLOTS;
 
-    // 翻页音效: 随机音符盒音色
+    // Page flip sound: random note block sound
     private static final Sound[] FLIP_SOUNDS = {
             Sound.BLOCK_NOTE_BLOCK_BANJO,
             Sound.BLOCK_NOTE_BLOCK_BELL,
@@ -73,7 +73,7 @@ public class PageChest extends AbstractContainer {
     public PageChest(ItemGroup itemGroup, SlimefunItemStack item, RecipeType recipeType, ItemStack[] recipe) {
         super(itemGroup, item, recipeType, recipe);
 
-        // 拦截已放置的翻页储物箱的右键交互
+        // Intercept right-click interactions on placed Page Chests
         addItemHandler((BlockUseHandler) e -> {
             if (e.getHand() != EquipmentSlot.HAND) {
                 return;
@@ -83,14 +83,14 @@ public class PageChest extends AbstractContainer {
                 return;
             }
             if (!(BlockStorage.check(block) instanceof PageChest)) {
-                // 点击的不是已放置的翻页储物箱, 放行
+                // What was clicked isn't a placed Page Chest, Let it through
                 return;
             }
-            // 阻止原版箱子界面
+            // Block the vanilla chest UI
             e.setUseBlock(Event.Result.DENY);
             e.setUseItem(Event.Result.DENY);
             if (e.getPlayer().isSneaking()) {
-                // Shift+右键: 不打开界面, 让粘液货运节点等物品的绑定逻辑正常执行
+                // Shift+Right-click: Doesn't open the UI, so items like Slimefun cargo nodes can run their binding logic normally
                 return;
             }
             open(e.getPlayer(), block.getLocation());
@@ -99,7 +99,7 @@ public class PageChest extends AbstractContainer {
 
     @Override
     protected void setupMenu(@Nonnull BlockMenuPreset preset) {
-        // BlockMenu 即为货运容器, 界面由 PageChest.open 直接打开
+        // BlockMenu is the cargo container, The UI is opened directly by PageChest.open
         preset.setSize(CHEST_SIZE);
     }
 
@@ -123,9 +123,9 @@ public class PageChest extends AbstractContainer {
         dropAllPages(location, menu);
     }
 
-    // ===================== 打开界面 =====================
+    // ===================== Open the UI =====================
 
-    // 直接打开 BlockMenu("items"), 与货运共用同一个 inventory, 天然同步
+    // Open directly BlockMenu("items"), Shares the same one with cargo inventory, naturally in sync
     public static void open(@Nonnull Player player, @Nonnull Location location) {
         BlockMenu menu = StorageCacheUtils.getMenu(location);
         if (menu == null) {
@@ -137,10 +137,10 @@ public class PageChest extends AbstractContainer {
     }
 
     private static String title(int page) {
-        return getRandomGradientName("跃迁储物箱 · 第 " + page + "/" + TOTAL_PAGES + " 页 (左键上一页 右键下一页)");
+        return getRandomGradientName("Warp Chest · Page " + page + "/" + TOTAL_PAGES + "  (Left-click: previous page | Right-click: next page)");
     }
 
-    // ===================== 页码 =====================
+    // ===================== Page number =====================
 
     public static int currentPage(@Nonnull Location location) {
         String data = BlockStorage.getLocationInfo(location, DATA_CURRENT_PAGE);
@@ -153,7 +153,7 @@ public class PageChest extends AbstractContainer {
         return 1;
     }
 
-    // ===================== 翻页 =====================
+    // ===================== Flip page =====================
 
     public static void flip(@Nonnull Player player, @Nonnull Location location, int direction) {
         BlockMenu menu = StorageCacheUtils.getMenu(location);
@@ -168,21 +168,21 @@ public class PageChest extends AbstractContainer {
             next = 1;
         }
 
-        // 旧页(玩家改动已直接生效于 BlockMenu)写回存档
+        // Old page(player changes already took effect directly on BlockMenu) write back to the save
         savePage(location, page, menu.toInventory().getContents());
         BlockStorage.addBlockInfo(location, DATA_CURRENT_PAGE, String.valueOf(next));
 
-        // 载入新页到 BlockMenu, 界面与货运同时切换到新页
+        // Load the new page into BlockMenu, The UI and cargo switch to the new page at the same time
         menu.toInventory().setContents(loadPage(location, next));
         menu.markDirty();
         player.getOpenInventory().setTitle(title(next));
 
-        // 翻页音效: 随机音符盒音色
+        // Page flip sound: random note block sound
         Sound flipSound = FLIP_SOUNDS[new Random().nextInt(FLIP_SOUNDS.length)];
         location.getWorld().playSound(location, flipSound, 0.5f, 1.0f);
     }
 
-    // ===================== 数据存取 =====================
+    // ===================== Data read/write =====================
 
     private static String slotKey(int page, int slot) {
         return DATA_PREFIX + page + "_" + slot;
@@ -208,10 +208,10 @@ public class PageChest extends AbstractContainer {
         }
     }
 
-    // ===================== 破坏掉落 =====================
+    // ===================== Drops when broken =====================
 
     public static void dropAllPages(@Nonnull Location location, @Nonnull BlockMenu menu) {
-        // 当前页: BlockMenu("items") 中的数据
+        // Current page: BlockMenu("items") data in
         ItemStack[] current = (menu != null) ? menu.toInventory().getContents() : new ItemStack[CHEST_SIZE];
         for (ItemStack item : current) {
             if (item != null && item.getType() != Material.AIR) {
@@ -219,7 +219,7 @@ public class PageChest extends AbstractContainer {
             }
         }
 
-        // 其他页: 自定义键存档
+        // Other pages: custom key save
         int currentPage = currentPage(location);
         for (int p = 1; p <= TOTAL_PAGES; p++) {
             if (p == currentPage) {
@@ -237,7 +237,7 @@ public class PageChest extends AbstractContainer {
         location.getWorld().dropItemNaturally(location, item);
     }
 
-    // ===================== 动画 =====================
+    // ===================== Animation =====================
 
     public static void playAnimation(@Nonnull Player player, @Nonnull Location location, boolean open) {
         BlockState state = location.getBlock().getState();

@@ -28,11 +28,11 @@ public class ConfigLoader {
         if(INNERCONFIG.getBoolean("options.test")) {
             MagicExpansion.testmod=true;
             TESTMODE=true;
-            // 修复(P2)：Logger.getLogger 参数是"名称"而非消息，原用法不会输出任何内容；改用主类 logger
+            // Fix(P2)：Logger.getLogger the parameter is"name"not a message，the old code would not print anything；use the main class logger
             MagicExpansion.getInstance().getLogger().info("Addon is running on TEST MODE");
         }
         if(INNERCONFIG.getBoolean("options.clear-old-config")) {
-            // 修复(P1)：clear-old-config 分支误设了 testmod，应设置 clearConfig（清空旧配置标记）
+            // Fix(P1)：The clear-old-config branch set testmod by mistake; it should set clearConfig to mark old config for clearing
             MagicExpansion.clearConfig=true;
         }
         LANGUAGE=loadInternalConfig("language");   //new Config(plugin,"language.yml");
@@ -52,7 +52,7 @@ public class ConfigLoader {
             try{
                 Files.delete(file.toPath());
             }catch(Throwable e){
-                // 修复(P2)：原 Logger.getLogger 用法错误，改用主类 logger 输出警告
+                // Fix(P2)：Logger.getLogger was used incorrectly; use the main class logger to show warnings
                 MagicExpansion.getInstance().getLogger().warning("[TEST MODE] FAILED TO DELETE FILE: "+file.getAbsolutePath());
             }
         }
@@ -64,14 +64,14 @@ public class ConfigLoader {
                 Files.copy(plugin.getClass().getResourceAsStream("/"+ name + ".yml"),file.toPath());
             } catch (Throwable e) {
 
-                // 修复(P2)：原 Logger.getLogger 用法错误，改用主类 logger 输出警告
-                MagicExpansion.getInstance().getLogger().warning("创建配置文件时找不到相关默认配置文件,即将生成空文件");
+                // Fix(P2)：Logger.getLogger was used incorrectly; use the main class logger to show warnings
+                MagicExpansion.getInstance().getLogger().warning("Could not find the default config file. Creating an empty file instead.");
                 try{
                     Files.createDirectories(file.toPath().getParent());
                     Files.createFile(file.toPath());
                 }catch (IOException e1){
-                    // 修复(P2)：原 Logger.getLogger 用法错误，改用主类 logger 输出警告
-                    MagicExpansion.getInstance().getLogger().warning("创建空配置文件失败!");
+                    // Fix(P2)：Logger.getLogger was used incorrectly; use the main class logger to show warnings
+                    MagicExpansion.getInstance().getLogger().warning("Failed to create an empty config file!");
                 }
             }
 
@@ -79,20 +79,20 @@ public class ConfigLoader {
     }
     public static Config loadInternalConfig(String name){
         FileConfiguration config = new YamlConfiguration();
-        // 修复(P3)：getResourceAsStream 可能返回 null，需抛出明确异常而不是让后续 NPE
+        // Fix(P3)：getResourceAsStream may return null, so throw a clear error instead of causing a later NPE
         InputStream in = plugin.getClass().getResourceAsStream("/"+ name + ".yml");
         if (in == null) {
-            throw new RuntimeException("内部配置资源不存在: /" + name + ".yml（请检查插件打包是否完整）");
+            throw new RuntimeException("Internal config resource not found: /" + name + ".yml (please check that the plugin was packaged correctly)");
         }
-        // 修复(P3)：改用 try-with-resources 自动关闭流，避免资源泄漏
+        // Fix(P3)：Use try-with-resources to close the stream and avoid leaks
         try (Reader reader = new InputStreamReader(in, Charsets.UTF_8)) {
             config.load(reader);
             config.getString("options.test");
 
         }catch (Throwable e){
-            // 修复(P3)：加载失败抛出 RuntimeException（带原因），由主类启用隔离逻辑禁用插件；
-            // 原 return null 会导致调用方 NPE 且插件处于"半启用"状态
-            throw new RuntimeException("加载内部配置 " + name + ".yml 失败: " + e.getMessage(), e);
+            // Fix(P3)：Throw a RuntimeException with the cause on load failure, so the main class can disable the plugin safely;
+            // Returning null could cause an NPE and leave the plugin "partially enabled"state
+            throw new RuntimeException("Failed to load internal config " + name + ".yml: " + e.getMessage(), e);
         }
         return new Config(null,config);
     }

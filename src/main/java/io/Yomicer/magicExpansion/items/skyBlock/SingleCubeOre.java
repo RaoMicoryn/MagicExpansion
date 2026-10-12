@@ -49,12 +49,12 @@ public class SingleCubeOre extends SlimefunItem implements HologramOwner{
 
             @Override
             public void onPlayerPlace(BlockPlaceEvent e) {
-                // 根据 Material 创建 ItemStack
+                // Create an ItemStack from the Material
                 ItemStack blockItemStack = new ItemStack(e.getBlock().getType());
-                // 使用 ItemStackHelper 获取显示名称
+                // Use ItemStackHelper to get the display name
                 String displayName = ItemStackHelper.getDisplayName(blockItemStack);
 
-                updateHologram(e.getBlock(), ColorGradient.getGradientName( "单方块·矿脉-形态:"+ displayName));
+                updateHologram(e.getBlock(), ColorGradient.getGradientName( "Single Cube Ore Vein - Type: "+ displayName));
             }
         };
     }
@@ -97,7 +97,7 @@ public class SingleCubeOre extends SlimefunItem implements HologramOwner{
 //                ItemStack blockItemStack = new ItemStack(block.getType());
 //                String displayName = ItemStackHelper.getDisplayName(blockItemStack);
                 String displayName = ItemStackHelper.getDisplayName(new ItemStack(newMaterial));
-                updateHologram(block, ColorGradient.getGradientName("单方块·矿脉-形态:" + displayName));
+                updateHologram(block, ColorGradient.getGradientName("Single Cube Ore Vein - Type: " + displayName));
                 }else{
                 removeHologram(block);
                 }
@@ -107,7 +107,7 @@ public class SingleCubeOre extends SlimefunItem implements HologramOwner{
         };
     }
 
-    // 获取随机矿石方块（直接从缓存中取）
+    // Get a random ore block (directly from the cached list)
     public Material getRandomOreBlock() {
         return oreMaterials.get(random.nextInt(oreMaterials.size()));
     }
@@ -120,7 +120,7 @@ public class SingleCubeOre extends SlimefunItem implements HologramOwner{
                 ores.add(material);
             }
         }
-        // 添加额外的基础方块
+        // Add extra basic blocks
         ores.add(Material.STONE);
         ores.add(Material.COBBLESTONE);
         ores.add(Material.DIRT);

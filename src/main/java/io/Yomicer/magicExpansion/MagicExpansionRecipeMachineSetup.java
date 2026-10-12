@@ -32,7 +32,7 @@ public class MagicExpansionRecipeMachineSetup {
     public static void setup(@Nonnull MagicExpansion plugin) {
 
 
-        //魔法材料工坊
+        //Magic Material Workshop
         new RecipeMachinePreBuilding(magicexpansionenergy, MagicExpansionItems.PRE_BUILDINGS_MACHINE_RESOURCE_ADVANCED, RecipeType.ENHANCED_CRAFTING_TABLE, new ItemStack[] {
                 SlimefunItems.ELECTRIC_PRESS_2, SlimefunItems.ENERGIZED_CAPACITOR,SlimefunItems.ELECTRIC_PRESS_2,
                 AdvancedCreateItem("MAGIC_COSMIC_DUST"),MagicExpansionItems.PRE_BUILDINGS_MACHINE,MagicExpansionItems.ELEMENT_INGOT,
@@ -103,7 +103,7 @@ public class MagicExpansionRecipeMachineSetup {
                 .register(plugin);
 
 
-        //魔法材料工坊-逆向
+        //Magic Material Workshop - reverse recipe
         new RecipeMachinePreBuilding(magicexpansionenergy, MagicExpansionItems.PRE_BUILDINGS_MACHINE_RESOURCE_ADVANCED_REVERSE, RecipeType.ENHANCED_CRAFTING_TABLE, new ItemStack[] {
                 new ItemStack(Material.FURNACE),new ItemStack(Material.FURNACE),new ItemStack(Material.FURNACE),
                 new ItemStack(Material.FURNACE),MagicExpansionItems.PRE_BUILDINGS_MACHINE_RESOURCE_ADVANCED,new ItemStack(Material.FURNACE),
@@ -161,7 +161,7 @@ public class MagicExpansionRecipeMachineSetup {
                 .addRecipe(2, new ItemStack[] {MagicExpansionItems.COLOR_LOG_2}, new ItemStack[] {sfItemAmount(MagicExpansionItems.COLOR_LOG_1,64)})
                 .register(plugin);
 
-        //终极魔法建筑工坊
+        //Ultimate Magic Building Workshop
         new RecipeMachinePreBuilding(magicexpansionenergy, MagicExpansionItems.PRE_BUILDINGS_MACHINE_ADVANCED, RecipeType.ENHANCED_CRAFTING_TABLE, new ItemStack[] {
                 MagicExpansionItems.BRICKS_2, SlimefunItems.ENERGIZED_CAPACITOR,MagicExpansionItems.STONE_BRICKS_2,
                 MagicExpansionItems.REDSTONE_TORCH_1,MagicExpansionItems.PRE_BUILDINGS_MACHINE_RESOURCE_ADVANCED,MagicExpansionItems.REPEATER_1,
@@ -226,7 +226,7 @@ public class MagicExpansionRecipeMachineSetup {
                         new ItemStack[] {MagicExpansionItems.PRE_BUILDING_KRUSTY_KRAB})
                 .register(plugin);
 
-        //泥土园
+        //Dirt Garden
         new TemplateMachine(magicexpansionrecipemachine, MagicExpansionItems.DIRT_MEAL_MACHINE, RecipeType.ENHANCED_CRAFTING_TABLE, new ItemStack[] {
                 MagicExpansionItems.DIRT, MagicExpansionItems.CORE_ORIGIN,MagicExpansionItems.DIRT,
                 MagicExpansionItems.ELEMENT_INGOT,MagicExpansionItems.JIN_KE_LA,MagicExpansionItems.ELEMENT_INGOT,
@@ -310,7 +310,7 @@ public class MagicExpansionRecipeMachineSetup {
                 .register(plugin);
 
 
-        //钓鱼
+        //Fishing
         new TemplateMachine(magicexpansionrecipemachine, MagicExpansionItems.FISHING_MACHINE, RecipeType.ENHANCED_CRAFTING_TABLE, new ItemStack[] {
                 SlimefunItems.PROGRAMMABLE_ANDROID_FISHERMAN, MagicExpansionItems.CORE_ORIGIN,SlimefunItems.PROGRAMMABLE_ANDROID_FISHERMAN,
                 MagicExpansionItems.ELEMENT_INGOT,new ItemStack(Material.COD),MagicExpansionItems.ELEMENT_INGOT,
@@ -341,7 +341,7 @@ public class MagicExpansionRecipeMachineSetup {
                 .register(plugin);
 
         if (IfItemXist("MAGIC_REDSTONE")) {
-            //魔法资源开采集-rsc
+            //Magic Resource Miner - RSC
             new RecipeMachine(magicexpansionrscmagic, MagicExpansionItems.TWO_TO_MAGIC_GEO_MACHINE, RecipeType.ENHANCED_CRAFTING_TABLE, new ItemStack[]{
                     SlimefunItems.MAGIC_SUGAR, SlimefunItems.MAGIC_SUGAR, new ItemStack(Material.SUGAR),
                     SlimefunItems.MAGIC_SUGAR, new ItemStack(Material.FURNACE), new ItemStack(Material.SUGAR),
@@ -361,7 +361,7 @@ public class MagicExpansionRecipeMachineSetup {
         }
 
 
-        //元素提纯机
+        //Element Purifier
         new RecipeMachine(magicexpansionrecipemachine, MagicExpansionItems.INGOT_PURE_MACHINE, RecipeType.ENHANCED_CRAFTING_TABLE, new ItemStack[] {
                 SlimefunItems.TRASH_CAN, SlimefunItems.ESSENCE_OF_AFTERLIFE,SlimefunItems.BOOSTED_URANIUM,
                 MagicExpansionItems.ELEMENT_INGOT,MagicExpansionItems.FIVE_ELEMENT,MagicExpansionItems.ELEMENT_INGOT,
@@ -401,7 +401,7 @@ public class MagicExpansionRecipeMachineSetup {
                 .setConsumption(260)
                 .setProcessingSpeed(1)
                 .addRecipe(1, new ItemStack[] {new ItemStack(Material.PAPER),new ItemStack(Material.BAMBOO),new ItemStack(Material.FEATHER),new ItemStack(Material.INK_SAC)},
-                        new ItemStack[] {new CustomItemStack(Material.SUGAR, ColorGradient.getGradientNameVer2("符号"), "&f梦", ColorGradient.getGradientNameVer2("凭空制造物质的基础"))})
+                        new ItemStack[] {new CustomItemStack(Material.SUGAR, ColorGradient.getGradientNameVer2("Symbol"), "&fDream", ColorGradient.getGradientNameVer2("The basics of creating matter from nothing"))})
                 .register(plugin);
 
 
@@ -434,7 +434,7 @@ public class MagicExpansionRecipeMachineSetup {
                         new ItemStack[] {ORIGIN_MATERIAL_GEN_ULTRA})
                 .register(plugin);
 
-        //新增  万物演化·源起
+        //Added Origin of All Things Evolution
         new OriginMaterialGenMakerLite(magicexpansionenergy, MagicExpansionItems.ORIGIN_MATERIAL_GEN_MAKER_LITE, RecipeType.ENHANCED_CRAFTING_TABLE, new ItemStack[] {
                 GOLD_ELEMENT, LIGHT_ENERGY_ALPHA,WOOD_ELEMENT,
                 WATER_ELEMENT,REDSTONE_EXECUTE_ELEMENT,FIRE_ELEMENT,
@@ -452,7 +452,7 @@ public class MagicExpansionRecipeMachineSetup {
 
 
 
-        //泥土园
+        //Dirt Garden
         new ItemOriginBackTrackMachine(magicexpansionenergy, MagicExpansionItems.ITEM_ORIGIN_BACK_TRACK, RecipeType.ENHANCED_CRAFTING_TABLE, new ItemStack[] {
                 MagicExpansionItems.PURE_ELEMENT_INGOT, MagicExpansionItems.PURE_ELEMENT_INGOT,MagicExpansionItems.PURE_ELEMENT_INGOT,
                 MagicExpansionItems.PURE_ELEMENT_INGOT,MagicExpansionItems.WORLD_CORE,MagicExpansionItems.PURE_ELEMENT_INGOT,
@@ -461,8 +461,8 @@ public class MagicExpansionRecipeMachineSetup {
                 .setCapacity(2147483647)
                 .setConsumption(2147483646)
                 .setProcessingSpeed(1)
-                .addRecipe(5,new ItemStack[] {new CustomItemStack(doGlow(Material.LIGHT), ColorGradient.getGradientName("放入任意粘液物品"),ColorGradient.getGradientName("即可对物品配方进行溯源"))},
-                        new ItemStack[] {new CustomItemStack(doGlow(Material.NETHER_STAR), ColorGradient.getGradientName("在等待一定时间后，机器会产出源材料"))})
+                .addRecipe(5,new ItemStack[] {new CustomItemStack(doGlow(Material.LIGHT), ColorGradient.getGradientName("Put in any Slimefun item"),ColorGradient.getGradientName("to trace its recipe"))},
+                        new ItemStack[] {new CustomItemStack(doGlow(Material.NETHER_STAR), ColorGradient.getGradientName("After a while, the machine will produce the original materials"))})
                 .register(plugin);
 
 

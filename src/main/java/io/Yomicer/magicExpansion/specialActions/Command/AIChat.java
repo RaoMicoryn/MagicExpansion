@@ -26,14 +26,14 @@ public class AIChat implements CommandExecutor,TabCompleter {
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
         if (!(sender instanceof Player)) {
-            sender.sendMessage("只有玩家可以使用此命令。");
+            sender.sendMessage("Only players can use this command.");
             return true;
         }
 
         Player player = (Player) sender;
-        // ✅ 1. 检查基础权限 mxai.use
+        // ✅ 1. Check the basic mxai.use permission
         if (!player.hasPermission("mxai.use")) {
-            player.sendMessage("你没有使用AI命令的权限！");
+            player.sendMessage("You do not have permission to use AI commands!");
             return true;
         }
 
@@ -46,42 +46,42 @@ public class AIChat implements CommandExecutor,TabCompleter {
 
         if (sub.equals("chaton")) {
             aiManager.enableAI(player);
-            player.sendMessage("§a✅ 已进入AI对话模式（私聊）");
+            player.sendMessage("§a✅ AI chat mode is now on (private chat).");
         } else if (sub.equals("chatoff")) {
             aiManager.disableAI(player);
-            player.sendMessage("§b❌ 已退出AI对话模式");
+            player.sendMessage("§b❌ AI chat mode is now off.");
         } else if (sub.equals("public") && args.length > 1) {
-            // /mxai public 你好
+            // Example: /mxai public hello
             if (aiManager.getPublicMode()) {
                 String msg = String.join(" ", Arrays.copyOfRange(args, 1, args.length));
                 aiManager.askAIPublic(player, msg);
             }else{
-                Bukkit.broadcastMessage("玩家 " + player.getName() + " 想问AI：\"" + String.join(" ", Arrays.copyOfRange(args, 1, args.length)) + "\"");
-                player.sendMessage("❌ 全服AI模式未开启，请联系管理员使用 /mxai publicmode on 开启");
+                Bukkit.broadcastMessage("Player " + player.getName() + " wants to ask AI: \"" + String.join(" ", Arrays.copyOfRange(args, 1, args.length)) + "\"");
+                player.sendMessage("❌ Public AI chat is off. Ask an admin to turn it on with /mxai publicmode on.");
             }
         }else if (sub.equals("publicmode")) {
-            // ✅ 检查OP权限
+            // ✅ Check OP permission
             if (!player.hasPermission("mxai.op") && !player.isOp()) {
-                player.sendMessage("§c你没有权限使用此命令！");
+                player.sendMessage("§cYou do not have permission to use this command!");
                 return true;
             }
 
             if (args.length == 1) {
-                // 查看状态
+                // Check the current status
                 boolean isPublic = aiManager.getPublicMode();
-                player.sendMessage("§6【AI管理】全服模式: " + (isPublic ? "§a开启" : "§c关闭"));
+                player.sendMessage("§6[AI Admin] Public mode: " + (isPublic ? "§aOn" : "§cOff"));
                 return true;
             }
 
             String mode = args[1].toLowerCase();
             if (mode.equals("on")) {
                 aiManager.setPublicMode(true);
-                Bukkit.broadcastMessage("📢 §a全服AI聊天已开启！所有人可使用 §6/mxai public §a参与对话。");
+                Bukkit.broadcastMessage("📢 §aPublic AI chat is now on! Everyone can join with §6/mxai public§a.");
             } else if (mode.equals("off")) {
                 aiManager.setPublicMode(false);
-                Bukkit.broadcastMessage("📢 §c全服AI聊天已关闭，恢复为私聊模式。");
+                Bukkit.broadcastMessage("📢 §cPublic AI chat is now off. AI chat is back to private mode.");
             } else {
-                player.sendMessage("§c用法: /mxai publicmode <on|off>");
+                player.sendMessage("§cUsage: /mxai publicmode <on|off>");
             }
 
         } else {
@@ -92,12 +92,12 @@ public class AIChat implements CommandExecutor,TabCompleter {
     }
 
     private void sendHelp(Player player) {
-        player.sendMessage("§6========== §bAI 聊天助手 §6==========");
-        player.sendMessage("§7/mxai chaton §f- 开启AI对话");
-        player.sendMessage("§7/mxai chatoff §f- 关闭AI对话");
-        player.sendMessage("§7/mxai public §a对话内容 §f- 与全服AI对话");
+        player.sendMessage("§6========== §bAI Chat Helper §6==========");
+        player.sendMessage("§7/mxai chaton §f- Turn on AI chat");
+        player.sendMessage("§7/mxai chatoff §f- Turn off AI chat");
+        player.sendMessage("§7/mxai public §a message §f- Chat with the public AI");
         if (player.hasPermission("mxai.op") || player.isOp()) {
-            player.sendMessage("§c/mxai publicmode <on|off> §7- §c[OP] 控制全服AI模式");
+            player.sendMessage("§c/mxai publicmode <on|off> §7- §c[OP] Manage public AI chat");
         }
         player.sendMessage("§6==================================");
     }

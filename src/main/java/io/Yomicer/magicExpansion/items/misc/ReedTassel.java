@@ -7,7 +7,7 @@ import io.github.thebusybiscuit.slimefun4.api.recipes.RecipeType;
 import org.bukkit.inventory.ItemStack;
 
 /**
- * 芦穗: 不可合成, 获取方式通过自定义 RecipeType(青竹竿) 与配方(青竹竿鱼饵)展示
+ * Reed Tassel: Can't be crafted, Obtained through a custom RecipeType(Green Bamboo Rod) and recipe(Green Bamboo Rod Bait)Show
  */
 public class ReedTassel extends SlimefunItem {
 

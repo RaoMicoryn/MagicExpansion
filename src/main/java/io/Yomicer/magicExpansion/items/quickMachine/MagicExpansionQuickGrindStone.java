@@ -23,57 +23,57 @@ public class MagicExpansionQuickGrindStone extends SimpleSlimefunItem<ItemUseHan
         super(category, item, recipeType, recipe);
     }
 
-//    // 预加载的 磨石 配方列表（静态常量）
+//    // Preloaded Grindstone recipe list (static constant)
 //    private static final List<Map<String, Integer>> GRIND_STONE_RECIPES = new ArrayList<>();
 //
 //    /**
-//     * 静态初始化块：在类加载时预加载所有 GRIND_STONE 类型的配方
+//     * Static initializer: load all GRIND_STONE recipes when the class loads
 //     */
 //    static {
 //        loadGrindStoneRecipes();
 //    }
 //
 //    /**
-//     * 加载所有 GRIND_STONE 类型的配方
+//     * Load all GRIND_STONE recipes
 //     */
 //    private static void loadGrindStoneRecipes() {
-//        // 获取 GrindStone 实例
+//        // Get the Grindstone instance
 //        String id = SlimefunItems.GRIND_STONE.getItemId();
 //
 //            MultiBlockMachine multiBlockMachine = (MultiBlockMachine) MultiBlockMachine.getById(id);
 //
-//            // 使用 getRecipes() 获取配方
+//            // Get recipes using getRecipes()
 //            List<ItemStack[]> recipes = multiBlockMachine.getRecipes();
 //            if (recipes == null || recipes.isEmpty()) {
-//                System.out.println("无法找到 GrindStone 的 recipes.");
+//                System.out.println("Couldn’t find any Grindstone recipes.");
 //                return;
 //            }
 //
-//            // 将配方转换为 Map 格式
+//            // Convert recipes into a Map
 //            for (ItemStack[] recipePair : recipes) {
 //                if (recipePair == null || recipePair.length < 2) {
-//                    continue; // 忽略无效的配方对
+//                    continue; // Skip invalid recipe pairs
 //                }
 //
 //                ItemStack input = recipePair[0];
 //                ItemStack output = recipePair[1];
 //
 //                if (input == null || input.getType() == Material.AIR || output == null || output.getType() == Material.AIR) {
-//                    continue; // 忽略无效的配方
+//                    continue; // Skip invalid recipes
 //                }
 //
 //                Map<String, Integer> recipeMap = new HashMap<>();
 //
-//                // 输入物品
+//                // Input item
 //                String inputKey = getUniqueItemKey(input);
 //                if (inputKey != null) {
 //                    recipeMap.put(inputKey, input.getAmount());
 //                }
 //
-//                // 输出物品
+//                // Output item
 //                String outputKey = getUniqueItemKey(output);
 //                if (outputKey != null) {
-//                    recipeMap.put(outputKey, -output.getAmount()); // 负数表示输出
+//                    recipeMap.put(outputKey, -output.getAmount()); // Negative numbers mean output
 //                }
 //
 //                if (!recipeMap.isEmpty()) {
@@ -83,10 +83,10 @@ public class MagicExpansionQuickGrindStone extends SimpleSlimefunItem<ItemUseHan
 //    }
 //
 //    /**
-//     * 获取物品的唯一键（Slimefun ID 或 Minecraft 材质名称）
+//     * Get the item's unique key (Slimefun ID or Minecraft material name)
 //     *
-//     * @param item 物品
-//     * @return 唯一键（"sf:<ID>" 或 "mc:<Material>"），如果无法识别则返回 null
+//     * @param item item
+//     * @return Unique key ("sf:<ID>" or "mc:<Material>"); returns null if it can't be identified
 //     */
 //    private static String getUniqueItemKey(ItemStack item) {
 //        if (item == null || item.getType() == Material.AIR) {
@@ -102,20 +102,20 @@ public class MagicExpansionQuickGrindStone extends SimpleSlimefunItem<ItemUseHan
     @Override
     public ItemUseHandler getItemHandler() {
         return e->{
-            // 阻止默认行为（放置方块或使用物品）
+            // Prevent the default action (placing a block or using the item)
             e.setUseItem(Event.Result.DENY);
             e.setUseBlock(Event.Result.DENY);
 
-            // 获取玩家
+            // Get the player
             Player player = e.getPlayer();
-            // 打开菜单并动态加载配方
-            ChestMenu menu = new ChestMenu(getGradientName("魔法磨石"));
+            // Open the menuand load recipes
+            ChestMenu menu = new ChestMenu(getGradientName("Magic Grindstone"));
             QuickMachineMBUtile.addAvailableRecipesToMenu(player, menu,0, GRIND_STONE_RECIPES);
 
-            // 设置空槽位是否可点击
+            // Set whether empty slots can be clicked
             menu.setEmptySlotsClickable(false);
             menu.setPlayerInventoryClickable(false);
-            // 显示菜单给玩家
+            // Show the menu to the player
             menu.open(player);
 
 

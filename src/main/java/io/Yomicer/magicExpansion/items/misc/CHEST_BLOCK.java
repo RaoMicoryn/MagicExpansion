@@ -28,7 +28,7 @@ public class CHEST_BLOCK extends AbstractElectricRecipeMachine {
     private static final int[] OUTPUT_BORDER_SLOTS = new int[] { 53 };
 
     private static final ItemStack PROGRESS_ITEM = new ItemStack(Material.SOUL_LANTERN);
-    private static final ItemStack PROGRESS_STACK = new CustomItemStack(Material.SOUL_CAMPFIRE, getGradientName("信息"), getGradientName("类型：容器"), getGradientName("所属附属：魔法"));
+    private static final ItemStack PROGRESS_STACK = new CustomItemStack(Material.SOUL_CAMPFIRE, getGradientName("Info"), getGradientName("Type: Container"), getGradientName("Addon: Magic"));
 
     public CHEST_BLOCK(ItemGroup itemGroup, SlimefunItemStack item, RecipeType recipeType, ItemStack[] recipe) {
         super(itemGroup, item, recipeType, recipe);
@@ -47,42 +47,42 @@ public class CHEST_BLOCK extends AbstractElectricRecipeMachine {
     @Override
 	public List<ItemStack> getDisplayRecipes() {
 		List<ItemStack> display = new ArrayList<>();
-        display.add(new CustomItemStack(Material.KNOWLEDGE_BOOK, getGradientName("输入端⇨"),getGradientName("每一个格子都是输入槽")));
-        display.add(new CustomItemStack(Material.KNOWLEDGE_BOOK, getGradientName("输出端⇨"),getGradientName("每一个格子都是输出槽")));
-        // 遍历所有配方并动态生成展示内容
+        display.add(new CustomItemStack(Material.KNOWLEDGE_BOOK, getGradientName("Input side⇨"),getGradientName("Every slot is an input slot")));
+        display.add(new CustomItemStack(Material.KNOWLEDGE_BOOK, getGradientName("Output side⇨"),getGradientName("Every slot is an output slot")));
+        // Go through all recipes and generate the display content dynamically
         for (MachineRecipe recipe : recipes) {
             ItemStack[] inputs = recipe.getInput();
             ItemStack[] outputs = recipe.getOutput();
             int productionTime = recipe.getTicks()/2;
 
-            int maxItems = Math.max(inputs.length, outputs.length); // 获取最大物品数量
+            int maxItems = Math.max(inputs.length, outputs.length); // Get max item amount
             for (int i = 0; i < maxItems; i++) {
-                // 添加输入物品（带生产时间）
+                // Add input item (with production time)
                 if (i < inputs.length) {
-                    display.add(addLore(inputs[i], "§7生产时间: §e" + productionTime + " 秒"));
+                    display.add(addLore(inputs[i], "§7Production time: §e" + productionTime + " sec"));
                 } else {
-                    display.add(new ItemStack(Material.AIR)); // 如果没有更多输入物品，添加 AIR
+                    display.add(new ItemStack(Material.AIR)); // If there are no more input items, add AIR
                 }
 
-                // 添加输出物品（带生产时间）
+                // Add output item (with production time)
                 if (i < outputs.length) {
-                    display.add(addLore(outputs[i], "§7生产时间: §e" + productionTime + " 秒"));
+                    display.add(addLore(outputs[i], "§7Production time: §e" + productionTime + " sec"));
                 } else {
-                    display.add(new ItemStack(Material.AIR)); // 如果没有更多输出物品，添加 AIR
+                    display.add(new ItemStack(Material.AIR)); // If there are no more output items, add AIR
                 }
             }
-            display.add(new CustomItemStack(Material.PINK_STAINED_GLASS_PANE, getGradientName("<== 配方分割线 =>>"),getGradientName("<== 输入材料 =>>")));
-            display.add(new CustomItemStack(Material.PINK_STAINED_GLASS_PANE, getGradientName("<== 配方分割线 =>>"),getGradientName("<== 输出材料 =>>")));
-            // 遍历所有配方并动态生成展示内容
+            display.add(new CustomItemStack(Material.PINK_STAINED_GLASS_PANE, getGradientName("<== Recipe divider =>>"),getGradientName("<== Input materials =>>")));
+            display.add(new CustomItemStack(Material.PINK_STAINED_GLASS_PANE, getGradientName("<== Recipe divider =>>"),getGradientName("<== Output materials =>>")));
+            // Go through all recipes and generate the display content dynamically
         }
         return display;
 	}
 
     /**
-     * 为物品添加描述（lore）
+     * Add a description (lore) to the item
      */
     private ItemStack addLore(ItemStack item, String loreText) {
-        ItemStack newItem = item.clone(); // 防止直接修改原始物品
+        ItemStack newItem = item.clone(); // Prevent changing the original item directly
         ItemMeta meta = newItem.getItemMeta();
         List<String> lore = meta.hasLore() ? new ArrayList<>(meta.getLore()) : new ArrayList<>();
         lore.add(loreText);

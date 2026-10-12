@@ -46,7 +46,7 @@ public class OriginMaterialGen extends AbstractElectricResourceMachine implement
     private static final ItemStack PROGRESS_ITEM = new ItemStack(Material.SOUL_LANTERN);
     private ItemStack material;
 
-    private static final ItemStack PROGRESS_STACK = new CustomItemStack(Material.SOUL_CAMPFIRE, getGradientNameVer2("信息"), getGradientNameVer2("类型：资源生成器"), getGradientNameVer2("所属附属：魔法"));
+    private static final ItemStack PROGRESS_STACK = new CustomItemStack(Material.SOUL_CAMPFIRE, getGradientNameVer2("Info"), getGradientNameVer2("Type: Resource Generator"), getGradientNameVer2("Addon: Magic"));
 
 
 
@@ -71,8 +71,8 @@ public class OriginMaterialGen extends AbstractElectricResourceMachine implement
         if (drop == null || !drop.hasItemMeta()) return;
         ItemMeta meta = drop.getItemMeta();
         if (meta != null) {
-            // L2 修复：Material.valueOf 在数据损坏时抛异常会导致整个 onBreak 中断、机器物品消失；
-            // 改用 matchMaterial，解析失败时原样掉落机器本体，不吞机器
+            // L2 fix: If the data is corrupted, Material.valueOf throws an exception, which breaks the whole onBreak and makes the machine item vanish;
+            // use matchMaterial instead. If parsing fails, the machine itself drops as normal and is never lost
             Material material = Material.matchMaterial(materialName);
             if (material == null) {
                 loc.getWorld().dropItemNaturally(loc, drop);
@@ -86,7 +86,7 @@ public class OriginMaterialGen extends AbstractElectricResourceMachine implement
             if (lore == null) {
                 lore = new ArrayList<>();
             }
-            lore.add(getGradientNameVer2( "当前推演物品：" + n));
+            lore.add(getGradientNameVer2( "Current item: " + n));
             meta.setLore(lore);
             NamespacedKey key = new NamespacedKey(MagicExpansion.getInstance(), "origin_material");
             meta.getPersistentDataContainer().set(key, PersistentDataType.STRING, materialName);
@@ -138,7 +138,7 @@ public class OriginMaterialGen extends AbstractElectricResourceMachine implement
 
         if (maxedSlots == getOutputSlots().length) { return null; }
 
-        // L1 修复：配方列表为空时直接返回 null，避免 recipes.get(0) 抛 IndexOutOfBoundsException
+        // L1 fix: If the recipe list is empty, return null right away so recipes.get(0) doesn't throw IndexOutOfBoundsException
         if (recipes == null || recipes.isEmpty()) { return null; }
 
         MachineRecipe recipe = recipes.get(0);
@@ -163,8 +163,8 @@ public class OriginMaterialGen extends AbstractElectricResourceMachine implement
             }
         }
         if (output != null) {
-            // L3 修复：大批量推送（36×99）前先用 fits 逻辑计算输出槽可容纳量，
-            // 能放多少放多少，剩余留到下个生产周期，不再静默丢弃
+            // L3 fix: Before pushing a large batch (36×99), work out how much the output slots can hold using fits logic,
+            // push as much as fits, leave the rest for the next production cycle, and never silently discard it
             int totalToPush = Math.min(36 * output.getAmount(), calcOutputFit(menu, output));
             int remaining = totalToPush;
             while (remaining > 0) {
@@ -181,7 +181,7 @@ public class OriginMaterialGen extends AbstractElectricResourceMachine implement
         }
     }
 
-    // L3: 计算输出槽对指定物品还能容纳多少个（空槽按最大堆叠算，同类槽按剩余空间算）
+    // L3: Work out how many more of the given item the output slots can hold (empty slots count as a full stack, matching slots count their remaining space)
     private int calcOutputFit(BlockMenu menu, ItemStack output) {
         int fit = 0;
         for (int slot : getOutputSlots()) {
@@ -200,9 +200,9 @@ public class OriginMaterialGen extends AbstractElectricResourceMachine implement
 	public List<ItemStack> getDisplayRecipes() {
 	    List<ItemStack> display = new ArrayList<>();
 
-        display.add(new CustomItemStack(Material.KNOWLEDGE_BOOK, getGradientNameVer2("产物⇨"),getGradientNameVer2("每次生产 3564 个"),getGradientNameVer2("生产效率⇨ ⚙ 每 " + getCraftSecond() + " s生成一次"),getGradientNameVer2("生产能耗⇨ ⚡ "+ getEnergyConsumption()*2 +" J/s")));
-        display.add(new CustomItemStack(Material.KNOWLEDGE_BOOK, getGradientNameVer2("产物⇨"),getGradientNameVer2("每次生产 3564 个"),getGradientNameVer2("生产效率⇨ ⚙ 每 " + getCraftSecond() + " s生成一次"),getGradientNameVer2("生产能耗⇨ ⚡ "+ getEnergyConsumption()*2 +" J/s")));
-        // 将输出物品数组中的所有物品添加到显示列表
+        display.add(new CustomItemStack(Material.KNOWLEDGE_BOOK, getGradientNameVer2("Output⇨"),getGradientNameVer2("Produces 3564 per cycle"),getGradientNameVer2("Speed⇨ ⚙ Once every " + getCraftSecond() + " s"),getGradientNameVer2("Energy use⇨ ⚡ "+ getEnergyConsumption()*2 +" J/s")));
+        display.add(new CustomItemStack(Material.KNOWLEDGE_BOOK, getGradientNameVer2("Output⇨"),getGradientNameVer2("Produces 3564 per cycle"),getGradientNameVer2("Speed⇨ ⚙ Once every " + getCraftSecond() + " s"),getGradientNameVer2("Energy use⇨ ⚡ "+ getEnergyConsumption()*2 +" J/s")));
+        // Add every item in the output array to the display list
         display.addAll(Arrays.asList(getItemStackOutputs()));
 
         return display;
@@ -253,13 +253,13 @@ public class OriginMaterialGen extends AbstractElectricResourceMachine implement
         ItemStack item = PROGRESS_STACK.clone();
         ItemMeta meta = item.getItemMeta();
 
-        meta.setDisplayName(getGradientNameVer2("信息⇨"));
+        meta.setDisplayName(getGradientNameVer2("Info⇨"));
         ArrayList lore = new ArrayList<>();
-        lore.add(getGradientNameVer2("类型：资源生成器"));
-        lore.add(getGradientNameVer2("所属附属：魔法"));
-        lore.add(getGradientNameVer2("当前生产物品：" + ItemStackHelper.getDisplayName(output)));
-        lore.add(getGradientNameVer2("生产效率⇨ ⚙ 每 " + getCraftSecond() + " s生成一次"));
-        lore.add(getGradientNameVer2("生产能耗⇨ ⚡ "+ getEnergyConsumption()*2 +" J/s"));
+        lore.add(getGradientNameVer2("Type: Resource Generator"));
+        lore.add(getGradientNameVer2("Addon: Magic"));
+        lore.add(getGradientNameVer2("Now producing: " + ItemStackHelper.getDisplayName(output)));
+        lore.add(getGradientNameVer2("Speed⇨ ⚙ Once every " + getCraftSecond() + " s"));
+        lore.add(getGradientNameVer2("Energy use⇨ ⚡ "+ getEnergyConsumption()*2 +" J/s"));
         meta.setLore(lore);
         item.setItemMeta(meta);
 

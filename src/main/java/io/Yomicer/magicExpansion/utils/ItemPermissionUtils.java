@@ -10,41 +10,41 @@ import static io.Yomicer.magicExpansion.utils.ColorGradient.getGradientName;
 public class ItemPermissionUtils {
 
     /**
-     * 判断玩家是否有权限进行操作
+     * Check whether the player has permission to perform this action
      *
-     * @param player 玩家对象
-     * @return 如果玩家有权限，返回 true；否则返回 false
+     * @param player player object
+     * @return Returns true if the player has permission; otherwise returns false
      */
     public static boolean hasPermissionRe(Player player) {
-        // 检查玩家是否有 "slimefun.inventory.bypass" 权限
+        // Check whether the player has the "slimefun.inventory.bypass" permission
         if (player.hasPermission("slimefun.inventory.bypass")) {
             return true;
         }
 
-        // 检查保护插件的权限（如 WorldGuard）
+        // Check protection-plugin permissions (such as WorldGuard)
         if (Slimefun.getProtectionManager().hasPermission(player, player.getLocation(), Interaction.INTERACT_BLOCK)&&
                 Slimefun.getProtectionManager().hasPermission(player, player.getLocation(), Interaction.BREAK_BLOCK)&&
                 Slimefun.getProtectionManager().hasPermission(player, player.getLocation(), Interaction.PLACE_BLOCK)) {
             return true;
         }
-        player.sendMessage(getGradientName("[魔法]你没有权限进行此操作~"));
+        player.sendMessage(getGradientName("[Magic]You do not have permission to do this~"));
 
         return false;
     }
 
     /**
-     * 判断玩家是否有权限进行操作
+     * Check whether the player has permission to perform this action
      *
-     * @param player 玩家对象
-     * @return 如果玩家有权限，返回 true；否则返回 false
+     * @param player player object
+     * @return Returns true if the player has permission; otherwise returns false
      */
     public static boolean hasPermissionOnAttack(Player player) {
-        // 检查玩家是否有 "slimefun.inventory.bypass" 权限
+        // Check whether the player has the "slimefun.inventory.bypass" permission
         if (player.hasPermission("slimefun.inventory.bypass")) {
             return true;
         }
 
-        // 检查保护插件的权限（如 WorldGuard）
+        // Check protection-plugin permissions (such as WorldGuard)
         if (Slimefun.getProtectionManager().hasPermission(player, player.getLocation(), Interaction.ATTACK_PLAYER)&&
                 Slimefun.getProtectionManager().hasPermission(player, player.getLocation(), Interaction.ATTACK_ENTITY)&&
                 Slimefun.getProtectionManager().hasPermission(player, player.getLocation(), Interaction.INTERACT_BLOCK)&&
@@ -56,11 +56,11 @@ public class ItemPermissionUtils {
     }
 
     public static boolean hasPermissionOnlyOnAttackEntity(Player player) {
-        // 检查玩家是否有 "slimefun.inventory.bypass" 权限
+        // Check whether the player has the "slimefun.inventory.bypass" permission
         if (player.hasPermission("slimefun.inventory.bypass")) {
             return true;
         }
-        // 检查保护插件的权限（如 WorldGuard）
+        // Check protection-plugin permissions (such as WorldGuard)
         if (Slimefun.getProtectionManager().hasPermission(player, player.getLocation(), Interaction.ATTACK_ENTITY)) {
             return true;
         }
@@ -69,24 +69,24 @@ public class ItemPermissionUtils {
 
 
     /**
-     * 判断玩家是否有权限进行操作
+     * Check whether the player has permission to perform this action
      *
-     * @param player 玩家对象
-     * @return 如果玩家有权限，返回 true；否则返回 false
+     * @param player player object
+     * @return Returns true if the player has permission; otherwise returns false
      */
     public static boolean hasPermissionPoint(Player player, Location l) {
-        // 检查玩家是否有 "slimefun.inventory.bypass" 权限
+        // Check whether the player has the "slimefun.inventory.bypass" permission
         if (player.hasPermission("slimefun.inventory.bypass")) {
             return true;
         }
 
-        // 检查保护插件的权限（如 WorldGuard）
+        // Check protection-plugin permissions (such as WorldGuard)
         if (Slimefun.getProtectionManager().hasPermission(player, l, Interaction.INTERACT_BLOCK)&&
                 Slimefun.getProtectionManager().hasPermission(player, l, Interaction.BREAK_BLOCK)&&
                 Slimefun.getProtectionManager().hasPermission(player, l, Interaction.PLACE_BLOCK)) {
             return true;
         }
-//        player.sendMessage(getGradientName("[魔法]你没有权限进行此操作~"));
+//        player.sendMessage(getGradientName("[Magic]You do not have permission to do this~"));
 
         return false;
     }

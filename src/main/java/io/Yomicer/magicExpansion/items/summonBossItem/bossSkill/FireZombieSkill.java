@@ -15,32 +15,32 @@ public class FireZombieSkill {
 
 
 
-    // 生成粒子特效
+    // Spawn particle effects
     private static void spawnParticleEffects(Location location,Player player) {
-        // 火焰粒子
+        // Flame particles
         location.getWorld().spawnParticle(Particle.FLAME, location, 1000, 10, 8, 10, 0.1);
-//        player.sendMessage("FLAME触发");
+//        player.sendMessage("FLAMEtriggered");
 
-        // 烟雾粒子
+        // Smoke particles
         location.getWorld().spawnParticle(Particle.CAMPFIRE_COSY_SMOKE, location, 1000, 10, 8, 10, 0.1);
-//        player.sendMessage("CAMPFIRE_COSY_SMOKE触发");
-        // 魔法粒子
-        // 定义粒子的颜色（青色）
+//        player.sendMessage("CAMPFIRE_COSY_SMOKEtriggered");
+        // Magic particles
+        // Set the particle color (cyan)
 //        Particle.DustOptions dustOptions = new Particle.DustOptions(Color.fromRGB(0, 255, 255), 1.0f);
-        location.getWorld().spawnParticle(Particle.ENCHANTMENT_TABLE, location, 1000, 10, 8, 10, 0.1);
-//        player.sendMessage("ENCHANT触发");
+        location.getWorld().spawnParticle(Particle.ENCHANT, location, 1000, 10, 8, 10, 0.1);
+//        player.sendMessage("ENCHANTtriggered");
     }
 
-    // 生成粒子特效
+    // Spawn particle effects
     private static void spawnOneParticle(Location location,Player player, Particle particle, int num) {
-        // 火焰粒子
+        // Flame particles
         location.getWorld().spawnParticle(particle, location, num, 10, 8, 10, 0.1);
-//        player.sendMessage("FLAME触发");
+//        player.sendMessage("FLAMEtriggered");
     }
     private static void spawnOneParticle(Location location,Player player, Particle particle, int num, double x, double y, double z) {
-        // 火焰粒子
+        // Flame particles
         location.getWorld().spawnParticle(particle, location, num, x, y, z, 0.1);
-//        player.sendMessage("FLAME触发");
+//        player.sendMessage("FLAMEtriggered");
     }
 
     private static void spawnOneParticle(Location location, Player player, Particle particle, Particle.DustOptions extraInfo){
@@ -49,7 +49,7 @@ public class FireZombieSkill {
 
 
     /**
-     * 获取附近的玩家
+     * Get nearby players
      */
     private static List<Player> getNearbyPlayers(LivingEntity mob, double x,double y) {
         return mob.getWorld().getNearbyEntities(mob.getLocation(), x, y, x).stream()
@@ -59,158 +59,158 @@ public class FireZombieSkill {
     }
 
     /**
-     * 技能：魔法攻击
+     * Skill: Magic Attack
      */
     public static void magicAttackSkill(LivingEntity mob, String bossName) {
         for (Player nearbyPlayer : getNearbyPlayers(mob,10,5)) {
-            nearbyPlayer.damage(10, mob); // 造成5点伤害
-            nearbyPlayer.sendMessage(bossName+"对你发动了魔法攻击！");
-            spawnOneParticle(nearbyPlayer.getLocation(), nearbyPlayer, Particle.WATER_BUBBLE,2500);
+            nearbyPlayer.damage(10, mob); // Deals 5 damage
+            nearbyPlayer.sendMessage(bossName+" used a magic attack on you!");
+            spawnOneParticle(nearbyPlayer.getLocation(), nearbyPlayer, Particle.BUBBLE,2500);
         }
     }
 
     /**
-     * 技能：红石粒子攻击 僵尸大招，精神攻击
+     * Skill: Redstone Particle Attack - Zombie's special mind attack
      */
     public static void redstoneParticleAttackSkill(LivingEntity mob) {
         Particle.DustOptions dustOptions = new Particle.DustOptions(Color.fromRGB(0, 255, 255), 1.0f);
         for (Player nearbyPlayer : getNearbyPlayers(mob,10,5)) {
-            nearbyPlayer.damage(8, mob); // 造成5点伤害
-            nearbyPlayer.sendMessage("§b§l烈焰僵尸对你发动了精神攻击！");
-            spawnOneParticle(nearbyPlayer.getLocation(), nearbyPlayer, Particle.REDSTONE, dustOptions);
-            // 添加负面效果（持续2秒，等级10）
-            nearbyPlayer.addPotionEffect(new PotionEffect(PotionEffectType.SLOW_DIGGING, 40, 10)); // 攻击缓慢
-            nearbyPlayer.sendMessage(ChatColor.RED + "§l你的手臂变得沉重无比，" + ChatColor.YELLOW + "§l攻击速度大幅下降！");
-            nearbyPlayer.addPotionEffect(new PotionEffect(PotionEffectType.SLOW, 40, 10));         // 移动缓慢
-            nearbyPlayer.sendMessage(ChatColor.DARK_BLUE + "§l你的双腿像灌了铅一样，" + ChatColor.GOLD + "§l移动变得异常迟缓！");
-            nearbyPlayer.addPotionEffect(new PotionEffect(PotionEffectType.BLINDNESS, 40, 10));    // 致盲
-            nearbyPlayer.sendMessage(ChatColor.BLACK + "§l黑暗笼罩了你的视野，" + ChatColor.LIGHT_PURPLE + "§l你几乎什么都看不见！");
-            nearbyPlayer.addPotionEffect(new PotionEffect(PotionEffectType.CONFUSION, 180, 10));    // 反胃
-            nearbyPlayer.sendMessage(ChatColor.GREEN + "§l一阵强烈的眩晕感袭来，" + ChatColor.DARK_GREEN + "§l你的世界开始天旋地转！");
-            nearbyPlayer.addPotionEffect(new PotionEffect(PotionEffectType.HUNGER, 40, 10));       // 饥饿
-            nearbyPlayer.sendMessage(ChatColor.DARK_RED + "§l你的肚子发出痛苦的呻吟，" + ChatColor.GRAY + "§l饥饿感正在吞噬你的体力！");
-            nearbyPlayer.addPotionEffect(new PotionEffect(PotionEffectType.DARKNESS, 40, 10));     // 失明（1.19+版本支持）
-            nearbyPlayer.sendMessage(ChatColor.DARK_GRAY + "§l深邃的黑暗侵蚀了你的灵魂，" + ChatColor.WHITE + "§l你完全陷入了无尽的虚无！");
+            nearbyPlayer.damage(8, mob); // Deals 5 damage
+            nearbyPlayer.sendMessage("§b§lThe Fire Zombie used a mind attack on you!");
+            spawnOneParticle(nearbyPlayer.getLocation(), nearbyPlayer, Particle.DUST, dustOptions);
+            // Add negative effects (last 2 seconds, level 10)
+            nearbyPlayer.addPotionEffect(new PotionEffect(PotionEffectType.MINING_FATIGUE, 40, 10)); // Slower attacks
+            nearbyPlayer.sendMessage(ChatColor.RED + "§lYour arms feel super heavy, " + ChatColor.YELLOW + "§lyour attack speed is way down!");
+            nearbyPlayer.addPotionEffect(new PotionEffect(PotionEffectType.SLOWNESS, 40, 10));         // Slower movement
+            nearbyPlayer.sendMessage(ChatColor.DARK_BLUE + "§lYour legs feel like they're made of lead, " + ChatColor.GOLD + "§lyou can barely move!");
+            nearbyPlayer.addPotionEffect(new PotionEffect(PotionEffectType.BLINDNESS, 40, 10));    // Blindness
+            nearbyPlayer.sendMessage(ChatColor.BLACK + "§lDarkness fills your vision, " + ChatColor.LIGHT_PURPLE + "§lyou can barely see anything!");
+            nearbyPlayer.addPotionEffect(new PotionEffect(PotionEffectType.NAUSEA, 180, 10));    // Nausea
+            nearbyPlayer.sendMessage(ChatColor.GREEN + "§lA strong wave of dizziness hits you, " + ChatColor.DARK_GREEN + "§leverything starts spinning!");
+            nearbyPlayer.addPotionEffect(new PotionEffect(PotionEffectType.HUNGER, 40, 10));       // Hunger
+            nearbyPlayer.sendMessage(ChatColor.DARK_RED + "§lYour stomach growls painfully, " + ChatColor.GRAY + "§lhunger is draining your energy!");
+            nearbyPlayer.addPotionEffect(new PotionEffect(PotionEffectType.DARKNESS, 40, 10));     // Darkness (supported in 1.19+)
+            nearbyPlayer.sendMessage(ChatColor.DARK_GRAY + "§lDeep darkness takes over, " + ChatColor.WHITE + "§land you feel lost in endless darkness!");
         }
     }
     /**
-     * 技能：絮风
+     * Skill: Gust
      */
     public static void redstoneParticleAttackSkillWindElf(LivingEntity mob) {
         Particle.DustOptions dustOptions = new Particle.DustOptions(Color.fromRGB(255, 105, 180), 5.0f);
         for (Player nearbyPlayer : getNearbyPlayers(mob,15,8)) {
-            nearbyPlayer.damage(21, mob); // 造成21点伤害
-            nearbyPlayer.sendMessage("§3§l风灵对你发动了絮风攻击！");
-            spawnOneParticle(nearbyPlayer.getLocation(), nearbyPlayer, Particle.REDSTONE, dustOptions);
-            // 1. 失衡：跳跃提升（反向效果）→ 模拟“被狂风吹起，无法落地”
-            nearbyPlayer.addPotionEffect(new PotionEffect(PotionEffectType.LEVITATION, 80, 5)); // 被气流托起，漂浮
-            nearbyPlayer.sendMessage(ChatColor.AQUA + "§l↑↑↑ 狂暴的气流将你高高卷起！" + ChatColor.WHITE + " §l你无法控制地向上漂浮...");
+            nearbyPlayer.damage(21, mob); // Deals 21 damage
+            nearbyPlayer.sendMessage("§3§lThe Wind Elf hit you with a gust attack!");
+            spawnOneParticle(nearbyPlayer.getLocation(), nearbyPlayer, Particle.DUST, dustOptions);
+            // 1. Off balance: levitation makes it feel like the wind is lifting you up
+            nearbyPlayer.addPotionEffect(new PotionEffect(PotionEffectType.LEVITATION, 80, 5)); // The air lifts you up
+            nearbyPlayer.sendMessage(ChatColor.AQUA + "§l↑↑↑ A wild gust sends you flying high!" + ChatColor.WHITE + " §lYou keep floating up and can't control it...");
 
-            // 2. 减速：缓慢 + 缓慢挖掘（双重迟滞）
-            nearbyPlayer.addPotionEffect(new PotionEffect(PotionEffectType.SLOW, 80, 3));
-            nearbyPlayer.addPotionEffect(new PotionEffect(PotionEffectType.SLOW_DIGGING, 80, 3));
-            nearbyPlayer.sendMessage(ChatColor.LIGHT_PURPLE + "§l🌀 四周的风形成枷锁，" + ChatColor.GRAY + "§l你的动作变得迟缓而无力...");
+            // 2. Slowdown: slowness + mining fatigue
+            nearbyPlayer.addPotionEffect(new PotionEffect(PotionEffectType.SLOWNESS, 80, 3));
+            nearbyPlayer.addPotionEffect(new PotionEffect(PotionEffectType.MINING_FATIGUE, 80, 3));
+            nearbyPlayer.sendMessage(ChatColor.LIGHT_PURPLE + "§l🌀 The wind wraps around you like chains, " + ChatColor.GRAY + "§lyour movements feel slow and weak...");
 
-            // 3. 视觉干扰：反胃（模拟眩晕 + 视野扭曲）
-            nearbyPlayer.addPotionEffect(new PotionEffect(PotionEffectType.CONFUSION, 250, 3));
-            nearbyPlayer.sendMessage(ChatColor.DARK_AQUA + "§l🌪️ 眼前的世界疯狂旋转，" + ChatColor.YELLOW + "§l你分不清哪边是天，哪边是地...");
+            // 3. Vision trouble: nausea makes you dizzy and distorts your view
+            nearbyPlayer.addPotionEffect(new PotionEffect(PotionEffectType.NAUSEA, 250, 3));
+            nearbyPlayer.sendMessage(ChatColor.DARK_AQUA + "§l🌪️ The world spins around you, " + ChatColor.YELLOW + "§lyou can't tell up from down...");
 
-            // 4. 呼吸困难：饥饿效果（象征体力流失）
+            // 4. Hard to breathe: hunger represents lost stamina
             nearbyPlayer.addPotionEffect(new PotionEffect(PotionEffectType.HUNGER, 80, 3));
-            nearbyPlayer.sendMessage(ChatColor.DARK_RED + "§l💨 强风封锁了你的呼吸，" + ChatColor.GOLD + "§l体力正随着每一次喘息迅速流失...");
+            nearbyPlayer.sendMessage(ChatColor.DARK_RED + "§l💨 The strong wind steals your breath, " + ChatColor.GOLD + "§lyour energy drains with every breath...");
 
-            // 5. 风暴之眼： blindness（短暂致盲，模拟沙尘迷眼）
+            // 5. Storm's eye: brief blindness, like dust getting in your eyes
             nearbyPlayer.addPotionEffect(new PotionEffect(PotionEffectType.BLINDNESS, 40, 100));
-            nearbyPlayer.sendMessage(ChatColor.BLACK + "§l🌫️ 灰白色的风沙扑面而来，" + ChatColor.WHITE + "§l你的双眼几乎无法视物...");
+            nearbyPlayer.sendMessage(ChatColor.BLACK + "§l🌫️ A cloud of pale dust hits your face, " + ChatColor.WHITE + "§lyou can barely see...");
 
-            // 可选：1.19+ 支持 DARKNESS（更契合“风暴遮蔽光明”）
+            // Optional: DARKNESS is supported in 1.19+ and fits the storm blocking out the light
             if (Bukkit.getVersion().contains("1.19") || Bukkit.getVersion().contains("1.20") || Bukkit.getVersion().contains("1.21")) {
                 nearbyPlayer.addPotionEffect(new PotionEffect(PotionEffectType.DARKNESS, 100, 100));
-                nearbyPlayer.sendMessage(ChatColor.DARK_GRAY + "🌑 风灵之怒遮蔽了光明，" + ChatColor.GRAY + "§l连灵魂都被黑暗侵蚀...");
+                nearbyPlayer.sendMessage(ChatColor.DARK_GRAY + "🌑 The Wind Elf's fury blocks out the light, " + ChatColor.GRAY + "§leven your soul is swallowed by darkness...");
             }
         }
     }
 
     /**
-     * 技能：火焰攻击
+     * Skill: Fire Attack
      */
     public static void fireParticleAttackSkill(LivingEntity mob) {
 
-        // 获取附近的玩家
+        // Get nearby players
         List<Player> nearbyPlayers = getNearbyPlayers(mob,10,5);
 
-        // 如果没有玩家在范围内，直接返回
+        // If no players are in range, stop here
         if (nearbyPlayers.isEmpty()) {
             return;
         }
 
-        // 随机选择一个目标玩家
+        // Pick a random player as the target
         Player targetPlayer = nearbyPlayers.get(new Random().nextInt(nearbyPlayers.size()));
 
-        // 对目标玩家造成伤害
-        targetPlayer.damage(88, mob); // 造成88点伤害
+        // Damage the target player
+        targetPlayer.damage(88, mob); // Deals 88 damage
 
-        // 发送提示信息给目标玩家
-        targetPlayer.sendMessage("§c§l烈焰僵尸锁定了你！");
-        targetPlayer.sendMessage("§e§l炙热的火焰吞噬了你的灵魂...");
-        targetPlayer.sendMessage("§c§l你受到了" +"§e§l88点伤害§c§l" +"！");
+        // Send a message to the target player
+        targetPlayer.sendMessage("§c§lThe Fire Zombie has locked onto you!");
+        targetPlayer.sendMessage("§e§lScorching flames are consuming your soul...");
+        targetPlayer.sendMessage("§c§lYou took " +"§e§l88 damage§c§l" +"！");
 
-        // 添加链接线效果
+        // Add a link-line effect
         spawnLinkEffect(mob.getLocation(), targetPlayer.getLocation(),Color.RED);
-        // 在目标玩家位置生成火焰粒子效果
+        // Spawn flame particles at the target player's location
         spawnOneParticle(targetPlayer.getLocation(), targetPlayer, Particle.FLAME, 200, 1, 1, 1);
 
-        // 广播消息给范围内的其他玩家（非目标玩家）
+        // Notify other nearby players (not the target)
         for (Player nearbyPlayer : nearbyPlayers) {
             if (!nearbyPlayer.equals(targetPlayer)) {
-                nearbyPlayer.sendMessage("§e§l烈焰僵尸刚刚发动了火焰攻击！");
-                nearbyPlayer.sendMessage("§e§l它锁定了 §b"+ targetPlayer.getName() + "§e§l！");
+                nearbyPlayer.sendMessage("§e§lThe Fire Zombie just used a fire attack!");
+                nearbyPlayer.sendMessage("§e§lIt locked onto §b"+ targetPlayer.getName() + "§e§l！");
             }
         }
     }
     /**
-     * 技能：双子风攻击
+     * Skill: Twin Wind Attack
      */
     public static void twoWindParticleAttackSkill(LivingEntity mob) {
 
-        // 获取附近的玩家
+        // Get nearby players
         List<Player> nearbyPlayers = getNearbyPlayers(mob,15,8);
 
-        // 如果没有玩家在范围内，直接返回
+        // If no players are in range, stop here
         if (nearbyPlayers.isEmpty()) {
             return;
         }
 
-        // 随机选择一个目标玩家
+        // Pick a random player as the target
         Player targetPlayer = nearbyPlayers.get(new Random().nextInt(nearbyPlayers.size()));
         Player targetPlayer2 = nearbyPlayers.get(new Random().nextInt(nearbyPlayers.size()));
 
-        // 对目标玩家造成伤害
-        targetPlayer.damage(68, mob); // 造成78点伤害
-        targetPlayer2.damage(136, mob); // 造成78点伤害
+        // Damage the target player
+        targetPlayer.damage(68, mob); // Deals 78 damage
+        targetPlayer2.damage(136, mob); // Deals 78 damage
 
-        // 发送提示信息给目标玩家
-        targetPlayer.sendMessage("§b§l乂风锁定了你！");
-        targetPlayer.sendMessage("§e§l狂风席卷而来，试图撕裂你的防御...");
-        targetPlayer.sendMessage("§b§l你遭受了" + "§e§l68点伤害§b§l" + "！");
+        // Send a message to the target player
+        targetPlayer.sendMessage("§b§lWind X has locked onto you!");
+        targetPlayer.sendMessage("§e§lA fierce wind rushes in, trying to break through your defense...");
+        targetPlayer.sendMessage("§b§lYou took " + "§e§l68 damage§b§l" + "！");
 
-        targetPlayer2.sendMessage("§b§l爻风锁定了你！");
-        targetPlayer2.sendMessage("§e§l狂风席卷而来，透过你的护甲，试图撕裂你的肉身...");
-        targetPlayer2.sendMessage("§b§l你遭受了" + "§e§l136点伤害§b§l" + "！");
+        targetPlayer2.sendMessage("§b§lWind Y has locked onto you!");
+        targetPlayer2.sendMessage("§e§lThe fierce wind cuts through your armor and tears at you...");
+        targetPlayer2.sendMessage("§b§lYou took " + "§e§l136 damage§b§l" + "！");
 
-        // 添加链接线效果
+        // Add a link-line effect
         spawnLinkEffect(mob.getLocation(), targetPlayer.getLocation(), Color.AQUA);
         spawnLinkEffect(mob.getLocation(), targetPlayer2.getLocation(), Color.AQUA);
-        // 在目标玩家位置生成火焰粒子效果
-        spawnOneParticle(targetPlayer.getLocation(), targetPlayer, Particle.WATER_SPLASH, 300, 1, 1, 1);
-        spawnOneParticle(targetPlayer2.getLocation(), targetPlayer, Particle.WATER_SPLASH, 300, 1, 1, 1);
+        // Spawn flame particles at the target player's location
+        spawnOneParticle(targetPlayer.getLocation(), targetPlayer, Particle.SPLASH, 300, 1, 1, 1);
+        spawnOneParticle(targetPlayer2.getLocation(), targetPlayer, Particle.SPLASH, 300, 1, 1, 1);
 
-        // 广播消息给范围内的其他玩家（非目标玩家）
+        // Notify other nearby players (not the target)
         for (Player nearbyPlayer : nearbyPlayers) {
             if (!nearbyPlayer.equals(targetPlayer)&&!nearbyPlayer.equals(targetPlayer2)) {
-                nearbyPlayer.sendMessage("§e§l风灵发动了双子风攻击！");
-                nearbyPlayer.sendMessage("§e§l乂风锁定了 §b"+ targetPlayer.getName() + "§e§l！");
-                nearbyPlayer.sendMessage("§e§l爻风锁定了 §b"+ targetPlayer2.getName() + "§e§l！");
+                nearbyPlayer.sendMessage("§e§lThe Wind Elf just used its Twin Wind attack!");
+                nearbyPlayer.sendMessage("§e§lWind X locked onto §b"+ targetPlayer.getName() + "§e§l！");
+                nearbyPlayer.sendMessage("§e§lWind Y locked onto §b"+ targetPlayer2.getName() + "§e§l！");
             }
         }
     }
@@ -218,13 +218,13 @@ public class FireZombieSkill {
 
 
     /**
-     * 在两个位置之间生成链接线效果
+     * Create a link line between two locations
      *
-     * @param start 起始位置（例如烈火僵尸的位置）
-     * @param end   结束位置（例如目标玩家的位置）
+     * @param start Starting point (for example, the Fire Zombie's location)
+     * @param end   End point (for example, the target player's location)
      */
     public static void spawnLinkEffect(Location start, Location end,Color color) {
-        // 获取起始和结束位置的坐标
+        // Get the coordinates of both points
         double startX = start.getX();
         double startY = start.getY();
         double startZ = start.getZ();
@@ -233,26 +233,26 @@ public class FireZombieSkill {
         double endY = end.getY();
         double endZ = end.getZ();
 
-        // 计算两点之间的距离
+        // Calculate the distance between the two points
         double distance = start.distance(end);
 
-        // 设置粒子的数量和间隔
-        int particleCount = (int) (distance * 5); // 每单位距离生成 5 个粒子
+        // Set the number and spacing of particles
+        int particleCount = (int) (distance * 5); // Spawn 5 particles per block
         double deltaX = (endX - startX) / particleCount;
         double deltaY = (endY - startY) / particleCount;
         double deltaZ = (endZ - startZ) / particleCount;
 
-        // 在两点之间生成粒子
+        // Spawn particles between the two points
         for (int i = 0; i < particleCount; i++) {
             double x = startX + deltaX * i;
             double y = startY + deltaY * i;
             double z = startZ + deltaZ * i;
 
-            // 创建粒子位置
+            // Create the particle location
             Location particleLocation = new Location(start.getWorld(), x, y, z);
 
-            // 生成粒子效果（例如红线或能量线）
-            start.getWorld().spawnParticle(Particle.REDSTONE, particleLocation, 1, new Particle.DustOptions(color, 1.0f));
+            // Spawn particles (like a red or energy line)
+            start.getWorld().spawnParticle(Particle.DUST, particleLocation, 1, new Particle.DustOptions(color, 1.0f));
         }
     }
 

@@ -35,11 +35,11 @@ public class MagicExpansionQuickHeatedPressureChamber extends SimpleSlimefunItem
     }
 
 //
-//    // 预加载的 增强型合成台 配方列表（静态常量）
+//    // Preloaded Enhanced Crafting Table recipe list (static constant)
 //    public static final List<Map<String, Integer>> HEATED_PRESSURE_CHAMBER_RECIPES = new ArrayList<>();
 //
 //    static {
-//        // 在类加载时预加载所有 SMELTERY 类型的配方
+//        // Load all SMELTERY recipes when the class loads
 //        List<SlimefunItem> smelteryItems = Slimefun.getRegistry().getAllSlimefunItems().stream()
 //                .filter(item -> item.getRecipeType() == RecipeType.HEATED_PRESSURE_CHAMBER)
 //                .toList();
@@ -48,34 +48,34 @@ public class MagicExpansionQuickHeatedPressureChamber extends SimpleSlimefunItem
 //            ItemStack[] recipe = item.getRecipe();
 //            Map<String, Integer> recipeMap = new HashMap<>();
 //
-//            // 遍历配方中的每个物品
+//            // Go through each recipe item
 //            for (ItemStack requiredItem : recipe) {
 //                if (requiredItem == null || requiredItem.getType() == Material.AIR) {
-//                    continue; // 忽略空槽位
+//                    continue; // Skip empty slots
 //                }
 //
 //                int requiredAmount = requiredItem.getAmount();
 //
-//                // 判断是否为 SlimefunItem
+//                // Check if this is a SlimefunItem
 //                String itemKey;
 //                SlimefunItem slimefunItem = SlimefunItem.getByItem(requiredItem);
 //                if (slimefunItem != null) {
-//                    // 如果是 SlimefunItem，使用其 ID 作为键
+//                    // If it's a SlimefunItem, use its ID as the key
 //                    itemKey = "sf:" + slimefunItem.getId();
 //                } else {
-//                    // 如果不是 SlimefunItem，则默认为原版物品
+//                    // If it isn't SlimefunItem，treat it as a regular Minecraft itemitem
 //                    itemKey = "mc:" + requiredItem.getType().name();
 //                }
 //
-//                // 整合相同物品的数量
+//                // Combine matchingitem item amounts
 //                recipeMap.put(itemKey, recipeMap.getOrDefault(itemKey, 0) + requiredAmount);
 //            }
 //
-//            // 将整合后的配方存入列表
+//            // Add the combined recipe to the list
 //            HEATED_PRESSURE_CHAMBER_RECIPES.add(recipeMap);
 //        }
-////        Debug.logWarn("预加载的配方HEATED_PRESSURE_CHAMBER_RECIPES：" + HEATED_PRESSURE_CHAMBER_RECIPES);
-////        System.out.println("预加载的配方数量ANCIENT_ALTAR_RECIPES：" + ANCIENT_ALTAR_RECIPES.size());
+////        Debug.logWarn("Preloaded HEATED_PRESSURE_CHAMBER_RECIPES: " + HEATED_PRESSURE_CHAMBER_RECIPES);
+////        System.out.println("Number of preloaded ANCIENT_ALTAR_RECIPES: " + ANCIENT_ALTAR_RECIPES.size());
 //    }
 
 
@@ -84,20 +84,20 @@ public class MagicExpansionQuickHeatedPressureChamber extends SimpleSlimefunItem
     @Override
     public ItemUseHandler getItemHandler() {
         return e->{
-            // 阻止默认行为（放置方块或使用物品）
+            // Prevent the default action (placing a block or using the item)
             e.setUseItem(Event.Result.DENY);
             e.setUseBlock(Event.Result.DENY);
 
-            // 获取玩家
+            // Get the player
             Player player = e.getPlayer();
-            // 打开菜单并动态加载配方
-            ChestMenu menu = new ChestMenu(getGradientName("魔法压力舱"));
+            // Open the menuand load recipes
+            ChestMenu menu = new ChestMenu(getGradientName("Magic Heated Pressure Chamber"));
             addAvailableRecipesToMenu(player, menu,0, HEATED_PRESSURE_CHAMBER_RECIPES, RecipeType.HEATED_PRESSURE_CHAMBER);
 
-            // 设置空槽位是否可点击
+            // Set whether empty slots can be clicked
             menu.setEmptySlotsClickable(false);
             menu.setPlayerInventoryClickable(false);
-            // 显示菜单给玩家
+            // Show the menu to the player
             menu.open(player);
 
 

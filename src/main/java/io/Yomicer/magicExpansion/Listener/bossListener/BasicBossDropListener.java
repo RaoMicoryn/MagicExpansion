@@ -17,25 +17,25 @@ import java.util.Random;
 
 public class BasicBossDropListener implements Listener {
 
-    // F4: 共享静态随机数实例，避免每次掉落都新建 Random
+    // F4: Reuse one shared random number generator instead of creating a new one for every drop.
     private static final Random RANDOM = new Random();
 
     @EventHandler
     public void onEntityDeath(EntityDeathEvent event) {
         LivingEntity entity = event.getEntity();
 
-        // 获取怪物的类型标识（从元数据中读取）
+        // Get the mob type from its metadata.
         String mobType = "";
         if (entity.hasMetadata("magicMobType")) {
             mobType = entity.getMetadata("magicMobType").get(0).asString();
         } else {
-            return; // 如果没有 mobType 元数据，直接返回
+            return; // No mobType metadata, so return right away.
         }
 
-        // 清除默认掉落物
+        // Clear the default drops.
 //        event.getDrops().clear();
 
-        // 根据怪物类型执行不同的掉落逻辑
+        // Handle drops based on the mob type.
         switch (mobType) {
             case "FireZombie":
                 dropFireZombieLoot(entity);
@@ -44,37 +44,37 @@ public class BasicBossDropListener implements Listener {
                 dropWindElfLoot(entity);
                 break;
             default:
-//                Debug.logWarn("未知的怪物类型: " + mobType);
+//                Debug.logWarn("Unknown mob type: " + mobType);
                 break;
         }
     }
 
     /**
-     * 烈火僵尸死亡时的掉落逻辑
+     * Drops for when the Fire Zombie dies.
      *
-     * @param entity 死亡的实体
+     * @param entity The entity that died.
      */
     private void dropWindElfLoot(LivingEntity entity) {
-        // F1: 原先 getEntitiesByClass(Item.class).forEach(Entity::remove) 会清除全世界的掉落物（严重误伤），
-        // 改为仅清理死亡点 3 格范围内可能干扰本 Boss 掉落的掉落物
+        // F1: The old getEntitiesByClass(Item.class).forEach(Entity::remove) removed dropped items from the whole world, which caused major issues.
+        // Now it only removes dropped items within 3 blocks of the death spot that could interfere with this Boss's drops.
         entity.getWorld().getNearbyEntitiesByType(Item.class, entity.getLocation(), 3).forEach(Entity::remove);
 
-        // 获取死亡位置
+        // Get the death location.
         Location dropLocation = entity.getLocation();
 
-        // F3: 仅当击杀者为玩家时才判定稀有掉落，环境死亡不掉
-        // F4: 改用共享随机数实例
+        // F3: Only check for rare drops if a player got the kill. Environmental deaths won't drop these items.
+        // F4: Use the shared random number generator.
         if (entity.getKiller() == null || RANDOM.nextInt(100000) > 91888) {
             return;
         }
-        // F2: 掉落前 clone 常量物品，避免修改/损耗共享的 SlimefunItemStack 实例
+        // F2: Clone the item before dropping it so the shared SlimefunItemStack isn't changed or used up.
         ItemStack DropItem = MagicExpansionItems.WIND_SPIRIT.clone();
         ItemStack DropItem2 = SlimefunItems.ADVANCED_CIRCUIT_BOARD.clone();
 
-        // 掉落物品到世界中
+        // Drop the items into the world.
         dropLocation.getWorld().dropItemNaturally(dropLocation, DropItem);
         dropLocation.getWorld().dropItemNaturally(dropLocation, DropItem2);
-        // 示例：掉落一些经验值
+        // Example: drop some experience.
         entity.getWorld().spawnEntity(dropLocation, EntityType.EXPERIENCE_ORB);
 
 
@@ -82,32 +82,32 @@ public class BasicBossDropListener implements Listener {
 
 
     /**
-     * 烈火僵尸死亡时的掉落逻辑
+     * Drops for when the Fire Zombie dies.
      *
-     * @param entity 死亡的实体
+     * @param entity The entity that died.
      */
     private void dropFireZombieLoot(LivingEntity entity) {
-        // F1: 原先 getEntitiesByClass(Item.class).forEach(Entity::remove) 会清除全世界的掉落物（严重误伤），
-        // 改为仅清理死亡点 3 格范围内可能干扰本 Boss 掉落的掉落物
+        // F1: The old getEntitiesByClass(Item.class).forEach(Entity::remove) removed dropped items from the whole world, which caused major issues.
+        // Now it only removes dropped items within 3 blocks of the death spot that could interfere with this Boss's drops.
         entity.getWorld().getNearbyEntitiesByType(Item.class, entity.getLocation(), 3).forEach(Entity::remove);
 
-        // 获取死亡位置
+        // Get the death location.
         Location dropLocation = entity.getLocation();
 
-        // F3: 仅当击杀者为玩家时才判定稀有掉落，环境死亡不掉
-        // F4: 改用共享随机数实例
+        // F3: Only check for rare drops if a player got the kill. Environmental deaths won't drop these items.
+        // F4: Use the shared random number generator.
         if (entity.getKiller() == null || RANDOM.nextInt(100000) > 91888) {
             return;
         }
-        // F2: 掉落前 clone 常量物品，避免修改/损耗共享的 SlimefunItemStack 实例
+        // F2: Clone the item before dropping it so the shared SlimefunItemStack isn't changed or used up.
         ItemStack DropItem = MagicExpansionItems.BASIC_ENCHANT_STONE.clone();
         ItemStack DropItem2 = SlimefunItems.BASIC_CIRCUIT_BOARD.clone();
 
-        // 掉落物品到世界中
+        // Drop the items into the world.
         dropLocation.getWorld().dropItemNaturally(dropLocation, DropItem);
         dropLocation.getWorld().dropItemNaturally(dropLocation, DropItem2);
 
-        // 示例：掉落一些经验值
+        // Example: drop some experience.
         entity.getWorld().spawnEntity(dropLocation, EntityType.EXPERIENCE_ORB);
 
 

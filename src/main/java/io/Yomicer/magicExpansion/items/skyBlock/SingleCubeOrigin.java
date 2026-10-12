@@ -49,12 +49,12 @@ public class SingleCubeOrigin extends SlimefunItem implements HologramOwner{
 
             @Override
             public void onPlayerPlace(BlockPlaceEvent e) {
-                // 根据 Material 创建 ItemStack
+                // Create an ItemStack from the Material
                 ItemStack blockItemStack = new ItemStack(e.getBlock().getType());
-                // 使用 ItemStackHelper 获取显示名称
+                // Use ItemStackHelper to get the display name
                 String displayName = ItemStackHelper.getDisplayName(blockItemStack);
 
-                updateHologram(e.getBlock(), ColorGradient.getGradientName( "单方块·起源-形态:"+ displayName));
+                updateHologram(e.getBlock(), ColorGradient.getGradientName( "Single Cube Origin - Type: "+ displayName));
             }
         };
     }
@@ -97,7 +97,7 @@ public class SingleCubeOrigin extends SlimefunItem implements HologramOwner{
 //                ItemStack blockItemStack = new ItemStack(block.getType());
 //                String displayName = ItemStackHelper.getDisplayName(blockItemStack);
                 String displayName = ItemStackHelper.getDisplayName(new ItemStack(newMaterial));
-                updateHologram(block, ColorGradient.getGradientName("单方块·起源-形态:" + displayName));
+                updateHologram(block, ColorGradient.getGradientName("Single Cube Origin - Type: " + displayName));
                 }else{
                 removeHologram(block);
                 }
@@ -107,7 +107,7 @@ public class SingleCubeOrigin extends SlimefunItem implements HologramOwner{
         };
     }
 
-    // 获取一个合法的、可以自然生成的完整方块
+    // Get a valid full block that can naturally generate
     public Material getRandomValidBlock() {
         Material material;
         do {
@@ -116,18 +116,18 @@ public class SingleCubeOrigin extends SlimefunItem implements HologramOwner{
         return material;
     }
 
-    // 判断是否为无效方块（排除不可放置、非完整碰撞箱、特殊功能方块等）
+    // Check whether a block is invalid (exclude unplaceable blocks, blocks without full collision boxes, special blocks, and so on)
     public boolean isInvalidBlock(Material material) {
         if (material == null || material == Material.AIR) {
             return true;
         }
 
-        // 基础排除条件
+        // Basic exclusion rules
         if (!material.isBlock() || !material.isSolid() || !material.isItem()) {
             return true;
         }
 
-        // 黑名单：排除特殊功能方块、非完整方块、流体等
+        // Blacklist: exclude special blocks, non-full blocks, fluids, and so on
         Set<Material> blockedMaterials = new HashSet<>(Set.of(
                 Material.BEDROCK,
                 Material.BARRIER,
@@ -146,17 +146,17 @@ public class SingleCubeOrigin extends SlimefunItem implements HologramOwner{
                 Material.CAVE_AIR,
                 Material.VOID_AIR,
                 Material.LIGHT,
-                Material.POWDER_SNOW_CAULDRON,  // ✅ 新增排除项
-                Material.SCULK_SENSOR,          // 可选：排除侦测器
-                Material.MOVING_PISTON,         // 排除移动中的活塞
-                Material.BUBBLE_COLUMN          // 排除气泡柱
+                Material.POWDER_SNOW_CAULDRON,  // ✅ newly excluded
+                Material.SCULK_SENSOR,          // optional: exclude sensors
+                Material.MOVING_PISTON,         // exclude moving pistons
+                Material.BUBBLE_COLUMN          // exclude bubble columns
         ));
 
         if (blockedMaterials.contains(material)) {
             return true;
         }
 
-        // 排除门、栅栏、墙等非完整碰撞箱方块
+        // Exclude blocks without full collision boxes, such as doors, fences, walls, and gates
         if (material.name().contains("DOOR") ||
                 material.name().contains("FENCE") ||
                 material.name().contains("WALL") ||
@@ -166,13 +166,13 @@ public class SingleCubeOrigin extends SlimefunItem implements HologramOwner{
             return true;
         }
 
-        // 排除楼梯、台阶等非完整方块
+        // Exclude partial blocks such as stairs and slabs
         BlockData data = material.createBlockData();
         if (data instanceof Slab || data instanceof Stairs) {
             return true;
         }
 
-        // 排除植物类、地毯、装饰性小物品
+        // Exclude plants, carpets, and small decorative items
         if (material.isBurnable() ||
                 material.toString().contains("CARPET") ||
                 material.toString().contains("FLOWER") ||

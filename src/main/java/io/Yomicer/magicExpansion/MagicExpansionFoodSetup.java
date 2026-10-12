@@ -25,22 +25,22 @@ public class MagicExpansionFoodSetup {
     public static void setup(@Nonnull MagicExpansion plugin) {
 
 
-        // 下面是有关食物的
-        //丰收面包
+        // Food items below
+        //Harvest Bread
         new FarmHavestBread(magicexpansionfood, MagicExpansionItems.FARM_HARVEST_BREAD, RecipeType.ENHANCED_CRAFTING_TABLE, new ItemStack[] {
                 HARVEST_WHEAT, HARVEST_WHEAT, HARVEST_WHEAT,
                 null, null ,null,
                 null, null,null
         }).register(plugin);
 
-        //神圣π
+        //Holy Pie
         new HolyPie(magicexpansionfood, MagicExpansionItems.HOLY_PIE, RecipeType.ENHANCED_CRAFTING_TABLE, new ItemStack[] {
                 new ItemStack(Material.MILK_BUCKET), new ItemStack(Material.MILK_BUCKET), new ItemStack(Material.MILK_BUCKET),
                 MagicExpansionItems.WHEAT_FLOUR, MagicExpansionItems.WHEAT_FLOUR ,MagicExpansionItems.WHEAT_FLOUR,
                 new ItemStack(Material.PUMPKIN), new ItemStack(Material.PUMPKIN),new ItemStack(Material.PUMPKIN)
         }).register(plugin);
 
-        //云朵面包
+        //Cloud Bread
         new CloudBread(magicexpansionfood, MagicExpansionItems.CLOUD_BREAD, RecipeType.ENHANCED_CRAFTING_TABLE, new ItemStack[] {
                 new ItemStack(Material.MILK_BUCKET), new ItemStack(Material.MILK_BUCKET), new ItemStack(Material.MILK_BUCKET),
                 MagicExpansionItems.WHEAT_FLOUR, MagicExpansionItems.WHEAT_FLOUR ,MagicExpansionItems.WHEAT_FLOUR,
@@ -48,14 +48,14 @@ public class MagicExpansionFoodSetup {
         },sfItemAmount(MagicExpansionItems.CLOUD_BREAD,3)).register(plugin);
 
 
-        //丰收小麦
+        //Harvest Wheat
         new UnplaceableBlock(magicexpansionfoodresource, MagicExpansionItems.HARVEST_WHEAT, RecipeType.NULL, new ItemStack[] {
                 null, null ,null,
-                null, new CustomItemStack(new ItemStack(Material.IRON_HOE), ColorGradient.getGradientNameVer2("通过收割成熟农作物获取"),
-                ColorGradient.getGradientNameVer2("成熟的糖心小麦有概率掉落")), null,
+                null, new CustomItemStack(new ItemStack(Material.IRON_HOE), ColorGradient.getGradientNameVer2("Get this by harvesting fully grown crops"),
+                ColorGradient.getGradientNameVer2("Fully grown sweet wheat may drop this")), null,
                 null, null,null
         }).register(plugin);
-        //小麦粉
+        //Wheat Flour
         new UnplaceableBlock(magicexpansionfoodresource, MagicExpansionItems.WHEAT_FLOUR, RecipeType.GRIND_STONE, new ItemStack[] {
                 MagicExpansionItems.HARVEST_WHEAT, null ,null,
                 null, null, null,
@@ -64,36 +64,36 @@ public class MagicExpansionFoodSetup {
         //
         new UnplaceableBlock(magicexpansionfoodresource, MagicExpansionItems.HARVEST_RICE, RecipeType.NULL, new ItemStack[] {
                 null, null ,null,
-                null, new CustomItemStack(new ItemStack(Material.IRON_HOE), ColorGradient.getGradientNameVer2("通过收割成熟农作物获取"),
-                ColorGradient.getGradientNameVer2("成熟的杂交水稻有概率掉落")), null,
+                null, new CustomItemStack(new ItemStack(Material.IRON_HOE), ColorGradient.getGradientNameVer2("Get this by harvesting fully grown crops"),
+                ColorGradient.getGradientNameVer2("Fully grown hybrid rice may drop this")), null,
                 null, null,null
         }).register(plugin);
         //
         new UnplaceableBlock(magicexpansionfoodresource, MagicExpansionItems.DREAM_KERNEL, RecipeType.NULL, new ItemStack[] {
                 null, null ,null,
-                null, new CustomItemStack(new ItemStack(Material.IRON_HOE), ColorGradient.getGradientNameVer2("通过收割成熟农作物获取"),
-                ColorGradient.getGradientNameVer2("成熟的杂交水稻有概率掉落")), null,
+                null, new CustomItemStack(new ItemStack(Material.IRON_HOE), ColorGradient.getGradientNameVer2("Get this by harvesting fully grown crops"),
+                ColorGradient.getGradientNameVer2("Fully grown hybrid rice may drop this")), null,
                 null, null,null
         }).register(plugin);
         //
         new UnplaceableBlock(magicexpansionfoodresource, MagicExpansionItems.ORE_DUST_CRYSTAL, RecipeType.NULL, new ItemStack[] {
                 null, null ,null,
-                null, new CustomItemStack(new ItemStack(Material.IRON_HOE), ColorGradient.getGradientNameVer2("通过收割成熟农作物获取"),
-                ColorGradient.getGradientNameVer2("成熟的矿粉农作物有概率掉落")), null,
+                null, new CustomItemStack(new ItemStack(Material.IRON_HOE), ColorGradient.getGradientNameVer2("Get this by harvesting fully grown crops"),
+                ColorGradient.getGradientNameVer2("Fully grown ore dust crops may drop this")), null,
                 null, null,null
         }).register(plugin);
         //
         new UnplaceableBlock(magicexpansionfoodresource, MagicExpansionItems.ORE_INGOT_CRYSTAL, RecipeType.NULL, new ItemStack[] {
                 null, null ,null,
-                null, new CustomItemStack(new ItemStack(Material.IRON_HOE), ColorGradient.getGradientNameVer2("通过收割成熟农作物获取"),
-                ColorGradient.getGradientNameVer2("成熟的矿锭农作物有概率掉落")), null,
+                null, new CustomItemStack(new ItemStack(Material.IRON_HOE), ColorGradient.getGradientNameVer2("Get this by harvesting fully grown crops"),
+                ColorGradient.getGradientNameVer2("Fully grown ore ingot crops may drop this")), null,
                 null, null,null
         }).register(plugin);
         //
         new UnplaceableBlock(magicexpansionfoodresource, MagicExpansionItems.ORE_MIX_CRYSTAL, RecipeType.NULL, new ItemStack[] {
                 null, null ,null,
-                null, new CustomItemStack(new ItemStack(Material.IRON_HOE), ColorGradient.getGradientNameVer2("通过收割成熟农作物获取"),
-                ColorGradient.getGradientNameVer2("成熟的合金锭锭农作物有概率掉落")), null,
+                null, new CustomItemStack(new ItemStack(Material.IRON_HOE), ColorGradient.getGradientNameVer2("Get this by harvesting fully grown crops"),
+                ColorGradient.getGradientNameVer2("Fully grown alloy ingot crops may drop this")), null,
                 null, null,null
         }).register(plugin);
 

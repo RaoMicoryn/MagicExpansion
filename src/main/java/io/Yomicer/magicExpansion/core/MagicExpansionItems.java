@@ -29,19 +29,19 @@ public class MagicExpansionItems {
     public static final SlimefunItemStack MAGIC_EXPANSION_INFO = new SlimefunItemStack(
             "MAGIC_EXPANSION_INFO",
             Material.PAPER,
-            getGradientNameVer2("信息"),
+            getGradientNameVer2("Info"),
             "",
             getGradientNameVer2("guizhanss Version:"),
             getGradientNameVer2("Version: Build 94"),
             getGradientNameVer2("Github Version:"),
             getGradientNameVer2("Official Version: Build 15"),
-            getGradientNameVer2("您在提issues的时候需要展示这个")
+            getGradientNameVer2("Show this when you report an issue")
     );
     //AUTHOR
     public static final SlimefunItemStack MAGIC_EXPANSION_AUTHOR = new SlimefunItemStack(
             "MAGIC_EXPANSION_AUTHOR_MAGICSOLO",
             "8adb25ab9976d89d0bd8118d72c1c06bb907060c1e02a729b652d1e86b1ebbbc",
-            getGradientNameVer2("开发者 magicsolo"),
+            getGradientNameVer2("Developer: magicsolo"),
             "",
             getGradientNameVer2("Github: Yomicer"),
             getGradientNameVer2("Author of MagicExpansion")
@@ -50,11 +50,11 @@ public class MagicExpansionItems {
     public static final SlimefunItemStack MAGIC_EXPANSION_QUICK_MACHINE_INFO = new SlimefunItemStack(
             "MAGIC_EXPANSION_QUICK_MACHINE_INFO",
             Material.PAPER,
-            getGradientName("快捷机器提示"),
+            getGradientName("Quick Machine Tips"),
             "",
-            getGradientName("支持几乎所有的配方"),
-            getGradientName("对原版配方进行了合理化修改"),
-            getGradientName("修改后的配方将作为机器彩蛋呈现")
+            getGradientName("Works with almost every recipe"),
+            getGradientName("Some vanilla recipes were changed to make more sense"),
+            getGradientName("The changed recipes show up as easter eggs in the machines")
     );
 
 
@@ -62,25 +62,25 @@ public class MagicExpansionItems {
     public static final SlimefunItemStack MAGIC_EXPANSION_TO_MAGIC_ITEM_BASIC = new SlimefunItemStack(
             "MAGIC_EXPANSION_TO_MAGIC_ITEM_BASIC",
             Material.BARRIER,
-            getGradientName("初级万能魔法合成材料"),
+            getGradientName("Basic All-Purpose Magic Material"),
             "",
-            getGradientName("用来修补没有安装魔法附属的问题")
+            getGradientName("Fills in when the Magic addon isn't installed")
     );
 
     public static final SlimefunItemStack MAGIC_EXPANSION_TO_MAGIC_ITEM_ADVANCED = new SlimefunItemStack(
             "MAGIC_EXPANSION_TO_MAGIC_ITEM_ADVANCED",
             Material.STRUCTURE_VOID,
-            getGradientName("进阶万能魔法合成材料"),
+            getGradientName("Advanced All-Purpose Magic Material"),
             "",
-            getGradientName("用来修补没有安装魔法附属的问题")
+            getGradientName("Fills in when the Magic addon isn't installed")
     );
 
     public static final SlimefunItemStack MAGIC_EXPANSION_INTERACTIVE_CORE = new SlimefunItemStack(
             "MAGIC_EXPANSION_INTERACTIVE_CORE",
             Material.CHAIN_COMMAND_BLOCK,
-            getGradientName("魔法交互核心"),
+            getGradientName("Magic Interaction Core"),
             "",
-            getGradientName("负责快捷机器的交互")
+            getGradientName("Lets the quick machines work with each other")
     );
 
 
@@ -88,19 +88,19 @@ public class MagicExpansionItems {
     public static final SlimefunItemStack SCYTHE = new SlimefunItemStack(
             "MAGIC_EXPANSION_SCYTHE",
             "8adb25ab9976d89d0bd8118d72c1c06bb907060c1e02a729b652d1e86b1ebbbc",
-            getGradientName("改良版镰刀"),
+            getGradientName("Improved Scythe"),
             "",
             "&7Test Skull_Hash",
-            "&7一次性打破5个成熟的农作物",
-            "&7由Fluffy Machine的镰刀改良而来",
-            "&7不再会连锁破坏未成熟的农作物"
+            "&7Breaks 5 ripe crops at once",
+            "&7Upgraded from the Fluffy Machine scythe",
+            "&7Won't break crops that aren't ripe yet"
     );
 
 //    //饵料袋
 //    public static final SlimefunItemStack BAIT_BAG = new SlimefunItemStack(
 //            "BAIT_BAG",
 //            Material.FISHING_ROD,
-//            getGradientNameVer2("云梦袋")
+//            getGradientNameVer2("Cloud Dream Bag")
 //    );
 
     //虚空之触
@@ -119,158 +119,158 @@ public class MagicExpansionItems {
     public static final SlimefunItemStack MAGIC_EXPANSION_RANDOM_SPAWNER = new SlimefunItemStack(
             "MAGIC_EXPANSION_RANDOM_SPAWNER",
             doGlow(Material.ENDER_PEARL),
-            getGradientName("随机实体蛋"),
+            getGradientName("Random Mob Egg"),
             "",
-            getGradientName("右键召唤一个随机实体")
+            getGradientName("Right-click to spawn a random mob")
     );
 //翻页储物箱
     public static final SlimefunItemStack PAGE_CHEST = themedVer2Vertical(
             "PAGE_CHEST",
             doGlow(Material.CHEST),
-            "跃迁储物箱",
+            "Warp Storage Chest",
             "",
-            "将跃迁储物箱放置在安全位置",
-            "不会与其他箱子合并",
-            "共 5 页, 边框显示当前页码",
-            "兼容粘液货运(输入/输出节点)",
-            "界面外的空白处点击翻页",
-            "左键: 上一页    右键: 下一页",
-            "翻过首尾自动循环",
-            "Shift+右键可放置粘液货运节点"
+            "Place the chest somewhere safe",
+            "Won't join with other chests",
+            "5 pages, the border shows the current page",
+            "Works with Slimefun cargo (input/output nodes)",
+            "Click the empty space outside the menu to turn the page",
+            "Left-click: previous page    Right-click: next page",
+            "Loops around after the first and last page",
+            "Shift + right-click to place a cargo node"
     );
 
     public static final SlimefunItemStack MAGIC_EXPANSION_MINERAL_CAVE = new SlimefunItemStack(
             "MAGIC_EXPANSION_MINERAL_CAVE",
             doGlow(Material.SMOOTH_STONE),
-            getGradientName("魔法矿洞"),
+            getGradientName("Magic Mine"),
             "",
-            getGradientName("右键打开魔法矿洞"),
-            getGradientName("点击石头处，即可挖掘")
+            getGradientName("Right-click to open the Magic Mine"),
+            getGradientName("Click the stone to mine it")
     );
 
     public static final SlimefunItemStack MAGIC_EXPANSION_QUICK_ENHANCED_CRAFTING_TABLE = new SlimefunItemStack(
             "MAGIC_EXPANSION_QUICK_ENHANCED_CRAFTING_TABLE",
             doGlow(Material.CRAFTING_TABLE),
-            getGradientName("魔法工作台（增强型工作台）"),
+            getGradientName("Magic Workbench (Enhanced Crafting Table)"),
             "",
-            getGradientName("右键打开魔法工作台"),
-            getGradientName("可以对背包内的材料进行快速合成")
+            getGradientName("Right-click to open the Magic Workbench"),
+            getGradientName("Quickly crafts using items in your inventory")
     );
 
     public static final SlimefunItemStack MAGIC_EXPANSION_QUICK_SMELTERY = new SlimefunItemStack(
             "MAGIC_EXPANSION_QUICK_SMELTERY",
             doGlow(Material.BLAST_FURNACE),
-            getGradientName("魔法冶炼炉"),
+            getGradientName("Magic Smeltery"),
             "",
-            getGradientName("右键打开魔法冶炼炉"),
-            getGradientName("可以对背包内的材料进行快速冶炼")
+            getGradientName("Right-click to open the Magic Smeltery"),
+            getGradientName("Quickly smelts items in your inventory")
     );
     /*
     public static final SlimefunItemStack MAGIC_EXPANSION_QUICK_SMELTERY2 = new SlimefunItemStack(
             "MAGIC_EXPANSION_QUICK_SMELTERY2",
             doGlow(Material.FURNACE),
-            getGradientName("魔法冶炼炉-备用配方"),
+            getGradientName("Magic Smeltery - Backup Recipes"),
             "",
-            getGradientName("右键打开魔法冶炼炉"),
-            getGradientName("可以对背包内的材料进行快速冶炼"),
-            getGradientName("右键点击冶炼炉内的物品，查看单次合成所需的材料"),
-            getGradientName("左键点击冶炼一次"),
-            getGradientName("按住 Shift 并右键点击冶炼炉内的物品，可以一次冶炼32个产物"),
-            getGradientName("按住 Shift 并左键点击冶炼炉内的物品，冶炼所有可制作的产物")
+            getGradientName("Right-click to open the Magic Smeltery"),
+            getGradientName("Quickly smelts items in your inventory"),
+            getGradientName("Right-click an item in the smeltery to see what one craft needs"),
+            getGradientName("Left-click to smelt once"),
+            getGradientName("Shift + right-click an item to smelt 32 at once"),
+            getGradientName("Shift + left-click an item to smelt everything you can")
     );
     */
 
     public static final SlimefunItemStack MAGIC_EXPANSION_QUICK_GRIND_STONE = new SlimefunItemStack(
             "MAGIC_EXPANSION_QUICK_GRIND_STONE",
             doGlow(Material.DISPENSER),
-            getGradientName("魔法磨石"),
+            getGradientName("Magic Grind Stone"),
             "",
-            getGradientName("右键打开魔法磨石"),
-            getGradientName("可以对背包内的材料进行快速研磨"),
-            getGradientName("特殊效果："),
-            getGradientName("取消了圆石磨为砂砾，改为磨成石头")
+            getGradientName("Right-click to open the Magic Grind Stone"),
+            getGradientName("Quickly grinds items in your inventory"),
+            getGradientName("Special effect:"),
+            getGradientName("Cobblestone grinds into stone instead of gravel")
     );
 
     public static final SlimefunItemStack MAGIC_EXPANSION_QUICK_ORE_CRUSHER = new SlimefunItemStack(
             "MAGIC_EXPANSION_QUICK_ORE_CRUSHER",
             doGlow(Material.IRON_BARS),
-            getGradientName("魔法粉碎机"),
+            getGradientName("Magic Crusher"),
             "",
-            getGradientName("右键打开魔法粉碎机"),
-            getGradientName("可以对背包内的材料进行快速粉碎")
+            getGradientName("Right-click to open the Magic Crusher"),
+            getGradientName("Quickly crushes items in your inventory")
     );
 
     public static final SlimefunItemStack MAGIC_EXPANSION_QUICK_ARMOR_FORGE = new SlimefunItemStack(
             "MAGIC_EXPANSION_QUICK_ARMOR_FORGE",
             doGlow(Material.ANVIL),
-            getGradientName("魔法装备锻造台"),
+            getGradientName("Magic Armor Forge"),
             "",
-            getGradientName("右键打开魔法锻造台"),
-            getGradientName("可以对背包内的材料进行快速锻造")
+            getGradientName("Right-click to open the Magic Forge"),
+            getGradientName("Quickly forges using items in your inventory")
     );
 
     public static final SlimefunItemStack MAGIC_EXPANSION_QUICK_COMPRESSOR = new SlimefunItemStack(
             "MAGIC_EXPANSION_QUICK_COMPRESSOR",
             doGlow(Material.PISTON),
-            getGradientName("魔法压缩机"),
+            getGradientName("Magic Compressor"),
             "",
-            getGradientName("右键打开魔法压缩机"),
-            getGradientName("可以对背包内的材料进行快速压缩")
+            getGradientName("Right-click to open the Magic Compressor"),
+            getGradientName("Quickly compresses items in your inventory")
     );
 
     public static final SlimefunItemStack MAGIC_EXPANSION_QUICK_PRESSURE_CHAMBER = new SlimefunItemStack(
             "MAGIC_EXPANSION_QUICK_PRESSURE_CHAMBER",
             doGlow(Material.GLASS),
-            getGradientName("魔法压力机"),
+            getGradientName("Magic Press"),
             "",
-            getGradientName("右键打开魔法压力机"),
-            getGradientName("可以对背包内的材料进行快速合成")
+            getGradientName("Right-click to open the Magic Press"),
+            getGradientName("Quickly crafts using items in your inventory")
     );
 
     public static final SlimefunItemStack MAGIC_EXPANSION_QUICK_MAGIC_WORKBENCH = new SlimefunItemStack(
             "MAGIC_EXPANSION_QUICK_MAGIC_WORKBENCH",
             doGlow(Material.BOOKSHELF),
-            getGradientName("魔法工作台（魔法工作台）"),
+            getGradientName("Magic Workbench (Magic Workbench)"),
             "",
-            getGradientName("右键打开魔法工作台"),
-            getGradientName("可以对背包内的材料进行快速合成")
+            getGradientName("Right-click to open the Magic Workbench"),
+            getGradientName("Quickly crafts using items in your inventory")
     );
 
     public static final SlimefunItemStack MAGIC_EXPANSION_QUICK_AUTOMATED_PANNING_MACHINE = new SlimefunItemStack(
             "MAGIC_EXPANSION_QUICK_AUTOMATED_PANNING_MACHINE",
             doGlow(Material.BOWL),
-            getGradientName("魔法淘金盘"),
+            getGradientName("Magic Gold Pan"),
             "",
-            getGradientName("右键打开魔法淘金盘"),
-            getGradientName("可以对背包内的材料进行快速淘金")
+            getGradientName("Right-click to open the Magic Gold Pan"),
+            getGradientName("Quickly pans for gold using items in your inventory")
     );
 
     public static final SlimefunItemStack MAGIC_EXPANSION_QUICK_AUTOMATED_ANCIENT_ALTAR = new SlimefunItemStack(
             "MAGIC_EXPANSION_QUICK_AUTOMATED_ANCIENT_ALTAR",
             doGlow(Material.ENCHANTING_TABLE),
-            getGradientName("魔法祭坛"),
+            getGradientName("Magic Altar"),
             "",
-            getGradientName("右键打开魔法祭坛"),
-            getGradientName("可以对背包内的材料进行快速合成")
+            getGradientName("Right-click to open the Magic Altar"),
+            getGradientName("Quickly crafts using items in your inventory")
     );
 
     public static final SlimefunItemStack MAGIC_EXPANSION_QUICK_ELECTRIC_ORE_GRINDER = new SlimefunItemStack(
             "MAGIC_EXPANSION_QUICK_ELECTRIC_ORE_GRINDER",
             doGlow(Material.OBSERVER),
-            getGradientName("破损的魔法碎矿机"),
+            getGradientName("Broken Magic Ore Crusher"),
             "",
-            getGradientName("右键打开魔法碎矿机"),
-            getGradientName("可以对背包内的材料进行快速研磨"),
-            getGradientName("目前支持的配方：铁矿，金矿，下界岩，筛矿，已粉碎的矿石，纯矿簇，煤")
+            getGradientName("Right-click to open the Magic Ore Crusher"),
+            getGradientName("Quickly grinds items in your inventory"),
+            getGradientName("Recipes it supports right now: iron ore, gold ore, netherrack, sifted ore, crushed ore, pure ore clusters, coal")
     );
 
     public static final SlimefunItemStack MAGIC_EXPANSION_QUICK_HEATED_PRESSURE_CHAMBER = new SlimefunItemStack(
             "MAGIC_EXPANSION_QUICK_HEATED_PRESSURE_CHAMBER",
             doGlow(Material.LIGHT_GRAY_STAINED_GLASS),
-            getGradientName("魔法压力舱"),
+            getGradientName("Magic Pressure Chamber"),
             "",
-            getGradientName("右键打开魔法压力舱"),
-            getGradientName("可以对背包内的材料进行快速合成")
+            getGradientName("Right-click to open the Magic Pressure Chamber"),
+            getGradientName("Quickly crafts using items in your inventory")
     );
 
 
@@ -344,34 +344,34 @@ public class MagicExpansionItems {
     public static final SlimefunItemStack WEAPON_STAR_SHARDS_SWORD = new SlimefunItemStack(
             "MAGIC_EXPANSION_WEAPON_STAR_SHARDS_SWORD",
             Material.NETHERITE_SWORD,
-            "§x§E§8§4§2§3§D星§x§D§A§5§5§6§B隕§x§C§C§6§8§9§9裁§x§B§E§7§B§C§7決",
+            "§x§E§8§4§2§3§DS§x§E§5§4§6§4§6t§x§E§3§4§9§4§Ea§x§E§0§4§D§5§7r§x§D§E§5§0§6§0f§x§D§B§5§4§6§8a§x§D§8§5§7§7§1l§x§D§6§5§B§7§9l§x§D§3§5§E§8§2 §x§D§0§6§2§8§BJ§x§C§E§6§6§9§3u§x§C§B§6§9§9§Cd§x§C§8§6§D§A§4g§x§C§6§7§0§A§Dm§x§C§3§7§4§B§6e§x§C§1§7§7§B§En§x§B§E§7§B§C§7t",
             "",
-            "§x§D§9§4§2§F§5傳說中斬落星辰的神兵，",
-            "§x§A§3§5§7§B§9劍鋒所指，虛空為之顫慄。",
-            "§x§6§A§8§C§E§F蘊含奧術本源與天火之力，",
-            "§x§F§2§5§4§5§9唯有被命運選中者方可喚醒其真名。",
+            "§x§D§9§4§2§F§5A legendary blade that cut down the stars.",
+            "§x§A§3§5§7§B§9The void trembles wherever its edge points.",
+            "§x§6§A§8§C§E§FIt holds arcane power and heavenly fire.",
+            "§x§F§2§5§4§5§9Only one chosen by fate can wake its true name.",
             "",
-            "§x§A§3§5§7§B§9稀有度: §c神話",
-            "§x§A§3§5§7§B§9傷害倍率: §c" + StarShards_Atk_Mix + "x",
-            "§x§A§3§5§7§B§9*處決* §e 每次額外造成最大生命值 " + StarShards_Atk_ExtraPercent*100 + "% 的伤害",
-            "§x§A§3§5§7§B§9*流血* §4 血量流失速度: " + StarShards_Atk_Blood*100 + "% (持续8秒/可叠加)",
-            "§x§A§3§5§7§B§9*慈悲爲懷* §b 攻擊玩家或生物大概率會保留0.1點生命值",
+            "§x§A§3§5§7§B§9Rarity: §cMythic",
+            "§x§A§3§5§7§B§9Damage multiplier: §c" + StarShards_Atk_Mix + "x",
+            "§x§A§3§5§7§B§9*Execute* §e Each hit deals extra damage equal to " + StarShards_Atk_ExtraPercent*100 + "% of max health",
+            "§x§A§3§5§7§B§9*Bleed* §4 Health loss speed: " + StarShards_Atk_Blood*100 + "% (lasts 8 seconds, stacks)",
+            "§x§A§3§5§7§B§9*Mercy* §b Attacks will most likely leave players and mobs with 0.1 health",
             "",
-            "§f• 左鍵§7：熾焰斬（冷卻: "+StarShards_BlazingSlash_CD+"秒）",
-            "§7揮出燃燒劍氣，對目標造成額外火焰傷害。",
-            "§7擊中時產生小型爆炸，擊退周圍敵人。",
+            "§f• Left-click§7: Blazing Slash (Cooldown: "+StarShards_BlazingSlash_CD+" sec)",
+            "§7Swings a burning sword wave that deals extra fire damage.",
+            "§7Causes a small explosion on hit that knocks nearby enemies back.",
             "",
-            "§f• 蹲下 + 左鍵§7：奧爆衝擊（冷卻: "+StarShards_ArcaneBlast_CD+"秒）",
-            "§7蓄力釋放錐形奧術脈衝，貫穿前方區域。",
-            "§7命中敵人附加虛弱與緩速，持續4秒。",
+            "§f• Sneak + Left-click§7: Arcane Blast (Cooldown: "+StarShards_ArcaneBlast_CD+" sec)",
+            "§7Charges up and fires a cone of arcane energy ahead.",
+            "§7Enemies hit get Weakness and Slowness for 4 seconds.",
             "",
-            "§f• 右鍵§7：星界護盾（冷卻: "+StarShards_AstralShield_CD+"秒）",
-            "§7展開魔法屏障，"+StarShards_AstralShield_During+"秒內免疫所有傷害。",
-            "§7期間受到遠程攻擊將自動反彈至來源方向。",
+            "§f• Right-click§7: Star Shield (Cooldown: "+StarShards_AstralShield_CD+" sec)",
+            "§7Raises a magic barrier. No damage for "+StarShards_AstralShield_During+" seconds.",
+            "§7Ranged attacks during this time bounce back at the attacker.",
             "",
-            "§f• 蹲下 + 右鍵§7：瞬影躍遷（冷卻: "+StarShards_InstantBlink_CD+"秒）",
-            "§7瞬間傳送至準星所指地面（最遠15格）。",
-            "§7落地時釋放衝擊波，短暫眩暈附近敵人。"
+            "§f• Sneak + Right-click§7: Shadow Blink (Cooldown: "+StarShards_InstantBlink_CD+" sec)",
+            "§7Instantly teleports you to where you aim (up to 15 blocks).",
+            "§7Releases a shockwave on landing that briefly stuns nearby enemies."
     );
 
 
@@ -430,10 +430,10 @@ public class MagicExpansionItems {
     public static final SlimefunItemStack MAGIC_EXPANSION_MAGIC_SUGAR_CANE = new SlimefunItemStack(
             "MAGIC_EXPANSION_MAGIC_SUGAR_CANE",
             doGlow(Material.SUGAR_CANE),
-            getGradientName("甘蔗·量子纠缠态"),
+            getGradientName("Sugar Cane (Quantum Entangled)"),
             "",
-            getGradientName("魔法的第一个毕业物品"),
-            getGradientName("真正意义上的第一个毕业物品")
+            getGradientName("The first end-game item in Magic"),
+            getGradientName("The first true end-game item")
     );
 
     public static final SlimefunItemStack MAGIC_EXPANSION_FINAL_STRING_1 = MagicStringBuilder.getString(1);
@@ -468,17 +468,17 @@ public class MagicExpansionItems {
     public static final SlimefunItemStack FIRE_ZOMBIE = new SlimefunItemStack(
             "MAGIC_EXPANSION_FIRE_ZOMBIE",
             doGlow(Material.ZOMBIE_SPAWN_EGG),
-            getGradientName("烈焰僵尸"),
+            getGradientName("Fire Zombie"),
             "",
-            getGradientName("右键召唤烈焰僵尸")
+            getGradientName("Right-click to summon the Fire Zombie")
     );
 
     public static final SlimefunItemStack FIRE_ZOMBIE_MB = new SlimefunItemStack(
             "MAGIC_EXPANSION_FIRE_ZOMBIE_MB",
             doGlow(CustomHead.getHead("b15f3517f28740470e8f51b4d755be159ee65861c05e2f744fb61bfdccd5c0e1")),
-            getGradientName("烈焰僵尸[召唤]"),
+            getGradientName("Fire Zombie [Summon]"),
             "",
-            getGradientName("右键点击中心的方块召唤烈焰僵尸")
+            getGradientName("Right-click the center block to summon the Fire Zombie")
     );
 
     public static final SlimefunItemStack WIND_ELF_SPAWN = themedVer2Vertical("WIND_ELF_SPAWN",doGlow(Material.ALLAY_SPAWN_EGG),
@@ -487,9 +487,9 @@ public class MagicExpansionItems {
     public static final SlimefunItemStack WIND_ELF_MB = new SlimefunItemStack(
             "MAGIC_EXPANSION_WIND_ELF_MB",
             doGlow(CustomHead.getHead("892fd59703cdfe7db5ea0b35b6792308b35fc37368760aa997726ae12e8bd696")),
-            getGradientName("风灵[召唤]"),
+            getGradientName("Wind Spirit [Summon]"),
             "",
-            getGradientName("右键点击中心的方块召唤风灵")
+            getGradientName("Right-click the center block to summon the Wind Spirit")
     );
 
 
@@ -770,10 +770,10 @@ public class MagicExpansionItems {
     public static final SlimefunItemStack UI_WIKI = new SlimefunItemStack(
             "MAGIC_EXPANSION_UI_WIKI",
             Material.CALIBRATED_SCULK_SENSOR,
-            getGradientNameVer2("wiki 网址"),
+            getGradientNameVer2("Wiki Link"),
             "",
             getGradientNameVer2("https://github.com/Yomicer/MagicExpansion/wiki"),
-            getGradientNameVer2("企鹅交流群：770346419")
+            getGradientNameVer2("QQ Group: 770346419")
     );
     public static final SlimefunItemStack UI_4 = createDefaultItem("UI_4",Material.LIGHT_GRAY_STAINED_GLASS_PANE);
     public static final SlimefunItemStack UI_5 = createDefaultItem("UI_5",Material.LIGHT_GRAY_STAINED_GLASS_PANE);
@@ -785,16 +785,16 @@ public class MagicExpansionItems {
     public static final SlimefunItemStack UI_NOT_LATEST_BUILD = new SlimefunItemStack(
             "MAGIC_EXPANSION_UI_NOT_LATEST_BUILD",
             Material.CALIBRATED_SCULK_SENSOR,
-            getGradientNameVer2("当前魔法2.0未开启自动更新/非正式版"),
+            getGradientNameVer2("Magic 2.0: auto-update is off / unofficial build"),
             "",
-            getGradientNameVer2("请及时关注最新版更新内容")
+            getGradientNameVer2("Keep an eye on the latest updates")
     );
     public static final SlimefunItemStack UI_IS_LATEST_BUILD = new SlimefunItemStack(
             "MAGIC_EXPANSION_UI_IS_LATEST_BUILD",
             Material.NETHER_STAR,
-            getGradientNameVer2("当前魔法2.0为最新版本"),
+            getGradientNameVer2("Magic 2.0 is up to date"),
             "",
-            getGradientNameVer2("期待明天会更好")
+            getGradientNameVer2("Here's to a better tomorrow")
     );
 
 

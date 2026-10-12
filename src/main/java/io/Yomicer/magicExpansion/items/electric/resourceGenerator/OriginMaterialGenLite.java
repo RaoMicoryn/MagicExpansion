@@ -36,7 +36,7 @@ import static io.Yomicer.magicExpansion.utils.ColorGradient.getGradientName;
 import static io.Yomicer.magicExpansion.utils.ColorGradient.getGradientNameVer2;
 
 /**
- * 削弱版：基于 OriginMaterialGen 修改，每次只产出 1 个物品。
+ * Weakened version: based on OriginMaterialGen, produces only 1 item each time.
  */
 public class OriginMaterialGenLite extends AbstractElectricResourceMachine implements DistinctiveItem {
 
@@ -49,7 +49,7 @@ public class OriginMaterialGenLite extends AbstractElectricResourceMachine imple
     private static final ItemStack PROGRESS_ITEM = new ItemStack(Material.SOUL_LANTERN);
     private ItemStack material;
 
-    private static final ItemStack PROGRESS_STACK = new CustomItemStack(Material.SOUL_CAMPFIRE, getGradientNameVer2("信息"), getGradientNameVer2("类型：资源生成器"), getGradientNameVer2("所属附属：魔法"));
+    private static final ItemStack PROGRESS_STACK = new CustomItemStack(Material.SOUL_CAMPFIRE, getGradientNameVer2("Info"), getGradientNameVer2("Type: Resource Generator"), getGradientNameVer2("Addon: Magic"));
 
     public OriginMaterialGenLite(ItemGroup itemGroup, SlimefunItemStack item, RecipeType recipeType, ItemStack[] recipe) {
         super(itemGroup, item, recipeType, recipe);
@@ -70,8 +70,8 @@ public class OriginMaterialGenLite extends AbstractElectricResourceMachine imple
         if (drop == null || !drop.hasItemMeta()) return;
         ItemMeta meta = drop.getItemMeta();
         if (meta != null) {
-            // L2 修复：Material.valueOf 在数据损坏时抛异常会导致整个 onBreak 中断、机器物品消失；
-            // 改用 matchMaterial，解析失败时原样掉落机器本体，不吞机器
+            // L2 fix: If the data is corrupted, Material.valueOf throws an exception, which breaks the whole onBreak and makes the machine item vanish;
+            // use matchMaterial instead. If parsing fails, the machine itself drops as normal and is never lost
             Material material = Material.matchMaterial(materialName);
             if (material == null) {
                 loc.getWorld().dropItemNaturally(loc, drop);
@@ -85,7 +85,7 @@ public class OriginMaterialGenLite extends AbstractElectricResourceMachine imple
             if (lore == null) {
                 lore = new ArrayList<>();
             }
-            lore.add(getGradientNameVer2( "当前推演物品：" + n));
+            lore.add(getGradientNameVer2( "Current item: " + n));
             meta.setLore(lore);
             NamespacedKey key = new NamespacedKey(MagicExpansion.getInstance(), "origin_material");
             meta.getPersistentDataContainer().set(key, PersistentDataType.STRING, materialName);
@@ -128,7 +128,7 @@ public class OriginMaterialGenLite extends AbstractElectricResourceMachine imple
 
         if (maxedSlots == getOutputSlots().length) { return null; }
 
-        // L1 修复：配方列表为空时直接返回 null，避免 recipes.get(0) 抛 IndexOutOfBoundsException
+        // L1 fix: If the recipe list is empty, return null right away so recipes.get(0) doesn't throw IndexOutOfBoundsException
         if (recipes == null || recipes.isEmpty()) { return null; }
 
         MachineRecipe recipe = recipes.get(0);
@@ -163,8 +163,8 @@ public class OriginMaterialGenLite extends AbstractElectricResourceMachine imple
     public List<ItemStack> getDisplayRecipes() {
         List<ItemStack> display = new ArrayList<>();
 
-        display.add(new CustomItemStack(Material.KNOWLEDGE_BOOK, getGradientNameVer2("产物⇨"),getGradientNameVer2("每次生产 1 个"),getGradientNameVer2("生产效率⇨ ⚙ 每 " + getCraftSecond() + " s生成一次"),getGradientNameVer2("生产能耗⇨ ⚡ "+ getEnergyConsumption()*2 +" J/s")));
-        display.add(new CustomItemStack(Material.KNOWLEDGE_BOOK, getGradientNameVer2("产物⇨"),getGradientNameVer2("每次生产 1 个"),getGradientNameVer2("生产效率⇨ ⚙ 每 " + getCraftSecond() + " s生成一次"),getGradientNameVer2("生产能耗⇨ ⚡ "+ getEnergyConsumption()*2 +" J/s")));
+        display.add(new CustomItemStack(Material.KNOWLEDGE_BOOK, getGradientNameVer2("Output⇨"),getGradientNameVer2("Produces 1 per cycle"),getGradientNameVer2("Speed⇨ ⚙ Once every " + getCraftSecond() + " s"),getGradientNameVer2("Energy use⇨ ⚡ "+ getEnergyConsumption()*2 +" J/s")));
+        display.add(new CustomItemStack(Material.KNOWLEDGE_BOOK, getGradientNameVer2("Output⇨"),getGradientNameVer2("Produces 1 per cycle"),getGradientNameVer2("Speed⇨ ⚙ Once every " + getCraftSecond() + " s"),getGradientNameVer2("Energy use⇨ ⚡ "+ getEnergyConsumption()*2 +" J/s")));
         display.addAll(Arrays.asList(getItemStackOutputs()));
 
         return display;
@@ -214,13 +214,13 @@ public class OriginMaterialGenLite extends AbstractElectricResourceMachine imple
         ItemStack item = PROGRESS_STACK.clone();
         ItemMeta meta = item.getItemMeta();
 
-        meta.setDisplayName(getGradientNameVer2("信息"));
+        meta.setDisplayName(getGradientNameVer2("Info"));
         ArrayList lore = new ArrayList<>();
-        lore.add(getGradientNameVer2("类型：资源生成器"));
-        lore.add(getGradientNameVer2("所属附属：魔法"));
-        lore.add(getGradientNameVer2("当前生产物品：" + ItemStackHelper.getDisplayName(output)));
-        lore.add(getGradientNameVer2("生产效率⇨ ⚙ 每 " + getCraftSecond() + " s生成一次"));
-        lore.add(getGradientNameVer2("生产能耗⇨ ⚡ "+ getEnergyConsumption()*2 +" J/s"));
+        lore.add(getGradientNameVer2("Type: Resource Generator"));
+        lore.add(getGradientNameVer2("Addon: Magic"));
+        lore.add(getGradientNameVer2("Now producing: " + ItemStackHelper.getDisplayName(output)));
+        lore.add(getGradientNameVer2("Speed⇨ ⚙ Once every " + getCraftSecond() + " s"));
+        lore.add(getGradientNameVer2("Energy use⇨ ⚡ "+ getEnergyConsumption()*2 +" J/s"));
         meta.setLore(lore);
         item.setItemMeta(meta);
 

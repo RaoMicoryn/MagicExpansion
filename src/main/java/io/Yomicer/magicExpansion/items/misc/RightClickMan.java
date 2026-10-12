@@ -3,7 +3,7 @@ package io.Yomicer.magicExpansion.items.misc;
 import com.xzavier0722.mc.plugin.slimefun4.storage.controller.SlimefunBlockData;
 import com.xzavier0722.mc.plugin.slimefun4.storage.util.StorageCacheUtils;
 import io.Yomicer.magicExpansion.items.electric.entitykillMachinee.EntityKillMachine;
-import io.Yomicer.magicExpansion.utils.VirtualPlayerManager; // G1v3：虚拟玩家管理器
+import io.Yomicer.magicExpansion.utils.VirtualPlayerManager; // G1v3: virtual player manager
 import io.github.thebusybiscuit.slimefun4.api.items.ItemGroup;
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItem;
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItemStack;
@@ -46,7 +46,7 @@ public class RightClickMan extends SlimefunItem implements EnergyNetComponent {
 
     public RightClickMan(ItemGroup itemGroup, SlimefunItemStack item, RecipeType recipeType, ItemStack[] recipe) {
         super(itemGroup, item, recipeType, recipe);
-        constructMenu("交互机器人");
+        constructMenu("Interaction Robot");
         addItemHandler(onBreak());
     }
 
@@ -78,7 +78,7 @@ public class RightClickMan extends SlimefunItem implements EnergyNetComponent {
     protected void tick(Block block) {
         BlockMenu menu = StorageCacheUtils.getMenu(block.getLocation());
         if(menu != null) {
-            // 定义：逻辑槽位 → 显示槽位 → 方向
+            // Define: logical slot → Display slot → Direction
             Map<Integer, Map.Entry<Integer, BlockFace>> directionMap = new HashMap<>();
             directionMap.put(9,  new AbstractMap.SimpleImmutableEntry<>(0, BlockFace.UP));     // 9 → 0 → UP
             directionMap.put(10, new AbstractMap.SimpleImmutableEntry<>(1, BlockFace.DOWN));   // 10→ 1 → DOWN
@@ -87,17 +87,17 @@ public class RightClickMan extends SlimefunItem implements EnergyNetComponent {
             directionMap.put(13, new AbstractMap.SimpleImmutableEntry<>(4, BlockFace.WEST));   // 13→ 4 → WEST
             directionMap.put(14, new AbstractMap.SimpleImmutableEntry<>(5, BlockFace.NORTH));  // 14→ 5 → NORTH
 
-            // 遍历每个方向
+            // Go through each direction
             for (Map.Entry<Integer, Map.Entry<Integer, BlockFace>> entry : directionMap.entrySet()) {
-                int logicSlot = entry.getKey();           // 控制逻辑的槽位 (9~14)
-                int displaySlot = entry.getValue().getKey(); // 显示用的槽位 (0~5)
-                BlockFace face = entry.getValue().getValue(); // 对应方向
+                int logicSlot = entry.getKey();           // Slots for the control logic (9~14)
+                int displaySlot = entry.getValue().getKey(); // Slots used for display (0~5)
+                BlockFace face = entry.getValue().getValue(); // Matching direction
 
                 Block targetBlock = block.getRelative(face);
                 Location targetLocation = targetBlock.getLocation();
 
                 boolean isEnabled = isButtonOn(menu, logicSlot);
-                String statusText = isEnabled ? "§a已启用" : "§7未启用";
+                String statusText = isEnabled ? "§aEnabled" : "§7Not enabled";
 
                 ItemStack displayItem;
 
@@ -106,7 +106,7 @@ public class RightClickMan extends SlimefunItem implements EnergyNetComponent {
                     displayItem = sfItem.getItem().clone();
                 }
                 else if (targetBlock.getType() != Material.AIR) {
-                    // 检查材料是否可以作为物品
+                    // Check if the material can be an item
                     Material blockType = targetBlock.getType();
                     if (isValidItemMaterial(blockType)) {
                         displayItem = new ItemStack(blockType);
@@ -119,7 +119,7 @@ public class RightClickMan extends SlimefunItem implements EnergyNetComponent {
                             displayItem.setItemMeta(blockStateMeta);
                         }
                     } else {
-                        // 对于不能作为物品的方块，使用屏障并显示方块信息
+                        // For blocks that can't be items, use a barrier and show the block info
                         displayItem = createBlockDisplayItem(blockType, targetBlock, statusText);
                     }
                 }
@@ -127,11 +127,11 @@ public class RightClickMan extends SlimefunItem implements EnergyNetComponent {
                     displayItem = new ItemStack(Material.BARRIER);
                     ItemMeta meta = displayItem.getItemMeta();
                     if (meta != null) {
-                        meta.setDisplayName("§7空气");
+                        meta.setDisplayName("§7Air");
                         meta.setLore(Arrays.asList(
-                                "§7坐标: " + targetBlock.getX() + "," + targetBlock.getY() + "," + targetBlock.getZ(),
-                                "§7状态: " + statusText,
-                                "§8（此处为空气）"
+                                "§7Coordinates: " + targetBlock.getX() + "," + targetBlock.getY() + "," + targetBlock.getZ(),
+                                "§7Status: " + statusText,
+                                "§8(this is air)"
                         ));
                         displayItem.setItemMeta(meta);
                     }
@@ -139,14 +139,14 @@ public class RightClickMan extends SlimefunItem implements EnergyNetComponent {
                     continue;
                 }
 
-                // ====== 4. 对非 AIR 的正常方块，统一设置显示信息 ======
+                // ====== 4. For normal non-AIR blocks, set the display info the same way ======
                 setBlockDisplayWithInfo(displayItem, targetBlock, statusText);
 
-                // 更新 GUI
+                // Update GUI
                 menu.replaceExistingItem(displaySlot, displayItem);
             }
 
-            // 定义槽位与方向的映射（槽位 → 是否启用）
+            // Define the slot to direction mapping (slot → enabled or not)
             boolean up = isButtonOn(menu, 9);
             boolean down = isButtonOn(menu, 10);
             boolean east = isButtonOn(menu, 11);
@@ -154,7 +154,7 @@ public class RightClickMan extends SlimefunItem implements EnergyNetComponent {
             boolean west = isButtonOn(menu, 13);
             boolean north = isButtonOn(menu, 14);
 
-            // G2 修复：全量 getPlayers() 距离过滤+排序降频为每 10 tick 一次，结果缓存复用
+            // G2 Fix: full getPlayers() distance filter+sorting slowed to once every 10 ticks, result cached and reused
             NearestPlayerCache playerCache = nearestPlayerCache.computeIfAbsent(
                     block.getLocation(), k -> new NearestPlayerCache());
             long now = System.currentTimeMillis();
@@ -164,8 +164,8 @@ public class RightClickMan extends SlimefunItem implements EnergyNetComponent {
             }
             Player nearestPlayer = playerCache.player;
 
-            // G1v3（按需求）：优先使用虚拟玩家执行模拟右键；
-            // 虚拟玩家不可用时回退"附近真实玩家"，两者皆无才跳过本 tick
+            // G1v3(as needed): use the virtual player first to do the simulated right-click;
+            // Fall back when the virtual player isn't available"nearby real player", if neither exists, skip this tick
             boolean hasVirtual = VirtualPlayerManager.obtainVirtual() != null;
             if (!hasVirtual && nearestPlayer == null) return;
 
@@ -173,84 +173,84 @@ public class RightClickMan extends SlimefunItem implements EnergyNetComponent {
 
             if (up) {
                 interactTarget(nearestPlayer, block.getLocation().clone().add(0, 1, 0).getBlock());
-                directions += "上 ";
+                directions += "Up ";
             }
 
             if (down) {
                 interactTarget(nearestPlayer, block.getLocation().clone().add(0, -1, 0).getBlock());
-                directions += "下 ";
+                directions += "Down ";
             }
 
             if (east) {
                 interactTarget(nearestPlayer, block.getLocation().clone().add(1, 0, 0).getBlock());
-                directions += "东 ";
+                directions += "East ";
             }
 
             if (south) {
                 interactTarget(nearestPlayer, block.getLocation().clone().add(0, 0, 1).getBlock());
-                directions += "南 ";
+                directions += "South ";
             }
 
             if (west) {
                 interactTarget(nearestPlayer, block.getLocation().clone().add(-1, 0, 0).getBlock());
-                directions += "西 ";
+                directions += "West ";
             }
 
             if (north) {
                 interactTarget(nearestPlayer, block.getLocation().clone().add(0, 0, -1).getBlock());
-                directions += "北";
+                directions += "North";
             }
 
-            // 更新状态显示
+            // Update the status display
             if (menu.hasViewer()) {
-                // G1v3：模拟玩家显示——优先展示虚拟玩家及其模式，其次展示回退用的附近真实玩家
+                // G1v3: simulated player display——Show the virtual player and its mode first, then the fallback nearby real player
                 String actorLine;
                 if (hasVirtual) {
-                    // 虚拟玩家模式：显示傀儡名与实现方式（citizens / nms）
-                    actorLine = "§d" + VirtualPlayerManager.BOT_NAME + " §7(虚拟·" + VirtualPlayerManager.getMode() + ")";
+                    // Virtual player mode: show the puppet name and how it's implemented (citizens / nms)
+                    actorLine = "§d" + VirtualPlayerManager.BOT_NAME + " §7(Virtual·" + VirtualPlayerManager.getMode() + ")";
                 } else if (nearestPlayer != null) {
-                    // 回退模式：显示附近真实玩家名
-                    actorLine = nearestPlayer.getName() + " §7(回退)";
+                    // Fallback mode: show the nearby real player's name
+                    actorLine = nearestPlayer.getName() + " §7(Fallback)";
                 } else {
                     actorLine = null;
                 }
                 if (actorLine != null) {
-                    menu.replaceExistingItem(16, new CustomItemStack(Material.PINK_CANDLE, "§b交互机器人",
-                            "§b工作类型：§e右键交互方块",
-                            "§b交互速度：§e1次/粘液刻",
-                            "§b模拟玩家：§e" + actorLine,
-                            "§b模拟方向：§e" + directions.trim(),
-                            "§b耗电速度：§e这个机器人不花电的",
-                            "§b电量存储：§e这个机器人不储存电"));
+                    menu.replaceExistingItem(16, new CustomItemStack(Material.PINK_CANDLE, "§bInteraction Robot",
+                            "§bWork type: §eRight-click interact with block",
+                            "§bInteraction speed: §e1 time/Slimefun tick",
+                            "§bSimulated player: §e" + actorLine,
+                            "§bSimulated direction: §e" + directions.trim(),
+                            "§bPower use: §eThis robot doesn't use power",
+                            "§bStored power: §eThis robot doesn't store power"));
                 } else {
-                    menu.replaceExistingItem(16, new CustomItemStack(Material.PINK_CANDLE, "§b交互机器人",
-                            "§b工作类型：§e右键交互方块",
-                            "§b交互速度：§e1次/粘液刻",
-                            "§c未检测到虚拟玩家或附近玩家",
-                            "§b耗电速度：§e这个机器人不花电的",
-                            "§b电量存储：§e这个机器人不储存电"));
+                    menu.replaceExistingItem(16, new CustomItemStack(Material.PINK_CANDLE, "§bInteraction Robot",
+                            "§bWork type: §eRight-click interact with block",
+                            "§bInteraction speed: §e1 time/Slimefun tick",
+                            "§cNo virtual player or nearby player detected",
+                            "§bPower use: §eThis robot doesn't use power",
+                            "§bStored power: §eThis robot doesn't store power"));
                 }
             }
         }
     }
 
-    // ==================== G2 性能修复：邻近玩家扫描节流 ====================
-    private static final long PLAYER_SCAN_INTERVAL_MS = 500; // 扫描间隔 ≈ 10 tick
-    // 按机器位置缓存最近玩家：nextScanAt 为下次扫描时间，player 为缓存结果
+    // ==================== G2 Performance fix: nearby player scan throttling ====================
+    private static final long PLAYER_SCAN_INTERVAL_MS = 500; // Scan interval ≈ 10 tick
+    // Cache the nearest player per machine location: nextScanAt is the next scan time, player is the cached result
     private final Map<Location, NearestPlayerCache> nearestPlayerCache = new HashMap<>();
 
     private static final class NearestPlayerCache {
         long nextScanAt;
-        Player player; // 可能为 null 表示附近没有玩家
+        Player player; // May be null, meaning there are no players nearby
     }
 
-    // G2: 全量 getPlayers() 距离过滤 + 排序（取最近一名玩家）
+    // G2: Full getPlayers() distance filter + sorting (take the nearest player)
     private Player findNearestPlayer(Location center) {
         Player nearest = null;
         double nearestDist = Double.MAX_VALUE;
         for (Player player : center.getWorld().getPlayers()) {
             double dist = player.getLocation().distanceSquared(center);
-            if (dist <= 2500 && dist < nearestDist) { // 与原逻辑一致：50 格内取最近
+            if (dist <= 2500 && dist < nearestDist) { // Same as the original logic: take the nearest within 50 blocks
                 nearestDist = dist;
                 nearest = player;
             }
@@ -259,27 +259,27 @@ public class RightClickMan extends SlimefunItem implements EnergyNetComponent {
     }
 
     /**
-     * G1v3（按需求）：模拟右键改为由"虚拟玩家"发起。
-     * 优先级：Citizens NPC（方案A）→ NMS 反射假玩家（方案B）→ 附近真实玩家（回退）。
-     * 虚拟玩家在每次交互前被传送到目标方块旁，保证事件处理器读到的位置正确；
-     * 事件仍为 PlayerInteractEvent(RIGHT_CLICK_BLOCK)，由各插件交互监听器自行响应。
+     * G1v3(as needed): the simulated right-click is now done by"Virtual player"initiated.
+     * Priority: Citizens NPC (plan A)→ NMS Reflection fake player (plan B)→ nearby real player (fallback).
+     * The virtual player is teleported next to the target block before each interaction, so the event handler reads the right location;
+     * The event is still PlayerInteractEvent(RIGHT_CLICK_BLOCK), each plugin's interact listener responds on its own.
      *
-     * @param fallbackPlayer 虚拟玩家不可用时的回退对象（附近真实玩家，可能为 null）
-     * @param targetBlock    目标方块
+     * @param fallbackPlayer Fallback target when the virtual player isn't available (nearby real player, may be null)
+     * @param targetBlock    Target block
      */
     private void interactTarget(Player fallbackPlayer, Block targetBlock) {
-        // 1) 获取执行者：优先虚拟玩家
+        // 1) Get the executor: virtual player first
         Player actor = VirtualPlayerManager.obtainVirtual();
         boolean isVirtual = actor != null;
         if (!isVirtual) {
-            // 回退模式：使用附近真实玩家
+            // Fallback mode: use the nearby real player
             actor = fallbackPlayer;
             if (actor == null) return;
         }
 
-        // 2) 领地保护检查：无交互权限的玩家不触发。
-        //    虚拟玩家（NPC/假玩家）的权限语义由领地插件的 NPC 组配置决定，
-        //    检查抛异常时：真实玩家按拒绝处理，虚拟玩家按放行处理（避免 NPC 组配置导致功能整体失效）
+        // 2) Land protection check: players without interact permission don't trigger it.
+        //    The permission rules for virtual players (NPC/fake players) are decided by the land plugin's NPC group config,
+        //    If the check throws an exception: real players are treated as denied, virtual players as allowed (so an NPC group config doesn't break the whole feature)
         try {
             if (!Slimefun.getProtectionManager().hasPermission(actor, targetBlock.getLocation(),
                     Interaction.INTERACT_BLOCK)) {
@@ -289,12 +289,12 @@ public class RightClickMan extends SlimefunItem implements EnergyNetComponent {
             if (!isVirtual) return;
         }
 
-        // 3) 虚拟玩家传送到目标方块上方（无真实玩家依附，机器人可独立于真人运行）
+        // 3) The virtual player teleports above the target block (no real player attached, so the robot can run without a real person)
         if (isVirtual) {
             VirtualPlayerManager.moveVirtual(targetBlock.getLocation().add(0.5, 1.0, 0.5));
         }
 
-        // 4) 模拟主手右键目标方块（手持 AIR、BlockFace.SELF，与原实现一致）
+        // 4) Simulate a main hand right-click on the target block (holding AIR, BlockFace.SELF, same as the original implementation)
         PlayerInteractEvent interactEvent = new PlayerInteractEvent(
                 actor,
                 Action.RIGHT_CLICK_BLOCK,
@@ -306,29 +306,29 @@ public class RightClickMan extends SlimefunItem implements EnergyNetComponent {
     }
 
     /**
-     * 检查材料是否可以作为有效的物品
+     * Check if the material can be a valid item
      */
     private boolean isValidItemMaterial(Material material) {
-        // 墙上的标志牌、双台阶等不能作为物品
+        // Wall signs, double slabs, etc. can't be items
         return material.isItem() && !material.name().contains("WALL_") && !material.name().contains("DOUBLE_");
     }
 
     /**
-     * 为不能作为物品的方块创建显示物品
+     * Create a display item for blocks that can't be items
      */
     private ItemStack createBlockDisplayItem(Material blockType, Block block, String statusText) {
         ItemStack displayItem = new ItemStack(Material.BARRIER);
         ItemMeta meta = displayItem.getItemMeta();
 
         if (meta != null) {
-            // 获取方块的友好名称
+            // Get the block's friendly name
             String blockName = blockType.name().toLowerCase().replace("_", " ");
             meta.setDisplayName("§7" + blockName);
 
             List<String> lore = new ArrayList<>();
-            lore.add("§7坐标: " + block.getX() + "," + block.getY() + "," + block.getZ());
-            lore.add("§7状态: " + statusText);
-            lore.add("§8（此方块无法作为物品显示）");
+            lore.add("§7Coordinates: " + block.getX() + "," + block.getY() + "," + block.getZ());
+            lore.add("§7Status: " + statusText);
+            lore.add("§8(this block can't be shown as an item)");
 
             meta.setLore(lore);
             displayItem.setItemMeta(meta);
@@ -364,7 +364,7 @@ public class RightClickMan extends SlimefunItem implements EnergyNetComponent {
 
 
     protected void constructMenu(BlockMenuPreset preset) {
-        // 按钮状态
+        // Button state
         final Material BUTTON_OFF = Material.BARRIER;
         final Material BUTTON_ON = Material.LANTERN;
 
@@ -372,9 +372,9 @@ public class RightClickMan extends SlimefunItem implements EnergyNetComponent {
         int[] directionSlots = {6, 7, 8, 24, 25, 26};
 
         for (int slot : controlSlots) {
-            preset.addItem(slot, new CustomItemStack(BUTTON_OFF, "§7未激活", "§e点击激活"),
+            preset.addItem(slot, new CustomItemStack(BUTTON_OFF, "§7Not activated", "§eClick to activate"),
                     (player, slot1, item, action) -> {
-                        // G3 修复：删除原此处 getTargetBlock 结果从未使用的死代码行
+                        // G3 Fix: removed the dead code line here whose getTargetBlock result was never used
                         if (!(player.getOpenInventory().getTopInventory().getHolder() instanceof BlockMenu menu)) {
                             return false;
                         }
@@ -382,94 +382,94 @@ public class RightClickMan extends SlimefunItem implements EnergyNetComponent {
 
                         if (currentItem != null && currentItem.getType() == BUTTON_ON) {
                             // ON → OFF
-                            menu.replaceExistingItem(slot1, new CustomItemStack(BUTTON_OFF, "§7未激活", "§e点击激活"));
+                            menu.replaceExistingItem(slot1, new CustomItemStack(BUTTON_OFF, "§7Not activated", "§eClick to activate"));
                         } else {
-                            // OFF 或空 → ON
-                            menu.replaceExistingItem(slot1, new CustomItemStack(BUTTON_ON, "§a已激活", "§e点击关闭"));
+                            // OFF or empty → ON
+                            menu.replaceExistingItem(slot1, new CustomItemStack(BUTTON_ON, "§aActivated", "§eClick to close"));
                         }
 
-                        return false; // 阻止拿走
+                        return false; // Stop it from being taken
                     });
         }
 
 
 
         for (int i : directionSlots) {
-            preset.addItem(i, new CustomItemStack(doGlow(new ItemStack(Material.BLUE_CANDLE)), "§9装饰蜡烛", "§7仅用于美观","§7中心为机器状态"),
+            preset.addItem(i, new CustomItemStack(doGlow(new ItemStack(Material.BLUE_CANDLE)), "§9Decorative candle", "§7Just for looks","§7The center is the machine state"),
                     (p, slot, item, action) -> false);
         }
 
-        preset.addItem(15, new CustomItemStack(Material.BLUE_CANDLE, "§9装饰蜡烛", "§7仅用于美观","§7中心为机器状态"),
-                (player, slot, item, action) -> false); // 点击无反应
+        preset.addItem(15, new CustomItemStack(Material.BLUE_CANDLE, "§9Decorative candle", "§7Just for looks","§7The center is the machine state"),
+                (player, slot, item, action) -> false); // Clicking does nothing
 
-        preset.addItem(17, new CustomItemStack(Material.BLUE_CANDLE, "§9装饰蜡烛", "§7仅用于美观","§7中心为机器状态"),
-                (player, slot, item, action) -> false); // 点击无反应
+        preset.addItem(17, new CustomItemStack(Material.BLUE_CANDLE, "§9Decorative candle", "§7Just for looks","§7The center is the machine state"),
+                (player, slot, item, action) -> false); // Clicking does nothing
 
-        // ====== 边框说明文字（不可点击）======
+        // ====== Border description text (not clickable)======
         for (int i : upBorder) {
-            preset.addItem(i, new CustomItemStack(doGlow(new ItemStack(Material.WHITE_CONCRETE)), "§e向上", "§b此处点击，机器人与上方方块交互"),
+            preset.addItem(i, new CustomItemStack(doGlow(new ItemStack(Material.WHITE_CONCRETE)), "§eUp", "§bClick here, the robot interacts with the block above"),
                     (p, slot, item, action) -> false);
         }
         for (int i : downBorder) {
-            preset.addItem(i, new CustomItemStack(doGlow(new ItemStack(Material.BLACK_CONCRETE)), "§e向下", "§b此处点击，机器人与下方方块交互"),
+            preset.addItem(i, new CustomItemStack(doGlow(new ItemStack(Material.BLACK_CONCRETE)), "§eDown", "§bClick here, the robot interacts with the block below"),
                     (p, slot, item, action) -> false);
         }
         for (int i : eastBorder) {
-            preset.addItem(i, new CustomItemStack(doGlow(new ItemStack(Material.RED_CONCRETE)), "§e向东", "§b此处点击，机器人与东方方块交互"),
+            preset.addItem(i, new CustomItemStack(doGlow(new ItemStack(Material.RED_CONCRETE)), "§eEast", "§bClick here, the robot interacts with the block to the east"),
                     (p, slot, item, action) -> false);
         }
         for (int i : southBorder) {
-            preset.addItem(i, new CustomItemStack(doGlow(new ItemStack(Material.BLUE_CONCRETE)), "§e向南", "§b此处点击，机器人与南方方块交互"),
+            preset.addItem(i, new CustomItemStack(doGlow(new ItemStack(Material.BLUE_CONCRETE)), "§eSouth", "§bClick here, the robot interacts with the block to the south"),
                     (p, slot, item, action) -> false);
         }
         for (int i : westBorder) {
-            preset.addItem(i, new CustomItemStack(doGlow(new ItemStack(Material.GREEN_CONCRETE)), "§e向西", "§b此处点击，机器人与西方方块交互"),
+            preset.addItem(i, new CustomItemStack(doGlow(new ItemStack(Material.GREEN_CONCRETE)), "§eWest", "§bClick here, the robot interacts with the block to the west"),
                     (p, slot, item, action) -> false);
         }
         for (int i : northBorder) {
-            preset.addItem(i, new CustomItemStack(doGlow(new ItemStack(Material.YELLOW_CONCRETE)), "§e向北", "§b此处点击，机器人与北方方块交互"),
+            preset.addItem(i, new CustomItemStack(doGlow(new ItemStack(Material.YELLOW_CONCRETE)), "§eNorth", "§bClick here, the robot interacts with the block to the north"),
                     (p, slot, item, action) -> false);
         }
 
-        // 状态显示槽（中间）
+        // Status display slot (middle)
         preset.addItem(16, new CustomItemStack(Material.RED_CANDLE, " "),
                 (p, slot, item, action) -> false);
     }
     private boolean isButtonOn(BlockMenu menu, int slot) {
         ItemStack item = menu.getItemInSlot(slot);
-        return item != null && item.getType() == Material.LANTERN; // 注意：这里我们直接用 LANTERN 判断
+        return item != null && item.getType() == Material.LANTERN; // Note: here we just use LANTERN to check
     }
 
     /**
-     * 设置物品显示：继承原显示名和Lore，并追加坐标和状态信息
+     * Set the item display: inherit the original name and Lore, and add coordinates and status info
      */
     private void setBlockDisplayWithInfo(ItemStack item, Block block, String statusLine) {
         if (item == null) return;
         ItemMeta meta = item.getItemMeta();
         if (meta == null) return;
 
-        // 1. 设置显示名（使用 ItemStackHelper 获取友好名称）
+        // 1. Set the display name (use ItemStackHelper to get the friendly name)
         String displayName = ItemStackHelper.getDisplayName(item);
         meta.setDisplayName(displayName);
 
         List<String> lore = new ArrayList<>();
 
-        // 2. 保留原有 Lore（如果有）
+        // 2. Keep the original Lore (if any)
         if (meta.hasLore()) {
             lore.addAll(meta.getLore());
         }
 
-        // 3. 添加分隔线（如果已有 Lore 或要添加新信息）
+        // 3. Add a divider (if there's already Lore or new info is being added)
         if (!lore.isEmpty() || statusLine != null) {
             lore.add("§8---");
         }
 
-        // 4. 追加坐标
-        lore.add("§7坐标: " + block.getX() + "," + block.getY() + "," + block.getZ());
+        // 4. Add coordinates
+        lore.add("§7Coordinates: " + block.getX() + "," + block.getY() + "," + block.getZ());
 
-        // 5. 追加状态（可选）
+        // 5. Add status (optional)
         if (statusLine != null) {
-            lore.add("§7状态: " + statusLine);
+            lore.add("§7Status: " + statusLine);
         }
 
         meta.setLore(lore);

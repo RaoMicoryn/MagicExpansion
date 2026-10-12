@@ -60,7 +60,7 @@ public class ForceTwoToRsc extends SlimefunItem implements EnergyNetComponent {
 
         this.power = power;
         this.craftPerTick = craftPerTick;
-        constructMenu(ColorGradient.getGradientNameVer2("魔法2.0 To Rsc魔法 资源转换器"));
+        constructMenu(ColorGradient.getGradientNameVer2("Magic 2.0 To Rsc Magic Resource Converter"));
     }
 
 
@@ -89,26 +89,26 @@ public class ForceTwoToRsc extends SlimefunItem implements EnergyNetComponent {
         int energyConsumption = getEnergyConsumption();
         if(menu != null && menu.hasViewer()) {
         if (getCharge(block.getLocation()) < getEnergyConsumption()) {
-            //电量不足
-            menu.addItem(4, new CustomItemStack(new ItemStack (Material.CAMPFIRE), "§c电量不足"),
+            //Low power
+            menu.addItem(4, new CustomItemStack(new ItemStack (Material.CAMPFIRE), "§cLow power"),
                     (p, slot, item, action) -> false);
             return;
         }
-            //电量不足
-            menu.addItem(4, new CustomItemStack(new ItemStack(Material.SOUL_CAMPFIRE), "§b资源转换器",
-                            "§b类型：§e" + "魔法2.0转RSC魔法资源",
-                            "§b耗电速度：§e" + getEnergyConsumption() * 2 + " J/s",
-                            "§b电量存储：§e" + getCharge(block.getLocation()) + " J"),
+            //Low power
+            menu.addItem(4, new CustomItemStack(new ItemStack(Material.SOUL_CAMPFIRE), "§bResource Converter",
+                            "§bType: §e" + "Magic 2.0 to RSC Magic resources",
+                            "§bPower use: §e" + getEnergyConsumption() * 2 + " J/s",
+                            "§bStored power: §e" + getCharge(block.getLocation()) + " J"),
                     (p, slot, item, action) -> false);
 
         }
-        // 转换映射
+        // Conversion map
         java.util.Map<ItemStack, String> conversionMap = new java.util.HashMap<>();
         conversionMap.put(MagicExpansionItems.RSC_MAGIC_REDSTONE, "MAGIC_REDSTONE");
         conversionMap.put(MagicExpansionItems.RSC_MAGIC_COSMIC_DUST, "MAGIC_COSMIC_DUST");
         conversionMap.put(MagicExpansionItems.RSC_MAGIC_SOUL, "MAGIC_SOUL");
 
-        // 🔍 先检查 outputSlots 是否有空间（空槽 或 可叠加槽）
+        // 🔍 Check first whether outputSlots has space (empty slot or stackable slot)
         boolean hasOutputSpace = false;
         for (int slot : outputSlots) {
             ItemStack existing = menu.getItemInSlot(slot);
@@ -124,7 +124,7 @@ public class ForceTwoToRsc extends SlimefunItem implements EnergyNetComponent {
             ItemStack inputItem = menu.getItemInSlot(inputSlot);
             if (inputItem == null || inputItem.getType() == Material.AIR) continue;
 
-            // 检查是否是目标 RSC 物品
+            // Check if it's a target RSC item
             for (ItemStack rscItem : conversionMap.keySet()) {
                 if (inputItem.isSimilar(rscItem)) {
                     String targetKey = conversionMap.get(rscItem);

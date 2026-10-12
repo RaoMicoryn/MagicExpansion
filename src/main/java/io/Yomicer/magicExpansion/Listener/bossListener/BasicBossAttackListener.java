@@ -46,21 +46,21 @@ public class BasicBossAttackListener implements Listener {
     @EventHandler
     public void onEntityDamageByEntity(EntityDamageByEntityEvent e) {
 
-        // G: 短路判定①——攻击者必须是玩家，否则直接返回（原实现无条件遍历统计附近玩家，浪费性能）
+        // G: Quick check 1 — the attacker must be a player. Otherwise, return right away (the old code counted nearby players every time, which wasted work).
         if (!(e.getDamager() instanceof Player player)) return;
 
-        // G: 短路判定②——目标必须是生物实体
+        // G: Quick check 2 — the target must be a living entity.
         if (!(e.getEntity() instanceof LivingEntity mob)) return;
 
-        // G: 短路判定③——目标必须带本插件 Boss 元数据标记，普通生物不再做后续统计
+        // G: Quick check 3 — the target must have this plugin's Boss metadata, so normal mobs are skipped.
         if (!mob.hasMetadata("isInvincibleWindElf")) return;
 
         boolean isInvincibleWindElf = mob.getMetadata("isInvincibleWindElf").get(0).asBoolean();
 
-        // G: 短路判定通过后才遍历附近玩家统计（原来无论是否命中 Boss 都会执行）
+        // G: Count nearby players only after these checks pass (the old code did this even when no Boss was hit).
         Location mobLocation = mob.getLocation();
         World world = mobLocation.getWorld();
-        double radius = 20.0; // 范围：20 方块
+        double radius = 20.0; // Range: 20 blocks
         double radiusSquared = radius * radius;
         int playerCount = 0;
         for (Player p : world.getPlayers()) {
@@ -69,7 +69,7 @@ public class BasicBossAttackListener implements Listener {
             }
         }
 
-        // G: 仅对风精灵 Boss（ALLAY 类型）应用伤害规则
+        // G: Apply these damage rules only to the Wind Elf Boss (ALLAY type).
         if (mob.getType() == EntityType.ALLAY) {
             ItemStack weapon = player.getInventory().getItemInMainHand();
             if (isInvincibleWindElf || !isSword(weapon) || playerCount < 2 || playerCount > 5) {
@@ -88,7 +88,7 @@ public class BasicBossAttackListener implements Listener {
 
 
     /**
-     * 判断给定的物品是否为剑
+     * Checks whether the item is a sword.
      */
     private boolean isSword(ItemStack item) {
         if (item == null) return false;
@@ -98,7 +98,7 @@ public class BasicBossAttackListener implements Listener {
                 type == Material.GOLDEN_SWORD ||
                 type == Material.IRON_SWORD ||
                 type == Material.DIAMOND_SWORD ||
-                type == Material.NETHERITE_SWORD; // 如果你的服务器版本支持下界合金剑
+                type == Material.NETHERITE_SWORD; // If your server version supports Netherite Swords.
     }
 
 

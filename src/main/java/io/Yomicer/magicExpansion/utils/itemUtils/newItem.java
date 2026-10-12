@@ -68,7 +68,7 @@ public class newItem {
         return themedVer2(id,new ItemStack(itemStack),name,lore);
     }
     public static  SlimefunItemStack themedVer2(String id, ItemStack itemStack, String name, List<String> lore){
-        // 对 lore 的每一行应用变色方法
+        // Apply the color gradient to each line of the lore
         List<String> coloredLore = lore.stream()
                 .map(ColorGradient::getGradientNameVer2)
                 .toList();
@@ -103,7 +103,7 @@ public class newItem {
 
 
     public static ItemStack themed(ItemStack itemStack, String name, List<String>  lore){
-        // 对 lore 的每一行应用变色方法
+        // Apply the color gradient to each line of the lore
         List<String> coloredLore = lore.stream()
                 .map(ColorGradient::getGradientName)
                 .toList();

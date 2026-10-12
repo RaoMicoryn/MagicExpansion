@@ -54,7 +54,7 @@ public class EntityKillMachine extends SlimefunItem implements EnergyNetComponen
         this.entityType = entityType;
         this.name = name;
 
-        constructMenu(name+"抑制器");
+        constructMenu(name+" Suppressor");
     }
 
 
@@ -75,37 +75,37 @@ public class EntityKillMachine extends SlimefunItem implements EnergyNetComponen
         });
     }
 
-    // F2: 实体扫描节流计数器——每 20 tick 才执行一次 getNearbyEntities(19,19,19) 清除逻辑
+    // F2: Entity scan throttle counter. The getNearbyEntities(19,19,19) cleanup only runs once every 20 ticks
     private int scanTickCounter = 0;
 
     protected void tick(Block block) {
 
         BlockMenu menu = StorageCacheUtils.getMenu(block.getLocation());
 
-        // F3: 同一 tick 内的 getCharge 调用合并为一次局部变量，避免重复查询
+        // F3: Combine getCharge calls in the same tick into one local variable to avoid repeated lookups
         int charge = getCharge(block.getLocation());
 
-        // F1: 电量检查移到 hasViewer() 判断之外——电量不足时无论是否有观察者都不清除实体，
-        // 防止"没人看 UI 就免费清除实体"的漏洞；仅在有观察者时更新 UI 提示
+        // F1: The energy check sits outside hasViewer(). When energy is too low, no entities are removed whether or not anyone is watching,
+        // which stops the loophole of removing entities for free when nobody has the UI open. The UI message is only updated when someone is viewing it
         if (charge < getEnergyConsumption()) {
             if (menu != null && menu.hasViewer()) {
-                menu.addItem(13, new CustomItemStack(new ItemStack (Material.GHAST_TEAR), "§c电量不足"),
+                menu.addItem(13, new CustomItemStack(new ItemStack (Material.GHAST_TEAR), "§cNot enough energy"),
                         (p, slot, item, action) -> false);
             }
             return;
         }
 
-        // UI 状态提示仍每 tick 更新（仅有观察者时），复用 F3 的局部变量 charge
+        // The UI status message is still updated every tick (only when someone is viewing), reusing the charge variable from F3
         if (menu != null && menu.hasViewer()) {
-            menu.addItem(13, new CustomItemStack(new ItemStack(Material.BLUE_BED), "§b抑制中",
-                            "§b类型：§e" + name,
-                            "§b耗电速度：§e" + getEnergyConsumption() * 2 + " J/s",
-                            "§b电量存储：§e" + charge + " J"),
+            menu.addItem(13, new CustomItemStack(new ItemStack(Material.BLUE_BED), "§bSuppressing",
+                            "§bType: §e" + name,
+                            "§bEnergy use: §e" + getEnergyConsumption() * 2 + " J/s",
+                            "§bStored energy: §e" + charge + " J"),
                     (p, slot, item, action) -> false);
 
         }
 
-        // F2: 实体扫描节流——每 20 tick 才执行一次清除逻辑，UI 更新不受影响
+        // F2: Entity scan throttle. The cleanup only runs once every 20 ticks; UI updates are not affected
         scanTickCounter++;
         if (scanTickCounter < 20) {
             return;
@@ -124,10 +124,10 @@ public class EntityKillMachine extends SlimefunItem implements EnergyNetComponen
         };
 
         if (Bukkit.isPrimaryThread()) {
-            // 当前是主线程，直接执行
+            // Already on the main thread, run it directly
             removeEntitiesTask.run();
         } else {
-            // 当前是异步线程，调度到主线程执行
+            // On an async thread, schedule it to run on the main thread
             Bukkit.getScheduler().runTask(MagicExpansion.getInstance(), removeEntitiesTask);
         }
 

@@ -16,7 +16,7 @@ public class getRandomItemFromGroup {
 
 
 
-    // 随机获取一个物品的 ItemStack
+    // Get a random item's ItemStack
     public static ItemStack getRandomItemStack(Map<String, SlimefunItem> itemMap) {
         if (itemMap.isEmpty()) {
             return null;
@@ -29,15 +29,15 @@ public class getRandomItemFromGroup {
         return randomItem.getItem().clone();
     }
 
-    // 在指定位置生成一个随机物品
+    // Spawn a random item at the given location
     public void spawnRandomItem(Location location, Player player) {
         ItemStack gift = getRandomItemStack(itemMapMihoyoHonkai);
 
         if (gift != null) {
             SlimefunUtils.spawnItem(location, gift, ItemSpawnReason.CHRISTMAS_PRESENT_OPENED, true, player);
-            player.sendMessage("§a恭喜你，从打开 Honkai: Star Rail 盲盒中开出了" + gift.getItemMeta().getDisplayName() + "！");
+            player.sendMessage("§aCongrats! You got " + gift.getItemMeta().getDisplayName() + "!");
         } else {
-            Debug.logWarn("❌ 无法生成物品：物品为 null");
+            Debug.logWarn("❌ Could not spawn the item: item is null");
         }
     }
 }

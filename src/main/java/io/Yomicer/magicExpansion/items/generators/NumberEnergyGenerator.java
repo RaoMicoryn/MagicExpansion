@@ -74,8 +74,8 @@ public class NumberEnergyGenerator extends MenuBlock implements EnergyNetProvide
                 10,11,12,13,14,15,16,
                 18,19,20,21,22,23,24,25,26
         });
-        blockMenuPreset.drawBackground(new CustomItemStack(Material.MAGENTA_GLAZED_TERRACOTTA,getGradientName("§b↑请在上方填入密钥↑"),
-                getGradientName("§b密钥为9位二进制码"),getGradientName("§e有物品代表1"),getGradientName("§d无物品代表0")),new int[] {
+        blockMenuPreset.drawBackground(new CustomItemStack(Material.MAGENTA_GLAZED_TERRACOTTA,getGradientName("§b↑Put the key above↑"),
+                getGradientName("§bThe key is a 9-digit binary code"),getGradientName("§eAn item means 1"),getGradientName("§dNo item means 0")),new int[] {
 
                 9,   17
         });
@@ -102,7 +102,7 @@ public class NumberEnergyGenerator extends MenuBlock implements EnergyNetProvide
     public int getGeneratedOutput(Location l, SlimefunBlockData data) {
 
         BlockMenu inv = StorageCacheUtils.getMenu(l);
-        // H 修复：区块加载时序窗口内 inv 可能为 null，立即按发电量 0 返回，避免下方 getItemInSlot 抛 NPE
+        // H fix: inv can be null right when the chunk is loading, so return 0 power right away to avoid an NPE in getItemInSlot below
         if (inv == null) {
             return 0;
         }
@@ -115,7 +115,7 @@ public class NumberEnergyGenerator extends MenuBlock implements EnergyNetProvide
             }
         }
 
-        // 比较当前槽位状态和预设模式
+        // Compare the current slot state with the preset pattern
         String currentState = sb.toString();
         int ifKey2 = 0;
         int gen;
@@ -139,26 +139,26 @@ public class NumberEnergyGenerator extends MenuBlock implements EnergyNetProvide
             if (gen == 0) {
                 inv.replaceExistingItem(13, new CustomItemStack(
                         Material.LANTERN,
-                        getGradientName("口令错误，不允许发射"),
-                        getGradientName("已储存: " + ChargeLore.format(getCharge(l)) + " J")
+                        getGradientName("Wrong code, launch not allowed"),
+                        getGradientName("Stored: " + ChargeLore.format(getCharge(l)) + " J")
                 ));
             }
             else if(ifKey2 == 1&&power2 > 0){
                 inv.replaceExistingItem(13, new CustomItemStack(
                         Material.SOUL_LANTERN,
-                        getGradientName("密钥正确，允许发射，本期密钥之一为:"+key2),
-                        getGradientName("类型: " + getPowerType()),
-                        getGradientName("发电速度: " + ChargeLore.formatEnergy(gen) + " J/s "),
-                        getGradientName("已储存: " + ChargeLore.format(getCharge(l)) + " J")
+                        getGradientName("Key correct, launch allowed. One of this round's keys: "+key2),
+                        getGradientName("Type: " + getPowerType()),
+                        getGradientName("Generating speed: " + ChargeLore.formatEnergy(gen) + " J/s "),
+                        getGradientName("Stored: " + ChargeLore.format(getCharge(l)) + " J")
                 ));
             }else{
                 inv.replaceExistingItem(13, new CustomItemStack(
                         Material.SOUL_LANTERN,
-                        getGradientName("密钥正确，允许发射，本期密钥之一为:"+key),
-                        getGradientName("类型: " + getPowerType()),
-                        getGradientName("功率波动: " + ChargeLore.formatEnergy(Math.min(power,power2)) + " ~ " + ChargeLore.formatEnergy(Math.max(power,power2)) +" J/s "),
-                        getGradientName("发电速度: " + ChargeLore.formatEnergy(gen) + " J/s "),
-                        getGradientName("已储存: " + ChargeLore.format(getCharge(l)) + " J")
+                        getGradientName("Key correct, launch allowed. One of this round's keys: "+key),
+                        getGradientName("Type: " + getPowerType()),
+                        getGradientName("Power range: " + ChargeLore.formatEnergy(Math.min(power,power2)) + " ~ " + ChargeLore.formatEnergy(Math.max(power,power2)) +" J/s "),
+                        getGradientName("Generating speed: " + ChargeLore.formatEnergy(gen) + " J/s "),
+                        getGradientName("Stored: " + ChargeLore.format(getCharge(l)) + " J")
                         ));
             }
         }

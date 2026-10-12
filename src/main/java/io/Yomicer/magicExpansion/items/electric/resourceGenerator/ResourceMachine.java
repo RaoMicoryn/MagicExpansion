@@ -31,7 +31,7 @@ public class ResourceMachine extends AbstractElectricResourceMachine {
     private static final ItemStack PROGRESS_ITEM = new ItemStack(Material.SOUL_LANTERN);
     private ItemStack material;
 
-    private static final ItemStack PROGRESS_STACK = new CustomItemStack(Material.SOUL_CAMPFIRE, getGradientName("信息"), getGradientName("类型：资源生成器"), getGradientName("所属附属：魔法"));
+    private static final ItemStack PROGRESS_STACK = new CustomItemStack(Material.SOUL_CAMPFIRE, getGradientName("Info"), getGradientName("Type: Resource Generator"), getGradientName("Addon: Magic"));
 
 
 
@@ -67,7 +67,7 @@ public class ResourceMachine extends AbstractElectricResourceMachine {
 
         if (maxedSlots == getOutputSlots().length) { return null; }
 
-        // L1 修复：配方列表为空时直接返回 null，避免 recipes.get(0) 抛 IndexOutOfBoundsException
+        // L1 fix: If the recipe list is empty, return null right away so recipes.get(0) doesn't throw IndexOutOfBoundsException
         if (recipes == null || recipes.isEmpty()) { return null; }
 
         MachineRecipe recipe = recipes.get(0);
@@ -81,9 +81,9 @@ public class ResourceMachine extends AbstractElectricResourceMachine {
 	public List<ItemStack> getDisplayRecipes() {
 	    List<ItemStack> display = new ArrayList<>();
 
-        display.add(new CustomItemStack(Material.KNOWLEDGE_BOOK, getGradientName("产物⇨"),getGradientName("生产效率⇨ ⚙ 每 " + getCraftSecond() + " s生成一次"),getGradientName("生产能耗⇨ ⚡ "+ getEnergyConsumption()*2 +" J/s")));
-        display.add(new CustomItemStack(Material.KNOWLEDGE_BOOK, getGradientName("产物⇨"),getGradientName("生产效率⇨ ⚙ 每 " + getCraftSecond() + " s生成一次"),getGradientName("生产能耗⇨ ⚡ "+ getEnergyConsumption()*2 +" J/s")));
-        // 将输出物品数组中的所有物品添加到显示列表
+        display.add(new CustomItemStack(Material.KNOWLEDGE_BOOK, getGradientName("Output⇨"),getGradientName("Speed⇨ ⚙ Once every " + getCraftSecond() + " s"),getGradientName("Energy use⇨ ⚡ "+ getEnergyConsumption()*2 +" J/s")));
+        display.add(new CustomItemStack(Material.KNOWLEDGE_BOOK, getGradientName("Output⇨"),getGradientName("Speed⇨ ⚙ Once every " + getCraftSecond() + " s"),getGradientName("Energy use⇨ ⚡ "+ getEnergyConsumption()*2 +" J/s")));
+        // Add every item in the output array to the display list
         display.addAll(Arrays.asList(getItemStackOutputs()));
 
         return display;
@@ -134,9 +134,9 @@ public class ResourceMachine extends AbstractElectricResourceMachine {
 //        ItemStack item = PROGRESS_STACK.clone();
 //        ItemMeta meta = item.getItemMeta();
 //
-//        meta.setDisplayName(getGradientName("信息"));
+//        meta.setDisplayName(getGradientName("Info"));
 //        ArrayList lore = new ArrayList<>();
-//        lore.add(getGradientName("生产速率：" + getCraftSecondDisplay() + "秒"));
+//        lore.add(getGradientName("Production speed: " + getCraftSecondDisplay() + " sec"));
 //        item.setLore(lore);
 //        item.setItemMeta(meta);
 //

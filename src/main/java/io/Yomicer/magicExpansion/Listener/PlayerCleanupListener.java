@@ -19,9 +19,9 @@ import java.util.UUID;
 import java.util.logging.Level;
 
 /**
- * 玩家退出清理监听器：
- * 玩家下线时统一调用各模块暴露的静态 cleanup(UUID)，
- * 清理会话数据，防止各模块 Map 中残留离线玩家数据造成内存泄漏。
+ * Listener that cleans up data when a player leaves:
+ * When a player leaves, call each module's static cleanup(UUID) method.
+ * Clear session data so offline players aren't left in module maps and cause memory leaks.
  */
 public class PlayerCleanupListener implements Listener {
 
@@ -29,12 +29,12 @@ public class PlayerCleanupListener implements Listener {
     public void onPlayerQuit(PlayerQuitEvent event) {
         UUID uuid = event.getPlayer().getUniqueId();
 
-        // 修复方案：每个模块独立 try-catch，防止单个模块清理失败影响其他模块
+        // Fix: use a separate try-catch for each module so one cleanup error won't stop the others.
         safeCleanup("worldListener.Events", () -> Events.cleanup(uuid));
         safeCleanup("RecipeBookManager", () -> RecipeBookManager.cleanup(uuid));
-        // StarShardsSword.cleanup 由另一代理提供（只负责调用）
+        // StarShardsSword.cleanup is handled by another provider (this class only calls it).
         safeCleanup("StarShardsSword", () -> StarShardsSword.cleanup(uuid));
-        // SlownessManager.cleanup 由另一代理提供（只负责调用）
+        // SlownessManager.cleanup is handled by another provider (this class only calls it).
         safeCleanup("SlownessManager", () -> SlownessManager.cleanup(uuid));
         safeCleanup("CustomSequenceTool", () -> CustomSequenceTool.cleanup(uuid));
         safeCleanup("ShopGUI", () -> ShopGUI.cleanup(uuid));
@@ -44,12 +44,12 @@ public class PlayerCleanupListener implements Listener {
         safeCleanup("ItemEffectAttackListener", () -> ItemEffectAttackListener.cleanup(uuid));
     }
 
-    // 安全执行单个清理任务：捕获异常仅记录日志，不中断其他模块的清理流程
+    // Safely run one cleanup task: log errors without stopping cleanup for other modules.
     private void safeCleanup(String module, Runnable task) {
         try {
             task.run();
         } catch (Throwable t) {
-            Bukkit.getLogger().log(Level.WARNING, "魔法拓展模块 " + module + " 玩家退出数据清理失败: " + t.getMessage());
+            Bukkit.getLogger().log(Level.WARNING, "Magic Expansion module " + module + " failed to clean up player data after logout: " + t.getMessage());
         }
     }
 }

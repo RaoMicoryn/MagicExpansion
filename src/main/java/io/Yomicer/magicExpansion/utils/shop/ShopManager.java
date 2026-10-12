@@ -16,8 +16,8 @@ public class ShopManager {
     public static class Trade {
         public ItemStack result;
         public List<ItemStack> costItems = new ArrayList<>();
-        public int globalLimit = 0;   // 0 表示无限制
-        public int personalLimit = 0; // 0 表示无限制
+        public int globalLimit = 0;   // 0 means no limit
+        public int personalLimit = 0; // 0 means no limit
         public int globalUsed = 0;
         public Map<UUID, Integer> personalUsed = new HashMap<>();
     }

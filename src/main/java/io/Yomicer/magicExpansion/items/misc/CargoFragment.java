@@ -36,11 +36,11 @@ import java.util.*;
 
 public class CargoFragment extends SimpleSlimefunItem<ItemUseHandler> implements NotPlaceable, DistinctiveItem {
 
-    // 等待输入的玩家列表
+    // List of players waiting for input
     private static final Map<UUID, FragmentTransfer> pendingTransfers = new HashMap<>();
     private static Listener chatListener;
 
-    // CargoFragment的PDC键
+    // CargoFragment's PDC key
     private static final NamespacedKey KEY_CARGO_ITEM = new NamespacedKey(MagicExpansion.getInstance(), "cargo_item_json");
     private static final NamespacedKey KEY_CARGO_AMOUNT = new NamespacedKey(MagicExpansion.getInstance(), "cargo_amount");
 
@@ -56,54 +56,54 @@ public class CargoFragment extends SimpleSlimefunItem<ItemUseHandler> implements
 
             Player player = e.getPlayer();
 
-            // 只响应主手
+            // Only respond to main hand
             if (e.getHand() != EquipmentSlot.HAND) {
                 return;
             }
 
-            ItemStack fragmentItem = e.getItem(); // 主手的CargoFragment
-            ItemStack offhandItem = player.getInventory().getItemInOffHand(); // 副手物品
+            ItemStack fragmentItem = e.getItem(); // Main hand'sCargoFragment
+            ItemStack offhandItem = player.getInventory().getItemInOffHand(); // Off-hand item
 
-            // 检查主手和副手物品数量必须为1
+            // Check the main hand and off hand item amount must be1
             if (fragmentItem.getAmount() != 1 || offhandItem.getAmount() != 1) {
                 if (fragmentItem.getAmount() != 1) {
-                    player.sendMessage(ChatColor.RED + "主手CargoFragment的数量必须为1！");
-                    player.sendMessage(ChatColor.GRAY + "请分离出单个碎片再进行转移操作。");
+                    player.sendMessage(ChatColor.RED + "Main hand CargoFragment amount must be 1!");
+                    player.sendMessage(ChatColor.GRAY + "Please split off a single fragment before transferring.");
                 }
                 if (offhandItem.getAmount() != 1) {
-                    player.sendMessage(ChatColor.RED + "副手量子存储物品的数量必须为1！");
-                    player.sendMessage(ChatColor.GRAY + "请确保只持有一个存储容器。");
+                    player.sendMessage(ChatColor.RED + "Off-hand quantum storage item amount must be 1!");
+                    player.sendMessage(ChatColor.GRAY + "Please make sure you only hold one storage container.");
                 }
                 playSound(player, Sound.BLOCK_NOTE_BLOCK_BASS, 0.5f);
                 return;
             }
 
-            // 1. 检查副手物品
+            // 1. Check off-hand item
             if (offhandItem == null || offhandItem.getType().isAir()) {
-                sendError(player, "请将量子存储物品放在副手！");
+                sendError(player, "Put the quantum storage item in your off hand!");
                 return;
             }
 
-            // 2. 从副手物品获取QuantumCache
+            // 2. Get from the off-hand itemQuantumCache
             ItemMeta offhandMeta = offhandItem.getItemMeta();
             if (offhandMeta == null) {
-                sendError(player, "副手物品数据异常！");
+                sendError(player, "Off-hand item data is broken!");
                 return;
             }
 
-            // 使用你提供的方式获取QuantumCache
+            // Get it the way you providedQuantumCache
             QuantumCache quantumCache = DataTypeMethods.getCustom(offhandMeta,
                     NetworksKeys.QUANTUM_STORAGE_INSTANCE, PersistentQuantumStorageType.TYPE);
 
             if (quantumCache == null || quantumCache.getItemStack() == null) {
-                sendError(player, "副手物品没有有效的量子存储数据！");
+                sendError(player, "Off-hand item has no valid quantum storage data!");
                 return;
             }
 
-            // 3. 获取CargoFragment数据
+            // 3. Get CargoFragment data
             ItemMeta fragmentMeta = fragmentItem.getItemMeta();
             if (fragmentMeta == null) {
-                sendError(player, "碎片数据损坏！");
+                sendError(player, "Fragment data is corrupted!");
                 return;
             }
 
@@ -112,40 +112,40 @@ public class CargoFragment extends SimpleSlimefunItem<ItemUseHandler> implements
             Integer fragmentAmount = fragmentPdc.get(KEY_CARGO_AMOUNT, PersistentDataType.INTEGER);
 
             if (itemJson == null || fragmentAmount == null || fragmentAmount <= 0) {
-                sendError(player, "这个碎片中没有存储物品！");
+                sendError(player, "There's no stored item in this fragment!");
                 return;
             }
 
-            // 4. 解析CargoFragment中的物品
+            // 4. Parse the item in CargoFragment
             ItemStack storedItem = SameItemJudge.itemFromBase64(itemJson);
             if (storedItem == null) {
-                sendError(player, "碎片中的物品数据损坏！");
+                sendError(player, "The item data in the fragment is corrupted!");
                 return;
             }
 
-            // 5. 检查物品类型是否匹配
+            // 5. Check if the item type matches
             ItemStack cacheItem = quantumCache.getItemStack();
             if (!SlimefunUtils.isItemSimilar(storedItem, cacheItem, true)) {
-                player.sendMessage(ChatColor.RED + "物品类型不匹配！");
-                player.sendMessage(ChatColor.GRAY + "碎片: " + ItemStackHelper.getDisplayName(storedItem));
-                player.sendMessage(ChatColor.GRAY + "存储: " + ItemStackHelper.getDisplayName(cacheItem));
+                player.sendMessage(ChatColor.RED + "Item type doesn't match!");
+                player.sendMessage(ChatColor.GRAY + "Fragment: " + ItemStackHelper.getDisplayName(storedItem));
+                player.sendMessage(ChatColor.GRAY + "Storage: " + ItemStackHelper.getDisplayName(cacheItem));
                 playSound(player, Sound.BLOCK_NOTE_BLOCK_BASS, 0.5f);
                 return;
             }
 
-            // 6. 计算可转移数量
+            // 6. Calculate transferable amount
             long currentAmount = quantumCache.getAmount();
             long maxCapacity = quantumCache.getLimit();
             long remainingSpace = maxCapacity - currentAmount;
 
             if (remainingSpace <= 0) {
-                sendError(player, "§c量子存储已满！");
+                sendError(player, "§cQuantum storage is full!");
                 return;
             }
 
             long maxTransfer = Math.min(fragmentAmount, remainingSpace);
 
-            // 7. 创建等待状态
+            // 7. Create waiting state
             FragmentTransfer transfer = new FragmentTransfer(
                     player.getUniqueId(),
                     fragmentItem,
@@ -158,39 +158,39 @@ public class CargoFragment extends SimpleSlimefunItem<ItemUseHandler> implements
 
             pendingTransfers.put(player.getUniqueId(), transfer);
 
-            // 8. 显示输入提示
+            // 8. Show input hint
             showTransferPrompt(player, storedItem, fragmentAmount, currentAmount, maxCapacity, maxTransfer);
 
-            // 9. 注册聊天监听器
+            // 9. Register chat listener
             registerChatListener();
 
-            // 10. 设置超时
+            // 10. Set timeout
             scheduleTimeout(player.getUniqueId());
         };
     }
 
     /**
-     * 显示转移提示信息
+     * Show transfer hint message
      */
     private void showTransferPrompt(Player player, ItemStack item, long fragmentAmount,
                                     long currentStored, long maxCapacity, long maxTransfer) {
         player.sendMessage("");
-        player.sendMessage(ChatColor.GOLD + "══════ " + ChatColor.BOLD + "物品转移" + ChatColor.RESET + ChatColor.GOLD + " ══════");
-        player.sendMessage(ChatColor.YELLOW + "物品类型: " + ChatColor.WHITE + ItemStackHelper.getDisplayName(item));
-        player.sendMessage(ChatColor.YELLOW + "碎片存量: " + ChatColor.GREEN + fragmentAmount + " 个");
-        player.sendMessage(ChatColor.YELLOW + "存储状态: " + ChatColor.AQUA + currentStored + "/" + maxCapacity);
-        player.sendMessage(ChatColor.YELLOW + "可转数量: " + ChatColor.GOLD + maxTransfer + " 个");
+        player.sendMessage(ChatColor.GOLD + "══════ " + ChatColor.BOLD + "Item transfer" + ChatColor.RESET + ChatColor.GOLD + " ══════");
+        player.sendMessage(ChatColor.YELLOW + "Item type: " + ChatColor.WHITE + ItemStackHelper.getDisplayName(item));
+        player.sendMessage(ChatColor.YELLOW + "Fragment stock: " + ChatColor.GREEN + fragmentAmount + " pcs");
+        player.sendMessage(ChatColor.YELLOW + "Storage state: " + ChatColor.AQUA + currentStored + "/" + maxCapacity);
+        player.sendMessage(ChatColor.YELLOW + "Transferable amount: " + ChatColor.GOLD + maxTransfer + " pcs");
         player.sendMessage("");
-        player.sendMessage(ChatColor.YELLOW + "请输入转移数量 (" + ChatColor.GREEN + "1-" + maxTransfer + ChatColor.YELLOW + ")");
-        player.sendMessage(ChatColor.YELLOW + "或输入 " + ChatColor.GREEN + "'all'" + ChatColor.YELLOW + " 转移全部可转数量");
-        player.sendMessage(ChatColor.GRAY + "输入 " + ChatColor.RED + "'cancel'" + ChatColor.GRAY + " 取消操作 (30秒超时)");
+        player.sendMessage(ChatColor.YELLOW + "Enter the transfer amount (" + ChatColor.GREEN + "1-" + maxTransfer + ChatColor.YELLOW + ")");
+        player.sendMessage(ChatColor.YELLOW + "or input " + ChatColor.GREEN + "'all'" + ChatColor.YELLOW + " Transfer all transferable amount");
+        player.sendMessage(ChatColor.GRAY + "Input " + ChatColor.RED + "'cancel'" + ChatColor.GRAY + " Cancel action (30sec timeout)");
         player.sendMessage("");
 
         playSound(player, Sound.BLOCK_NOTE_BLOCK_PLING, 1.5f);
     }
 
     /**
-     * 注册聊天事件监听器
+     * Register chat event listener
      */
     private void registerChatListener() {
         if (chatListener != null) return;
@@ -223,21 +223,21 @@ public class CargoFragment extends SimpleSlimefunItem<ItemUseHandler> implements
     }
 
     /**
-     * 处理玩家输入
+     * Handle player input
      */
     private void processTransferInput(Player player, FragmentTransfer transfer, String input) {
         try {
-            // 处理取消
+            // Handle cancel
             if (input.equalsIgnoreCase("cancel")) {
-                player.sendMessage(ChatColor.YELLOW + "已取消转移操作。");
+                player.sendMessage(ChatColor.YELLOW + "Transfer action cancelled.");
                 pendingTransfers.remove(player.getUniqueId());
                 cleanupListenerIfNeeded();
                 return;
             }
 
-            // === 新增：验证物品是否发生变化 ===
+            // === New: check if the item has changed ===
             if (!validateItemsUnchanged(player, transfer)) {
-                player.sendMessage(ChatColor.RED + "操作失败：物品已发生变化！");
+                player.sendMessage(ChatColor.RED + "Action failed: the item has changed!");
                 pendingTransfers.remove(player.getUniqueId());
                 cleanupListenerIfNeeded();
                 return;
@@ -245,31 +245,31 @@ public class CargoFragment extends SimpleSlimefunItem<ItemUseHandler> implements
 
             int transferAmount;
 
-            // 处理"all"
+            // Handle"all"
             if (input.equalsIgnoreCase("all")) {
                 transferAmount = (int) transfer.maxTransfer;
             } else {
-                // 解析数字
+                // Parse number
                 try {
                     transferAmount = Integer.parseInt(input);
                 } catch (NumberFormatException e) {
-                    player.sendMessage(ChatColor.RED + "请输入有效数字、'all' 或 'cancel'！");
+                    player.sendMessage(ChatColor.RED + "Please enter a valid number, 'all' or 'cancel'!");
                     return;
                 }
 
-                // 验证范围
+                // Check range
                 if (transferAmount <= 0) {
-                    player.sendMessage(ChatColor.RED + "请输入大于0的数字！");
+                    player.sendMessage(ChatColor.RED + "Please enter a number greater than 0!");
                     return;
                 }
 
                 if (transferAmount > transfer.maxTransfer) {
-                    player.sendMessage(ChatColor.RED + "超过最大可转数量 (" + transfer.maxTransfer + ")！");
+                    player.sendMessage(ChatColor.RED + "Exceeds the max transferable amount (" + transfer.maxTransfer + ")!");
                     return;
                 }
             }
 
-            // 执行转移
+            // Run transfer
             executeQuantumTransfer(player, transfer, transferAmount);
 
         } finally {
@@ -279,56 +279,56 @@ public class CargoFragment extends SimpleSlimefunItem<ItemUseHandler> implements
     }
 
     /**
-     * 验证物品在等待输入期间是否发生变化
+     * Check if the item changed while waiting for input
      */
     private boolean validateItemsUnchanged(Player player, FragmentTransfer transfer) {
-        // 1. 检查玩家是否在线
+        // 1. Check if the player is online
         if (!player.isOnline()) {
             return false;
         }
 
-        // 2. 检查主手物品是否还是碎片
+        // 2. Check if the main hand item is still the fragment
         ItemStack currentMainHand = player.getInventory().getItemInMainHand();
         if (currentMainHand == null || currentMainHand.getType().isAir()) {
-            player.sendMessage(ChatColor.RED + "主手物品已消失！");
+            player.sendMessage(ChatColor.RED + "Main hand item is gone!");
             return false;
         }
 
-        // 检查数量是否为1
+        // Check if the amount is1
         if (currentMainHand.getAmount() != 1) {
-            player.sendMessage(ChatColor.RED + "主手物品数量已发生变化！");
+            player.sendMessage(ChatColor.RED + "Main hand item amount changed!");
             return false;
         }
 
-        // 检查是否是同一个碎片物品
+        // Check if it's the same fragment item
         if (!isSameFragmentItem(currentMainHand, transfer.fragmentItem)) {
-            player.sendMessage(ChatColor.RED + "主手物品已更换！");
+            player.sendMessage(ChatColor.RED + "Main hand item was changed!");
             return false;
         }
 
-        // 3. 检查副手物品是否还是量子存储物品
+        // 3. Check if the off-hand item is still a quantum storage item
         ItemStack currentOffhand = player.getInventory().getItemInOffHand();
         if (currentOffhand == null || currentOffhand.getType().isAir()) {
-            player.sendMessage(ChatColor.RED + "副手物品已消失！");
+            player.sendMessage(ChatColor.RED + "Off-hand item is gone!");
             return false;
         }
 
-        // 检查数量是否为1
+        // Check if the amount is1
         if (currentOffhand.getAmount() != 1) {
-            player.sendMessage(ChatColor.RED + "副手物品数量已发生变化！");
+            player.sendMessage(ChatColor.RED + "Off-hand item amount changed!");
             return false;
         }
 
-        // 检查是否是同一个量子存储物品
+        // Check if it's the same quantum storage item
         if (!isSameQuantumStorageItem(currentOffhand, transfer.offhandItem)) {
-            player.sendMessage(ChatColor.RED + "副手物品已更换！");
+            player.sendMessage(ChatColor.RED + "Off-hand item was changed!");
             return false;
         }
 
-        // 4. 检查量子存储数据是否发生变化
+        // 4. Check if the quantum storage data changed
         ItemMeta currentOffhandMeta = currentOffhand.getItemMeta();
         if (currentOffhandMeta == null) {
-            player.sendMessage(ChatColor.RED + "副手物品数据异常！");
+            player.sendMessage(ChatColor.RED + "Off-hand item data is broken!");
             return false;
         }
 
@@ -336,24 +336,24 @@ public class CargoFragment extends SimpleSlimefunItem<ItemUseHandler> implements
                 NetworksKeys.QUANTUM_STORAGE_INSTANCE, PersistentQuantumStorageType.TYPE);
 
         if (currentCache == null) {
-            player.sendMessage(ChatColor.RED + "副手物品的量子存储数据已丢失！");
+            player.sendMessage(ChatColor.RED + "Off-hand item's quantum storage data is lost!");
             return false;
         }
 
-        // 检查存储的物品是否相同
+        // Check if the stored items are the same
         ItemStack currentCacheItem = currentCache.getItemStack();
         long currentStoredAmount = currentCache.getAmount();
         long currentMaxCapacity = currentCache.getLimit();
 
         if (currentCacheItem == null) {
-            player.sendMessage(ChatColor.RED + "量子存储中的物品已消失！");
+            player.sendMessage(ChatColor.RED + "The item in the quantum storage is gone!");
             return false;
         }
 
-        // 检查碎片数据是否发生变化
+        // Check if the fragment data changed
         ItemMeta currentFragmentMeta = currentMainHand.getItemMeta();
         if (currentFragmentMeta == null) {
-            player.sendMessage(ChatColor.RED + "碎片数据损坏！");
+            player.sendMessage(ChatColor.RED + "Fragment data is corrupted!");
             return false;
         }
 
@@ -362,36 +362,36 @@ public class CargoFragment extends SimpleSlimefunItem<ItemUseHandler> implements
         Integer currentFragmentAmount = fragmentPdc.get(KEY_CARGO_AMOUNT, PersistentDataType.INTEGER);
 
         if (currentItemJson == null || currentFragmentAmount == null) {
-            player.sendMessage(ChatColor.RED + "碎片数据不完整！");
+            player.sendMessage(ChatColor.RED + "Fragment data is incomplete!");
             return false;
         }
 
-        // 解析碎片中的物品
+        // Parse the item in the fragment
         ItemStack currentStoredItem = SameItemJudge.itemFromBase64(currentItemJson);
         if (currentStoredItem == null) {
-            player.sendMessage(ChatColor.RED + "碎片中的物品数据损坏！");
+            player.sendMessage(ChatColor.RED + "The item data in the fragment is corrupted!");
             return false;
         }
 
-        // 检查物品类型是否匹配
+        // Check if the item type matches
         if (!SlimefunUtils.isItemSimilar(currentStoredItem, currentCacheItem, true)) {
-            player.sendMessage(ChatColor.RED + "物品类型已不匹配！");
+            player.sendMessage(ChatColor.RED + "Item type no longer matches!");
             return false;
         }
 
-        // 检查碎片中的物品是否与之前一致
+        // Check if the item in the fragment is the same as before
         if (!SlimefunUtils.isItemSimilar(currentStoredItem, transfer.storedItem, true)) {
-            player.sendMessage(ChatColor.RED + "碎片中的物品已发生变化！");
+            player.sendMessage(ChatColor.RED + "The item in the fragment has changed!");
             return false;
         }
 
-        // 检查碎片数量是否减少
+        // Check if the fragment amount decreased
         if (currentFragmentAmount < transfer.fragmentAmount) {
-            player.sendMessage(ChatColor.YELLOW + "碎片数量已减少，更新可转移数量！");
+            player.sendMessage(ChatColor.YELLOW + "Fragment amount decreased, update the transferable amount!");
             transfer.fragmentAmount = currentFragmentAmount;
         }
 
-        // 检查存储容量是否变化
+        // Check if the storage capacity changed
         if (currentStoredAmount != transfer.quantumCache.getAmount() ||
                 currentMaxCapacity != transfer.quantumCache.getLimit()) {
 
@@ -399,12 +399,12 @@ public class CargoFragment extends SimpleSlimefunItem<ItemUseHandler> implements
             long newMaxTransfer = Math.min(transfer.fragmentAmount, remainingSpace);
 
             if (remainingSpace <= 0) {
-                player.sendMessage(ChatColor.RED + "量子存储已满！");
+                player.sendMessage(ChatColor.RED + "Quantum storage is full!");
                 return false;
             }
 
             if (newMaxTransfer < transfer.maxTransfer) {
-                player.sendMessage(ChatColor.YELLOW + "可转移数量已更新为: " + newMaxTransfer);
+                player.sendMessage(ChatColor.YELLOW + "Transferable amount updated to: " + newMaxTransfer);
                 transfer.maxTransfer = newMaxTransfer;
             }
 
@@ -415,10 +415,10 @@ public class CargoFragment extends SimpleSlimefunItem<ItemUseHandler> implements
     }
 
     /**
-     * 检查是否同一个碎片物品
+     * Check if it's the same fragment item
      */
     private boolean isSameFragmentItem(ItemStack item1, ItemStack item2) {
-        // 简单比较：类型和自定义名称
+        // Simple comparison: type and custom name
         if (item1.getType() != item2.getType()) {
             return false;
         }
@@ -430,7 +430,7 @@ public class CargoFragment extends SimpleSlimefunItem<ItemUseHandler> implements
             return meta1 == meta2;
         }
 
-        // 比较显示名称（CargoFragment应该有特殊的显示名）
+        // Compare display names (CargoFragment should have a special display name)
         String name1 = meta1.getDisplayName();
         String name2 = meta2.getDisplayName();
 
@@ -446,15 +446,15 @@ public class CargoFragment extends SimpleSlimefunItem<ItemUseHandler> implements
     }
 
     /**
-     * 检查是否同一个量子存储物品
+     * Check if it's the same quantum storage item
      */
     private boolean isSameQuantumStorageItem(ItemStack item1, ItemStack item2) {
-        // 首先比较基础信息
+        // Compare the basic info first
         if (item1.getType() != item2.getType()) {
             return false;
         }
 
-        // 获取两个物品的PDC数据
+        // Get the PDC data of both items
         ItemMeta meta1 = item1.getItemMeta();
         ItemMeta meta2 = item2.getItemMeta();
 
@@ -462,14 +462,14 @@ public class CargoFragment extends SimpleSlimefunItem<ItemUseHandler> implements
             return meta1 == meta2;
         }
 
-        // 从PDC获取QuantumCache进行比较
+        // Get QuantumCache from PDC for comparison
         QuantumCache cache1 = DataTypeMethods.getCustom(meta1,
                 NetworksKeys.QUANTUM_STORAGE_INSTANCE, PersistentQuantumStorageType.TYPE);
 
         QuantumCache cache2 = DataTypeMethods.getCustom(meta2,
                 NetworksKeys.QUANTUM_STORAGE_INSTANCE, PersistentQuantumStorageType.TYPE);
 
-        // 如果有一个没有量子缓存，则不同
+        // If one has no quantum cache, they're different
         if (cache1 == null || cache2 == null) {
             return false;
         }
@@ -478,14 +478,14 @@ public class CargoFragment extends SimpleSlimefunItem<ItemUseHandler> implements
             return cache1.getAmount() == cache2.getAmount();
         }
 
-        // 比较缓存ID或其他唯一标识（如果QuantumCache有getId方法）
+        // Compare cache ID or other unique identifiers (if QuantumCache has a getId method)
         try {
-            // 如果有getId方法
+            // If there's a getId method
             if (cache1.getItemStack() != null && cache2.getItemStack() != null) {
                 return cache1.getItemStack().equals(cache2.getItemStack());
             }
         } catch (Exception e) {
-            // 如果QuantumCache没有getId方法，使用hashCode作为备用
+            // If QuantumCache has no getId method, use hashCode as a backup
             return cache1.hashCode() == cache2.hashCode();
         }
 
@@ -493,21 +493,21 @@ public class CargoFragment extends SimpleSlimefunItem<ItemUseHandler> implements
     }
 
     /**
-     * 执行量子存储转移
+     * Run quantum storage transfer
      */
     private void executeQuantumTransfer(Player player, FragmentTransfer transfer, int amount) {
         try {
-            // 1. 增加量子存储数量
+            // 1. Increase quantum storage amount
             transfer.quantumCache.increaseAmount(amount);
 
-            // 2. 更新副手物品的QuantumCache数据
+            // 2. Update the off-hand item's QuantumCache data
             updateQuantumCacheInItem(transfer.offhandItem, transfer.quantumCache);
 
-            // 3. 更新CargoFragment
+            // 3. UpdateCargoFragment
             long newFragmentAmount = transfer.fragmentAmount - amount;
 
             if (newFragmentAmount <= 0) {
-                // 删除碎片
+                // Delete fragment
                 if (transfer.fragmentItem.getAmount() > 1) {
                     transfer.fragmentItem.setAmount(transfer.fragmentItem.getAmount() - 1);
                     player.getInventory().setItemInMainHand(transfer.fragmentItem);
@@ -515,37 +515,37 @@ public class CargoFragment extends SimpleSlimefunItem<ItemUseHandler> implements
                     player.getInventory().setItemInMainHand(null);
                 }
 
-                player.sendMessage(ChatColor.GREEN + "✓ 已转移 " + ChatColor.YELLOW + amount +
-                        ChatColor.GREEN + " 个物品，碎片已耗尽。");
+                player.sendMessage(ChatColor.GREEN + "✓ Transferred " + ChatColor.YELLOW + amount +
+                        ChatColor.GREEN + " items, fragment used up.");
             } else {
-                // 更新碎片数量
+                // Update fragment amount
                 updateFragmentData(transfer.fragmentItem, newFragmentAmount);
 
-                player.sendMessage(ChatColor.GREEN + "✓ 成功转移 " + ChatColor.YELLOW + amount +
-                        ChatColor.GREEN + " 个物品。");
-                player.sendMessage(ChatColor.GRAY + "碎片剩余: " + newFragmentAmount + " 个");
+                player.sendMessage(ChatColor.GREEN + "✓ Successfully transferred " + ChatColor.YELLOW + amount +
+                        ChatColor.GREEN + " items.");
+                player.sendMessage(ChatColor.GRAY + "Fragment remaining: " + newFragmentAmount + " pcs");
             }
 
-            // 4. 更新副手物品显示
+            // 4. Update off-hand item display
             player.getInventory().setItemInOffHand(transfer.offhandItem);
 
-            // 5. 播放成功音效
+            // 5. Play success sound
             playSound(player, Sound.ENTITY_ITEM_PICKUP, 1.2f);
 
         } catch (Exception e) {
-            player.sendMessage(ChatColor.RED + "转移失败: " + e.getMessage());
+            player.sendMessage(ChatColor.RED + "Transfer failed: " + e.getMessage());
             e.printStackTrace();
         }
     }
 
     /**
-     * 更新QuantumCache数据到物品
+     * Update QuantumCache data to the item
      */
     private void updateQuantumCacheInItem(ItemStack item, QuantumCache cache) {
         ItemMeta meta = item.getItemMeta();
         if (meta == null) return;
 
-        // 更新QuantumCache到物品的PDC
+        // Update QuantumCache to the item'sPDC
         DataTypeMethods.setCustom(meta, NetworksKeys.QUANTUM_STORAGE_INSTANCE,
                 PersistentQuantumStorageType.TYPE, cache);
         cache.updateMetaLore(meta);
@@ -553,7 +553,7 @@ public class CargoFragment extends SimpleSlimefunItem<ItemUseHandler> implements
     }
 
     /**
-     * 更新CargoFragment数据
+     * Update CargoFragment data
      */
     private void updateFragmentData(ItemStack fragment, long newAmount) {
         ItemMeta meta = fragment.getItemMeta();
@@ -562,12 +562,12 @@ public class CargoFragment extends SimpleSlimefunItem<ItemUseHandler> implements
         PersistentDataContainer pdc = meta.getPersistentDataContainer();
         pdc.set(KEY_CARGO_AMOUNT, PersistentDataType.INTEGER, (int) newAmount);
 
-        // 更新Lore中的数量显示
+        // Update the amount shown in Lore
         List<String> lore = meta.hasLore() ? new ArrayList<>(meta.getLore()) : new ArrayList<>();
 
         for (int i = 0; i < lore.size(); i++) {
-            if (lore.get(i).contains("数量: ")) {
-                lore.set(i, "§f数量: §a" + newAmount);
+            if (lore.get(i).contains("Amount: ")) {
+                lore.set(i, "§fAmount: §a" + newAmount);
                 break;
             }
         }
@@ -577,7 +577,7 @@ public class CargoFragment extends SimpleSlimefunItem<ItemUseHandler> implements
     }
 
     /**
-     * 设置超时任务
+     * Set timeout task
      */
     private void scheduleTimeout(UUID playerId) {
         Bukkit.getScheduler().runTaskLater(MagicExpansion.getInstance(), () -> {
@@ -585,15 +585,15 @@ public class CargoFragment extends SimpleSlimefunItem<ItemUseHandler> implements
             if (transfer != null) {
                 Player player = Bukkit.getPlayer(playerId);
                 if (player != null && player.isOnline()) {
-                    player.sendMessage(ChatColor.RED + "操作超时，已自动取消。");
+                    player.sendMessage(ChatColor.RED + "Action timed out and was cancelled automatically.");
                 }
                 cleanupListenerIfNeeded();
             }
-        }, 20 * 30); // 30秒
+        }, 20 * 30); // 30sec
     }
 
     /**
-     * 清理监听器
+     * Clean up listeners
      */
     private void cleanupListenerIfNeeded() {
         if (pendingTransfers.isEmpty() && chatListener != null) {
@@ -603,7 +603,7 @@ public class CargoFragment extends SimpleSlimefunItem<ItemUseHandler> implements
     }
 
     /**
-     * 发送错误消息
+     * Send error message
      */
     private void sendError(Player player, String message) {
         player.sendMessage(ChatColor.RED + message);
@@ -611,7 +611,7 @@ public class CargoFragment extends SimpleSlimefunItem<ItemUseHandler> implements
     }
 
     /**
-     * 播放音效
+     * Play sound
      */
     private void playSound(Player player, Sound sound, float pitch) {
         player.playSound(player.getLocation(), sound, 0.8f, pitch);
@@ -623,16 +623,16 @@ public class CargoFragment extends SimpleSlimefunItem<ItemUseHandler> implements
     }
 
     /**
-     * 转移任务信息类
+     * Transfer task info class
      */
     private static class FragmentTransfer {
         final UUID playerId;
         final ItemStack fragmentItem;
         final ItemStack offhandItem;
         final ItemStack storedItem;
-        long fragmentAmount; // 改为非final，可能更新
-        QuantumCache quantumCache; // 改为非final，可能更新
-        long maxTransfer; // 改为非final，可能更新
+        long fragmentAmount; // Changed to non-final, may be updated
+        QuantumCache quantumCache; // Changed to non-final, may be updated
+        long maxTransfer; // Changed to non-final, may be updated
 
         FragmentTransfer(UUID playerId, ItemStack fragmentItem, ItemStack offhandItem,
                          ItemStack storedItem, long fragmentAmount,

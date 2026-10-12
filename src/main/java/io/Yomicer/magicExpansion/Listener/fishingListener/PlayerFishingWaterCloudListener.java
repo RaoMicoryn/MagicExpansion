@@ -43,21 +43,21 @@ import java.util.Random;
 import java.util.Set;
 
 /**
- * 水云间系列专属钓鱼监听
- * 与 PlayerFishingListener 相互独立,各自处理各自的鱼竿钓鱼事件
+ * Fishing listener just for the Water Cloud rod series
+ * Works separately from PlayerFishingListener; each handles its own rods
  */
 public class PlayerFishingWaterCloudListener implements Listener {
 
-    // D(C5): 共享静态随机数实例，避免每次钓获都新建 Random
+    // D(C5): Use one shared random generator instead of making a new one for every catch
     private static final Random RANDOM = new Random();
 
     public PlayerFishingWaterCloudListener() {
-        // 蓄满自动收竿回调: 由新系统管理器触发
+        // Auto-reel callback when fully charged, triggered by the new system manager
         WaterCloudHookManager.setAutoReelHandler(this::onAutoReel);
     }
 
     /**
-     * 蓄满自动收竿回调: 走新系统中鱼产出链(必中鱼 + 蓄满 10% 特殊钓物判定)
+     * When fully charged, auto-reel uses the new catch flow (guaranteed catch + 10% chance for a special item)
      */
     private void onAutoReel(Player player, Location hookLocation) {
         ItemStack rod = player.getInventory().getItemInMainHand();
@@ -67,125 +67,125 @@ public class PlayerFishingWaterCloudListener implements Listener {
         }
     }
 
-    // 拥有熟练度系统的水云间鱼竿 ID(后续新竿按需加入)
+    // IDs of Water Cloud rods with a proficiency system (add new rods here as needed)
     private static final Set<String> PROFICIENCY_ROD_IDS = Set.of(
             "FISHING_ROD_BETWEEN_WATER_CLOUD_REED",
             "FISHING_ROD_BETWEEN_WATER_CLOUD_HANJIANG",
             "FISHING_ROD_BETWEEN_WATER_CLOUD_XIYU"
     );
 
-    // 水云间系列鱼饵(当前鱼饵作为特殊事件判定依据)
+    // Water Cloud bait types (the active bait decides which special event can happen)
     private static final List<MoreLure> SHUIYUNJIAN_LURES = List.of(
-            new MoreLure(MagicExpansionItems.FISH_LURE_BETWEEN_WATER_CLOUD_CUIXIA, "CuiXia"),   // 淬霞
-            new MoreLure(MagicExpansionItems.FISH_LURE_BETWEEN_WATER_CLOUD_WEICHEN, "WeiChen"), // 微尘
-            new MoreLure(MagicExpansionItems.FISH_LURE_BETWEEN_WATER_CLOUD_RONGHUO, "RongHuo"), // 熔火
-            new MoreLure(MagicExpansionItems.FISH_LURE_BETWEEN_WATER_CLOUD_YUEJIN, "YueJin"),   // 跃金
-            new MoreLure(MagicExpansionItems.FISH_LURE_BETWEEN_WATER_CLOUD_XINGHE, "XingHe"),   // 星核
-            new MoreLure(MagicExpansionItems.FISH_LURE_BETWEEN_WATER_CLOUD_REED_JIANJIA, "JianJia"), // 蒹葭(芦花钓专用)
-            new MoreLure(MagicExpansionItems.FISH_LURE_BETWEEN_WATER_CLOUD_REED_LUXUE, "LuXue"),   // 芦雪(占位)
-            new MoreLure(MagicExpansionItems.FISH_LURE_BETWEEN_WATER_CLOUD_REED_WEILU, "WeiLu"),   // 苇露(占位)
-            new MoreLure(MagicExpansionItems.FISH_LURE_BETWEEN_WATER_CLOUD_REED_BAILU, "BaiLu"),   // 白露(占位)
-            new MoreLure(MagicExpansionItems.FISH_LURE_BETWEEN_WATER_CLOUD_REED_LUYA, "LuYa"),     // 芦芽(占位)
-            new MoreLure(MagicExpansionItems.FISH_LURE_BETWEEN_WATER_CLOUD_HANJIANG_NINGSHUANG, "NingShuang"), // 凝霜(寒江雪专用)
-            new MoreLure(MagicExpansionItems.FISH_LURE_BETWEEN_WATER_CLOUD_HANJIANG_LUOXU, "LuoXu"),           // 落絮(寒江雪专用)
-            new MoreLure(MagicExpansionItems.FISH_LURE_BETWEEN_WATER_CLOUD_HANJIANG_BINGPO, "BingPo"),         // 冰魄(寒江雪专用)
-            new MoreLure(MagicExpansionItems.FISH_LURE_BETWEEN_WATER_CLOUD_HANJIANG_CHUJI, "ChuJi"),           // 初霁(寒江雪专用)
-            new MoreLure(MagicExpansionItems.FISH_LURE_BETWEEN_WATER_CLOUD_HANJIANG_CHUILUN, "ChuiLun"),       // 垂纶(寒江雪专用)
-            new MoreLure(MagicExpansionItems.FISH_LURE_BETWEEN_WATER_CLOUD_XIYU_FENGSI, "FengSi"),             // 风丝(细雨·斜风专用)
-            new MoreLure(MagicExpansionItems.FISH_LURE_BETWEEN_WATER_CLOUD_XIYU_YANYU, "YanYu"),               // 烟雨(细雨·斜风专用)
-            new MoreLure(MagicExpansionItems.FISH_LURE_BETWEEN_WATER_CLOUD_XIYU_LIANBAI, "LianBai"),           // 涟白(细雨·斜风专用)
-            new MoreLure(MagicExpansionItems.FISH_LURE_BETWEEN_WATER_CLOUD_XIYU_XIAOFENG, "XiaoFeng"),         // 晓风(细雨·斜风专用)
-            new MoreLure(MagicExpansionItems.FISH_LURE_BETWEEN_WATER_CLOUD_XIYU_XIEYING, "XieYing")            // 斜影(细雨·斜风专用)
+            new MoreLure(MagicExpansionItems.FISH_LURE_BETWEEN_WATER_CLOUD_CUIXIA, "CuiXia"),   // CuiXia
+            new MoreLure(MagicExpansionItems.FISH_LURE_BETWEEN_WATER_CLOUD_WEICHEN, "WeiChen"), // WeiChen
+            new MoreLure(MagicExpansionItems.FISH_LURE_BETWEEN_WATER_CLOUD_RONGHUO, "RongHuo"), // RongHuo
+            new MoreLure(MagicExpansionItems.FISH_LURE_BETWEEN_WATER_CLOUD_YUEJIN, "YueJin"),   // YueJin
+            new MoreLure(MagicExpansionItems.FISH_LURE_BETWEEN_WATER_CLOUD_XINGHE, "XingHe"),   // XingHe
+            new MoreLure(MagicExpansionItems.FISH_LURE_BETWEEN_WATER_CLOUD_REED_JIANJIA, "JianJia"), // JianJia(Item)
+            new MoreLure(MagicExpansionItems.FISH_LURE_BETWEEN_WATER_CLOUD_REED_LUXUE, "LuXue"),   // LuXue(Item)
+            new MoreLure(MagicExpansionItems.FISH_LURE_BETWEEN_WATER_CLOUD_REED_WEILU, "WeiLu"),   // WeiLu(Item)
+            new MoreLure(MagicExpansionItems.FISH_LURE_BETWEEN_WATER_CLOUD_REED_BAILU, "BaiLu"),   // BaiLu(Item)
+            new MoreLure(MagicExpansionItems.FISH_LURE_BETWEEN_WATER_CLOUD_REED_LUYA, "LuYa"),     // LuYa(Item)
+            new MoreLure(MagicExpansionItems.FISH_LURE_BETWEEN_WATER_CLOUD_HANJIANG_NINGSHUANG, "NingShuang"), // NingShuang(Item)
+            new MoreLure(MagicExpansionItems.FISH_LURE_BETWEEN_WATER_CLOUD_HANJIANG_LUOXU, "LuoXu"),           // LuoXu(Item)
+            new MoreLure(MagicExpansionItems.FISH_LURE_BETWEEN_WATER_CLOUD_HANJIANG_BINGPO, "BingPo"),         // BingPo(Item)
+            new MoreLure(MagicExpansionItems.FISH_LURE_BETWEEN_WATER_CLOUD_HANJIANG_CHUJI, "ChuJi"),           // ChuJi(Item)
+            new MoreLure(MagicExpansionItems.FISH_LURE_BETWEEN_WATER_CLOUD_HANJIANG_CHUILUN, "ChuiLun"),       // ChuiLun(Item)
+            new MoreLure(MagicExpansionItems.FISH_LURE_BETWEEN_WATER_CLOUD_XIYU_FENGSI, "FengSi"),             // FengSi(Item·Item)
+            new MoreLure(MagicExpansionItems.FISH_LURE_BETWEEN_WATER_CLOUD_XIYU_YANYU, "YanYu"),               // YanYu(Item·Item)
+            new MoreLure(MagicExpansionItems.FISH_LURE_BETWEEN_WATER_CLOUD_XIYU_LIANBAI, "LianBai"),           // LianBai(Item·Item)
+            new MoreLure(MagicExpansionItems.FISH_LURE_BETWEEN_WATER_CLOUD_XIYU_XIAOFENG, "XiaoFeng"),         // XiaoFeng(Item·Item)
+            new MoreLure(MagicExpansionItems.FISH_LURE_BETWEEN_WATER_CLOUD_XIYU_XIEYING, "XieYing")            // XieYing(Item·Item)
     );
 
-    // 水云间专属钓获提示词(普通钓物)
+    // Water Cloud catch messages (normal catches)
     private static final List<String> SHUIYUNJIAN_PHRASES = List.of(
-            "风起云涌，竿头微颤，那是",
-            "水面静谧，忽而涟漪荡开，原来是",
-            "一竿入水，钓起半江浮光，竟是",
-            "云影徘徊，不知惊扰了何物，乃是",
-            "渔线轻收，似有故人相赠，此物为",
-            "水云之间，有灵物破水而来，名为",
-            "竿梢一点，惊碎了满池星辰，化作",
-            "长夜无声，唯有此物随波而至，乃是",
-            "碧波深处，一抹流光浮现，那是",
-            "收竿之时，风月俱在，钓起了",
-            "浮标沉浮，似在诉说古老的故事，那是",
-            "水天一色，竟从虚无中钓出了"
+            "The wind picks up and your rod shakes. You caught: ",
+            "The water was still, then ripples appeared. It was: ",
+            "You cast your line and pulled up a shimmer. It was: ",
+            "Cloud shadows drift by. You seem to have caught: ",
+            "You gently pull the line in. A gift from an old friend: ",
+            "Something magical rises from the water: ",
+            "A flick of the rod scatters the stars. You got: ",
+            "In the quiet night, something drifts your way: ",
+            "A flash of light appears beneath the waves: ",
+            "As you reel in under the moonlight, you catch: ",
+            "The bobber moves like it knows an old story. You caught: ",
+            "Where water meets sky, you somehow pulled out: "
     );
 
-    // 水云间特殊事件提示词(钓到特殊钓物时)
-    // 优化点：增强了史诗感和画面感，用词更华丽。
+    // Water Cloud messages for special catches
+    // Style note: make it feel more epic and vivid.
     private static final List<String> SHUIYUNJIAN_SPECIAL_PHRASES = List.of(
-            "深渊低语，千年的秘密破水而出，乃是",
-            "天地变色，水云翻涌，这一竿竟钓起了",
-            "寒芒乍现，连星辰都黯然失色，那是",
-            "亘古的沉默被打破，传说中的奇珍现身：",
-            "云海震荡，似乎有什么东西正在苏醒，那是",
-            "此物出世，引得江河逆流，名为",
-            "一股浩然气息自水底升起，那竟是"
+            "The deep whispers, and an ancient secret rises: ",
+            "The sky changes and the clouds swirl. You caught: ",
+            "A cold flash dims the stars. It is: ",
+            "An ancient silence breaks. A legendary treasure appears: ",
+            "The sea of clouds shakes. Something is waking up: ",
+            "Its arrival turns the rivers around. It is called: ",
+            "A powerful aura rises from below. It is: "
     );
 
-    // 水云间消耗鱼饵提示词(前缀 + 饵名 + ！)
-    // 优化点：改为四字或短句结尾，留出气口给物品名，意境优美。
+    // Water Cloud bait-use messages (prefix + bait name)
+    // Style note: keep these short so the bait name fits nicely.
     private static final List<String> SHUIYUNJIAN_CONSUME_PHRASES = List.of(
-            "轻抚入水，化作涟漪：",
-            "付与长风，归于水云：",
-            "指尖轻捻，许你一场风月：",
-            "沉入水底，去寻那未知的归处：",
-            "随波逐流，静候佳音：",
-            "此饵入水，万籁俱寂，唯有",
-            "投石问路，化作一声叹息："
+            "Gently into the water: ",
+            "Off with the wind, back to the clouds: ",
+            "A little bait, a little moonlight: ",
+            "Sink down and seek the unknown: ",
+            "Drift with the waves and wait for good news: ",
+            "The bait sinks. Everything goes quiet, leaving only ",
+            "A small splash, then a sigh: "
     );
 
-    // 水云间最后一组鱼饵提示词(接在饵名之后)
-    // 优化点：强调“缘分已尽”、“空留余韵”，带有淡淡的惆怅感。
+    // Water Cloud messages for the last bait in a stack (after the bait name)
+    // Style note: give it a slightly sad feeling, like the last goodbye.
     private static final List<String> SHUIYUNJIAN_LAST_PHRASES = List.of(
-            "，这是最后的馈赠，自此缘尽。",
-            "，散入水中，此后再无。",
-            "，用尽于此，唯余江上清风。",
-            "，随风而逝，水云间终成空。",
-            "，既是最后一枚，便以此祭奠这满江月色。"
+            ", that was the last gift. Our time ends here.",
+            ", scattered into the water, never to return.",
+            ", now all gone, with only the river breeze left.",
+            ", carried away by the wind. Nothing is left.",
+            ", the last one, offered to the moonlit river."
     );
 
-    // 省饵触发提示(旧版, 魔法二代渐变)
+    // Bait-saving messages (old version, Magic v2 gradient)
     private static final List<String> LURE_PRESERVE_PHRASES = List.of(
-            "✦ 水云护饵，此饵未损分毫！",
-            "✦ 灵光一闪，鱼饵被水云轻轻送回",
-            "✦ 鱼饵与水云共鸣，安然无恙"
+            "✦ Water Cloud magic saved your bait!",
+            "✦ A flash of light returns your bait!",
+            "✦ Your bait resonates with Water Cloud and stays safe!"
     );
 
-    // 双倍鱼获触发提示(新旧通用, 魔法二代渐变)
+    // Double-catch messages (for both systems, Magic v2 gradient)
     private static final List<String> DOUBLE_CATCH_PHRASES = List.of(
-            "✦ 水云赐福，渔获翻倍！",
-            "✦ 此竿通灵，钓一得二！",
-            "✦ 双倍的收获，水云在微笑"
+            "✦ Water Cloud blesses you with double loot!",
+            "✦ This rod is magical. One catch becomes two!",
+            "✦ Double loot! Water Cloud is smiling!"
     );
 
-    // 鱼饵池杂物登记(杂物概率降低奖励的作用对象): 材质名集合
-    // 后续在鱼饵池中新增杂物(含粘液科技物品)时, 原版物品加入 JUNK_MATERIALS, 粘液物品加入 JUNK_SLIMEFUN_IDS 即可
+    // Junk items in the bait pool (materials affected by junk-rate reduction)
+    // When adding junk to the bait pool, add vanilla items to JUNK_MATERIALS and Slimefun items to JUNK_SLIMEFUN_IDS
     private static final Set<String> JUNK_MATERIALS = Set.of(
-            "COBBLESTONE",  // 圆石
-            "FLINT",        // 燧石
-            "GRAVEL",       // 沙砾
-            "SAND",         // 沙子
-            "STRING",       // 线
-            "BONE"          // 骨头
+            "COBBLESTONE",  // Cobblestone
+            "FLINT",        // Flint
+            "GRAVEL",       // Gravel
+            "SAND",         // Sand
+            "STRING",       // String
+            "BONE"          // Bone
     );
 
-    // 鱼饵池杂物登记(粘液科技物品 ID 集合, 可扩展)
+    // Slimefun item IDs counted as junk (can be expanded)
     private static final Set<String> JUNK_SLIMEFUN_IDS = Set.of();
 
     /**
-     * 入口: 水云间鱼竿钓鱼事件
+     * Entry point for Water Cloud rod fishing events
      */
     @EventHandler
     public void onFish(PlayerFishEvent e) {
         if (e.getState() == PlayerFishEvent.State.FISHING) {
-            // 抛竿: 旧系统按熟练度缩短原版等待上限(上钩速度, 非附魔方式)
+            // Cast: the old system reduces wait time based on rod level (not an enchantment)
             applyHookSpeed(e.getPlayer(), e.getHook());
 
-            // 新钓鱼系统: 登记会话并隔离原版判定(原版永不咬钩, 由状态机接管)
+            // New fishing system: start a session and let the state machine handle bites
             Player player = e.getPlayer();
             ItemStack rod = player.getInventory().getItemInMainHand();
             SlimefunItem sfItem = SlimefunItem.getByItem(rod);
@@ -197,7 +197,7 @@ public class PlayerFishingWaterCloudListener implements Listener {
             return;
         }
 
-        // 新钓鱼系统: 收竿(REEL_IN)由状态机判定; CAUGHT_FISH 兜底
+        // New fishing system: the state machine handles reeling; CAUGHT_FISH is a fallback
         Player player = e.getPlayer();
         ItemStack rod = player.getInventory().getItemInMainHand();
         SlimefunItem sfItem = SlimefunItem.getByItem(rod);
@@ -205,7 +205,7 @@ public class PlayerFishingWaterCloudListener implements Listener {
             if (e.getState() == PlayerFishEvent.State.REEL_IN) {
                 handleNewSystemReel(e, player, fishingRod);
             } else if (e.getState() == PlayerFishEvent.State.CAUGHT_FISH) {
-                // 兜底: 理论上被隔离后不会触发
+                // Fallback: this should not happen after the event is handled
                 if (e.getCaught() instanceof Item item) {
                     item.remove();
                 }
@@ -218,7 +218,7 @@ public class PlayerFishingWaterCloudListener implements Listener {
     }
 
     /**
-     * 断线清理新钓鱼系统会话
+     * Clear the new fishing session when the player leaves
      */
     @EventHandler
     public void onQuit(PlayerQuitEvent e) {
@@ -226,8 +226,8 @@ public class PlayerFishingWaterCloudListener implements Listener {
     }
 
     /**
-     * 新系统收竿: 按当前咬钩状态判定中鱼
-     * 中鱼 → 走新产出链; 未中鱼 → 脱钩反馈(管理器内部已播放)
+     * New system reeling: check whether a fish is on the hook
+     * Fish hooked → use the new catch flow; no fish → show the missed-catch effect (already handled by the manager)
      */
     private void handleNewSystemReel(PlayerFishEvent e, Player player, FishingRodWaterCloud fishingRod) {
         if (WaterCloudHookManager.onReel(player)) {
@@ -236,9 +236,9 @@ public class PlayerFishingWaterCloudListener implements Listener {
     }
 
     /**
-     * 水云间钓鱼主流程
-     * 无鱼饵 → 按原版普通鱼竿走(不干预,保留原版钓获)
-     * 有鱼饵 → 按战利品池随机钓获;钓起的物品中被标记为特殊事件入口的 → 特殊事件,否则普通事件
+     * Main fishing flow for Water Cloud rods
+     * No bait → let the normal Minecraft fishing rod work as usual
+     * With bait → pick from the loot pool; marked items trigger a special event, others trigger a normal event
      */
     private void fishingUtil(PlayerFishEvent e) {
         if (e.getState() != PlayerFishEvent.State.CAUGHT_FISH) return;
@@ -247,41 +247,41 @@ public class PlayerFishingWaterCloudListener implements Listener {
         ItemStack rod = player.getInventory().getItemInMainHand();
         SlimefunItem sfItem = SlimefunItem.getByItem(rod);
 
-        // 1. 判定是否水云间系列鱼竿
+        // 1. Check whether this is a Water Cloud rod
         if (!(sfItem instanceof FishingRodWaterCloud fishingRod)) return;
 
-        // 2. 锁定鱼饵(袋优先只读探测, 防丢袋; 消耗延后)
+        // 2. Choose the bait (check the bag first, consume it later to avoid losing bait)
         Set<String> supportedKeys = fishingRod.getLootTable().keySet();
         String bagKey = BaitBagMenu.peekFromBag(player, supportedKeys);
         Lure activeLure = bagKey != null
                 ? SHUIYUNJIAN_LURES.stream().filter(l -> l.getKey().equals(bagKey)).findFirst().orElse(null)
                 : getActiveLure(player, fishingRod);
 
-        // 3. 没有鱼饵 → 按原版普通鱼竿走,不干预原版钓获
+        // 3. No bait → leave the normal catch alone
         if (activeLure == null) {
             return;
         }
         int rodLevel = WaterCloudRodProficiency.getLevel(rod);
-        Random random = RANDOM; // D(C5): 改用共享随机数实例
+        Random random = RANDOM; // D(C5): Use the shared random generator
 
-        // 4. 钓获(旧版杂物降低: 池中原版物品=杂物, 权重削减)
+        // 4. Pick a catch (old system lowers the weight of junk items)
         ItemStack drop = getCaughtDrop(player, fishingRod, activeLure, rodLevel, true);
         if (drop == null) return;
 
-        // 5. 移除原版钓获实体,改为掉落本次战利品
+        // 5. Remove the vanilla catch and drop the chosen loot instead
         Entity caught = e.getCaught();
         if (caught instanceof Item item) {
             item.remove();
         }
 
-        // 6. 消耗鱼饵(省饵触发则不消耗并提示; 袋丢则尝试背包同款, 再没有则不扣)
+        // 6. Use bait (save it if the perk triggers; if the bag is gone, try the same bait in inventory)
         boolean preserved = random.nextDouble() < WaterCloudRodEffects.getOldLurePreserveChance(rodLevel);
         if (!preserved) {
             if (bagKey != null) {
                 if (!BaitBagMenu.consumeFromBagByKey(player, bagKey)) {
                     consumeLure(player, activeLure);
                 } else {
-                    // 饵料袋消耗: 同样弹出水云间消耗提示
+                    // The bait bag also shows a bait-use message
                     String prefix = SHUIYUNJIAN_CONSUME_PHRASES.get(random.nextInt(SHUIYUNJIAN_CONSUME_PHRASES.size()));
                     player.sendMessage(ColorGradient.getRandomGradientName(prefix) + " §r"
                             + ItemStackHelper.getDisplayName(activeLure.getItem()) + ColorGradient.getRandomGradientName(" ！"));
@@ -294,20 +294,20 @@ public class PlayerFishingWaterCloudListener implements Listener {
                     LURE_PRESERVE_PHRASES.get(random.nextInt(LURE_PRESERVE_PHRASES.size()))));
         }
 
-        // 7. 双倍鱼获(旧版, 触发提示)
+        // 7. Double catch (old system, with a message)
         if (random.nextDouble() < WaterCloudRodEffects.getOldDoubleCatchChance(rodLevel)) {
             drop.setAmount(Math.min(64, drop.getAmount() * 2));
             player.sendMessage(ColorGradient.getGradientNameVer2(
                     DOUBLE_CATCH_PHRASES.get(random.nextInt(DOUBLE_CATCH_PHRASES.size()))));
         }
 
-        // 8. 在鱼钩位置生成掉落物
+        // 8. Drop the item at the hook location
         spawnDrop(player, e.getHook().getLocation(), drop);
 
-        // 9. 熟练度系统:按钓获品质给鱼竿增加熟练度
+        // 9. Give the rod proficiency based on catch quality
         grantProficiency(player, fishingRod, activeLure, drop);
 
-        // 10. 特殊事件判定
+        // 10. Check for a special event
         ItemStack specialCatch = getSpecialCatchForLure(activeLure);
         if (specialCatch != null && SlimefunUtils.isItemSimilar(drop, specialCatch, true)) {
             triggerSpecialEvent(player, activeLure, drop);
@@ -317,22 +317,22 @@ public class PlayerFishingWaterCloudListener implements Listener {
     }
 
     /**
-     * 新系统中鱼产出链(手动/自动/兜底三路共用, 支持无鱼饵杂物池)
-     * 鱼饵: 袋优先只读锁定 → 消耗延后(防丢袋); 无饵 → 杂物池
-     * 奖励: 蓄满特殊判定(10% + 满级 +5%) / 双倍鱼获(触发提示)
+     * New catch flow shared by manual, auto, and fallback reeling; supports a junk pool when no bait is used
+     * Bait: check the bag first and consume later; no bait uses the junk pool
+     * Rewards: fully charged special catch chance (10%, plus 5% at max level) / double catch
      */
     private void processCatch(Player player, FishingRodWaterCloud fishingRod, Location hookLocation, boolean fullCharge) {
         Set<String> supportedKeys = fishingRod.getLootTable().keySet();
         int rodLevel = WaterCloudRodProficiency.getLevel(player.getInventory().getItemInMainHand());
-        Random random = RANDOM; // D(C5): 改用共享随机数实例
+        Random random = RANDOM; // D(C5): Use the shared random generator
 
-        // 1. 锁定鱼饵(袋优先只读探测; 消耗延后, 袋子中途丢失不影响本次鱼获池)
+        // 1. Choose bait without consuming it yet, so losing the bag will not affect this catch
         String bagKey = BaitBagMenu.peekFromBag(player, supportedKeys);
         Lure activeLure = bagKey != null
                 ? SHUIYUNJIAN_LURES.stream().filter(l -> l.getKey().equals(bagKey)).findFirst().orElse(null)
                 : getActiveLure(player, fishingRod);
 
-        // 2. 钓获: 蓄满特殊判定(10% + 满级特殊+5%) → 战利品池 → 无饵杂物池
+        // 2. Catch: check the fully charged special chance (10%, plus 5% at max level), then use the loot pool or junk pool
         ItemStack drop;
         double rareChance = WaterCloudRodEffects.getNewRareBonus(rodLevel);
         if (activeLure != null && fullCharge && random.nextDouble() < 0.10 + rareChance) {
@@ -344,7 +344,7 @@ public class PlayerFishingWaterCloudListener implements Listener {
         }
         if (drop == null) return;
 
-        // 3. 消耗鱼饵(按锁定的 key; 袋丢 → 背包同款 → 都没有则不扣)
+        // 3. Use the selected bait; if the bag is gone, try the same bait in inventory
         if (activeLure != null) {
             if (bagKey != null) {
                 if (!BaitBagMenu.consumeFromBagByKey(player, bagKey)) {
@@ -359,20 +359,20 @@ public class PlayerFishingWaterCloudListener implements Listener {
             }
         }
 
-        // 4. 双倍鱼获(新版, 触发提示)
+        // 4. Double catch (new system, with a message)
         if (activeLure != null && random.nextDouble() < WaterCloudRodEffects.getNewDoubleCatchChance(rodLevel)) {
             drop.setAmount(Math.min(64, drop.getAmount() * 2));
             player.sendMessage(ColorGradient.getGradientNameVer2(
                     DOUBLE_CATCH_PHRASES.get(random.nextInt(DOUBLE_CATCH_PHRASES.size()))));
         }
 
-        // 5. 在鱼钩位置生成掉落物
+        // 5. Drop the item at the hook location
         spawnDrop(player, hookLocation, drop);
 
-        // 6. 熟练度系统(仅芦花钓)
+        // 6. Proficiency system (Reed fishing rod only)
         grantProficiency(player, fishingRod, activeLure, drop);
 
-        // 7. 特殊事件判定(无饵时直接普通事件)
+        // 7. Check for a special event (no bait means a normal event)
         if (activeLure != null) {
             ItemStack specialCatch = getSpecialCatchForLure(activeLure);
             if (specialCatch != null && SlimefunUtils.isItemSimilar(drop, specialCatch, true)) {
@@ -384,7 +384,7 @@ public class PlayerFishingWaterCloudListener implements Listener {
     }
 
     /**
-     * 无鱼饵时的杂物池: 垃圾(圆石/沙砾等) + 原版钓物, 概率均分
+     * Junk pool for fishing without bait: junk (cobblestone, gravel, etc.) and vanilla catches have equal chances
      */
     private static final List<WeightedItem> JUNK_POOL = List.of(
             new WeightedItem(new ItemStack(Material.COBBLESTONE), 1),
@@ -404,14 +404,14 @@ public class PlayerFishingWaterCloudListener implements Listener {
     );
 
     /**
-     * 从杂物池均分随机取一个钓获物
+     * Pick a random item from the junk pool, with equal chances
      */
     private ItemStack getJunkDrop() {
         return getRandomItemFromWeightedPool(JUNK_POOL);
     }
 
     /**
-     * 获取当前使用的鱼饵(副手优先,其次背包搜索)
+     * Get the active bait (off-hand first, then inventory)
      */
     private Lure getActiveLure(Player player, FishingRodWaterCloud fishingRod) {
         Set<String> supportedKeys = fishingRod.getLootTable().keySet();
@@ -434,7 +434,7 @@ public class PlayerFishingWaterCloudListener implements Listener {
     }
 
     /**
-     * 获取本次钓获物(旧版杂物降低: 池中原版物品=杂物, 按熟练度削减权重; 不写死材质, 后续改池自动适配)
+     * Get this catch (old system lowers junk weights based on proficiency and adapts to loot pool changes)
      */
     private ItemStack getCaughtDrop(Player player, FishingRodWaterCloud fishingRod, Lure activeLure, int rodLevel, boolean reduceJunk) {
         List<WeightedItem> pool = fishingRod.getLootPoolForLure(activeLure);
@@ -447,7 +447,7 @@ public class PlayerFishingWaterCloudListener implements Listener {
                 List<WeightedItem> adjusted = new ArrayList<>();
                 for (WeightedItem w : pool) {
                     if (isJunkItem(w.getItem())) {
-                        // 登记过的杂物条目, 权重削减(保底 1)
+                        // Registered junk items have reduced weight (minimum 1)
                         adjusted.add(new WeightedItem(w.getItem(),
                                 Math.max(1, (int) Math.round(w.getWeight() * (1 - reduction)))));
                     } else {
@@ -461,20 +461,20 @@ public class PlayerFishingWaterCloudListener implements Listener {
     }
 
     /**
-     * 二代鱼属性注入：若钓获物是二代鱼种子，则按当前鱼竿稀有度档位生成带属性的成品；
-     * 非二代鱼原样返回。属性由 {@link FishAttributeGenerator} 统一生成。
+     * Add v2 fish stats: if the catch is a v2 fish seed, create a finished fish based on the rod rarity; 
+     * other items are returned as-is. Stats are made by {@link FishAttributeGenerator}.
      */
     private ItemStack applyGen2Attributes(ItemStack item, FishingRodWaterCloud fishingRod) {
         if (item == null || item.getType() == Material.AIR) {
             return item;
         }
-        // 仅有 PDC 标记的二代鱼种子才会被识别（普通物品/特殊钓物不参与）
+        // Only v2 fish seeds marked in PDC are recognized (normal items and special catches are ignored)
         if (!FishAttributeGenerator.isGen2Fish(item)) {
             return item;
         }
-        // 根据鱼竿 weightBoost 映射到属性生成档位(0~4)
+        // Map the rod weightBoost to a stat tier (0–4)
         int boostIndex = Math.max(0, Math.min(4, (int) Math.round(fishingRod.getWeightBoost())));
-        // 读取种子类型id
+        // Read the seed type ID
         String typeId = item.getItemMeta().getPersistentDataContainer()
                 .get(FishAttributeGenerator.GEN2_TYPE, PersistentDataType.STRING);
         Gen2Fish type = Gen2Fish.byId(typeId);
@@ -485,8 +485,8 @@ public class PlayerFishingWaterCloudListener implements Listener {
     }
 
     /**
-     * 杂物识别: 显式集合登记(材质名 + 粘液物品 ID), 不按是否原版物品判定
-     * 后续在鱼饵池新增杂物时, 只需在 JUNK_MATERIALS / JUNK_SLIMEFUN_IDS 登记
+     * Identify junk using registered material names and Slimefun IDs, not whether it is vanilla
+     * When adding junk to the bait pool, register it in JUNK_MATERIALS or JUNK_SLIMEFUN_IDS
      */
     private boolean isJunkItem(ItemStack item) {
         SlimefunItem sf = SlimefunItem.getByItem(item);
@@ -497,7 +497,7 @@ public class PlayerFishingWaterCloudListener implements Listener {
     }
 
     private ItemStack getRandomItemFromWeightedPool(List<WeightedItem> pool) {
-        // D(C2): 池为空或总权重 <= 0 时返回 null，防止 nextInt(0) 抛异常（调用方均已有 null 兜底）
+        // D(C2): Return null if the pool is empty or total weight is 0, to avoid nextInt(0) errors (callers already handle null)
         if (pool == null || pool.isEmpty()) {
             return null;
         }
@@ -505,7 +505,7 @@ public class PlayerFishingWaterCloudListener implements Listener {
         if (total <= 0) {
             return null;
         }
-        int r = RANDOM.nextInt(total), current = 0; // D(C5): 改用共享随机数实例
+        int r = RANDOM.nextInt(total), current = 0; // D(C5): Use the shared random generator
         for (WeightedItem w : pool) if ((current += w.getWeight()) > r) return w.getItem().clone();
         return pool.get(0).getItem().clone();
     }
@@ -518,27 +518,27 @@ public class PlayerFishingWaterCloudListener implements Listener {
     }
 
     /**
-     * 当前鱼饵对应的特殊钓物(显式映射,即被标记为特殊事件入口的物品)
-     * 修复: 返回 clone 而非 MagicExpansionItems 的 static 单例——
-     * 蓄满分支/双倍鱼获会 setAmount 修改 drop, 直接返回单例会被污染并随掉落物扩散。
+     * Special catch linked to the current bait (the item that triggers a special event)
+     * Fix: return a clone instead of the shared static MagicExpansionItems item —
+     * the full-charge and double-catch logic changes drop with setAmount, so changing a shared item could affect other drops.
      */
     private ItemStack getSpecialCatchForLure(Lure lure) {
         ItemStack special = switch (lure.getKey()) {
-            case "CuiXia"  -> MagicExpansionItems.REED_TASSEL;  // 淬霞 → 芦穗(特殊钓物, 青竹竿钓取)
-            case "WeiChen" -> MagicExpansionItems.REED_TASSEL;  // 微尘 → 芦穗
-            case "RongHuo" -> MagicExpansionItems.REED_TASSEL;  // 熔火 → 芦穗
-            case "YueJin"  -> MagicExpansionItems.REED_TASSEL;  // 跃金 → 芦穗
-            case "XingHe"  -> MagicExpansionItems.REED_TASSEL;  // 星核 → 芦穗
-            case "JianJia", "LuXue", "WeiLu", "BaiLu", "LuYa" -> MagicExpansionItems.FISH_SPECIAL_ACTION_BETWEEN_WATER_CLOUD_BAILUYU; // 芦花钓各饵 → 白芦羽(专属特殊钓物)
-            case "NingShuang", "LuoXu", "BingPo", "ChuJi", "ChuiLun" -> MagicExpansionItems.FISH_SPECIAL_ACTION_BETWEEN_WATER_CLOUD_HANJIANG_XUEPOZHU; // 寒江雪各饵 → 雪魄珠
-            case "FengSi", "YanYu", "LianBai", "XiaoFeng", "XieYing" -> MagicExpansionItems.FISH_SPECIAL_ACTION_BETWEEN_WATER_CLOUD_XIYU_YUPIZHEN;      // 细雨·斜风各饵 → 雨披针
+            case "CuiXia"  -> MagicExpansionItems.REED_TASSEL;  // CuiXia → Reed Tassel(Item, Item)
+            case "WeiChen" -> MagicExpansionItems.REED_TASSEL;  // WeiChen → Reed Tassel
+            case "RongHuo" -> MagicExpansionItems.REED_TASSEL;  // RongHuo → Reed Tassel
+            case "YueJin"  -> MagicExpansionItems.REED_TASSEL;  // YueJin → Reed Tassel
+            case "XingHe"  -> MagicExpansionItems.REED_TASSEL;  // XingHe → Reed Tassel
+            case "JianJia", "LuXue", "WeiLu", "BaiLu", "LuYa" -> MagicExpansionItems.FISH_SPECIAL_ACTION_BETWEEN_WATER_CLOUD_BAILUYU; // Item → White Reed Feather(Item)
+            case "NingShuang", "LuoXu", "BingPo", "ChuJi", "ChuiLun" -> MagicExpansionItems.FISH_SPECIAL_ACTION_BETWEEN_WATER_CLOUD_HANJIANG_XUEPOZHU; // Item → Snow Spirit Pearl
+            case "FengSi", "YanYu", "LianBai", "XiaoFeng", "XieYing" -> MagicExpansionItems.FISH_SPECIAL_ACTION_BETWEEN_WATER_CLOUD_XIYU_YUPIZHEN;      // Item·Item → Rain Needle
             default -> null;
         };
         return special != null ? special.clone() : null;
     }
 
     /**
-     * 在鱼钩位置生成掉落物(沿用原本的掉落方式)
+     * Drop the item at the hook location (same as before)
      */
     private void spawnDrop(Player player, Location hookLocation, ItemStack drop) {
         if (drop == null) return;
@@ -553,7 +553,7 @@ public class PlayerFishingWaterCloudListener implements Listener {
     }
 
     /**
-     * 消耗鱼饵(水云间提示)
+     * Use bait (Water Cloud message)
      */
     private void consumeLure(Player player, Lure lure) {
         PlayerInventory inv = player.getInventory();
@@ -564,12 +564,12 @@ public class PlayerFishingWaterCloudListener implements Listener {
             if (item != null && SlimefunUtils.isItemSimilar(item, requiredItem, true)) {
                 if (item.getAmount() > 1) {
                     item.setAmount(item.getAmount() - 1);
-                    // D(C5): 改用共享随机数实例
+                    // D(C5): Use the shared random generator
                     String prefix = SHUIYUNJIAN_CONSUME_PHRASES.get(RANDOM.nextInt(SHUIYUNJIAN_CONSUME_PHRASES.size()));
                     player.sendMessage(ColorGradient.getRandomGradientName(prefix) + " §r" + ItemStackHelper.getDisplayName(item) + ColorGradient.getRandomGradientName(" ！"));
                 } else {
                     inv.setItem(i, null);
-                    // D(C5): 改用共享随机数实例
+                    // D(C5): Use the shared random generator
                     String suffix = SHUIYUNJIAN_LAST_PHRASES.get(RANDOM.nextInt(SHUIYUNJIAN_LAST_PHRASES.size()));
                     player.sendMessage(ItemStackHelper.getDisplayName(item) + ColorGradient.getRandomGradientName(suffix));
                 }
@@ -580,21 +580,21 @@ public class PlayerFishingWaterCloudListener implements Listener {
     }
 
     /**
-     * 普通钓物 → 普通事件(水云间专属钓获提示)
+     * Normal catch → normal event (Water Cloud catch message)
      */
     private void handleNormalCatch(Player player, ItemStack drop) {
-        // 原版获得经验音效
+        // Play the normal experience pickup sound
         player.playSound(player.getLocation(), Sound.ENTITY_EXPERIENCE_ORB_PICKUP, 1.0f, 1.0f);
-        // D(C5): 改用共享随机数实例
+        // D(C5): Use the shared random generator
         String message = SHUIYUNJIAN_PHRASES.get(RANDOM.nextInt(SHUIYUNJIAN_PHRASES.size()));
         player.sendMessage(ColorGradient.getRandomGradientName(message) + " §r" + ItemStackHelper.getDisplayName(drop) + ColorGradient.getRandomGradientName(" ！！"));
     }
 
     /**
-     * 特殊钓物 → 特殊事件(专属提示,后续可继续加表现)
+     * Special catch → special event (custom message; effects can be added later)
      */
     private void triggerSpecialEvent(Player player, Lure activeLure, ItemStack drop) {
-        // 先识别触发了哪个鱼饵的特殊事件,再分发给对应的一对一处理方法
+        // Check which bait triggered the event, then call its matching handler
         switch (activeLure.getKey()) {
             case "CuiXia" -> handleCuiXiaSpecialEvent(player, drop);
             case "WeiChen" -> handleWeiChenSpecialEvent(player, drop);
@@ -611,82 +611,90 @@ public class PlayerFishingWaterCloudListener implements Listener {
     }
 
     /**
-     * 淬霞特殊事件(TODO:后续在此方法中完善淬霞独有的特殊效果)
+      * Special event handler for this bait (add its unique effects here later)
      */
     private void handleCuiXiaSpecialEvent(Player player, ItemStack drop) {
         playSpecialEventEffects(player, drop);
     }
 
     /**
-     * 微尘特殊事件(TODO:后续在此方法中完善微尘独有的特殊效果)
+      * Special event handler for this bait (add its unique effects here later)
      */
     private void handleWeiChenSpecialEvent(Player player, ItemStack drop) {
         playSpecialEventEffects(player, drop);
     }
 
     /**
-     * 熔火特殊事件(TODO:后续在此方法中完善熔火独有的特殊效果)
+      * Special event handler for this bait (add its unique effects here later)
      */
     private void handleRongHuoSpecialEvent(Player player, ItemStack drop) {
         playSpecialEventEffects(player, drop);
     }
 
     /**
-     * 跃金特殊事件(TODO:后续在此方法中完善跃金独有的特殊效果)
+      * Special event handler for this bait (add its unique effects here later)
      */
     private void handleYueJinSpecialEvent(Player player, ItemStack drop) {
         playSpecialEventEffects(player, drop);
     }
 
     /**
-     * 星核特殊事件(TODO:后续在此方法中完善星核独有的特殊效果)
+      * Special event handler for this bait (add its unique effects here later)
      */
     private void handleXingHeSpecialEvent(Player player, ItemStack drop) {
         playSpecialEventEffects(player, drop);
     }
 
     /**
-     * 蒹葭特殊事件(TODO:后续在此方法中完善蒹葭独有的特殊效果)
+      * Special event handler for this bait (add its unique effects here later)
      */
     private void handleJianJiaSpecialEvent(Player player, ItemStack drop) {
         playSpecialEventEffects(player, drop);
     }
 
-    /** 芦雪特殊事件(占位, 复用通用表现) */
+    /**
+      * Special event handler for this bait (add its unique effects here later)
+     */
     private void handleLuXueSpecialEvent(Player player, ItemStack drop) {
         playSpecialEventEffects(player, drop);
     }
 
-    /** 苇露特殊事件(占位, 复用通用表现) */
+    /**
+      * Special event handler for this bait (add its unique effects here later)
+     */
     private void handleWeiLuSpecialEvent(Player player, ItemStack drop) {
         playSpecialEventEffects(player, drop);
     }
 
-    /** 白露特殊事件(占位, 复用通用表现) */
+    /**
+      * Special event handler for this bait (add its unique effects here later)
+     */
     private void handleBaiLuSpecialEvent(Player player, ItemStack drop) {
         playSpecialEventEffects(player, drop);
     }
 
-    /** 芦芽特殊事件(占位, 复用通用表现) */
+    /**
+      * Special event handler for this bait (add its unique effects here later)
+     */
     private void handleLuYaSpecialEvent(Player player, ItemStack drop) {
         playSpecialEventEffects(player, drop);
     }
 
     /**
-     * 特殊事件通用表现:传送门音效 + 庆祝烟花 + 专属提示语
+     * Shared special event effects: portal sound, celebration fireworks, and a custom message
      */
     private void playSpecialEventEffects(Player player, ItemStack drop) {
-        // 原版获得经验音效
+        // Play the normal experience pickup sound
         player.playSound(player.getLocation(), Sound.BLOCK_END_PORTAL_SPAWN, 1.0f, 1.0f);
-        // 从玩家脚底发射一枚无伤害的庆祝烟花
+        // Launch harmless celebration fireworks from the player’s feet
         spawnCelebrationFirework(player);
-        // D(C5): 改用共享随机数实例
+        // D(C5): Use the shared random generator
         String message = SHUIYUNJIAN_SPECIAL_PHRASES.get(RANDOM.nextInt(SHUIYUNJIAN_SPECIAL_PHRASES.size()));
         player.sendMessage(ColorGradient.getRandomGradientName(message) + " §r" + ItemStackHelper.getDisplayName(drop) + ColorGradient.getRandomGradientName(" ！！"));
     }
 
     /**
-     * 从玩家脚底发射一枚装饰性烟花(无伤害,仅庆祝特效)
+     * Launch decorative fireworks at the player’s feet (no damage, just for celebration)
      */
     private void spawnCelebrationFirework(Player player) {
         Firework firework = player.getWorld().spawn(player.getLocation(), Firework.class);
@@ -701,19 +709,19 @@ public class PlayerFishingWaterCloudListener implements Listener {
     }
 
     /**
-     * 是否为拥有熟练度系统的水云间鱼竿
+     * Check whether this Water Cloud rod has a proficiency system
      */
     private boolean isProficiencyRod(SlimefunItem sfItem) {
         if (sfItem == null) return false;
         String id = sfItem.getId();
-        // SlimefunItem.getId() 返回带命名空间前缀的完整 ID(如 MAGIC_EXPANSION_FISHING_ROD_BETWEEN_WATER_CLOUD_REED),
-        // 这里同时兼容裸 ID 与带前缀 ID
+        // SlimefunItem.getId() returns the full ID with a namespace prefix (like MAGIC_EXPANSION_FISHING_ROD_BETWEEN_WATER_CLOUD_REED),
+        // so both plain IDs and prefixed IDs work here
         return PROFICIENCY_ROD_IDS.contains(id)
                 || PROFICIENCY_ROD_IDS.stream().anyMatch(suffix -> id.endsWith("_" + suffix));
     }
 
     /**
-     * 抛竿时按熟练度等级缩短原版等待上限(旧系统上钩速度; 每 2 级 -60 tick, 30s 基准 → 满级 18s, 非附魔方式)
+     * Reduce the vanilla wait time based on proficiency when casting (old hook-speed system; every 2 levels cuts 60 ticks, from 30s to 18s at max level; not an enchantment)
      */
     private void applyHookSpeed(Player player, FishHook hook) {
         ItemStack rod = player.getInventory().getItemInMainHand();
@@ -727,8 +735,8 @@ public class PlayerFishingWaterCloudListener implements Listener {
     }
 
     /**
-     * 熟练度系统:按钓获品质(特殊/稀有/普通)给鱼竿增加熟练度
-     * 获得熟练度时动作栏显示进度条 2 秒;升级时播放音效并发送意境提示
+     * Proficiency system: gain rod XP based on catch quality (special, rare, or normal)
+     * Show the progress bar in the action bar for 2 seconds; play a sound and show a message when leveling up
      */
     private void grantProficiency(Player player, FishingRodWaterCloud fishingRod, Lure activeLure, ItemStack drop) {
         ItemStack rod = player.getInventory().getItemInMainHand();
@@ -737,7 +745,7 @@ public class PlayerFishingWaterCloudListener implements Listener {
             return;
         }
 
-        // 无鱼饵(杂物池钓获)时无特殊钓物, 避免空指针
+        // No bait means a junk-pool catch, so there is no special item; avoid a null pointer
         ItemStack specialCatch = activeLure != null ? getSpecialCatchForLure(activeLure) : null;
 
         int xp;
@@ -749,14 +757,14 @@ public class PlayerFishingWaterCloudListener implements Listener {
 
         int oldLevel = WaterCloudRodProficiency.getLevel(rod);
         int newLevel = WaterCloudRodProficiency.addProficiency(rod, xp);
-        // 一次读写更新熟练度行 + 属性加成行(避免 §x 渐变行二次往返)
+        // Update the proficiency and stat bonus lines together to avoid processing the §x gradient line twice
         WaterCloudRodProficiency.updateLoreWithReward(rod);
         player.getInventory().setItemInMainHand(rod);
 
-        // 动作栏进度条,2 秒后消失
+        // Action bar progress bar, disappears after 2 seconds
         int level = WaterCloudRodProficiency.getLevel(rod);
         int xpNow = WaterCloudRodProficiency.getXp(rod);
-        player.sendActionBar("§b熟练度: §f" + WaterCloudRodProficiency.getLevelName(level)
+        player.sendActionBar("§bProficiency: §f" + WaterCloudRodProficiency.getLevelName(level)
                 + " §e" + WaterCloudRodProficiency.getPipeBar(level, xpNow)
                 + " " + WaterCloudRodProficiency.getPercent(level, xpNow) + " §a+" + xp);
         Bukkit.getScheduler().runTaskLater(MagicExpansion.getInstance(), () -> {
@@ -765,7 +773,7 @@ public class PlayerFishingWaterCloudListener implements Listener {
             }
         }, 40L);
 
-        // 升级反馈
+        // Level-up feedback
         if (newLevel > oldLevel) {
             player.playSound(player.getLocation(), Sound.ENTITY_PLAYER_LEVELUP, 1.0f, 1.0f);
             int index = Math.max(0, Math.min(newLevel - 1, WaterCloudRodProficiency.LEVEL_UP_MESSAGES.length - 1));

@@ -5,24 +5,24 @@ import org.bukkit.inventory.ItemStack;
 public class FishManager {
 
     /**
-     * 快速获取鱼类ItemStack
+     * Quickly get the fish ItemStack
      */
     public static ItemStack getFishItem(BaseFish fish) {
         return fish.copy().build();
     }
 
     /**
-     * 获取带自定义Lore的鱼类
+     * Get a fish with custom lore
      */
     public static ItemStack getFishItemWithLore(BaseFish fish, String... loreLines) {
         return fish.copy().addLore(loreLines).build();
     }
 
     /**
-     * 获取图鉴专用的鱼类（自动添加图鉴信息）
+     * Get a fish for the guide (guide info is added automatically)
      */
     public static ItemStack getFishItemForGuide(BaseFish fish) {
-        return fish.addLore("", "§7这是一个仅供展示的图鉴条目", "§8—— 仅展示用途及获取条件 ——").build();
+        return fish.addLore("", "§7This is a guide entry for display only", "§8—— Display only, shows how to get it ——").build();
     }
 
 }

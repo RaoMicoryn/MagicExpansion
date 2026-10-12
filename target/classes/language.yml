@@ -1,0 +1,4834 @@
+zh_CN:
+  Items:
+    QUICK_MACHINE_BV_INFO:
+      Name: 'Quick Machine [Placeable] Guide'
+      Lore:
+        - 'Supports almost all recipes'
+        - 'Vanilla recipes have been adjusted to make more sense'
+        - 'The changed recipes are hidden machine easter eggs'
+        - 'To reduce resource use as much as possible'
+        - 'and keep the list updating smoothly'
+        - 'Using Shift to move items in will not refresh the output list yet'
+        - 'But using Shift to move items out will refresh the output list'
+        - 'You can place the last item into the machine by hand'
+        - 'or click any item in the input slot'
+        - 'This will refresh the output list'
+        - 'You can also click the Nether Star below'
+        - 'That button will refresh the output list too'
+    QUICK_ENHANCED_CRAFTING_TABLE_BV:
+      Name: 'Magic Crafting Table · Enhanced [Placeable]'
+      Lore:
+        - 'Put the materials into the Magic Crafting Table'
+        - 'The list of items you can make will show up right away'
+        - 'You can craft them quickly'
+    QUICK_SMELTERY_BV:
+      Name: 'Magic Smeltery [Placeable]'
+      Lore:
+        - 'Put the materials into the Magic Smeltery'
+        - 'The list of items you can make will show up right away'
+        - 'You can smelt them quickly'
+    QUICK_GRIND_STONE_BV:
+      Name: 'Magic Grindstone [Placeable]'
+      Lore:
+        - 'Put the materials into the Magic Grindstone'
+        - 'The list of items you can make will show up right away'
+        - 'You can grind them quickly'
+    QUICK_ORE_CRUSHER_BV:
+      Name: 'Magic Ore Crusher [Placeable]'
+      Lore:
+        - 'Put the materials into the Magic Ore Crusher'
+        - 'The list of items you can make will show up right away'
+        - 'You can crush them quickly'
+    QUICK_ARMOR_FORGE_BV:
+      Name: 'Magic Armor Forge [Placeable]'
+      Lore:
+        - 'Put the materials into the Magic Compressor'
+        - 'The list of items you can make will show up right away'
+        - 'You can forge them quickly'
+    QUICK_COMPRESSOR_BV:
+      Name: 'Magic Compressor [Placeable]'
+      Lore:
+        - 'Put the materials into the Magic Compressor'
+        - 'The list of items you can make will show up right away'
+        - 'You can compress them quickly'
+    QUICK_PRESSURE_CHAMBER_BV:
+      Name: 'Magic Pressure Press [Placeable]'
+      Lore:
+        - 'Put the materials into the Magic Pressure Press'
+        - 'The list of items you can make will show up right away'
+        - 'You can compress them quickly'
+    QUICK_MAGIC_WORKBENCH_BV:
+      Name: 'Magic Workbench [Placeable]'
+      Lore:
+        - 'Put the materials into the Magic Workbench'
+        - 'The list of items you can make will show up right away'
+        - 'You can craft them quickly'
+    QUICK_AUTOMATED_PANNING_MACHINE_BV:
+      Name: 'Magic Panning Machine [Placeable]'
+      Lore:
+        - 'Put the materials into the Magic Panning Machine'
+        - 'The list of items you can make will show up right away'
+        - 'You can pan for gold quickly'
+    QUICK_AUTOMATED_ANCIENT_ALTAR_BV:
+      Name: 'Magic Ancient Altar [Placeable]'
+      Lore:
+        - 'Put the materials into the Magic Ancient Altar'
+        - 'The list of items you can make will show up right away'
+        - 'You can craft them quickly'
+    QUICK_ELECTRIC_ORE_GRINDER_BV:
+      Name: 'Broken Magic Ore Grinder [Placeable]'
+      Lore:
+        - 'Put the materials into the Broken Magic Ore Grinder'
+        - 'The list of items you can make will show up right away'
+        - 'You can craft them quickly'
+        - 'Currently supports: iron ore, gold ore, netherrack, sifted ore, crushed ore, pure ore clusters, and coal'
+    QUICK_HEATED_PRESSURE_CHAMBER_BV:
+      Name: 'Magic Pressure Chamber [Placeable]'
+      Lore:
+        - 'Put the materials into the Magic Pressure Chamber'
+        - 'The list of items you can make will show up right away'
+        - 'You can craft them quickly'
+    ENCHANTING_TABLE:
+      Name: 'Magic Enchanting Table'
+      Lore:
+        - 'A separate set of bonus stats'
+        - 'Uses upgrade materials and power'
+        - '⇨ ⚡ 10,000 J/per'
+        - '⇨ ⚡ Stores 8,888,888 J'
+    BASIC_ENCHANT_STONE:
+      Name: 'Starsteel'
+      Lore:
+        - 'Starsteel is a rare and mysterious metal'
+        - 'This metal does not come from this world'
+        - 'It is refined from meteorites that fall to earth'
+    WIND_SPIRIT:
+      Name: 'Wind Spirit Essence'
+      Lore:
+        - 'The last pure breath left behind when a Wind Spirit fades away'
+        - 'It has no shape, yet carries the spirit of storms and freedom'
+        - 'When touched, a faint whisper brushes your fingertips'
+        - 'Like howling winds on a distant peak or whispers among the clouds'
+        - 'It is key to magic that grants floating, speed, and wind control'
+        - ''
+        - '“True wind belongs to no one'
+        - '   It only returns to this world for a moment through your hands.”'
+    WIND_SPIRIT_DROP:
+      Name: 'Wind Spirit'
+      Lore:
+        - 'Dropped when a Wind Spirit is defeated'
+        - 'Drop chance: 91.888%'
+        - 'The last pure breath left behind when a Wind Spirit fades away'
+        - '“True wind belongs to no one'
+        - '   It only returns to this world for a moment through your hands.”'
+    BASIC_ENCHANT_STONE_DROP:
+      Name: 'Flame Zombie'
+      Lore:
+        - 'Dropped when a Flame Zombie is defeated'
+        - 'Drop chance: 91.888%'
+        - 'Believe it or not,'
+        - 'Starsteel can also drop from Flame Zombies, rare undead creatures reborn through fire and destruction'
+        - 'It is mainly obtained by refining certain meteorites'
+        - 'but it also has a high chance to drop from Flame Zombies'
+        - 'These zombies seem to have been affected by an ancient curse'
+        - 'that fused a small amount of Starsteel into their bodies'
+    ENCHANTING_TABLE_INFO:
+      Name: 'Magic Enchanting Guide'
+      Lore:
+        - 'You need materials like Starsteel'
+        - 'and place your weapon in the matching slot'
+        - 'Put the enchantment material in its matching slot'
+        - 'Choose the bonus stat you want'
+        - 'There are 3 levels'
+        - 'Levels 1–3 use 1–3 materials'
+        - 'The number of bonus stats you get will vary'
+        - 'The amount of material decides how many bonus stats you get'
+        - 'Material quality decides the quality of the bonus stats'
+    ENCHANTING_TABLE_LIST:
+      Name: 'Magic Enchantments'
+      Lore:
+        - 'Knockback'
+        - 'Pull'
+        - 'Fire'
+        - 'Slow'
+        - 'Lightning Strike'
+        - 'Power of Creation'
+        - 'Ender Pearl Arrow'
+        - 'Swap Places on Hit'
+        - 'Coming soon'
+    FIREZOMBIE_HEAD:
+      Name: 'Flame Zombie Head'
+      Lore:
+        - 'Contains a lot of magical energy'
+        - 'Contains a lot of Ender energy'
+        - 'It can use magic attacks'
+        - 'It can also teleport with Ender magic'
+        - 'It can use mind-based attacks'
+        - 'It can also attack with its natural fire element'
+    FIREZOMBIE_BODY:
+      Name: 'Zombie Boss Torso'
+      Lore:
+        - 'It is both decay and rebirth'
+
+    WIND_ELF_SPAWN:
+      Name: 'Wind Spirit'
+      Lore:
+        - ' '
+        - 'Right-click to summon a Wind Spirit'
+
+    WIND_ELF_HEAD:
+      Name: 'Wind Spirit Head'
+      Lore:
+        - 'Contains a lot of magical energy'
+        - 'Contains a lot of Ender energy'
+        - 'It can use Twin Wind attacks'
+        - 'It can also teleport with Ender magic'
+        - 'It can use mind-based attacks'
+        - 'It can also attack with its natural wind element'
+    WIND_ELF_BODY:
+      Name: 'Wind Spirit Torso'
+      Lore:
+        - 'A Wind Spirit torso formed from condensed water'
+
+    WIND_ELF_SKILL:
+      Name: 'Wind Spirit Skills'
+      Lore:
+        - 'Skill use: randomly casts a skill every 4–6 seconds'
+        - '1: Magic Attack'
+        - 'Deals 10 magic damage to the target'
+        - 'Note: Does not ignore armor'
+        - '2: Xieyao Wind'
+        - 'Randomly picks 2 nearby players and deals 68 or 136 damage to each'
+        - 'Note: Does not ignore armor and may target the same player twice'
+        - '3: Whirling Wind Attack'
+        - 'Deals area damage to players within 15 blocks horizontally and 8 blocks vertically'
+        - 'and applies negative effects to them'
+    WIND_ELF_DEFENSE:
+      Name: 'Wind Elf Defense Guide'
+      Lore:
+        - 'Healing: Restores 2 health points every second'
+        - ''
+        - 'Wind Elves are weak against swords'
+        - 'Wind Elves take 100% less damage from all other weapons'
+        - ''
+        - 'A certain amount of yang energy is needed nearby to suppress the Wind Elf'
+        - '2–5 players are needed to damage the Wind Elf'
+        - ''
+        - 'After using a skill, the Wind Elf has a 2–4 second weakness period'
+        - 'During this time, its damage resistance drops a lot, and each hit deals no more than 33% damage'
+        - ''
+        - 'Wind Elves move extremely fast'
+        - 'They make a quick dash every 2 seconds'
+
+
+    PRE_BUILDING_TREE_INFO:
+      Name: 'Prebuilt Food · Info'
+      Lore:
+        - 'You can use it as an item'
+        - 'You can also use it as a spawner'
+        - 'Each tree has fixed data'
+        - 'Only trees spawn from below the center'
+        - 'Other structures spawn from the relative origin (0,0,0) toward (+x,+y,+z)'
+        - 'Right-click to place the prebuilt structure'
+        - 'Shift + right-click to view the structure''s footprint'
+    PRE_BUILDING_OAK_TREE:
+      Name: 'Prebuilt Tree · Oak Tree'
+      Lore:
+        - 'This oak tree seed is sealed inside a magical space and holds the life force of an ancient forest'
+        - 'Once released, it will quickly grow into a grand oak tree'
+        - 'It will bring life and energy to the area around you'
+        - 'Hold this magical seed, find a spot you like, aim at any block, and right-click'
+        - 'In an instant, a fresh green sprout will push up through the ground'
+        - 'It will grow at an amazing speed into a leafy oak tree'
+        - 'Whether you want to decorate your builds or expand your home'
+        - 'Just one click saves you the time spent planting and waiting for it to grow'
+    PRE_BUILDING_SPRUCE_TREE:
+      Name: 'Prebuilt Tree · Spruce Tree'
+      Lore:
+        - 'This spruce tree seed is sealed inside a magical space and holds the life force of an ancient forest'
+        - 'Once released, it will quickly grow into a grand spruce tree'
+        - 'It will bring life and energy to the area around you'
+        - 'Hold this magical seed, find a spot you like, aim at any block, and right-click'
+        - 'In an instant, a fresh green sprout will push up through the ground'
+        - 'It will grow at an amazing speed into a leafy spruce tree'
+        - 'Whether you want to decorate your builds or expand your home'
+        - 'Just one click saves you the time spent planting and waiting for it to grow'
+    PRE_BUILDING_BIRCH_TREE:
+      Name: 'Prebuilt Tree · Birch Tree'
+      Lore:
+        - 'This birch tree seed is sealed inside a magical space and holds the life force of an ancient forest'
+        - 'Once released, it will quickly grow into a grand birch tree'
+        - 'It will bring life and energy to the area around you'
+        - 'Hold this magical seed, find a spot you like, aim at any block, and right-click'
+        - 'In an instant, a fresh green sprout will push up through the ground'
+        - 'It will grow at an amazing speed into a leafy birch tree'
+        - 'Whether you want to decorate your builds or expand your home'
+        - 'Just one click saves you the time spent planting and waiting for it to grow'
+    PRE_BUILDING_JUNGLE_TREE:
+      Name: 'Prebuilt Tree · Jungle Tree'
+      Lore:
+        - 'This jungle tree seed is sealed inside a magical space and holds the life force of an ancient forest'
+        - 'Once released, it will quickly grow into a grand jungle tree'
+        - 'It will bring life and energy to the area around you'
+        - 'Hold this magical seed, find a spot you like, aim at any block, and right-click'
+        - 'In an instant, a fresh green sprout will push up through the ground'
+        - 'It will grow at an amazing speed into a leafy jungle tree'
+        - 'Whether you want to decorate your builds or expand your home'
+        - 'Just one click saves you the time spent planting and waiting for it to grow'
+    PRE_BUILDING_ACACIA_TREE:
+      Name: 'Prebuilt Tree · Acacia Tree'
+      Lore:
+        - 'This acacia tree seed is sealed inside a magical space and holds the life force of an ancient forest'
+        - 'Once released, it will quickly grow into a grand acacia tree'
+        - 'It will bring life and energy to the area around you'
+        - 'Hold this magical seed, find a spot you like, aim at any block, and right-click'
+        - 'In an instant, a fresh green sprout will push up through the ground'
+        - 'It will grow at an amazing speed into a leafy acacia tree'
+        - 'Whether you want to decorate your builds or expand your home'
+        - 'Just one click saves you the time spent planting and waiting for it to grow'
+    PRE_BUILDING_DARK_OAK_TREE:
+      Name: 'Prebuilt Tree · Dark Oak Tree'
+      Lore:
+        - 'This dark oak tree seed is sealed inside a magical space and holds the life force of an ancient forest'
+        - 'Once released, it will quickly grow into a grand dark oak tree'
+        - 'It will bring life and energy to the area around you'
+        - 'Hold this magical seed, find a spot you like, aim at any block, and right-click'
+        - 'In an instant, a fresh green sprout will push up through the ground'
+        - 'It will grow at an amazing speed into a leafy dark oak tree'
+        - 'Whether you want to decorate your builds or expand your home'
+        - 'Just one click saves you the time spent planting and waiting for it to grow'
+    PRE_BUILDING_MANGROVE_TREE:
+      Name: 'Prebuilt Tree · Mangrove Tree'
+      Lore:
+        - 'This mangrove tree seed is sealed inside a magical space and holds the life force of an ancient forest'
+        - 'Once released, it will quickly grow into a grand mangrove tree'
+        - 'It will bring life and energy to the area around you'
+        - 'Hold this magical seed, find a spot you like, aim at any block, and right-click'
+        - 'In an instant, a fresh green sprout will push up through the ground'
+        - 'It will grow at an amazing speed into a leafy mangrove tree'
+        - 'Whether you want to decorate your builds or expand your home'
+        - 'Just one click saves you the time spent planting and waiting for it to grow'
+    PRE_BUILDING_CHERRY_TREE:
+      Name: 'Prebuilt Tree · Cherry Blossom Tree'
+      Lore:
+        - 'This cherry blossom seed is sealed inside a magical space and holds the life force of an ancient forest'
+        - 'Once released, it will quickly grow into a grand cherry blossom tree'
+        - 'It will bring life and energy to the area around you'
+        - 'Hold this magical seed, find a spot you like, aim at any block, and right-click'
+        - 'In an instant, a fresh green sprout will push up through the ground'
+        - 'It will grow at an amazing speed into a leafy cherry blossom tree'
+        - 'Whether you want to decorate your builds or expand your home'
+        - 'Just one click saves you the time spent planting and waiting for it to grow'
+    PRE_BUILDING_TAFEI:
+      Name: 'Prebuilt Statue · Sugar Factory Taffy'
+      Lore:
+        - 'This is a Sugar Factory Taffy building sealed inside a magical space'
+        - 'Choose a peaceful spot and place it there'
+        - 'Sugar Factory Taffy makes sugar here'
+        - 'Taffy always faces the sunset'
+    PRE_BUILDING_WISH_DALE:
+      Name: 'Prebuilt Statue · Wisadel'
+      Lore:
+        - 'The statue still smells faintly of smoke and gunpowder, as if it was just rescued from an explosion.'
+        - 'She kneels on the rubble, her shoulder cannon raised slightly, with that familiar, unsettling smile.'
+        - 'They say that if you get within three meters, you can hear her whisper: “Hey, wanna see some fireworks?”'
+        - 'Place the statue at the edge of a battlefield or on a high spot in your base—'
+        - 'She might not protect you, but your enemies will remember that someone here is “not to be messed with.”'
+    PRE_BUILDING_ANON:
+      Name: 'Prebuilt Statue · Chihaya Anon'
+      Lore:
+        - 'A faint pink-blue glow shines on the statue, as if electricity quietly flows through her hair and skirt.'
+        - 'She rises on her toes, guitar slung behind her, eyes looking into the distance, as if she is about to run toward the stage lights.'
+        - 'On a quiet night, you might hear a half-finished melody softly echoing in the wind.'
+        - 'Place her near your living area or watchtower—'
+        - 'She may not chase away the darkness, but at least someone remembers that a dream once made people sing.'
+
+    PRE_BUILDING_VILLAGE_LOVE_AND_TRADE_HOUSE:
+      Name: 'Prebuilt Tech Build · Villager Love & Trading Hall'
+      Lore:
+        - 'This Villager Love & Trading Hall is sealed inside a magical space'
+        - 'Choose a peaceful spot and place it there'
+        - 'A combined area for villager breeding and trading'
+        - 'Boats are used to keep villagers in place'
+        - 'Please place boats yourself wherever needed'
+        - 'The bottom-left area is for villager breeding'
+        - 'The middle and right areas are two villager trading hubs'
+        - 'Railways are set up around the area to move villagers'
+    PRE_BUILDING_SHULKER_FARM:
+      Name: 'Prebuilt Tech Build · Shulker Farm'
+      Lore:
+        - 'This shulker farm is sealed inside a magical space'
+        - 'Place it in an open area'
+        - 'Shulkers split and create lots of new shulkers here'
+        - 'Please lure the shulkers yourself'
+        - 'Please place the snow golem yourself'
+        - 'The farm is in the center'
+        - 'The collection system is underneath'
+    PRE_BUILDING_MCDONALDS:
+      Name: 'Prebuilt Building · McDonald’s'
+      Lore:
+        - 'This McDonald’s building is sealed inside a magical space'
+        - 'Place it in an open area'
+        - 'The building has lots of cool details'
+        - 'Everyone can have their own McDonald’s'
+        - 'Simple happiness from McDonald’s'
+        - 'More tasty food, more surprises—all at McDonald’s'
+        - 'McDonald’s makes your whole day happier'
+
+
+    PRE_BUILDING_HOUSE_OAK:
+      Name: 'Prebuilt House · Oak Cabin'
+      Lore:
+        - 'A hint of old oak scent quietly drifts from this piece of oak,'
+        - 'as if telling the story of a quiet cabin sealed inside a magical space.'
+        - 'It waits among the spells, ready to appear wherever its new owner chooses.'
+        - 'Find a clearing in the woods and break the seal—'
+        - 'The fire will burn again, and the space beneath the roof will feel like home.'
+    PRE_BUILDING_HOUSE_SPRUCE:
+      Name: 'Prebuilt House · Spruce Cabin'
+      Lore:
+        - 'The pine scent of a misty mountain peak settles into the spruce wood,'
+        - 'and this spruce cabin sleeps among folded snowstorms and dawn light.'
+        - 'It once stood beside a sea of clouds, listening to the pines and watching the stars drift by.'
+        - 'Choose a high spot and break the seal—'
+        - 'When the door opens, the mountain breeze welcomes you to your quiet retreat.'
+    PRE_BUILDING_HOUSE_CHERRY:
+      Name: 'Prebuilt House · Cherry Blossom Cabin'
+      Lore:
+        - 'A spring breeze carries pink and white petals from deep within the cherry wood,'
+        - 'and this cherry blossom cabin sleeps in a gap in time, waiting for flowers to bloom.'
+        - 'It once stood beside a mountain cherry grove, watching petals fall like snow and moonlight shine like silk.'
+        - 'Choose a sunny hillside and say the words to break the seal—'
+        - 'When the door opens, the spring breeze greets you, as if the whole season lives beneath the roof.'
+    PRE_BUILDING_HOUSE_MANGROVE:
+      Name: 'Prebuilt House · Mangrove Cabin'
+      Lore:
+        - 'Salty sea air and the whisper of tides quietly drift through the mangrove wood,'
+        - 'and this mangrove cabin sleeps with the tides, its roots wrapped in moonlight and mist.'
+        - 'It once stood by a quiet mangrove bay, listening to night herons and watching fireflies drift among the roots.'
+        - 'Choose a muddy shore by the water and break the sea’s seal—'
+        - 'When the vine door opens, the sound of waves drifts into your dreams, and you become the keeper of the tides.'
+    PRE_BUILDING_HOUSE_MOSS:
+      Name: 'Prebuilt House · Moss Cottage'
+      Lore:
+        - 'A fresh, damp earthy smell rises from the moss,'
+        - 'as if the breath of the whole forest is hidden in this soft green carpet.'
+        - 'This cottage sleeps beneath ancient runes, with a moss-covered roof and walls living alongside fungi.'
+        - 'It once rested in the arms of an ancient tree, listening to leaves tap on its door and watching fireflies drift between the leaves.'
+        - 'Find a quiet patch of forest and gently touch the voice of the earth—'
+        - 'When the mossy door slowly opens, you step into a dream the forest never wants to leave.'
+
+    PRE_BUILDING_HOUSE_WIND_CAR:
+      Name: 'Prebuilt House · Windmill Cottage'
+      Lore:
+        - 'A gentle breeze spins out of the scroll, carrying the scent of wheat and the soft hum of turning gears,'
+        - 'This windmill cottage sleeps in a frozen breeze of time, its blades still like wings yet to open.'
+        - 'It once stood on rolling hills, using the wind to grind grain and light a lonely lamp through long nights.'
+        - 'Choose a high, breezy spot and awaken the wind rune—'
+        - 'When the blades spin again and the lights come on, the wind brings you the sound of home.'
+
+    PRE_BUILDING_DORA_PICTURE:
+      Name: 'Prebuilt Art · DORO Pixel Art'
+      Lore:
+        - '8-bit starlight softly flickers inside the frame,'
+        - 'as if old stored data is quietly waking up.'
+        - 'A goofy pink dog'
+
+
+
+    PRE_BUILDING_WINE_BAR:
+      Name: 'Prebuilt Building · Bar'
+      Lore:
+        - 'This is a tavern sealed inside a magical space'
+        - 'Choose an open area and summon it'
+        - 'Rich drinks and lovely music fill the place'
+        - 'Everyone has a tavern of their own in their heart'
+        - 'The tavern lights up the night and comforts travelers'
+        - 'More laughter, more stories, all by the tavern firelight'
+        - 'The tavern keeps you warm all night'
+
+    PRE_BUILDING_MOON_RABBIT_SHOP:
+      Name: 'Prebuilt Building · Moon Rabbit Shop'
+      Lore:
+        - 'This is a mysterious shop from deep inside the Moon Palace'
+        - 'Choose an open spot and softly say the spell to summon it'
+        - 'The shop displays rare treasures made from moonlight'
+        - 'Each moon rabbit guards wishes from the human world'
+        - 'On quiet nights, hear the Jade Rabbit gently grinding herbs'
+        - 'More adventures and magic await at the Moon Rabbit Shop'
+        - 'Where moonlight shines, wishes quietly come true'
+
+    PRE_BUILDING_MIDDLE_HORSE_HOUSE:
+      Name: 'Prebuilt Building · Medium Stable'
+      Lore:
+        - 'This is a medium stable sealed inside a magical space'
+        - 'Choose a flat area and place it down safely'
+        - 'The stable has comfy straw bedding and clean water troughs'
+        - 'Every horse deserves a safe place to rest'
+        - 'The soft sound of hooves is a loyal companion on the journey'
+        - 'More shelter and peace of mind in the Medium Stable'
+        - 'With the stable here, your companion is never far away'
+
+    PRE_BUILDING_FISHING_PORT:
+      Name: 'Prebuilt Building · Fishing Harbor'
+      Lore:
+        - 'This is a fishing harbor sealed inside a magical space'
+        - 'Choose an open spot by the water and gently unfold it'
+        - 'Small boats dock at the harbor, and buoys sway on the sparkling water'
+        - 'Every angler dreams of a peaceful harbor of their own'
+        - 'Cast your line in the morning mist and reel it in at sunset as time drifts by'
+        - 'More catches and more peace at the Fishing Harbor'
+        - 'One rod, one line, a whole world—enjoy the peace of fishing'
+
+    PRE_BUILDING_SI_HE_YUAN:
+      Name: 'Prebuilt Building · Traditional Courtyard House'
+      Lore:
+        - 'It is recommended to dig a foundation 4 blocks deep first'
+        - 'This building has its own foundation; the main structure starts 5 blocks above the bottom'
+        - 'This is a traditional courtyard house sealed inside a time box'
+        - 'Choose a flat area and quietly bring it to life'
+        - 'Gray roof tiles and stone paths surround flowers and fish ponds; life feels peaceful'
+        - 'Every family dreams of a home filled with peace and togetherness'
+        - 'The door knocker rings and cooking smoke rises—the sounds of home'
+        - 'More warmth and memories await in the courtyard house'
+        - 'One courtyard, one world; one family, a lifetime of seasons'
+
+    PRE_BUILDING_BAKERY:
+      Name: 'Prebuilt Building · Bakery'
+      Lore:
+        - 'This is a cozy bakery sealed in a cloud of sweet smells'
+        - 'Choose an open corner by the street and gently open it'
+        - 'The smell of fresh bread and desserts fills the shop'
+        - 'Everyone has a little corner in their heart for sweets'
+        - 'The oven glows softly, spreading warmth from your fingertips to your heart'
+        - 'More sweet smells and happiness await at the bakery'
+        - 'One warm bite can brighten your day'
+
+    PRE_BUILDING_KFC_MIDDLE:
+      Name: 'Prebuilt Building · KFC · M'
+      Lore:
+        - 'This is a medium KFC store sealed inside a magical space'
+        - 'Choose an open area and unfold it fully'
+        - 'The red-and-white sign shines softly in the breeze'
+        - 'Every piece of fried chicken brings back familiar tastes and memories'
+        - 'Crispy to the touch and tasty in every bite—happiness served right away'
+        - 'More tasty food and good times at KFC'
+        - 'One visit can make your whole day'
+
+    PRE_BUILDING_KFC_SMALL:
+      Name: 'Prebuilt Building · KFC · S'
+      Lore:
+        - 'This is a mini KFC store sealed inside a magical space'
+        - 'Choose an open corner and place it down with ease'
+        - 'Small but fully stocked, with delicious smells drifting from the window'
+        - 'Even if you are just passing by, you deserve a warm treat'
+        - 'A box of fried chicken and a cola can brighten an ordinary moment'
+        - 'More convenience and surprises at KFC · S'
+        - 'Small size, big satisfaction'
+
+    PRE_BUILDING_LARGE_SNOW_KING:
+      Name: 'Prebuilt Building · Big Snow King'
+      Lore:
+        - 'This is an ice castle sealed in freezing magic'
+        - 'Choose a wide snowy area and let it appear'
+        - 'Clear ice bricks form a dreamy fairy-tale kingdom'
+        - 'Every child has an Ice King living in their heart'
+        - 'Snowflakes swirl and bells ring softly as a winter wonder unfolds'
+        - 'More adventures and laughter await in the world of Big Snow King'
+        - 'A city of ice and snow, a fairy-tale dream'
+
+    PRE_BUILDING_MIDDLE_VILLA:
+      Name: 'Prebuilt Building · Medium Villa · α'
+      Lore:
+        - 'This is a medium villa · α sealed inside a magical space'
+        - 'Choose a sunny hillside and quietly unfold it'
+        - 'White walls, gray roofs, layered gardens, and soft light and shadows'
+        - 'Everyone has a dream plan for their ideal home'
+        - 'Morning light falls on the terrace, and evening breezes pass through half-open windows'
+        - 'There is also a dragon egg on the table in the main living room'
+        - 'More space and freedom in the Medium Villa'
+        - 'A home is its own world; feeling settled brings peace'
+
+    PRE_BUILDING_LITTLE_MI_XUE:
+      Name: 'Prebuilt Building · Mixue Ice Cream & Tea · S'
+      Lore:
+        - 'This is a mini Mixue Ice Cream & Tea store sealed in cool magic'
+        - 'Choose an open spot by the street and bring it to life'
+        - 'A familiar tune plays softly in the breeze, with sweet smells all around'
+        - 'Every drink brings back memories of school days'
+        - 'The Snow King smiles, bubbles pop, and happiness feels simple'
+        - 'More cool drinks and laughter at Mixue Ice Cream & Tea'
+        - 'Sweet treats at low prices, priceless happiness'
+
+    PRE_BUILDING_JAPAN_HOUSE:
+      Name: 'Prebuilt Building · Japanese Townhouse'
+      Lore:
+        - 'This is a Japanese townhouse sealed inside a gentle, Japanese-style barrier'
+        - 'Choose a quiet street and slowly unfold it'
+        - 'Wooden lattice doors slide open, moss covers the garden, and the scent of tea fills the air'
+        - 'Every townhouse holds a piece of old Kyoto'
+        - 'Rain taps the eaves, wind brushes the bamboo blinds, and the mind grows calm'
+        - 'More calm and peace in the Japanese townhouse'
+        - 'Every corner offers a quiet moment'
+
+    PRE_BUILDING_FARM_BARN:
+      Name: 'Prebuilt Building · Farm Barn'
+      Lore:
+        - 'This is a farm barn sealed in the magic of a good harvest'
+        - 'Choose a wide-open field and place it firmly'
+        - 'Red-painted wooden walls, piles of hay, and chickens and ducks playing nearby'
+        - 'Every farmer dreams of a rich and fruitful home like this'
+        - 'Feed the animals before the morning dew dries, then return to the barn at sunset'
+        - 'More harvests and hope at the Farm Barn'
+        - 'A full barn brings peace of mind through every season'
+
+    PRE_BUILDING_SAKURA_SHOP:
+      Name: 'Prebuilt Building · Cherry Blossom Shop'
+      Lore:
+        - 'This is a cherry blossom shop sealed in a spring breeze barrier'
+        - 'Choose an open spot beneath the flowers and gently bring it to life'
+        - 'Pink and white petals swirl as the shop displays special spring items'
+        - 'Everyone dreams of an unexpected date beneath the cherry blossoms'
+        - 'Wind chimes ring softly, scents drift by, and time seems to pause'
+        - 'More romance and surprises at the Cherry Blossom Shop'
+        - 'One shop, one spring; meet when the flowers bloom'
+
+    PRE_BUILDING_FRUIT_SHOP:
+      Name: 'Prebuilt Building · Fruit Shop'
+      Lore:
+        - 'This is a fruit shop sealed in the magic of sunshine'
+        - 'Choose an open spot by the street and open it up fresh'
+        - 'Fresh fruits are piled high, giving off a natural sweetness'
+        - 'Every fruit carries gifts from sunshine and rain'
+        - 'Morning dew still rests on the leaves as fresh sweetness blooms on your tongue'
+        - 'More freshness and energy at the Fruit Shop'
+        - 'One fruity bite can brighten your day'
+
+    PRE_BUILDING_KRUSTY_KRAB:
+      Name: 'Prebuilt Building · Krusty Krab'
+      Lore:
+        - 'This is a Krusty Krab restaurant sealed inside an underwater barrier'
+        - 'Choose a wide-open spot and bring it in with a bang'
+        - 'A red roof, sizzling fryers, and the smell of Krabby Patties everywhere'
+        - 'Every sea creature goes crazy for this tasty bite'
+        - 'SpongeBob is grilling patties while Squidward blows gloomy bubbles'
+        - 'More tasty food, more fun—that is what the Krusty Krab is all about'
+        - 'Today’s menu: lots of happiness, with a side of fun'
+
+
+
+
+
+
+
+    UI_3:
+      Name: ''
+      Lore:
+        - ''
+    UI_4:
+      Name: ''
+      Lore:
+        - ''
+    UI_5:
+      Name: ''
+      Lore:
+        - ''
+    UI_6:
+      Name: ''
+      Lore:
+        - ''
+    UI_7:
+      Name: ''
+      Lore:
+        - ''
+    UI_8:
+      Name: ''
+      Lore:
+        - ''
+    UI_9:
+      Name: ''
+      Lore:
+        - ''
+
+
+    UI_THX:
+      Name: 'Special Thanks'
+      Lore:
+        - ''
+        - 'In no particular order'
+
+
+
+    NAZUKICYL_TEST:
+      Name: 'Nazukicyl'
+      Lore:
+        - ''
+        - 'Testing'
+        - 'Slime Giant Snake'
+    HAIMAN_TEST:
+      Name: 'haiman'
+      Lore:
+        - ''
+        - 'Testing'
+        - 'Known for: Haiman Tech Academy'
+        - 'Translator for many Slimefun add-ons'
+        - 'Made major contributions to Slimefun'
+    QIZHIYI_TEST:
+      Name: 'qizhiyi'
+      Lore:
+        - ''
+        - 'Testing & Wiki'
+        - 'Slime Giant Snake'
+        - 'Just a lazy guy'
+        - ''
+    KOMU_A:
+      Name: 'Komu_A'
+      Lore:
+        - ''
+        - 'Testing'
+        - 'Knows a lot about magic'
+        - 'Feel free to ask if you have questions'
+        - 'Slime Giant Snake'
+        - 'Creator of Komu Tech'
+    LENGSHANG_TEST:
+      Name: 'lengshang'
+      Lore:
+        - ''
+        - 'Testing'
+        - 'Item farming expert'
+        - 'Creator of Lengshang Tech'
+        - 'QQ group: 985241606'
+        - 'Download the Slimefun modpack'
+        - 'Once released a Slimefun modpack so wild that even MTL and others were amazed'
+
+
+
+
+
+
+    VOID_TOUCH:
+      Name: 'Void Touch'
+      Lore:
+        - ' '
+        - 'Cannot interact with blocks across dimensions'
+        - 'This action cannot force-load chunks'
+        - 'This item can only be used within 100 chunks'
+        - 'Tips: Only works on Slimefun machines or functional blocks'
+        - 'Tips: Cannot be used in areas where you lack permission'
+        - ' '
+        - "Shift + right-click a block to bind its location"
+        - "Right-click anywhere to trigger remote interaction"
+    VOID_TOUCH_SCRIPT:
+      Name: 'Void Touch - Custom Script Only'
+      Lore:
+        - ' '
+        - 'Cannot interact with blocks across dimensions'
+        - 'This action cannot force-load chunks'
+        - 'This item can only be used within 100 chunks'
+        - 'Tips: Only works on Slimefun machines or functional blocks'
+        - ' '
+        - "Shift + right-click a block to bind its location"
+        - "Right-click anywhere to trigger remote interaction"
+    FIVE_ELEMENT_TOUCH:
+      Name: 'Five Elements Touch'
+      Lore:
+        - ' '
+        - 'Can interact with blocks across dimensions'
+        - 'This action cannot force-load chunks'
+        - 'Ignores dimensions and distance'
+        - 'Tips: Opening containers only works on Slimefun machines or functional blocks'
+        - ' '
+        - "Shift + right-click a block to bind its location"
+        - "Right-click anywhere to trigger remote interaction"
+    FIVE_ELEMENT_TOUCH_RIGHT_CLICK:
+      Name: 'Five Elements Touch · Reverse'
+      Lore:
+        - ' '
+        - 'Can interact with blocks across dimensions'
+        - 'This action cannot force-load chunks'
+        - 'Ignores dimensions and distance'
+        - 'Tips: Works by left-clicking the target coordinates'
+        - ' '
+        - "Shift + right-click a block to bind its location"
+        - "Right-click anywhere to trigger remote interaction"
+    RIGHT_CLICK_MAN:
+      Name: 'Simulated Interaction Bot'
+      Lore:
+        - ' '
+        - 'Can simulate player interactions with blocks'
+        - 'This bot does not need power'
+        - 'But a player must be nearby'
+        - 'Recommended for automating multiblock machines'
+        - 'Tips: Does not trigger the vanilla container-open event'
+
+
+
+    DEATH_LIFE_BOOK:
+      Name: 'Book of Life and Death [Serial No.: 111]'
+      Lore:
+        - ' '
+        - 'Judge the life or death of mobs in range'
+        - 'Can also teleport directly to the target mob'
+        - 'Can view health, coordinates, and name'
+        - 'Judgment'
+        - 'Psychic item'
+
+
+    DRAW_MACHINE:
+      Name: 'An Ordinary Lottery Machine'
+      Lore:
+        - ' '
+        - 'Basic civilian lottery machine'
+        - 'All slots have equal odds'
+        - 'Odds: 1 / number of slots used'
+        - 'Supports multiple draws'
+        - 'Experimental item'
+
+    MAGIC_WAND:
+      Name: 'Magic Altar Wand'
+      Lore:
+        - ' '
+        - 'Right-click the altar emitter to activate crafting'
+        - 'Requires the correct block layout and item recipe'
+
+
+
+
+
+    UPDATE_LOG_2025_06_23:
+      Name: 'Date: 2025-06-23'
+      Lore:
+        - ' '
+        - '1. Added the Magic Soil Garden'
+        - 'Feature: Quickly converts soil'
+        - '2. Added the Magic Fishing Farm'
+        - 'Feature: Automates fishing'
+        - '3. Fixed permission issues with prebuilt structures'
+        - 'Feature: Unauthorized access should now be much harder'
+    UPDATE_LOG_2025_06_29:
+      Name: 'Date: 2025-06-29'
+      Lore:
+        - ' '
+        - '1. Added Honkai: Star Rail characters and blind boxes'
+        - 'Feature: Obtain different characters from blind boxes'
+        - '2. Added the Starlight Scanner'
+        - 'Feature: Automatically opens blind boxes'
+    UPDATE_LOG_2025_07_12:
+      Name: 'Date: 2025-07-12'
+      Lore:
+        - ' '
+        - '1. Began compatibility updates for the RSC version of Magic from 1.20 to 1.21'
+        - 'Result: New machines remain compatible with older versions and perform better'
+        - '2. Fixed and optimized the Magic Resource Miner'
+        - 'Feature: Works properly and supports targeted collection'
+    UPDATE_LOG_2025_07_23:
+      Name: 'Date: 2025-07-23'
+      Lore:
+        - ' '
+        - '1. Added a single-block ore vein (requires a specific tool)'
+        - 'Feature: Mine various raw ores from this block'
+        - '2. Corrected related item descriptions'
+        - 'Result: More detailed descriptions'
+        - '3. Added an integrated machine: Ore Dust Production Line'
+        - 'Feature: Includes recipes for the ore dust production line'
+    UPDATE_LOG_2025_07_25:
+      Name: 'Date: 2025-07-25'
+      Lore:
+        - ' '
+        - '1. Added several basic materials'
+        - 'Feature: Expanded the basic materials'
+        - '2. Added a stable thermal generator'
+        - 'Feature: More stable and powerful energy generation'
+        - '3. Added the Easter Egg Generator'
+        - 'Feature: Each version uses a different code to generate a large amount of power~'
+        - 'How to use: Put the correct number of items in the input slot to unlock it'
+        - '4. Added upgrade paths for some existing machines'
+        - 'Feature: Faster operation! Higher power consumption!'
+        - '5. Added a string duplicator (Slimefun version)'
+        - 'Feature: Brings this great game mechanic to version 1.145.14'
+        - '6. Added the Ore Vein Robot'
+        - 'Feature: Automatically produces raw ores'
+    UPDATE_LOG_2025_07_26:
+      Name: 'Date: 2025-07-26'
+      Lore:
+        - ' '
+        - '1. Added Void Touch / Five Elements Touch'
+        - 'Feature: Interact with machines remotely'
+        - '2. Added the Automated Interaction Bot'
+        - 'Feature: Simulates a player clicking machines'
+    UPDATE_LOG_2025_08_01:
+      Name: 'Date: 2025-08-01'
+      Lore:
+        - ' '
+        - '1. Added the boss: Wind Spirit'
+        - 'Tips: See Magic · BOSS for skill descriptions and strategies'
+        - '2. Improved skill descriptions and strategies'
+        - 'Purpose: Makes boss strategies easier'
+        - '3. Fixed an authorization issue with Magic Enchanting'
+        - 'Result: Improved security'
+    UPDATE_LOG_2025_08_27:
+      Name: 'Date: 2025-08-27'
+      Lore:
+        - ' '
+        - '1. Added 8 prebuilt structures'
+        - '①: 6 wooden cabins in different styles'
+        - '②: Wisadel statue'
+        - '③: DORO pixel art'
+    UPDATE_LOG_2025_08_29:
+      Name: 'Date: 2025-08-29'
+      Lore:
+        - ' '
+        - '1. Added 18 prebuilt structures'
+        - '①: McDonald’s restaurant'
+        - '②: Chihaya Anon'
+        - '③: Too lazy to write the name'
+        - '④: Middle entries omitted'
+        - '······'
+        - '⑯: Krusty Krab'
+        - '2. Magic Expansion was renamed Magic 2.0'
+        - 'Added some color-related Easter eggs'
+        - '3. Optimized the Quick Machine code'
+        - '4. Added a nonsense category'
+        - 'Crafting recipes to pass the time'
+        - 'I don’t believe anyone can craft the final product!'
+    UPDATE_LOG_2025_08_30:
+      Name: 'Date: 2025-08-30'
+      Lore:
+        - ' '
+        - '1. Updated the Easter Egg Generator'
+        - '①: Number 1: 110011111'
+        - '②: Number 2: 111011011'
+        - '③: Easter egg block: Glowstone'
+        - '2. Added the Fishing Enthusiast branch'
+        - 'Added 2 fishing rods'
+        - 'Basic Rod & Beginner Rod'
+        - 'See item descriptions for details'
+        - 'Added 7 fish types'
+        - 'Special fish:'
+        - 'Eels and cod can generate power'
+        - 'Copper dust fish and others can be used as crafting materials'
+        - '3. Added machines'
+        - 'Bio Generator'
+        - 'Generates power using fish properties'
+        - 'Aquarium'
+        - 'Special fish can produce items inside it'
+    UPDATE_LOG_2025_09_02:
+      Name: 'Date: 2025-09-02'
+      Lore:
+        - ' '
+        - '1. Added special fish groups'
+        - '①: Ore dust fish (some mechanics revised)'
+        - '②: Mineral fish (11 types)'
+        - '2: Updated fish-group behavior'
+        - 'Different fish prefer different bait'
+        - '3. Added multi-purpose fish'
+        - 'Lanternfish can generate power and produce items'
+        - 'Added descriptions for special uses'
+        - '4. Improved fishing rod descriptions'
+        - 'Usable bait is now listed below the recipe'
+        - '5. Improved fish descriptions'
+        - '6. Corrected some incorrect descriptions'
+        - '7. Fixed some incorrect recipes'
+        - '8. Added the Wind Whisperer Rod'
+
+    UPDATE_LOG_2025_09_05:
+      Name: 'Date: 2025-09-02'
+      Lore:
+        - ' '
+        - '1. Improved the fish weight calculation'
+        - '2. Added an ultimate endgame fishing rod'
+        - 'Knot of Entanglement: End Thread · Paradox Hook'
+        - 'Crafting difficulty: Extremely high'
+        - 'Effect: Catch any Slimefun item using special bait'
+
+    UPDATE_LOG_2025_09_09:
+      Name: 'Date: 2025-09-09'
+      Lore:
+        - ' '
+        - '1. Fixed weapon duplication at the Magic Enchanting Table'
+        - '2. Fixed material duplication at the Magic Enchanting Table'
+
+    UPDATE_LOG_2025_09_13:
+      Name: 'Date: 2025-09-13'
+      Lore:
+        - ' '
+        - '1. Optimized the block transformation range of Magic single-block machines'
+        - '2. Added industrial-material fish groups'
+        - 'See the Aquarium for details'
+        - '3. Optimized the order of Aquarium outputs'
+    UPDATE_LOG_2025_09_14:
+      Name: 'Date: 2025-09-14'
+      Lore:
+        - ' '
+        - '1. Optimized Aquarium code'
+        - '2. Added Redstone Fish and Bottle o’ Enchanting Fish'
+        - '3. Fixed some text description errors'
+    UPDATE_LOG_2025_09_18:
+      Name: 'Date: 2025-09-18'
+      Lore:
+        - ' '
+        - '1. Fixed some recipe errors'
+        - '2. Optimized Magic Material Workshop recipes'
+        - 'Separated reverse material crafting into its own recipe'
+        - '3. Optimized the Quick Crafting Table [Placeable]'
+        - 'All slots are now bidirectional input/output slots'
+        - 'If a vanilla item is crafted, a message will say its name changes to English'
+        - 'That English text is a little Easter egg'
+        - '4. The wiki is being written'
+        - 'Wiki: https://github.com/Yomicer/MagicExpansion/wiki'
+        - '5. Fixed abnormal Easter Egg Generator output (2 to 2 billion)'
+    UPDATE_LOG_2025_09_20:
+      Name: 'Date: 2025-09-20'
+      Lore:
+        - ' '
+        - '1. Fixed an incorrect calculation in Void Touch'
+        - '2. Removed conditional registration for RSC Magic 1.21 optimized machines'
+        - 'Changed RSC optimized machine outputs to intermediate items that can be converted later'
+        - '3. Improved how the Simulated Right-Click Bot is used'
+    UPDATE_LOG_2025_09_27:
+      Name: 'Date: 2025-09-27'
+      Lore:
+        - ' '
+        - '1. Fixed some incorrect descriptions'
+        - '2. Improved recipe registration for the Random Resource Generator'
+        - '3. Added a Slimefun performance monitor'
+        - '4. Added a test storage component'
+        - '5. Completed implementation of Magic Storage'
+        - 'Magic Storage has entered testing'
+        - 'Testing-phase Easter egg'
+        - 'Transfers within 20 blocks are connected by particle lines'
+        - '6. Fixed abnormal weights for some fish'
+        - '7. Fixed recipe issues with the optimized RSC Magic Resource Collector'
+    UPDATE_LOG_2025_09_29:
+      Name: 'Date: 2025-09-29'
+      Lore:
+        - ' '
+        - '1. Fixed errors in the Magic Storage Terminal'
+        - '2. Unlocked crafting for Magic Storage'
+        - '3. Removed the Magic Storage Terminal’s noise during transfers'
+    UPDATE_LOG_2025_10_06:
+      Name: 'Date: 2025-10-06'
+      Lore:
+        - ' '
+        - '1. Improved Ether Secret Box descriptions'
+        - '2. Optimized single-block display code'
+        - '3. Greatly reduced prebuilt structure cooldowns; OPs have no cooldown'
+        - '4. Added an integrated ore dust line (separate input/output slots)'
+        - '5. Added double-sided tape to stick items onto blocks'
+        - '6. Added Schrödinger’s Item Frame'
+        - '7. Added a fish catch encyclopedia'
+    UPDATE_LOG_2025_10_07:
+      Name: 'Date: 2025-10-07'
+      Lore:
+        - ' '
+        - '1. Added the Magic Storage Terminal · Rebuilt'
+        - 'Trimmed and optimized features from the first version'
+        - 'Supports a configurable maximum limit'
+        - 'Items become locked when a maximum limit is set'
+        - 'Similar to content locking in Network Drawers'
+        - 'Here, however, locking is strictly one-to-one'
+        - 'Remote transfer output now supports vanilla containers'
+        - 'Improved item dropping in the Magic Storage Terminal'
+        - 'A single item can drop at most 2.14B × 2048'
+    UPDATE_LOG_2025_10_14:
+      Name: 'Date: 2025-10-14'
+      Lore:
+        - ' '
+        - '1. Restricted Schrödinger’s Item Frame to vanilla items'
+        - 'Tip: Items must not contain any NBT data'
+        - '2. Increased the End Rod’s chance to catch anything from 57% to 67%'
+        - '3. Added alloy-ingot fish and some radioactive-material fish'
+        - 'Added Carbon Block Fish'
+        - '20 new fish types added in total'
+        - '4. Added Mixed Alloy Slime bait; Beginner Rod catch rate is about 44.2%'
+        - 'The Wind Whisperer Rod has about a 51% catch rate with this bait'
+        - 'Tip: Catch rates vary by bait and fishing rod'
+        - 'The End Rod distributes catch chances evenly across all fish pools'
+        - '5. Fishing with the Beginner Rod without bait'
+        - 'May catch a TNT that looks extremely powerful'
+        - '6. Improved fish descriptions in the Fishing Guide'
+    UPDATE_LOG_2025_10_23:
+      Name: 'Date: 2025-10-23'
+      Lore:
+        - ' '
+        - '1. Added 1 legendary fish'
+        - 'Can transfer power, with 2 billion per input/output operation'
+        - '2. Power Relay Station'
+        - 'Can input or output power through power carriers'
+        - '3. Added the Lucky Capacitor'
+        - 'Generates power for the grid every tick'
+        - '4. Fixed compatibility issues with transfer systems'
+        - '5. Added the End Power Card'
+        - 'Has the same effect as Power Card Fish (the newly added legendary fish)'
+    UPDATE_LOG_2025_10_25:
+      Name: 'Date: 2025-10-25'
+      Lore:
+        - ' '
+        - '1. Added AI chat'
+        - 'Requires configuration in the config file'
+        - 'Uses Alibaba Cloud’s qwen-plus-2025-09-11 model by default'
+        - 'You can get an Alibaba Cloud token for free to create an API key'
+    UPDATE_LOG_2025_10_26:
+      Name: 'Date: 2025-10-26'
+      Lore:
+        - ' '
+        - '1. Improved AI chat'
+        - 'Personal AI replies default to about 100 Chinese characters; this can be relaxed'
+        - 'Public AI has a fixed 100-character limit that cannot be changed'
+    UPDATE_LOG_2025_11_02:
+      Name: 'Date: 2025-11-02'
+      Lore:
+        - ' '
+        - '1. Improved fish weight range checks'
+        - 'You can now catch fish at maximum weight'
+        - '2. Increased the chance of ultra-rare fish'
+        - '3. Added a serialization scripting tool'
+        - 'Players can write custom scripts for player actions'
+        - '4. Added the Ether Secret Box Transmitter'
+        - 'Quickly transfers items stored in an Ether Secret Box into a player’s inventory'
+        - '5. Improved the serialization scripting tool'
+    UPDATE_LOG_2025_11_05:
+      Name: 'Date: 2025-11-05'
+      Lore:
+        - ' '
+        - '1. Greatly reduced lag from Magic machines'
+        - '2. Improved the Magic Storage Terminal display'
+        - '3. Expanded the capacitor branch'
+        - 'Added basic, intermediate, and endgame capacitors'
+        - 'Added a Magic Capacitor feature that preserves current power'
+        - 'Do not rapidly place and break capacitors, as this can erase their stored power'
+        - '4. Added the Book of Life and Death'
+        - '5. Added the Lottery Machine'
+    UPDATE_LOG_2025_11_07:
+      Name: 'Date: 2025-11-07'
+      Lore:
+        - ' '
+        - '1. Fixed a bug where the Ether Secret Box Transmitter consumed items'
+        - 'The Ether Secret Box Transmitter must be placed again after each server restart'
+        - 'This machine starts ticking when placed, stops when broken, and stops after a restart'
+        - 'Improved push logic'
+    UPDATE_LOG_2025_11_08:
+      Name: 'Date: 2025-11-08'
+      Lore:
+        - ' '
+        - '1. Fixed an item duplication bug in the Lottery Machine'
+        - '2. The Wind Whisperer Rod can catch high-tier Magic Candy using Magic Candy as bait'
+        - 'The chance of catching tier 29–37 Magic Candy is extremely low'
+        - '3. Added a Magic Altar branch'
+        - 'Enter /mxalter to see more commands'
+        - 'Currently, only Fire Charges and Enchanted Golden Apples have recipes'
+    UPDATE_LOG_2025_11_12:
+      Name: 'Date: 2025-11-12'
+      Lore:
+        - ' '
+        - '1. Added a fish-weight rarity: Fish Emperor'
+        - 'Higher material yields'
+        - '2. Added a Magic Altar recipe: Sharpness 255 enchanted book'
+        - '3. Optimized Lottery Machine tick-related behavior'
+    UPDATE_LOG_2025_11_21:
+      Name: 'Date: 2025-11-21'
+      Lore:
+        - ' '
+        - '1. Fixed an item duplication bug in the Fishing Guide'
+        - '2. Improved the onEnable conditions'
+        - '3. Added a recipe for a Looting 255 enchanted book'
+    UPDATE_LOG_2025_11_22:
+      Name: 'Date: 2025-11-22'
+      Lore:
+        - ' '
+        - '1. Added the Ether Secret Box Transmitter (Slimefun clock version)'
+        - '2. Reduced the Wind Spirit’s teleport frequency'
+        - '0.5s -> 2s'
+        - '3. Added 35 energy connectors in glass-related forms'
+    UPDATE_LOG_2025_11_23:
+      Name: 'Date: 2025-11-23'
+      Lore:
+        - ' '
+        - '1. Changed the Slimefun ID of the End Rod'
+        - '2. Server owners can compensate players who obtained it normally (not through the ID station)'
+        - '3. Server owners can also give some compensation to players who obtained it through the ID station'
+        - '4. The original End Rod no longer has any function'
+    UPDATE_LOG_2025_12_01:
+      Name: 'Date: 2025-12-01'
+      Lore:
+        - ' '
+        - '1. Added a near-endgame weapon: Astral Verdict'
+        - '2. Improved the Magic Altar recipe book display'
+    UPDATE_LOG_2025_12_06:
+      Name: 'Date: 2025-12-06'
+      Lore:
+        - ' '
+        - '1. Fixed some incorrect text descriptions'
+        - '2. Added an endgame machine: Magic Origin Tracer'
+        - 'Produces materials based on the source materials of a finished item'
+        - '3. Since Magic 2.0 is quite difficult'
+        - 'Server owners are advised to let players exchange some materials with NPCs based on their preferred difficulty'
+    UPDATE_LOG_2025_12_13:
+      Name: 'Date: 2025-12-13'
+      Lore:
+        - ' '
+        - '1. Added the Ether Secret Box Extractor'
+        - '2. Fixed missing Magic Altar recipes'
+    UPDATE_LOG_2025_12_16:
+      Name: 'Date: 2025-12-16'
+      Lore:
+        - ' '
+        - '1. Fixed unauthorized item extraction in the Magic Storage Terminal'
+        - '2. Added a script-only Void Touch'
+        - '3. Changed the Void Touch crafting recipe'
+        - '4. Added a Simple Aquarium'
+        - 'Rates: 1/3/8/888'
+        - 'Increased the crafting difficulty of the original Aquarium'
+        - 'Slightly increased production speed'
+    UPDATE_LOG_2025_12_19:
+      Name: 'Date: 2025-12-19'
+      Lore:
+        - ' '
+        - '1. Added the Ether Eco Array (stackable aquariums)'
+        - '2. Aquariums can output products directly to the Magic Storage Terminal'
+        - 'The corresponding stored item must be configured first'
+        - '3. Reduced vanilla-container interaction in the rebuilt Magic Storage Terminal'
+        - '4. A suggestion for pushing items to vanilla containers'
+        - 'Magic Storage can push items directly to the corresponding Quantum Storage'
+        - 'Uses the network’s vanilla push interface'
+    UPDATE_LOG_2025_12_20:
+      Name: 'Date: 2025-12-20'
+      Lore:
+        - ' '
+        - '1. Added a 53-slot blank container'
+        - 'Can act as an intermediary container for transfers between Magic Storage and other storage'
+        - '2. Added item transfer to the Ether Secret Box'
+        - 'Hold an Ether Secret Box in the main hand and a Quantum Storage configured for the item in the off hand'
+        - 'Enter an amount to transfer items'
+        - '3. Added an Ether Secret Box Converter'
+        - 'Can extract items directly from Quantum Storage and convert them into Ether Secret Boxes'
+    UPDATE_LOG_2025_12_31:
+      Name: 'Date: 2025-12-31'
+      Lore:
+        - ' '
+        - '1. Added New Year fireworks'
+        - '2. The final update of 2025'
+
+    UPDATE_LOG_2026_01_02:
+      Name: 'Date: 2026-01-02'
+      Lore:
+        - ' '
+        - '1. Fixed an item duplication bug in the Lottery Machine'
+        - 'Improved display of template item names in the Lottery Machine'
+        - '2. Fixed an item duplication bug in the Magic Storage Terminal'
+        - '3. Do not store deeply nested items in the Magic Storage Terminal'
+        - 'This may cause the server to kick you out'
+        - 'It will likely cause storage ticking to stop'
+        - 'Items already stored probably will not be lost'
+        - 'Probably is the key word'
+        - 'Finally, do not store Quantum Storage nested inside Quantum Storage repeatedly'
+        - 'This bug is fixed; doing this now will get you kicked from the server'
+        - 'Reason: Slimefun SQL storage has a character limit'
+        - '- 2026-01-03: Combined changelog'
+
+    UPDATE_LOG_2026_01_23:
+      Name: 'Date: 2026-01-23'
+      Lore:
+        - ' '
+        - '1. Added the Magic Collaboration group'
+
+    UPDATE_LOG_2026_01_27:
+      Name: 'Date: 2026-01-27'
+      Lore:
+        - ' '
+        - '1. Optimized the Basic Magic Patch material recipe'
+        - '2. Optimized holograms for two Magic Resource Miners'
+        - 'Holograms can be shown or hidden in the machine settings'
+        - '3. Added Generation 2 gradients'
+        - 'All new content after this update uses Generation 2 gradients'
+        - '5. Added a portable item name tag'
+        - '6. Added a Magic 2.0-to-RSC Magic Resource Force Converter'
+        - 'Convertible resources are based on Magic Resource Miner outputs (intermediate products)'
+        - '7. Added food and ingredient categories'
+        - '8. Optimized the souvenir Firework recipe'
+        - '9. Greatly reduced boss teleport frequency'
+        - '10. Added tester Komu_A'
+    UPDATE_LOG_2026_01_28:
+      Name: 'Date: 2026-01-28'
+      Lore:
+        - ' '
+        - '1. Added tester lengshang'
+        - '2. Added the distinctive property to the Ether Secret Box'
+        - '3. Combined changelog for 2026-01-31'
+        - 'Added the Magic Enchantment Wipe'
+        - 'Removes Magic Enchantment effects'
+
+    UPDATE_LOG_2026_02_19:
+      Name: 'Date: 2026-02-19'
+      Lore:
+        - ' '
+        - '1. Fixed compatibility with the latest Network Quantum Storage'
+        - '2. Added a Random Knowledge Unlock Card'
+        - '3. Added the Five Elements Resource Generator'
+        - '4. Added an Astral Verdict configuration file'
+        - '5. Fixed a bug that could crash the server via the Magic Storage Terminal'
+        - '6. Added test item: extraUtils'
+
+    UPDATE_LOG_2026_03_10:
+      Name: 'Date: 2026-03-10'
+      Lore:
+        - ' '
+        - '1. Added the Chinese Character Engraving Workshop'
+        - 'Produces Chinese characters required for garbled-tech ID cards'
+        - 'Future changelog entries may be merged into the latest entry when there is little to report'
+        - 'A separate date entry will no longer be added'
+
+    UPDATE_LOG_2026_03_13:
+      Name: 'Date: 2026-03-13'
+      Lore:
+        - ' '
+        - '1. Added crops'
+        - '- Sugarheart Wheat Seeds'
+        - '- High-Fiber Potatoes'
+        - '2. Coming soon:'
+        - 'Many special crops'
+        - '3. Future plans:'
+        - 'Food with special effects'
+
+    UPDATE_LOG_2026_03_17:
+      Name: 'Date: 2026-03-17'
+      Lore:
+        - ' '
+        - '1. Added 2 crop types'
+        - '2. Reduced NBT length for all Magic 2.0 items'
+        - 'Replaced the previous horizontal gradient text'
+        - 'Changed to vertical gradient text'
+        - 'Many existing item production lines will need to be reconfigured'
+        - 'Sorry for the inconvenience'
+        - '3. Added 2 magical foods'
+        - 'The effect of one previously announced magical food is now implemented'
+        - '4. Increased Astral Verdict’s shield duration'
+        - 'Fixed a bug that allowed it to be forcibly killed with /kill'
+        - '5. Fixed abnormal crafting for the prebuilt Big Snow King'
+        - '6. Added preview information for prebuilt structures'
+        - 'Shift + right-click to view footprint and volume'
+    UPDATE_LOG_2026_03_22:
+      Name: 'Date: 2026-03-22'
+      Lore:
+        - ' '
+        - '1. Added 20 plants'
+        - '9 ore-dust crops, 9 ore-ingot crops, and 2 alloy-ingot crops'
+        - '2. Added configuration options for End bait'
+        - 'Can configure whether End bait is enabled'
+        - 'Can configure whether End bait can be caught by Magic fishing rods'
+        - '3. Optimized drop chances and fruit quantities for Magic plants'
+        - '4. Added extra Astral Verdict configuration options'
+    UPDATE_LOG_2026_04_18:
+      Name: 'Date: 2026-04-18'
+      Lore:
+        - ' '
+        - '1. Fixed a bug that duplicated the Lottery Machine UI'
+        - '2. Added a universal text cleaner'
+        - '3. Fixed an incorrect bait validation bug'
+        - '4. Added the Magic Printing Plant'
+        - '2026-05-17: Minor update'
+    UPDATE_LOG_2026_05_21:
+      Name: 'Date: 2026-05-21'
+      Lore:
+        - ' '
+        - '1. Added the Evolution Table of All Things and its prerequisite workbench'
+        - '2. Improved some text descriptions'
+    UPDATE_LOG_2026_06_24:
+      Name: 'Date: 2026-06-24'
+      Lore:
+        - ' '
+        - '1. Adjusted Astral Verdict stats'
+        - 'Added fixed-percentage damage'
+        - 'Added a stacking bleed effect'
+        - 'Bleed: loses a fixed percentage of health each second'
+        - '2. Added the Ultimate Evolution Table'
+        - 'Can generate any item'
+        - 'A simple resource generator'
+    UPDATE_LOG_2026_07_03:
+      Name: 'Date: 2026-07-03'
+      Lore:
+        - ' '
+        - '1. Changed the Ultimate Magic Altar base'
+        - 'Makes it easier to check whether dispensers are positioned correctly'
+        - '2. Added an admin command'
+        - '/magicfish list/give [weight] [amount]'
+        - '3. Added Magic Fish Weight-Gain Feed'
+        - 'Use feed to raise Magic fish'
+        - 'Even a tiny fish can potentially grow into a Fish Emperor'
+        - '4. Added an experimental machine: Crude Machine'
+        - '5. Optimized the Aquarium recipe'
+        - '6. Aquarium Arrays now support Quantum Storage'
+        - '7. Fixed an item duplication bug in Aquarium Arrays'
+    UPDATE_LOG_2026_07_12:
+      Name: 'Date: 2026-07-12'
+      Lore:
+        - ' '
+        - '1. Added the Magic Bazaar'
+        - 'Server owners can configure exchange items'
+        - 'Including exchange limits'
+        - '2. Added the Magic Black Market'
+        - 'Can exchange for almost any Magic item'
+        - 'Including, but not limited to, the Magic Origin Tracer, Astral Verdict, and Ultimate Evolution Table'
+        - 'The harder an item is to craft, the lower its chance'
+        - 'Added public item probability rates to the shop'
+        - 'Added a nonlinear compensation system to the shop'
+    UPDATE_LOG_2026_07_30:
+      Name: 'Date: 2026-07-30'
+      Lore:
+        - ' '
+        - '1. Added the Evolution Table of All Things · Origin'
+        - 'A weakened version of Evolution Table of All Things · Swift'
+        - '2. For all Evolution Table machines'
+        - 'Renamed them and reworked their descriptions'
+        - '3. Added a stacking device for Evolution Table of All Things · Origin'
+        - '4. Added more possible catches to basic bait'
+        - 'All vanilla alloy ores and ingots, some natural resources, and drops from the two major Magic bosses'
+        - 'We’ll leave the details for you to discover'
+
+    UPDATE_LOG_2026_08_05:
+      Name: 'Date: 2026-08-05'
+      Lore:
+        - ' '
+        - '1. Added the Shuiyun Jian series'
+        - '2. Added fishing rod: Shuiyun Jian · Green Bamboo Rod'
+        - '3. Added exclusive Green Bamboo Rod bait: Cuidxia, Dust, Molten Flame, Golden Leap, and Star Core'
+        - '4. Aquarium/Simple Aquarium now support Network Quantum Storage'
+        - 'Quantum Storage items can be placed directly into slots'
+        - 'Use Void Touch to connect Aquarium machines directly to Quantum Storage'
+        - 'Centralizes Quantum Storage read/write and maximum/overflow protection'
+        - '5. Improved Aquarium/Simple Aquarium output'
+        - 'When external storage is connected, items are written only to storage, not output slots'
+        - 'Without storage connected, output per tick is limited by empty slots'
+        - 'Added overflow protection to Aquarium production calculations'
+        - 'Fixed lag caused by a heavy Fish Emperor being inserted hundreds of thousands of times in one tick'
+        - '6. Stackable Aquariums (Ether Eco Array) now support Quantum Storage'
+        - 'Machine slots accept Quantum Storage containing an Aquarium/Simple Aquarium'
+        - 'Void Touch can bind to Quantum Storage blocks'
+        - '7. Fixed duplicate outputs and missing power deductions when Quantum Storage blocks output'
+        - '8. Fixed armor stand stacking in the Lottery Machine during abnormal shutdowns'
+    UPDATE_LOG_2026_08_07:
+      Name: 'Date: 2026-08-07'
+      Lore:
+        - ' '
+        - '1. Added a bait-pool probability menu for Shuiyun Jian rods'
+        - 'Added a button to Slimefun Book recipe pages to view each bait’s drops and chances'
+        - '2. Added items: Green Bamboo Segment and Magic Thread'
+        - '3. Adjusted the Shuiyun Jian · Green Bamboo Rod recipe'
+        - 'Requires 3 Green Bamboo Segments + Magic Thread + Magic Candy'
+        - '4. Added fishing rod: Shuiyun Jian · Reed Fluff Rod'
+        - 'Currently in testing'
+        - '5. Added a proficiency system for the Shuiyun Jian · Reed Fluff Rod'
+        - '8 levels; proficiency is bound to the rod'
+        - '6. Fixed abnormal drops from the Evolution Table of All Things · Origin'
+    UPDATE_LOG_2026_08_09:
+      Name: 'Date: 2026-08-09'
+      Lore:
+        - ' '
+        - '1. Refactored groups'
+        - 'Refactored categories'
+        - 'Refactored the UI'
+        - '2. Added a bait pouch'
+        - 'Dreamcloud Pouch — stores Fishing Enthusiast series bait'
+    UPDATE_LOG_2026_08_11:
+      Name: 'Date: 2026-08-11'
+      Lore:
+        - ' '
+        - '1. Added the Shuiyun Jian Fishing Guide'
+        - 'Use /mxf guide ShuiYunJian to obtain it'
+        - 'Get the old Fishing Guide with /mxf guide ZhiMeng'
+        - '2. Added a new fishing system for Shuiyun Jian rods'
+        - 'Added admin command: /mxfishmode'
+        - 'Use true/false to enable or disable the new Shuiyun Jian fishing system'
+        - 'Players will later be able to choose their fishing method'
+        - '3. Added level-up rewards to the Reed Fluff Rod proficiency system'
+        - 'Changed the Reed Fluff Rod recipe'
+        - '4. Added Jianjia bait, exclusive to the Reed Fluff Rod'
+        - '5. Improved the Dreamcloud Pouch'
+        - '6. Fixed an abnormal ticket preview bug in the Lottery Machine'
+    UPDATE_LOG_2026_08_29:
+      Name: 'Date: 2026-08-29'
+      Lore:
+        - ' '
+        - '1. Fixed Magic Storage bugs'
+        - '2. Fixed the Dreamcloud Pouch'
+        - 'Fixed Magic Candy storage errors'
+    UPDATE_LOG_2026_09_16:
+      Name: 'Date: 2026-09-16'
+      Lore:
+        - ' '
+        - '1. Added a note to the previous update'
+        - 'Reduced Slimefun tick lag for some machines'
+        - '2. Reverted the portable name tag effect'
+        - '3. See group announcements for further details, or wait for the next changelog'
+
+    COOPERATE_CREATION_INFO:
+      Name: 'Magic Co-Creation Guide'
+      Lore:
+        - ''
+        - 'Content co-created with players'
+        - 'Anyone can take part'
+        - 'The final result must be reasonably balanced'
+
+
+
+    FISHING_INFO:
+      Name: 'Magic Fishing Guide'
+      Lore:
+        - ''
+        - 'Bait priority:'
+        - 'Bait placed earlier has higher priority'
+        - 'High-priority rule:'
+        - 'Off-hand bait is checked first'
+        - 'About fishing rods and bait:'
+        - 'Only Magic 2.0 series fishing rods trigger special fishing'
+        - 'Fishing with or without bait produces different catches'
+        - 'Both the fishing rod and bait affect your catch'
+        - 'Fishing rod tier affects fish weight and rarity'
+        - 'Bait type affects which fish you catch'
+        - 'Explore the fishing rod and bait mechanics at your own pace'
+        - 'About the materials for the Wind Whisperer''s Rod'
+        - 'Stardust Steel Dust, Fish Scale Dust, and Hematite Cores are all obtained from special bait'
+        - 'Take your time and enjoy discovering how it works'
+        - 'More details may be added if needed; nothing else comes to mind for now'
+    FISH_CATEGORY_INFO:
+      Name: 'Fish Information Summary'
+      Lore:
+        - ''
+        - 'Fish categories:'
+        - '1. Common fish: 2 types'
+        - '2. Uncommon fish: 1 type'
+        - '3. Rare fish: 21 types'
+        - '4. Epic fish: 21 types'
+        - '5. Legendary fish: 1 type'
+        - '6. Mythical fish: 0 types'
+
+    RANDOM_FISH_COMMON:
+      Name: 'Common Fish'
+      Lore:
+        - ''
+        - 'They travel in schools and can be found in almost any body of water'
+        - 'They appear along shores, in shallows, and around river mouths'
+        - 'They are abundant and make up the most basic fishing catch'
+        - 'Cast your line and you will almost always catch a few'
+
+    RANDOM_FISH_UNCOMMON:
+      Name: 'Uncommon Fish'
+      Lore:
+        - ''
+        - 'They do not appear in ordinary waters and live only in specific environments'
+        - 'They bite only under certain weather conditions or at specific times'
+        - 'They are not extraordinarily rare, but they are far from common'
+        - 'Only anglers who watch for the right moment have a chance to find them'
+
+    RANDOM_FISH_RARE:
+      Name: 'Rare Fish'
+      Lore:
+        - ''
+        - 'They appear only during extreme weather or special lunar phases'
+        - 'Their locations are elusive, and they remain for only a short time'
+        - 'Many anglers go their whole lives without seeing one'
+        - 'Their very existence is a demanding test'
+
+    RANDOM_FISH_RARE_POOL_DUST:
+      Name: 'Rare Fish - Ore Dust'
+      Lore:
+        - ''
+        - 'They appear only during extreme weather or special lunar phases'
+        - 'Their locations are elusive, and they remain for only a short time'
+        - 'Many anglers go their whole lives without seeing one'
+        - 'Their very existence is a demanding test'
+    RANDOM_FISH_RARE_POOL_ORE:
+      Name: 'Rare Fish - Minerals'
+      Lore:
+        - ''
+        - 'They appear only during extreme weather or special lunar phases'
+        - 'Their locations are elusive, and they remain for only a short time'
+        - 'Many anglers go their whole lives without seeing one'
+        - 'Their very existence is a demanding test'
+    RANDOM_FISH_RARE_POOL_INDUSTRY:
+      Name: 'Rare Fish - Industrial Materials'
+      Lore:
+        - ''
+        - 'They appear only during extreme weather or special lunar phases'
+        - 'Their locations are elusive, and they remain for only a short time'
+        - 'Many anglers go their whole lives without seeing one'
+        - 'Their very existence is a demanding test'
+    RANDOM_FISH_EPIC_POOL_INDUSTRY:
+      Name: 'Epic Fish - Industrial Materials'
+      Lore:
+        - ''
+        - 'Very few can prove it really exists'
+        - 'Sightings are rare and mostly dismissed as rumors'
+        - 'It is said to be catchable only when fate converges'
+        - 'Its requirements are nearly impossible, so it is almost considered fictional'
+    RANDOM_FISH_EPIC_POOL_ALLOY_INGOT:
+      Name: 'Epic Fish - Alloy Ingots'
+      Lore:
+        - ''
+        - 'Very few can prove it really exists'
+        - 'Sightings are rare and mostly dismissed as rumors'
+        - 'It is said to be catchable only when fate converges'
+        - 'Its requirements are nearly impossible, so it is almost considered fictional'
+
+    RANDOM_FISH_EPIC:
+      Name: 'Epic Fish'
+      Lore:
+        - ''
+        - 'Very few can prove it really exists'
+        - 'Sightings are rare and mostly dismissed as rumors'
+        - 'It is said to be catchable only when fate converges'
+        - 'Its requirements are nearly impossible, so it is almost considered fictional'
+
+    RANDOM_FISH_LEGENDARY:
+      Name: 'Legendary Fish'
+      Lore:
+        - ''
+        - 'It exists only in ancient legends; its reality is uncertain'
+        - 'For thousands of years, only vague records and incomplete illustrations remain'
+        - 'Some say it went extinct long ago; others say it never existed'
+        - 'If you truly catch one, you may rewrite fishing history'
+
+
+
+    BAIT_BAG:
+      Name: 'Cloud-Dream Pouch'
+      Lore:
+        - ''
+        - 'Fish in dreams; keep bait among the clouds'
+        - 'One pouch gathers the waters and clouds of both realms'
+        - 'For those who wish, bait will come'
+        - 'All this pouch holds comes from an old pact between angler and water'
+        - ''
+        - 'Stores all bait from the Fishing Enthusiast series'
+
+
+
+    FISH_LEGENDARY_EEL_POWER:
+      Name: 'Aether · Wraith Electric Eel'
+      Lore:
+        - ''
+        - 'Can serve as a carrier of electricity'
+
+
+    FISH_LURE_BASIC:
+      Name: 'Basic Magic Bait'
+      Lore:
+        - ''
+        - 'Made from insect bait and grains soaked in basic magic solution'
+        - 'Emits faint magical waves that mildly attract aquatic creatures'
+        - ''
+        - 'Though it has no special lure field, it is every magic angler’s starting point'
+        - ''
+        - 'Infinite possibilities lie within the ordinary'
+        - '—After all, every miracle begins with an ordinary cast'
+    FISH_LURE_DUST:
+      Name: 'Magic Bait · Mixed Ore Dust'
+      Lore:
+        - ''
+        - 'Made by mixing various metal powders with basic magic bait'
+        - 'When scattered into water, it emits a faint mineral resonance'
+        - 'As if the song of metals deep underground had awakened'
+        - ''
+        - 'Legend says some metals can sense their own kind'
+        - 'They swim out from rivers or glaciers, irresistibly drawn to it'
+        - ''
+        - 'Essential for catching “ore-dust fish”'
+        - '—The living source of copper, iron, silver, and even gold'
+    FISH_LURE_ORE:
+      Name: 'Magic Bait · Mixed Minerals'
+      Lore:
+        - ''
+        - 'Made by mixing various minerals with basic magic bait'
+        - 'When scattered into water, it emits a faint mineral resonance'
+        - 'As if the song of metals deep underground had awakened'
+        - ''
+        - 'Legend says some metals can sense their own kind'
+        - 'They swim out from rivers or glaciers, irresistibly drawn to it'
+        - ''
+        - 'Essential for catching “mineral fish”'
+        - '—The living source of lapis lazuli, emeralds, diamonds, and even netherite ingots'
+    FISH_LURE_ALLOY_INGOT:
+      Name: 'Magic Bait · Mixed Alloy Slurry'
+      Lore:
+        - ''
+        - 'Built around molten ancient alloy, it seals the embers of the forge'
+        - 'Mysterious blue patterns flow across its cooled metal surface'
+        - 'It seems the echo of a hammer striking an anvil rings deep in the soul'
+        - ''
+        - 'Legend says that when alloy spirits sleeping in the earth'
+        - 'sense this familiar rhythm of forging'
+        - 'they break free from the rock and follow the sound'
+        - ''
+        - 'The ultimate bait for luring “high-tier alloy fish”'
+        - '—Embodiments of iron, gold, netherite, and the lost civilization’s starfall steel'
+
+
+    ## New bait series: Between Water and Clouds
+    FISH_LURE_BETWEEN_WATER_CLOUD_CUIXIA:
+      Name: 'Dawnforged Glow'
+      Lore:
+        - 'Take sunset by the furnace and temper ordinary iron into steel'
+        - 'As the hammer rises and falls, countless metals become one'
+        - 'When sparks fly, it is like “turning stone into gold”'
+        - 'Ask not how much was smelted; this item was born glowing'
+    FISH_LURE_BETWEEN_WATER_CLOUD_WEICHEN:
+      Name: 'Fine Dust'
+      Lore:
+        - 'Scoop up fine sand by the stream; dust drifts like smoke between your fingers'
+        - 'Wind rises, dust swirls, and ore forms'
+        - 'Do not disdain its featherlight weight'
+        - 'Gather enough dust, and it becomes a whole mountain'
+    FISH_LURE_BETWEEN_WATER_CLOUD_RONGHUO:
+      Name: 'Molten Flame'
+      Lore:
+        - 'Take molten fire from the furnace and turn stubborn stone into an ingot'
+        - 'Where flames pass, earth and stone become iron'
+        - 'Ask not its temperature; its blazing heat is its true nature'
+        - 'One ingot can become countless tools'
+    FISH_LURE_BETWEEN_WATER_CLOUD_YUEJIN:
+      Name: 'Dancing Gold'
+      Lore:
+        - 'Gather the river’s shimmering light; golden waves leap across the surface'
+        - 'The moon sets and the tide rises; still reflections sink like jade'
+        - 'Reeling in feels like “returning with a full haul”'
+        - 'No need to count carats; shimmering light itself is wealth'
+    FISH_LURE_BETWEEN_WATER_CLOUD_XINGHE:
+      Name: 'Star Core'
+      Lore:
+        - 'Take a fallen star and sink it into the abyss'
+        - 'A dim glow rises from its core, burning like the newborn sun'
+        - 'Do not touch it; its heat is too fierce'
+        - 'Where the star core sinks, all things shine'
+    FISH_LURE_BETWEEN_WATER_CLOUD_REED_JIANJIA:
+      Name: 'Reeds'
+      Lore:
+        - ''
+        - 'The reeds are lush; white dew turns to frost'
+        - 'The one I seek is on the far side of the water'
+        - 'Cast this bait to summon spirits from books'
+    FISH_LURE_BETWEEN_WATER_CLOUD_REED_LUXUE:
+      Name: 'Reed Snow'
+      Lore:
+        - ''
+        - 'Reed fluff scatters like snow in the wind'
+        - 'It lands on the water and awaits a destined fish'
+        - 'One feather of white outweighs a thousand heavy baits'
+    FISH_LURE_BETWEEN_WATER_CLOUD_REED_WEILU:
+      Name: 'Reed Dew'
+      Lore:
+        - ''
+        - 'Dew gathers on reed tips, cool and clear'
+        - 'Gathered before sunrise, it carries the scent of wetlands'
+        - 'Fish are drawn to it like sweet rain'
+    FISH_LURE_BETWEEN_WATER_CLOUD_REED_BAILU:
+      Name: 'White Dew'
+      Lore:
+        - ''
+        - 'White dew falls and mist rises from the cold pool'
+        - 'A thread of chill seeps to the bottom'
+        - 'Fish from cold depths gather when they sense it'
+    FISH_LURE_BETWEEN_WATER_CLOUD_REED_LUYA:
+      Name: 'Reed Sprout'
+      Lore:
+        - ''
+        - 'New reeds break through the water as life awakens'
+        - 'Born of bamboo, carrying the spirit of the green bamboo rod'
+        - 'When the tender sprout enters water, all things welcome spring'
+    FISH_LURE_BETWEEN_WATER_CLOUD_HANJIANG_NINGSHUANG:
+      Name: 'Gathered Frost'
+      Lore:
+        - ''
+        - 'Scoop up morning frost gathered thinly on the water'
+        - 'Where frost passes, the water turns white'
+        - 'Ask not how cold it is; once frozen, it is eternal'
+        - 'A streak of frost blankets half the autumn river'
+    FISH_LURE_BETWEEN_WATER_CLOUD_HANJIANG_LUOXU:
+      Name: 'Falling Fluff'
+      Lore:
+        - ''
+        - 'Catch drifting fluff from the sky; it falls into the cold river and becomes jade'
+        - 'Snow falls silently as the river flows slowly'
+        - 'Though light as dust, it can tint the whole river'
+        - 'The fluff sinks, and the blue water grows still'
+    FISH_LURE_BETWEEN_WATER_CLOUD_HANJIANG_BINGPO:
+      Name: 'Ice Spirit'
+      Lore:
+        - ''
+        - 'A piece of thousand-year-old ice rests on the riverbed, its spirit in the water’s heart'
+        - 'When the water freezes, fish shadows pause'
+        - 'Do not put it in your mouth; its chill cuts to the bone'
+        - 'Where the ice spirit sinks, the river becomes a mirror'
+    FISH_LURE_BETWEEN_WATER_CLOUD_HANJIANG_CHUJI:
+      Name: 'After the Storm'
+      Lore:
+        - ''
+        - 'Borrow clear light after snowfall to disperse the river’s cold mist'
+        - 'Clouds part, snow stops, and the sky clears'
+        - 'Do not lament winter’s passing; clear light holds warmth'
+        - 'A touch of clear sky melts snow in the deep pool'
+    FISH_LURE_BETWEEN_WATER_CLOUD_HANJIANG_CHUILUN:
+      Name: 'Angling'
+      Lore:
+        - ''
+        - 'This bait evokes solitary fishing on a cold river, waiting quietly for a boat'
+        - 'Snow covers the cloak; the line hangs into deep water'
+        - 'Ask not what you catch; your heart is already among river and snow'
+        - 'One rod, a thousand mountains in evening snow'
+    FISH_LURE_BETWEEN_WATER_CLOUD_XIYU_FENGSI:
+      Name: 'Wind Thread'
+      Lore:
+        - ''
+        - 'Twist a wisp of slanting wind into a thread and weave it into ripples'
+        - 'The wind passes silently, yet draws ripples'
+        - 'Do not seek the thread’s origin; it has no form'
+        - 'Lower the wind thread, and the whole lake stirs'
+    FISH_LURE_BETWEEN_WATER_CLOUD_XIYU_YANYU:
+      Name: 'Misty Rain'
+      Lore:
+        - ''
+        - 'Weave misty rain into a veil over the river'
+        - 'Rain taps the float; mist seals the distant sky'
+        - 'Do not worry about the blurred view; truth appears in the mist'
+        - 'With misty rain as your cloak, fish across Jiangnan'
+    FISH_LURE_BETWEEN_WATER_CLOUD_XIYU_LIANBAI:
+      Name: 'Pale Ripples'
+      Lore:
+        - ''
+        - 'A raindrop draws ripples; white light floats on the surface'
+        - 'Fine slanting rain weaves patterns across the water'
+        - 'Do not count the rings; each ring is a bait'
+        - 'Where pale ripples pass, fish poke their heads out'
+    FISH_LURE_BETWEEN_WATER_CLOUD_XIYU_XIAOFENG:
+      Name: 'Morning Breeze'
+      Lore:
+        - ''
+        - 'Call a sleeve of fresh breeze at dawn to awaken last night’s rain'
+        - 'The wind stops, rain clears, and dawn begins'
+        - 'Do not dismiss the breeze; it carries the bait’s scent into the water'
+        - 'The morning breeze passes softly as fish chase it'
+    FISH_LURE_BETWEEN_WATER_CLOUD_XIYU_XIEYING:
+      Name: 'Slanting Shadow'
+      Lore:
+        - ''
+        - 'Gather a faint shadow under the rain and let it fall into the water'
+        - 'Slanting wind and fine rain move shadows across the water'
+        - 'Do not call shadows unreal; even illusions can lure fish'
+        - 'Where the shadow sinks, hidden currents surge'
+    FISH_SPECIAL_ACTION_BETWEEN_WATER_CLOUD_BAILUYU:
+      Name: 'White Reed Feather'
+      Lore:
+        - ''
+        - 'It drifts from the reeds when the wind rises'
+        - 'It is not snow, but a dream breathed out by a fish'
+        - ''
+        - '“Tie it to your line, and the cold river will answer”'
+    FISH_SPECIAL_ACTION_BETWEEN_WATER_CLOUD_HANJIANG_XUEPOZHU:
+      Name: 'Snow-Spirit Pearl'
+      Lore:
+        - ''
+        - 'Evening snow across a thousand mountains condenses into a cold spirit pearl'
+        - 'Held in your palm, it still carries the frosty river wind'
+        - ''
+        - '“Hang this pearl on your line to summon the Slanting Wind and Fine Rain rod”'
+    FISH_SPECIAL_ACTION_BETWEEN_WATER_CLOUD_XIYU_YUPIZHEN:
+      Name: 'Raincloak Needle'
+      Lore:
+        - ''
+        - 'Slanting wind combs rain into a thread of flowing light'
+        - 'The needle tip still holds last night’s misty hues'
+        - ''
+        - '“Sink this needle to hook the wish of the ancient angler”'
+    FISH_BREED_POOL:
+      Name: 'Between Water and Clouds · Breeding Pool'
+      Lore:
+        - ''
+        - 'This shallow pool raises bloodlines, not water plants'
+        - 'Place two fish inside, and the pool writes the shape of their offspring'
+        - ''
+        - '“The young inherit their father’s scales and their mother’s bone structure, with occasional mutations”'
+    FISHING_BOOK_BETWEEN_WATER_CLOUD:
+      Name: 'Between Water and Clouds Fishing Guide'
+      Lore:
+        - ''
+    FISHING_GUIDE_BETWEEN_WATER_CLOUD:
+      Name: 'New Between Water and Clouds Fishing System'
+      Lore:
+        - ''
+        - 'How to use the new Between Water and Clouds fishing system:'
+        - '1. Cast and wait for the float: stillness, light nibble, then full bite'
+        - '2. After a full bite, the float shakes violently and charging begins'
+        - '3. Rotate the view to align the colored marker on the action-bar gauge with the center, then keep charging'
+        - '4. At full charge, the rod reels in automatically and guarantees a catch; with manual reeling, more charge means a higher catch rate'
+        - '5. Bait in the Cloud-Dream Pouch is consumed automatically; proficiency grows with catches and levels unlock bonuses'
+    BAMBOO_JOINT:
+      Name: 'Green Bamboo Segment'
+      Lore:
+        - ''
+        - 'Take green bamboo by the stream and cut it into segments'
+        - 'Each segment holds a wisp of mountain breeze'
+    REED_TASSEL:
+      Name: 'Reed Plume'
+      Lore:
+        - ''
+        - 'The reeds are lush; white dew turns to frost'
+        - 'The one I seek is on the far side of the water'
+        - 'Wind passes over water and clouds as reed plumes sway'
+        - 'This plume can be used as material for the Reed-Fluff Rod'
+    MAGIC_THREAD:
+      Name: 'Magic Thread'
+      Lore:
+        - ''
+        - 'Thread spun from magic candy'
+        - 'Strong yet light, able to draw spirits from between water and clouds'
+
+
+    FISHING_ROD_LOG:
+      Name: 'Log Fishing Rod'
+      Lore:
+        - ' '
+        - 'Can fish various kinds of logs out of rivers'
+        - 'How to use: fish in water with this rod'
+        - 'Does not consume bait'
+
+
+    FISHING_ROD_NEW_PLAYER:
+      Name: 'Beginner Fishing Rod'
+      Lore:
+        - ' '
+        - 'Made by wrapping a flexible willow branch with spider silk'
+        - 'Light and easy to handle, a great companion for new anglers'
+        - ''
+        - 'When you cast your first line'
+        - 'The ripples seem to say: Welcome here'
+        - ''
+        - '“Do not worry if you cannot catch a fish'
+        - '   What matters is that you are already sitting by the water.”'
+
+    FISHING_ROD_BETWEEN_WATER_CLOUD_CYAN_BAMBOO:
+      Name: 'Between Water and Clouds · Green Bamboo Rod'
+      Lore:
+        - ' '
+        - 'Take emerald bamboo by the stream and tie a wisp of cloud to its tip'
+        - 'Hold the breeze in your rod; let the line touch autumn waters'
+        - ''
+        - '“Do not worry whether your creel is full'
+        - '   Sitting between water and clouds, you are already part of the painting.”'
+
+    FISHING_ROD_BETWEEN_WATER_CLOUD_REED:
+      Name: 'Between Water and Clouds · Reed-Fluff Rod'
+      Lore:
+        - ' '
+        - 'Gather reeds from the streambank, their fluff as white as fresh snow'
+        - 'Tie light fluff to the rod tip; the wind becomes your hook'
+        - ''
+        - '“Disturb not the pond fish, only a bend of reed flowers'
+        - '   When the reed flowers fall, one is as tranquil as autumn water”'
+        - ''
+
+    FISHING_ROD_BETWEEN_WATER_CLOUD_HANJIANG:
+      Name: 'Between Water and Clouds · Snow on the Cold River'
+      Lore:
+        - ' '
+        - 'Gather frozen snow from a cold river and shape it into a rod'
+        - 'Hang a frosty line beneath evening snow on a thousand mountains'
+        - ''
+        - '“Fishing alone on the cold river, with no thought of the way home'
+        - '   When snow covers the cloak, both river and mind become clear”'
+        - ''
+
+    FISHING_ROD_BETWEEN_WATER_CLOUD_XIYU:
+      Name: 'Between Water and Clouds · Fine Rain · Slanting Wind'
+      Lore:
+        - ' '
+        - 'Bend slanting wind into fishing line and weave fine rain into bait'
+        - 'The rod’s shadow falls amid the misty rain'
+        - ''
+        - '“No need to return in slanting wind and fine rain'
+        - '    One rod fishes up all the colors of mist and water”'
+        - ''
+
+    FISHING_STICK_STAR_IRON:
+      Name: 'Stardust Wood'
+      Lore:
+        - ''
+        - 'A faint light slowly flows through its grain'
+        - 'As if an entire galaxy were sealed inside a branch'
+        - ''
+        - 'An awakened wooden core infused with Stardust Iron Dust through the “Fallen Star Ritual”'
+        - 'Its resonance frequency matches the sensory range of rare aquatic creatures'
+        - ''
+        - 'Stardust Iron Dust glitters with brilliant blue light inside the stick'
+        - '“Some fish respond only to the whispers of starlight.”'
+
+    FISHING_ROD_WIND_SPEAKER:
+      Name: 'Wind Whisperer''s Rod'
+      Lore:
+        - ' '
+        - 'The rod is carved from spruce weathered by a thousand years of wind'
+        - 'The reel is wound with threads of airflow condensed between the wings of wind spirits'
+        - ''
+        - 'Stand still with it, and the wind seems to whisper in your ear'
+        - 'Casting is like summoning thunder; reeling in is like commanding the wind'
+        - ''
+        - 'Legend says only those who truly understand “waiting”'
+        - 'can hear the wind reveal the fish’s paths'
+        - ''
+        - '“The wind never points the way'
+        - '   It simply brushes past those who are ready to set off.”'
+
+    南柯一梦终须醒_浮生若梦皆是空:
+      Name: 'Entangled Cane: Thread of the End · Paradox Hook'
+      Lore:
+        - ' '
+        - 'A piece of sugar cane from the boundary between parallel universes'
+        - 'Every segment exists in a state of quantum entanglement'
+        - 'One movement synchronizes all worlds'
+        - ''
+        - 'The fishing line is spun from the “Thread of the End”'
+        - 'It leads not to the deep sea, but to the end of time'
+        - ''
+        - 'The hook is called “Paradox”'
+        - 'because it can catch things that “never existed”'
+        - ''
+        - 'When the rod tip trembles—'
+        - 'countless moments of “having caught it” across realities'
+        - 'happen simultaneously.'
+        - ''
+        - '“You ask why it can catch anything?”'
+        - '“Because what it catches is the act of catching itself.”'
+
+    FISHING_ROD_FINAL_STRING:
+      Name: 'Thread of the End'
+      Lore:
+        - ' '
+        - 'It is not a thread, but the end of time'
+        - 'a broken remnant of causality’s echo'
+        - ''
+        - 'It leads neither to the deep sea nor to the stars'
+        - 'Instead, it descends into the silence “after the end”'
+        - ''
+        - 'When the rod tip trembles, echoes of the end of all worlds'
+        - 'travel upstream along the line'
+        - ''
+        - 'And so—'
+        - 'things not yet dead reveal their endings'
+        - 'things not yet born foresee their fate'
+        - ''
+        - '“It does not catch fish”'
+        - '“It catches the reflection of all things destined to sink.”'
+    FISHING_ROD_FINAL_HOOK:
+      Name: 'Paradox Hook'
+      Lore:
+        - ' '
+        - 'This hook was never forged'
+        - 'because it exists “before it was forged”'
+        - ''
+        - 'It is simultaneously:'
+        - '  —the rusted hook of the end'
+        - '  —the tip of a beginning not yet born'
+        - ''
+        - 'Those who observe it will see themselves'
+        - 'in a future where they are casting'
+        - 'and a past where something has already been caught'
+        - 'happening at the same time'
+        - ''
+        - '“It does not break the rules”'
+        - '“It simply proves that the rules are inconsistent.”'
+
+
+    FISHING_ROD_FISH_ANYTHING:
+      Name: 'Catch: Any Item'
+      Lore:
+        - ' '
+        - 'This item is for reference only'
+        - 'It has no practical effect'
+
+    DOUBLE_SIDED_TAPE:
+      Name: 'Double-Sided Tape'
+      Lore:
+        - ''
+        - 'Can attach items to blocks'
+        - '- Consumable'
+
+    SCHRODINGER_FRAME_ONE:
+      Name: 'Schrödinger’s Item Frame [Visible]'
+      Lore:
+        - ''
+        - 'Does the item in the frame really exist?'
+        - 'Place an item on it'
+        - 'Currently supports only vanilla items without NBT'
+        - 'There is a 50% chance it will disappear'
+        - 'There is a 50% chance it will drop twice'
+        - 'After breaking the item frame'
+        - 'it may drop double the items'
+        - 'or it may drop nothing'
+        - 'Single-use consumable'
+
+
+    SCHRODINGER_FRAME_INFINITE:
+      Name: 'Schrödinger’s Item Frame [Hidden]'
+      Lore:
+        - ''
+        - 'Does the item in the frame really exist?'
+        - 'Place an item on it'
+        - 'Currently supports only vanilla items without NBT'
+        - 'There is a 50% chance it will disappear'
+        - 'There is a 50% chance it will drop twice'
+        - 'After breaking the item frame'
+        - 'it may drop double the items'
+        - 'or it may drop nothing'
+        - 'The frame can only be broken when it contains no item'
+        - 'It has only a chance to drop a normal item frame'
+
+
+    ITEM_NAME_TAG:
+      Name: 'Portable Name Tag'
+      Lore:
+        - ''
+        - 'Shift + right-click to change the portable name tag’s name'
+        - 'Right-click to consume the portable name tag'
+        - 'Apply the name tag’s name to an item'
+        - 'Can also name entities'
+        - 'With a small trick, one name tag can be used to name two things'
+
+
+    FISHING_BOOK:
+      Name: 'Fishing Guide'
+      Lore:
+          - 'Introduces the preferences of different fish'
+          - 'and how to catch certain special fish'
+
+    MAGIC_CROP_INFO:
+      Name: "Magic Crop Information"
+      Lore:
+        - ' '
+        - 'Please make sure you have installed SlimeGlue'
+        - 'It helps prevent your magic crop data from being lost after a restart'
+        - 'Without it, magic crop Slime data will be lost when the server restarts'
+        - 'Information about magic crops'
+        - 'Do not use flowing water to push crops'
+        - 'This will cause crops to lose their Slime data'
+        - 'You can use pistons to push farmland'
+        - 'to harvest magic crops efficiently'
+        - 'More magic crop content and integrated production processes will be added in the future'
+    
+
+    WHEAT_SEEDS:
+      Name: "Sugar-Heart Wheat Seeds(Sugar-Heart Wheat Seeds)"
+      Lore:
+        - 'A mutated crop that is extremely sensitive to its growing environment.'
+        - ''
+        - 'Features:'
+        - '- Produces far more than regular wheat when mature'
+        - '- A small amount of magic sugar forms at the tips of its awns'
+        - '- Requires the farmland beneath it to remain intact'
+        - ''
+        - 'Warning:'
+        - 'If the dirt below becomes air or is hit by flowing water'
+        - 'the crop will immediately wither and lose all magical properties'
+        - 'and become ordinary crop seeds'
+        - ''
+        - 'Make sure to plant it on stable farmland.'
+
+    POTATO:
+      Name: "High-Fiber Potato(High-Fiber Potato)"
+      Lore:
+        - 'A mutated tuber with an extensive root system and rich in magic.'
+        - ''
+        - 'Features:'
+        - '- Produces far more than regular potatoes when mature'
+        - '- High concentrations of magical fibers weave through the tuber'
+        - '- Requires the farmland beneath it to remain intact'
+        - ''
+        - 'Warning:'
+        - 'If the dirt below becomes air or is washed by flowing water'
+        - 'the roots will snap instantly and lose all magical activity'
+        - 'and degenerate into ordinary potato seeds'
+        - ''
+        - 'Make sure to plant it on stable farmland.'
+
+    HYBRID_RICE_SEEDS:
+      Name: "Hybrid Rice Seeds (Hybrid Rice)"
+      Lore:
+        - ' '
+        - '“I once had a dream, where everyone and I'
+        - ' walked through rice fields and rested in the shade beneath the rice.”'
+        - '“That dream was so beautiful...”'
+        - '— Yuan Longping'
+        - ' '
+        - '✨ These magical seeds carry the dream of resting in the shade beneath rice plants.'
+        - ' '
+        - 'Features:'
+        - '• Very high yield: harvest large amounts of rice when mature'
+        - '• Giant plants: mature rice grows tall enough to block sunlight'
+        - '• Tough roots: must be planted on moist farmland'
+        - ' '
+        - '⚠ Note:'
+        - 'If the farmland is damaged or washed by a flood,'
+        - 'it will mutate into ordinary wheat seeds.'
+        - ' '
+        - 'Right-click to plant on moist farmland'
+
+
+    ORE_DUST_CRYSTAL:
+      Name: "✨ Ore Dust Crystal (Ore Dust Crystal)"
+      Lore:
+        - 'A rare byproduct with a low drop chance when harvesting mature magic ore-dust crops.'
+        - ''
+        - 'Description:'
+        - '- A tiny crystal formed when magic is forcibly compressed and solidified at harvest'
+        - '- Not residue from a degraded plant, but condensed essence overflowing during harvest'
+        - '- Emits a faint but steady magical glow associated with its metal'
+        - ''
+        - 'Note:'
+        - 'Appears only when perfectly mature crops are harvested under specific conditions.'
+
+    ORE_INGOT_CRYSTAL:
+      Name: "✨ Ore Ingot Crystal (Ore Ingot Crystal)"
+      Lore:
+        - 'A rare byproduct with a low drop chance when harvesting mature magic ore-ingot crops.'
+        - ''
+        - 'Description:'
+        - '- A tiny crystal formed when magic is forcibly compressed and solidified at harvest'
+        - '- Not residue from a degraded plant, but condensed essence overflowing during harvest'
+        - '- Emits a faint but steady magical glow associated with its metal'
+        - ''
+        - 'Note:'
+        - 'Appears only when perfectly mature crops are harvested under specific conditions.'
+
+    ORE_MIX_CRYSTAL:
+      Name: "✨ Mixed Ore Crystal (Ore Mix Crystal)"
+      Lore:
+        - 'A rare byproduct with a low drop chance when harvesting mature magic alloy-ingot crops.'
+        - ''
+        - 'Description:'
+        - '- A tiny crystal formed when magic is forcibly compressed and solidified at harvest'
+        - '- Not residue from a degraded plant, but condensed essence overflowing during harvest'
+        - '- Emits a faint but steady magical glow associated with its metal'
+        - ''
+        - 'Note:'
+        - 'Appears only when perfectly mature crops are harvested under specific conditions.'
+
+
+    ## Magic plants related to ore dust
+    WHEAT_COPPER:
+      Name: "Red-Rust Copper Wheat(Red-Rust Copper Wheat)"
+      Lore:
+        - 'A mutated grain with reddish-brown ears that can generate electricity on its own.'
+        - ''
+        - 'Features:'
+        - '- When mature, its awns are needle-sharp and can channel lightning magic'
+        - '- High-purity conductive fibers weave through its stalk'
+        - '- Requires the farmland beneath it to remain intact'
+        - ''
+        - 'Warning:'
+        - 'If the dirt below becomes air or is washed by flowing water'
+        - 'the roots will snap instantly and lose all magical activity'
+        - 'and degenerate into ordinary wheat seeds'
+        - ''
+        - 'Make sure to plant it on stable farmland.'
+
+    RADISH_IRON:
+      Name: "Magnetic Iron Radish(Magnetic Iron Radish)"
+      Lore:
+        - 'A mutated root vegetable with dark, heavy skin that is highly sensitive to magnetic fields.'
+        - ''
+        - 'Features:'
+        - '- When mature, its roots automatically attract nearby metal fragments'
+        - '- Its flesh contains a strong magnetic resonance'
+        - '- Requires the farmland beneath it to remain intact'
+        - ''
+        - 'Warning:'
+        - 'If the dirt below becomes air or is washed by flowing water'
+        - 'the roots will snap instantly and lose all magical activity'
+        - 'and degenerate into ordinary radish seeds'
+        - ''
+        - 'Make sure to plant it on stable farmland.'
+
+    BEET_GOLD:
+      Name: "Inert Gold Beet(Inert Gold Beet)"
+      Lore:
+        - 'A mutated beet with a brilliant golden root that refuses to react with any substance.'
+        - ''
+        - 'Features:'
+        - '- Its juice never spoils and can neutralize most toxic magic'
+        - '- Dense, stable magic is woven through its roots'
+        - '- Requires the farmland beneath it to remain intact'
+        - ''
+        - 'Warning:'
+        - 'If the dirt below becomes air or is washed by flowing water'
+        - 'the roots will snap instantly and lose all magical activity'
+        - 'Degenerates into ordinary beet seeds'
+        - ''
+        - 'Make sure to plant it on stable farmland.'
+
+    RADISH_SILVER:
+      Name: "Photosensitive Silver Turnip(Photosensitive Silver Turnip)"
+      Lore:
+        - 'A mutated root vegetable with shiny silver-white skin that is extremely sensitive to light.'
+        - ''
+        - 'Features:'
+        - '- When mature, it records nearby flows of light-and-shadow magic and can be used to make developing potions.'
+        - '- Its flesh is highly reflective and antibacterial.'
+        - '- Requires the farmland beneath it to remain intact'
+        - ''
+        - 'Warning:'
+        - 'If the dirt below becomes air or is washed by flowing water'
+        - 'the roots will snap instantly and lose all magical activity'
+        - 'and degenerate into ordinary radish seeds'
+        - ''
+        - 'Make sure to plant it on stable farmland.'
+
+    WHEAT_ZINC:
+      Name: "Combustible Zinc Wheat(Combustible Zinc Wheat)"
+      Lore:
+        - 'A mutated grain with blue-gray kernels that conceal volatile chemical energy.'
+        - ''
+        - 'Features:'
+        - '- When mature, its kernels have powerful reducing magic and can serve as potent fuel.'
+        - '- Unstable high-energy electrons are compressed inside the husks.'
+        - '- Requires the farmland beneath it to remain intact'
+        - ''
+        - 'Warning:'
+        - 'If the dirt below becomes air or is washed by flowing water'
+        - 'the roots will snap instantly and lose all magical activity'
+        - 'and degenerate into ordinary wheat seeds'
+        - ''
+        - 'Make sure to plant it on stable farmland.'
+
+    BEET_MAGNESIUM:
+      Name: "Blinding Magnesium Beet(Blinding Magnesium Beet)"
+      Lore:
+        - 'A mutated beet with light leaves whose root emits blinding white light when burned.'
+        - ''
+        - 'Features:'
+        - '- When mature, it is highly reactive and can react violently with many elements.'
+        - '- Its root stores dazzling flash magic.'
+        - '- Requires the farmland beneath it to remain intact'
+        - ''
+        - 'Warning:'
+        - 'If the dirt below becomes air or is washed by flowing water'
+        - 'the roots will snap instantly and lose all magical activity'
+        - 'Degenerates into ordinary beet seeds'
+        - ''
+        - 'Make sure to plant it on stable farmland.'
+
+    POTATO_TIN:
+      Name: "Low-Temperature Tin Potato(Low-Temp Tin Potato)"
+      Lore:
+        - 'A soft tuber that undergoes crystal mutation in extreme cold.'
+        - ''
+        - 'Features:'
+        - '- When mature, it is wax-soft and has excellent malleable magic.'
+        - '- Its internal structure maintains a stable silvery-white sheen at room temperature.'
+        - '- Requires the farmland beneath it to remain intact'
+        - ''
+        - 'Warning:'
+        - 'If the dirt below becomes air or is washed by flowing water'
+        - 'the roots will snap instantly and lose all magical activity'
+        - 'and degenerate into ordinary potato seeds'
+        - ''
+        - 'Make sure to plant it on stable farmland.'
+
+    BEET_LEAD:
+      Name: "Heavy Lead Beet(Heavy Lead Beet)"
+      Lore:
+        - 'A dark root vegetable of extremely high density that absorbs magical radiation.'
+        - ''
+        - 'Features:'
+        - '- When mature, it is extremely heavy; each one takes two people to carry and can suppress magical fluctuations.'
+        - '- Its flesh contains magic of slowness and sealing.'
+        - '- Requires the farmland beneath it to remain intact'
+        - ''
+        - 'Warning:'
+        - 'If the dirt below becomes air or is washed by flowing water'
+        - 'the roots will snap instantly and lose all magical activity'
+        - 'Degenerates into ordinary beet seeds'
+        - ''
+        - 'Make sure to plant it on stable farmland.'
+
+    WHEAT_ALUMINUM:
+      Name: "Floating Aluminum Wheat(Floating Aluminum Wheat)"
+      Lore:
+        - 'A lightweight grain whose stalks are coated in oxide film but remain highly reactive inside.'
+        - ''
+        - 'Features:'
+        - '- When mature, it is extremely light; its ears can float in a gentle breeze and conduct magic.'
+        - '- Its kernels conceal explosive potential that ignites on contact with water.'
+        - '- Requires the farmland beneath it to remain intact'
+        - ''
+        - 'Warning:'
+        - 'If the dirt below becomes air or is washed by flowing water'
+        - 'the roots will snap instantly and lose all magical activity'
+        - 'and degenerate into ordinary wheat seeds'
+        - ''
+        - 'Make sure to plant it on stable farmland.'
+
+    ## Magic Plants Related to Ore Ingots
+    WHEAT_COPPER_INGOT:
+      Name: "Thunder-Cast Copper Wheat (Thunder-Cast Copper Wheat)"
+      Lore:
+        - 'A mutated grain with crimson ears that naturally gather lightning magic.'
+        - ''
+        - 'Features:'
+        - '- When mature, its awns act like lightning rods, compressing lightning magic into the kernels.'
+        - '- High-purity conductive fibers run through its stalk; harvesting yields copper ingots.'
+        - '- Requires the farmland beneath it to remain intact'
+        - ''
+        - 'Warning:'
+        - 'If the dirt below becomes air or is washed by flowing water'
+        - 'the roots will snap instantly and lose all magical activity'
+        - 'and degenerate into ordinary wheat seeds'
+        - ''
+        - 'Make sure to plant it on stable farmland.'
+
+    RADISH_IRON_INGOT:
+      Name: "Flux-Iron Radish (Flux-Iron Radish)"
+      Lore:
+        - 'A mutated root vegetable with dark, heavy skin that is highly sensitive to magnetic fields.'
+        - ''
+        - 'Features:'
+        - '- When mature, its roots automatically attract nearby iron and compress it into lumps.'
+        - '- Its flesh contains a strong magnetic resonance; harvesting yields iron ingots.'
+        - '- Requires the farmland beneath it to remain intact'
+        - ''
+        - 'Warning:'
+        - 'If the dirt below becomes air or is washed by flowing water'
+        - 'the roots will snap instantly and lose all magical activity'
+        - 'and degenerate into ordinary radish seeds'
+        - ''
+        - 'Make sure to plant it on stable farmland.'
+
+    BEET_GOLD_INGOT:
+      Name: "Pure-Gold Beet (Pure-Gold Beet)"
+      Lore:
+        - 'A mutated beet with a brilliant golden root that refuses to react with any substance.'
+        - ''
+        - 'Features:'
+        - '- Its juice never spoils and expels impurities, forming pure gold.'
+        - '- Dense, stable magic is woven through its roots and condenses into gold ingots when harvested.'
+        - '- Requires the farmland beneath it to remain intact'
+        - ''
+        - 'Warning:'
+        - 'If the dirt below becomes air or is washed by flowing water'
+        - 'the roots will snap instantly and lose all magical activity'
+        - 'Degenerates into ordinary beet seeds'
+        - ''
+        - 'Make sure to plant it on stable farmland.'
+
+    RADISH_SILVER_INGOT:
+      Name: "Moon-Reflect Silver Turnip (Moon-Reflect Silver Turnip)"
+      Lore:
+        - 'A mutated root vegetable with shiny silver-white skin that absorbs moonlight and condenses it into silver.'
+        - ''
+        - 'Features:'
+        - '- When mature, it records light-and-shadow magic and solidifies moonlight into physical silver.'
+        - '- Its flesh is highly reflective and antibacterial; harvesting yields silver ingots.'
+        - '- Requires the farmland beneath it to remain intact'
+        - ''
+        - 'Warning:'
+        - 'If the dirt below becomes air or is washed by flowing water'
+        - 'the roots will snap instantly and lose all magical activity'
+        - 'and degenerate into ordinary radish seeds'
+        - ''
+        - 'Make sure to plant it on stable farmland.'
+
+    WHEAT_ZINC_INGOT:
+      Name: "Energy-Zinc Wheat (Energy-Zinc Wheat)"
+      Lore:
+        - 'A mutated grain with blue-gray kernels that conceal volatile chemical energy.'
+        - ''
+        - 'Features:'
+        - '- When mature, its kernels have powerful reducing magic and compress directly into zinc.'
+        - '- Unstable high-energy electrons are compressed inside its husks; harvesting yields zinc ingots.'
+        - '- Requires the farmland beneath it to remain intact'
+        - ''
+        - 'Warning:'
+        - 'If the dirt below becomes air or is washed by flowing water'
+        - 'the roots will snap instantly and lose all magical activity'
+        - 'and degenerate into ordinary wheat seeds'
+        - ''
+        - 'Make sure to plant it on stable farmland.'
+
+    BEET_MAGNESIUM_INGOT:
+      Name: "Glow-Magnesium Beet (Glow-Magnesium Beet)"
+      Lore:
+        - 'A mutated beet with light leaves whose root emits blinding white light when burned.'
+        - ''
+        - 'Features:'
+        - '- When mature, it is highly reactive and converts light energy into physical magnesium.'
+        - '- Its root stores dazzling flash magic; harvesting yields magnesium ingots.'
+        - '- Requires the farmland beneath it to remain intact'
+        - ''
+        - 'Warning:'
+        - 'If the dirt below becomes air or is washed by flowing water'
+        - 'The roots will snap instantly and lose all magical activity.'
+        - 'Reverts to ordinary beet seeds'
+        - ''
+        - 'Make sure to plant it on stable farmland.'
+
+    POTATO_TIN_INGOT:
+      Name: "Frost-Tin Potato (Frost-Tin Potato)"
+      Lore:
+        - 'A soft tuber that undergoes crystal mutation in extreme cold and condenses into tin.'
+        - ''
+        - 'Traits:'
+        - '- When mature, it is wax-soft and directly precipitates tin at low temperatures.'
+        - '- Its internal structure maintains a stable silvery-white sheen at room temperature; harvesting yields tin ingots.'
+        - '- Requires the farmland beneath it to remain intact.'
+        - ''
+        - 'Warning:'
+        - 'If the soil beneath it becomes air or is washed away by flowing water,'
+        - 'The roots will snap instantly and lose all magical activity.'
+        - 'Reverts to ordinary potato seeds'
+        - ''
+        - 'Make sure to plant it on stable farmland.'
+
+    BEET_LEAD_INGOT:
+      Name: "Heavy-Pressure Lead Beet (Heavy-Lead Beet)"
+      Lore:
+        - 'A dark root vegetable of extreme density that absorbs magical radiation and precipitates lead.'
+        - ''
+        - 'Traits:'
+        - '- When mature, it is so heavy that two people are needed to carry one, and it directly generates lead.'
+        - '- Its flesh contains magic of slowness and sealing; harvesting yields lead ingots.'
+        - '- Requires the farmland beneath it to remain intact.'
+        - ''
+        - 'Warning:'
+        - 'If the soil beneath it becomes air or is washed away by flowing water,'
+        - 'The roots will snap instantly and lose all magical activity.'
+        - 'Reverts to ordinary beet seeds'
+        - ''
+        - 'Make sure to plant it on stable farmland.'
+
+    WHEAT_ALUMINUM_INGOT:
+      Name: "Floating Aluminum Wheat (Floating Aluminum Wheat)"
+      Lore:
+        - 'A lightweight grain whose stalks are coated in oxide film but remain highly reactive inside, allowing it to condense aluminum.'
+        - ''
+        - 'Traits:'
+        - '- When mature, it is extremely light; its ears float in a gentle breeze and precipitate aluminum.'
+        - '- Its kernels conceal explosive potential that ignites on contact with water; harvesting yields aluminum ingots.'
+        - '- Requires the farmland beneath it to remain intact.'
+        - ''
+        - 'Warning:'
+        - 'If the soil beneath it becomes air or is washed away by flowing water,'
+        - 'The roots will snap instantly and lose all magical activity.'
+        - 'Reverts to ordinary wheat seeds'
+        - ''
+        - 'Make sure to plant it on stable farmland.'
+
+    # Alloy-Ingot Magic Plants
+    WHEAT_BRONZE_INGOT:
+      Name: "Bronze-Crystal Copper-Tin Wheat (Bronze-Crystal Copper-Tin Wheat)"
+      Lore:
+        - 'A mutated crop with distinctive blue-green ears that combines copper’s conductivity with tin’s crystalline properties.'
+        - 'After hybridization, a recessive beet gene in the wheat becomes dominant, causing its appearance to mutate into that of a beet.'
+        - ''
+        - 'Traits:'
+        - '- When mature, the kernels spontaneously undergo magical alloying, perfectly combining copper and tin.'
+        - '- Its stalks are as hard as the material of ancient weapons; harvesting directly yields bronze ingots.'
+        - '- Requires the farmland beneath it to remain intact.'
+        - ''
+        - 'Warning:'
+        - 'If the soil beneath it becomes air or is washed away by flowing water,'
+        - 'The roots will snap instantly and lose all magical activity.'
+        - 'Reverts to ordinary wheat seeds'
+        - ''
+        - 'Make sure to plant it on stable farmland.'
+
+    BEET_BRASS_INGOT:
+      Name: "Brass-Glow Copper-Zinc Beet (Brass-Glow Copper-Zinc Beet)"
+      Lore:
+        - 'A mutated beet with bright golden-yellow roots that combine copper’s stability with zinc’s reactivity.'
+        - ''
+        - 'Traits:'
+        - '- When mature, its flesh undergoes a magical co-melting reaction, turning copper and zinc into a dense alloy.'
+        - '- Its skin gleams with a metallic luster like gold but more malleable; harvesting yields brass ingots.'
+        - '- Requires the farmland beneath it to remain intact.'
+        - ''
+        - 'Warning:'
+        - 'If the soil beneath it becomes air or is washed away by flowing water,'
+        - 'The roots will snap instantly and lose all magical activity.'
+        - 'Reverts to ordinary beet seeds'
+        - ''
+        - 'Make sure to plant it on stable farmland.'
+
+
+    ENCHANTMENT_ERASER:
+      Name: 'Magic Enchantment Wipe'
+      Lore:
+        - ' '
+        - 'Hold this item in your main hand and the item to be cleared in your off hand.'
+        - 'Right-click to remove magical enchantments.'
+        - 'Use with care; this cannot be undone!'
+
+    FISH_WEIGHT_ENHANCER:
+      Name: 'Magic Fish Weight-Gain Feed (Not Direct Bait)'
+      Lore:
+        - ' '
+        - 'Hold this item in your main hand and the magic fish to be fed in your off hand.'
+        - 'Right-click to use the feed and increase the fish’s weight.'
+        - 'When the fish reaches certain weight thresholds, some of its stats will change.'
+
+    RESEARCH_UNLOCKER_PAPER:
+      Name: '✨ Revelation of Mysteries (Fragment)'
+      Lore:
+        - '▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬'
+        - ' An ancient, yellowed piece of parchment.'
+        - ' It contains fragments of lost knowledge.'
+        - '▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬'
+        - ' How to use:'
+        - ' Hold this item in your main hand → right-click.'
+        - ' Effect: Randomly unlocks one unknown piece of arcane knowledge.'
+        - '▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬'
+        - '✦ Knowledge is power ✦'
+
+    WORD_CLEAR:
+      Name: '✨ Holographic Text Cleaner'
+      Lore:
+        - ' '
+        - 'Hold this item in your main hand → right-click.'
+        - 'Effect: Deletes all text'
+        - ' '
+        - 'Use carefully; this action is irreversible.'
+
+
+    PORTABLE_SHOP:
+      Name: 'Miracle Market'
+      Lore:
+        - ' '
+        - 'Right-click to open the market.'
+        - 'You might even get things for free here?'
+        - 'A place full of miracles.'
+        - 'Full of surprises.'
+        - '------------------------'
+        - 'Shift + right-click to open the administrator configuration menu.'
+
+
+## Food-related translations below
+    FARM_HARVEST_BREAD:
+      Name: '「Harvest Blessing Bread」'
+      Lore:
+        - ' '
+        - '✨Magical bread baked using secret techniques by the village’s old baker.'
+        - '✨Infused with sunshine, waves of wheat, and whispers of the goddess of harvest.'
+        - ' '
+        - 'Effects when consumed:'
+        - '• Instantly restores 4 hearts (8 health points).'
+        - '• Grants “Satiation III” for 15 seconds (greatly slows hunger depletion).'
+        - '• Grants “Regeneration I” for 8 seconds (slowly restores health).'
+        - '• Small chance to drop Sugar-Heart Wheat Seeds (encourages farming!).'
+        - ''
+        - 'Right-click to eat · Stackable up to 64'
+
+    HOLY_PIE:
+      Name: '✨ Holy Pie (Holy π)'
+      Lore:
+        - ' '
+        - '🥧 Baked from “Refined Wheat Flour” and pumpkin.'
+        - '🥧 Ancient protective runes are carved into the crust.'
+        - ' '
+        - 'Effects when consumed:'
+        - '• Instantly restores 6 hearts (12 health points).'
+        - '• Grants “Absolute Protection” for 1.5 seconds (immune to all physical/magical damage).'
+        - '• Removes all negative status effects (poison, fire, and weakness).'
+        - ' '
+        - '⚠ ⚠ Protection lasts only briefly; consume in an emergency!'
+        - 'Right-click to eat · Stackable up to 64'
+
+    CLOUD_BREAD:
+      Name: '☁ Cloud Bread (Cloud Bread)'
+      Lore:
+        - ' '
+        - '🌤 Collected from a cumulonimbus cloud touched by the first rays of morning sunlight.'
+        - '🌤 Baked with “Essence of Wind” and “Refined Wheat Flour”.'
+        - '🌤 Feels light as air in your hand, almost weightless.'
+        - ' '
+        - 'Effects when consumed:'
+        - '• Grants “Light Body” for 15 seconds (Jump Boost III).'
+        - '• Grants “Cloudwalking” for 15 seconds (slow falling and immunity to fall damage).'
+        - '• If you are falling, immediately cancels all falling momentum.'
+        - '• Restores 4 hearts (8 health points).'
+        - ' '
+        - '💨 💨 Take a bite and feel like you could fly!'
+        - 'Right-click to eat · Stackable up to 64'
+
+    HARVEST_WHEAT:
+      Name: '✨ Golden Radiant Wheat'
+      Lore:
+        - "Wheat harvested during the season of plenty,"
+        - "whose ears shimmer with the blessings of sunlight and earth."
+        - ""
+        - "• Can be used to craft premium bread and ceremonial pastries"
+        - "• A core ingredient in “Harvest Blessing Foods”"
+        - ""
+        - "Cannot be eaten by right-click · Crafting material only"
+
+    WHEAT_FLOUR:
+      Name: '✨ Refined Wheat Flour'
+      Lore:
+        - ' '
+        - 'Finely ground from “Golden Radiant Wheat”.'
+        - 'The powder is snow-white and gives off a rich wheat aroma.'
+        - ' '
+        - '• Fine in texture, it is the soul of premium pastries'
+        - '• Used to craft magical foods such as Cloud Bread and Holy Pie'
+        - ' '
+        - 'Cannot be eaten by right-click · Crafting material only'
+
+    HARVEST_RICE:
+      Name: '✨ Spirit-Filled Rice'
+      Lore:
+        - "Rice ears imbued with the essence of morning dew and clear springs,"
+        - "with plump grains bowing toward the earth."
+        - ""
+        - "• Gives off the scent of moist soil and fresh greenery"
+        - "• Its husks contain vigorous life force"
+        - "• The spiritual crystallization of Eastern agricultural civilization"
+        - ""
+        - "✨ Holding it feels like hearing the wind sweep through rice fields"
+        - ""
+        - "Cannot be eaten by right-click · Crafting material only"
+
+    DREAM_KERNEL:
+      Name: "✨ Dream Kernel (Dream Kernel)"
+      Lore:
+        - ' '
+        - '§7““People are like seeds; strive to be a good seed.””'
+        - ' '
+        - 'This is more than just a seed,'
+        - 'it embodies Academician Yuan Longping’s lifelong dedication,'
+        - 'and brings his dream of “sheltering in the shade beneath rice plants” into reality.'
+        - ' '
+        - 'Deep within those golden waves of rice,'
+        - 'there was an old man in a straw hat, standing in the mud,'
+        - 'who devoted his life to helping countless people escape hunger.'
+        - ' '
+        - 'Hold it tight, and you feel not only its substantial weight,'
+        - 'but also a promise and hope that transcend time.'
+        - 'Every streak of light tells of a profound love for the earth;'
+        - 'every trace of warmth carries forward the courage to “dare to be the first.”'
+        - ' '
+        - 'May this seed'
+        - 'take root and sprout in your hands,'
+        - 'and may the joy of harvest continue to flow across this land.'
+        - ' '
+        - '§6§lIn tribute · The Everlasting Cultivator'
+
+
+
+    PRESS_CORE_ALPHA:
+      Name: 'Industrial Spatial Core'
+      Lore:
+        - '?'
+        - 'Originally a material for consumer items'
+        - '!!'
+        - 'Now repurposed as an industrial material'
+
+
+
+
+
+
+
+
+
+
+    ENERGY_CONNECTOR_GLASS:
+      Name: 'Energy Connector'
+      Lore:
+        - 'Range: 6 blocks'
+        - ''
+        - 'Used to connect machines and generators'
+        - 'Can connect to nearby energy networks'
+    ENERGY_CONNECTOR_GLASS_INFO:
+      Name: 'Energy Connector'
+      Lore:
+        - 'Range: 6 blocks'
+        - ''
+        - 'Used to connect machines and generators'
+        - 'Can connect to nearby energy networks'
+        - ''
+        - 'Can be crafted using any vanilla glass or glass pane'
+
+
+
+
+
+
+
+
+
+
+
+
+    WEAPON_STAR_SHARDS_SWORD:
+      Name: '§x§E§8§4§2§3§DStar§x§D§A§5§5§6§BFall§x§C§C§6§8§9§9Judgment§x§B§E§7§B§C§7Judgment'
+      Lore:
+        - ''
+        - '§x§D§9§4§2§F§5A legendary divine weapon said to cut down the stars,'
+        - '§x§A§3§5§7§B§9the void trembles wherever its blade points.'
+        - '§x§6§A§8§C§E§FIt contains the power of arcane origins and celestial flames,'
+        - '§x§F§2§5§4§5§9and only the one chosen by fate can awaken its true name.'
+        - ''
+        - '§x§A§3§5§7§B§9Rarity: §cMythic'
+        - '§x§A§3§5§7§B§9Damage multiplier: §c61.8x'
+        - ''
+        - '§f• Left-click§7: Blazing Slash (Cooldown: 1 second)'
+        - '§7Unleash a burning blade wave that deals additional fire damage to the target.'
+        - '§7Creates a small explosion on hit, knocking back nearby enemies.'
+        - ''
+        - '§f• Sneak + left-click§7: Arcane Blast (Cooldown: 3 seconds)'
+        - '§7Charge and release a conical arcane pulse that pierces the area ahead.'
+        - '§7Inflicts Weakness and Slowness on enemies hit for 4 seconds.'
+        - ''
+        - '§f• Right-click§7: Astral Shield (Cooldown: 5 seconds)'
+        - '§7Creates a magical barrier that grants immunity to all damage for 5 seconds.'
+        - '§7Ranged attacks received during this time are automatically reflected toward their source.'
+        - ''
+        - '§f• Sneak + right-click§7: Shadowstep (Cooldown: 5 seconds)'
+        - '§7Instantly teleports to the ground at the crosshair (up to 15 blocks away).'
+        - '§7Releases a shockwave on landing, briefly stunning nearby enemies.'
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    SF_TIMINGS_HOLOGRAM:
+      Name: 'Slime Performance Monitor'
+      Lore:
+        - ''
+        - 'Gets the total time required for each Slimefun tick.'
+        - 'Gets the time required for the current chunk tick.'
+        - 'This may be somewhat useful for certain high-load situations.'
+
+    MUSIC_TEST:
+      Name: 'Music · Test'
+      Lore:
+        - ''
+        - 'Ding ding ding~'
+
+
+
+    CARGO_FRAGMENT:
+      Name: '「Aether Cache」'
+      Lore:
+        - ''
+        - 'After magical storage explodes,'
+        - 'the stored items drop as “Aether Caches”.'
+        - 'Place the “Aether Cache” back to identify it again.'
+        - '「Aether Cache」Can hold up to 2.1B items'
+
+
+    CARGO_TERMINAL:
+      Name: 'Magical Storage Terminal'
+      Lore:
+        - ''
+        - '「Item type limit: 1145」'
+        - '「Maximum quantity per item: Unknown」'
+        - '「Supports traditional cargo and network push/pull」'
+        - '「Supports wireless remote transfer [cross-domain]」'
+        - '「External push limit: 256」'
+        - '「External pull limit: 512」'
+        - '「Storage/Transfer」'
+        - ' '
+        - '- Supports output to vanilla containers'
+        - '- Does not support pulling from vanilla containers'
+        - 'Note: When storage is destroyed, stored items drop as fragments.'
+        - 'Note: Fragments can hold at most 2.1B items.'
+        - 'Note: Up to 2,048 fragments can drop for a single item type.'
+
+    CARGO_TERMINAL_RENEW:
+      Name: 'Magical Storage Terminal · Rebuilt '
+      Lore:
+        - ''
+        - '「Item type limit: 1145」'
+        - '「Maximum quantity per item: Custom」'
+        - '「Supports traditional cargo and network push/pull」'
+        - '「Supports wireless remote transfer [cross-domain]」'
+        - '「External push limit: 256」'
+        - '「External pull limit: 512」'
+        - '「Storage/Transfer」'
+        - ' '
+        - '- Only supports transfer between Slimefun machines/containers'
+        - '- If the configured quantity limit is lower than the current stored amount, the excess is automatically removed.'
+
+
+    CHINESE_CHARACTER_CONSTRUCTOR:
+      Name: 'Chinese Character Engraving Workshop'
+      Lore:
+        - "A miniature ancient woodblock-printing workshop."
+        - "Here, intangible literary spirit is carved into solid block characters."
+        - ""
+        - "Within a tiny space, the vast spirit of Chinese civilization is contained."
+        - ""
+        - "'“Ingenuity in every stroke; every character is a gem.”'"
+
+
+
+    SEND_ITEMS_TO_PLAYER_MACHINE:
+      Name: 'Aether Cache Transmitter'
+      Lore:
+        - 'Item transmitter'
+        - 'Sends items to other players'
+        - 'Transfers items from an Aether Cache into a specified player’s inventory'
+        - 'Do not stack Aether Caches, or the machine will stop working.'
+        - 'Maximum speed'
+        - 'The transmitter becomes invalid after each server restart.'
+        - 'Place it again to use it normally.'
+        - 'Mainly to keep very lazy people in check.'
+    SEND_ITEMS_TO_PLAYER_MACHINE_SF:
+      Name: 'Aether Cache Transmitter (Slime Tick Edition)'
+      Lore:
+        - 'Item transmitter'
+        - 'Sends items to other players'
+        - 'Transfers items from an Aether Cache into a specified player’s inventory'
+        - 'Do not stack Aether Caches, or the machine will stop working.'
+        - 'Runs once per Slimefun tick'
+
+    PORTABLE_CARGO_TRANSPORTER:
+      Name: 'Portable Aether Cache Extractor'
+      Lore:
+        - ' '
+        - 'Transfers items from an Aether Cache into the player’s inventory'
+        - '- Magical tool'
+
+
+    CUSTOM_SEQUENCE_TOOL:
+      Name: 'Custom Script Sequence Tool'
+      Lore:
+        - ' '
+        - 'Saves a script sequence as item data'
+        - 'Supports: '
+        - '- Teleportation'
+        - '- Interaction'
+        - '- Step delay'
+        - '- Execute commands (e.g. /tpa)'
+        - '- Send messages (e.g. Hello!)'
+
+    TWO_TO_MAGIC_GEO_MACHINE_FORCE:
+      Name: 'Magic 2.0 -> RSC Magic GEO Resource Converter [Forced Conversion]'
+      Lore:
+        - ' '
+        - 'If RSC Magic is not installed, converts automatically to stone.'
+        - 'Converts magical resources into resources.'
+        - 'Requires magical resources'
+        - ' '
+        - 'Function: Automatic conversion'
+        - 'Energy requirement: consumes a small amount of power per second'
+        - ' '
+        - '““The secrets of nature, at your fingertips.””'
+        - '⇨ ⚙ ？ s'
+        - '⇨ ⚡ 52 J/s'
+        - '⇨ ⚡ 1314 J storage capacity'
+
+
+    WORLD_CORE:
+      Name: 'Genesis Core'
+      Lore:
+        - ''
+        - 'Its purpose has always been a mystery.'
+
+    ITEM_ORIGIN_BACK_TRACK:
+      Name: 'Magic Material Reclaimer'
+      Lore:
+        - ' '
+        - 'Uses enormous amounts of power to trace items back to their source materials.'
+        - 'Does not consume source materials'
+        - ''
+        - '⇨ ⚙ Operating time: 5 s'
+        - '⇨ ⚡ 2147483646 J/tick'
+        - '⇨ ⚡ 2147483647 J storage capacity'
+        - ' '
+        - 'How to use: '
+        - '- Insert a Slimefun item'
+        - '- Wait a moment for the source materials to be produced'
+        - '- This machine can only produce materials from recipes shown in the Slimefun guide.'
+
+
+
+    NEW_YEARS_DAY_FIREWORK_YUAN_DAN:
+      Name: '§x§F§F§D§7§0§0Circular Cluster Firework · New Year'
+      Lore:
+        - ''
+        - '§x§8§A§C§4§E§7§l✨ §x§F§F§F§F§F§FThe legendary flame of miracles that blooms at year’s end,'
+        - '§x§6§A§D§3§F§F§l🎇 §x§E§0§E§0§E§0unfurls a thousand rings of stars across the midnight sky.'
+        - ''
+        - '§x§5§5§A§A§F§F§l📅 §x§C§C§E§6§F§FDecember 31, 2025 · The Gate of Time is about to open'
+        - '§x§4§C§C§9§F§F§l🌌 §x§B§3§E§0§F§FIn the new year, the stars rearrange your destiny'
+        - '§x§3§A§B§8§7§D§l🌱 §x§A§8§E§6§C§CA new beginning, full of possibilities'
+        - ''
+        - '§x§D§4§A§F§5§2§l🔮 §x§F§F§D§1§6§62026 Magic Keepsake · One Night Only'
+        - '§x§B§B§6§6§C§C§o§l“May this light illuminate your path to miracles.”'
+
+    NEW_YEARS_DAY_FIREWORK_YUAN_DAN_2:
+      Name: '§x§F§F§D§7§0§0Flying Pancake Firework · New Year’s Day'
+      Lore:
+        - ''
+        - '§x§C§A§5§3§0§0§l✨ §x§F§F§F§F§F§FThe legendary festive light that brings endless joy and surprises,'
+        - '§x§8§9§4§2§1§0§l🎇 §x§F§E§D§C§B§Aspins into the sky like a flying pancake, cutting through the night.'
+        - '§x§6§A§D§3§F§F§l🌌 §x§E§0§E§0§E§0May every moment become a treasured memory.'
+        - ''
+        - '§x§5§5§A§A§F§F§l📅 §x§C§C§E§6§F§FDecember 31, 2025 · Welcome the first light of the new year'
+        - '§x§4§C§C§9§F§F§l🎆 §x§B§3§E§0§F§FMay happiness bloom endlessly like fireworks'
+        - '§x§3§A§B§8§7§D§l🌱 §x§A§8§E§6§C§CA new beginning, with dreams rising with the fireworks'
+        - ''
+        - '§x§D§4§A§F§5§2§l🔮 §x§F§F§D§1§6§62026 Magic Keepsake · A one-of-a-kind blessing'
+        - '§x§B§B§6§6§C§C§o§l“May this radiance bring you hope and happiness.”'
+
+
+
+  Resource:
+    IRON_INGOT:
+      Name: 'Magic Iron Ingot'
+      Lore:
+        - 'An iron ingot encased in magical crystals'
+        - 'Seems harder than a regular iron ingot?'
+    GOLD_INGOT:
+      Name: 'Magic Gold Ingot'
+      Lore:
+        - 'A gold ingot encased in magical crystals'
+        - 'Seems shinier than a regular gold ingot?'
+    COPPER_INGOT:
+      Name: 'Magic Copper Ingot'
+      Lore:
+        - 'A copper ingot encased in magical crystals'
+        - 'Seems darker than a regular copper ingot?'
+    TIN_INGOT:
+      Name: 'Magic Tin Ingot'
+      Lore:
+        - 'A tin ingot encased in magical crystals'
+        - 'Seems softer than a regular tin ingot?'
+    SILVER_INGOT:
+      Name: 'Magic Silver Ingot'
+      Lore:
+        - 'A silver ingot encased in magical crystals'
+        - 'Seems brighter than a regular silver ingot?'
+    LEAD_INGOT:
+      Name: 'Magic Lead Ingot'
+      Lore:
+        - 'A lead ingot encased in magical crystals'
+        - 'Seems heavier than a regular lead ingot?'
+    ALUMINUM_INGOT:
+      Name: 'Magic Aluminum Ingot'
+      Lore:
+        - 'An aluminum ingot encased in magical crystals'
+        - 'Seems lighter than a regular aluminum ingot?'
+    ZINC_INGOT:
+      Name: 'Magic Zinc Ingot'
+      Lore:
+        - 'A zinc ingot encased in magical crystals'
+        - 'Seems smoother than a regular zinc ingot?'
+    MAGNESIUM_INGOT:
+      Name: 'Magic Magnesium Ingot'
+      Lore:
+        - 'A magnesium ingot encased in magical crystals'
+        - 'Seems more radiant than a regular magnesium ingot?'
+    ELEMENT_INGOT:
+      Name: 'Elemental Ingot'
+      Lore:
+        - 'Fuses nine kinds of Magic Ingots'
+        - 'Limited possibilities? Infinite possibilities?'
+
+    REDSTONE:
+      Name: 'Magic Redstone'
+      Lore:
+        - 'Redstone encased in magical crystals'
+        - 'Seems redder than regular redstone?'
+    DIAMOND:
+      Name: 'Magic Diamond'
+      Lore:
+        - 'A diamond encased in magical crystals'
+        - 'Seems clearer than a regular diamond?'
+    LAPIS_LAZULI:
+      Name: 'Magic Lapis Lazuli'
+      Lore:
+        - 'Lapis lazuli encased in magical crystals'
+        - 'Seems bluer than regular lapis lazuli?'
+    EMERALD:
+      Name: 'Magic Emerald'
+      Lore:
+        - 'An emerald encased in magical crystals'
+        - 'Seems greener than a regular emerald?'
+    COAL:
+      Name: 'Magic Coal'
+      Lore:
+        - 'Coal encased in magical crystals'
+        - 'Seems blacker than regular coal?'
+    QUARTZ:
+      Name: 'Magic Quartz'
+      Lore:
+        - 'Quartz encased in magical crystals'
+        - 'Seems sharper than regular quartz?'
+    AMETHYST_SHARD:
+      Name: 'Magic Amethyst'
+      Lore:
+        - 'Amethyst encased in magical crystals'
+        - 'Seems purpler than a regular amethyst?'
+    NETHERITE_INGOT:
+      Name: 'Magic Netherite Ingot'
+      Lore:
+        - 'A netherite ingot encased in magical crystals'
+        - 'Seems heavier than a regular netherite ingot?'
+    BONE:
+      Name: 'Magic Bone'
+      Lore:
+        - 'A bone encased in magical crystals'
+        - 'Seems harder than a regular bone block?'
+    BONE_MEAL:
+      Name: 'Magic Bone Meal'
+      Lore:
+        - 'Bone meal encased in magical crystals'
+        - 'Seems more refined than regular bone meal?'
+
+    REDSTONE_TORCH:
+      Name: 'Magic Redstone Torch'
+      Lore:
+        - 'A redstone torch encased in magical crystals'
+        - 'Seems hotter than a regular redstone torch?'
+    STICK:
+      Name: 'Magic Stick'
+      Lore:
+        - 'A stick encased in magical crystals'
+        - 'Seems softer than a regular stick?'
+    COBBLESTONE:
+      Name: 'Magic Cobblestone'
+      Lore:
+        - 'A stone block encased in magical crystals'
+        - 'Seems smoother than a regular stone?'
+    DIRT:
+      Name: 'Magic Dirt'
+      Lore:
+        - 'Dirt encased in magical crystals'
+        - 'Seems looser than regular dirt?'
+    GLOWSTONE_DUST:
+      Name: 'Magic Glowstone Dust'
+      Lore:
+        - 'Glowstone dust encased in magical crystals'
+        - 'Seems brighter than regular glowstone dust?'
+    LEVER:
+      Name: 'Magic Lever'
+      Lore:
+        - 'A lever encased in magical crystals'
+        - 'Seems more responsive than a regular lever?'
+    BUTTON:
+      Name: 'Magic Button'
+      Lore:
+        - 'A button encased in magical crystals'
+        - 'Seems more responsive than a regular button?'
+    OAK_PLANKS:
+      Name: 'Magic Oak Planks'
+      Lore:
+        - 'Oak planks encased in magical crystals'
+        - 'Seems sturdier than regular oak planks?'
+    CORE_ORIGIN:
+      Name: 'Vanilla Machine Core'
+      Lore:
+        - 'Used to craft certain vanilla machines'
+    REDSTONE_EXECUTE_ELEMENT:
+      Name: 'Redstone Processing Component'
+      Lore:
+        - 'A redstone processing component made from magical materials'
+    LOG_MIX:
+      Name: 'Verdant Wood Core'
+      Lore:
+        - 'Contains the essence of 8 types of logs'
+    LIGHT_CORE:
+      Name: 'Light Core'
+      Lore:
+        - 'A light core containing 8 metallic elements'
+    QUARTZ_CORE:
+      Name: 'Quartz Core'
+      Lore:
+        - 'Can alter the internal structure of atoms'
+        - 'By precisely adjusting the numbers of protons, neutrons, and electrons'
+        - 'magically transforms any ordinary element into pure silicon'
+    LIGHT_ENERGY_ALPHA:
+      Name: 'Light Energy Alpha'
+      Lore:
+        - 'Single-use energy source'
+        - '⇨ ⚡ 131452.0 J Stored'
+
+
+    JIN_KE_LA:
+      Name: 'Jin Ke La Fertilizer'
+      Lore:
+        - 'Fertilizer developed by "Amelika Santiago" and made in China'
+        - 'Supposedly boosts wheat yield to 18,000 jin per mu!'
+        - 'Even cows would be impressed.'
+
+
+    POWER_CORE:
+      Name: 'Unstable Generator Core'
+      Lore:
+          - 'Cannot stably control power output'
+          - 'Can be used as a regular capacitor'
+          - 'It will not explode; use it with confidence'
+          - 'Range: 6 blocks'
+          - '⇨ ⚡ 1314520 J  storable'
+
+
+
+    PURE_INGOT_POWER_CORE:
+      Name: 'Lucky Capacitor'
+      Lore:
+        - 'It is recommended to use no more than one per power grid'
+        - 'Automatically generates  1~1314520 J  power per tick'
+        - 'Range: 6 blocks'
+        - '⇨ ⚡ 2147483647 J  storable'
+        - 'Retains its remaining power even after being destroyed'
+    BAD_LUCK_CAPACITY:
+      Name: 'Misfortune Capacitor'
+      Lore:
+        - 'It is recommended to use no more than one per power grid'
+        - 'Randomly reduces  1~1314520 J  power per tick'
+        - 'Range: 6 blocks'
+        - '⇨ ⚡ 2147483647 J  storable'
+        - 'Retains its remaining power even after being destroyed'
+    PANDORA_CAPACITY:
+      Name: 'Pandora’s Capacitor'
+      Lore:
+        - 'It is recommended to use no more than one per power grid'
+        - 'Randomly increases or decreases  1~1314520 J  power per tick'
+        - 'Range: 6 blocks'
+        - '⇨ ⚡ 2147483647 J  storable'
+        - 'Retains its remaining power even after being destroyed'
+    MAGIC_CAPACITY_BASIC:
+      Name: 'Basic Magic Capacitor'
+      Lore:
+        - 'It is recommended to use no more than one per power grid'
+        - 'Randomly increases  1145141919 ~ 2147483646 J  power per tick'
+        - 'Range: 6 blocks'
+        - '⇨ ⚡ 2147483647 J  storable'
+        - 'Retains its remaining power even after being destroyed'
+    MAGIC_CAPACITY_ULTRA:
+      Name: 'Ultimate Magic Capacitor'
+      Lore:
+        - 'It is recommended to use no more than one per power grid'
+        - 'Randomly increases  2147483647 ~ 2147483647 J  power per tick'
+        - 'Range: 6 blocks'
+        - '⇨ ⚡ 2147483647 J  storable'
+        - 'Retains its remaining power even after being destroyed'
+
+
+    POWER_CARD:
+      Name: 'Endgame Power Card'
+      Lore:
+        - 'Can be used as a carrier for industrial power transmission!'
+        - 'Can store nearly infinite power'
+        - 'Shift + Right-click to set the energy storage limit'
+        - 'Current stored energy: not initialized'
+
+
+
+
+
+    INFINITY_FLINT_AND_STEEL:
+      Name: 'Infinite Flint and Steel'
+      Lore:
+        - 'What on earth is this thing?'
+        - 'It never runs out—never!'
+
+    SPACE_INFINITY_MAGIC:
+      Name: 'Infinite Spatial Magic'
+      Lore:
+          - 'A container for storing large prefabricated structures'
+          - 'Can hold absolutely anything'
+
+
+
+
+
+    COBBLESTONE_1:
+      Name: 'Sealed · Cobblestone x64'
+      Lore:
+          - '64 cobblestone'
+    COBBLESTONE_2:
+      Name: 'Sealed · Cobblestone x4096'
+      Lore:
+          - '4096 cobblestone'
+    STONE_1:
+      Name: 'Sealed · Stone x64'
+      Lore:
+          - '64 stone'
+    STONE_2:
+      Name: 'Sealed · Stone x4096'
+      Lore:
+          - '4096 stone'
+    OAK_LOG_1:
+      Name: 'Sealed · Oak Log x64'
+      Lore:
+          - '64 oak log'
+    OAK_LOG_2:
+      Name: 'Sealed · Oak Log x4096'
+      Lore:
+          - '4096 oak log'
+    STONE_BRICKS_1:
+      Name: 'Sealed · Stone Bricks x64'
+      Lore:
+          - '64 stone bricks'
+    STONE_BRICKS_2:
+      Name: 'Sealed · Stone Bricks x4096'
+      Lore:
+          - '4096 stone bricks'
+    BRICKS_1:
+      Name: 'Sealed · Bricks x64'
+      Lore:
+          - '64 bricks'
+    BRICKS_2:
+      Name: 'Sealed · Bricks x4096'
+      Lore:
+          - '4096 bricks'
+    REDSTONE_1:
+      Name: 'Sealed · Redstone x64'
+      Lore:
+          - '64 redstone'
+    REDSTONE_2:
+      Name: 'Sealed · Redstone x4096'
+      Lore:
+          - '4096 redstone'
+    REDSTONE_TORCH_1:
+      Name: 'Sealed · Redstone Torch x64'
+      Lore:
+          - '64 redstone torch'
+    REDSTONE_TORCH_2:
+      Name: 'Sealed · Redstone Torch x4096'
+      Lore:
+          - '4096 redstone torch'
+    REPEATER_1:
+      Name: 'Sealed · Redstone Repeater x64'
+      Lore:
+          - '64 redstone repeater'
+    REPEATER_2:
+      Name: 'Sealed · Redstone Repeater x4096'
+      Lore:
+        - '4096 redstone repeater'
+    COMPARATOR_1:
+      Name: 'Sealed · Redstone Comparator x64'
+      Lore:
+          - '64 redstone comparator'
+    COMPARATOR_2:
+      Name: 'Sealed · Redstone Comparator x4096'
+      Lore:
+          - '4096 redstone comparator'
+    HOPPER_1:
+      Name: 'Sealed · Hopper x64'
+      Lore:
+          - '64 hopper'
+    HOPPER_2:
+      Name: 'Sealed · Hopper x4096'
+      Lore:
+          - '4096 hopper'
+    STRING_1:
+      Name: 'Sealed · String x64'
+      Lore:
+          - '64 string'
+    STRING_2:
+      Name: 'Sealed · String x4096'
+      Lore:
+          - '4096 string'
+    TRIPWIRE_HOOK_1:
+      Name: 'Sealed · Tripwire Hook x64'
+      Lore:
+          - '64 tripwire hook'
+    TRIPWIRE_HOOK_2:
+      Name: 'Sealed · Tripwire Hook x4096'
+      Lore:
+          - '4096 tripwire hook'
+    FURNACE_1:
+      Name: 'Sealed · Furnace x64'
+      Lore:
+          - '64 furnace'
+    FURNACE_2:
+      Name: 'Sealed · Furnace x4096'
+      Lore:
+          - '4096 furnace'
+    IRON_INGOT_1:
+      Name: 'Sealed · Iron Ingot x64'
+      Lore:
+          - '64 iron ingot'
+    IRON_INGOT_2:
+      Name: 'Sealed · Iron Ingot x4096'
+      Lore:
+          - '4096 iron ingot'
+    IRON_INGOT_3:
+      Name: 'Sealed · Iron Ingot x262144'
+      Lore:
+          - '262144 iron ingot'
+    GLASS_1:
+      Name: 'Sealed · Glass x64'
+      Lore:
+          - '64 glass'
+    GLASS_2:
+      Name: 'Sealed · Glass x4096'
+      Lore:
+          - '4096 glass'
+    LIGHT_1:
+      Name: 'Sealed · Light x64'
+      Lore:
+          - '64 light'
+    LIGHT_2:
+      Name: 'Sealed · Light x4096'
+      Lore:
+          - '4096 light'
+    QUARTZ_BLOCK_1:
+      Name: 'Sealed · Quartz Block x64'
+      Lore:
+        - '64 quartz block'
+    QUARTZ_BLOCK_2:
+      Name: 'Sealed · Quartz Block x4096'
+      Lore:
+        - '4096 quartz block'
+    COLOR_WOOL_1:
+      Name: 'Sealed · Colored Wool x64'
+      Lore:
+        - '64 colored wool'
+    COLOR_WOOL_2:
+      Name: 'Sealed · Colored Wool x4096'
+      Lore:
+        - '4096 colored wool'
+    COLOR_TERRACOTTA_1:
+      Name: 'Sealed · Colored Terracotta x64'
+      Lore:
+        - '64 colored terracotta'
+    COLOR_TERRACOTTA_2:
+      Name: 'Sealed · Colored Terracotta x4096'
+      Lore:
+        - '4096 colored terracotta'
+    COLOR_CONCRETE_1:
+      Name: 'Sealed · Colored Concrete x64'
+      Lore:
+        - '64 colored concrete'
+    COLOR_CONCRETE_2:
+      Name: 'Sealed · Colored Concrete x4096'
+      Lore:
+        - '4096 colored concrete'
+    COLOR_GLAZED_TERRACOTTA_1:
+      Name: 'Sealed · Colored Glazed Terracotta x64'
+      Lore:
+        - '64 colored glazed terracotta'
+    COLOR_GLAZED_TERRACOTTA_2:
+      Name: 'Sealed · Colored Glazed Terracotta x4096'
+      Lore:
+        - '4096 colored glazed terracotta'
+    COLOR_LEAVES_1:
+      Name: 'Sealed · Assorted Leaves x64'
+      Lore:
+        - '64 assorted leaves'
+    COLOR_LEAVES_2:
+      Name: 'Sealed · Assorted Leaves x4096'
+      Lore:
+        - '4096 assorted leaves'
+    COLOR_LOG_1:
+      Name: 'Sealed · Assorted Logs x64'
+      Lore:
+        - '64 assorted logs'
+    COLOR_LOG_2:
+      Name: 'Sealed · Assorted Logs x4096'
+      Lore:
+        - '4096 assorted logs'
+
+
+    PURE_GOLD:
+      Name: 'Pure Gold'
+      Lore:
+        - 'An exceptionally pure element'
+    PURE_IRON:
+      Name: 'Pure Iron'
+      Lore:
+        - 'An exceptionally pure element'
+    PURE_COPPER:
+      Name: 'Pure Copper'
+      Lore:
+        - 'An exceptionally pure element'
+    PURE_MAGNESIUM:
+      Name: 'Pure Magnesium'
+      Lore:
+        - 'An exceptionally pure element'
+    PURE_TIN:
+      Name: 'Pure Tin'
+      Lore:
+        - 'An exceptionally pure element'
+    PURE_SILVER:
+      Name: 'Pure Silver'
+      Lore:
+        - 'An exceptionally pure element'
+    PURE_LEAD:
+      Name: 'Pure Lead'
+      Lore:
+        - 'An exceptionally pure element'
+    PURE_ALUMINUM:
+      Name: 'Pure Aluminum'
+      Lore:
+        - 'An exceptionally pure element'
+    PURE_ZINC:
+      Name: 'Pure Zinc'
+      Lore:
+        - 'An exceptionally pure element'
+
+    PURE_ELEMENT_INGOT:
+      Name: 'Pure Element Ingot'
+      Lore:
+        - 'Exceptionally pure'
+
+    PURE_ELEMENT_GOLD:
+      Name: 'Flawless Gold Element'
+      Lore:
+        - '- Five-Phase Element'
+    PURE_ELEMENT_WOOD:
+      Name: 'Flawless Wood Element'
+      Lore:
+        - '- Five-Phase Element'
+    PURE_ELEMENT_WATER:
+      Name: 'Flawless Water Element'
+      Lore:
+        - '- Five-Phase Element'
+    PURE_ELEMENT_FIRE:
+      Name: 'Flawless Fire Element'
+      Lore:
+        - '- Five-Phase Element'
+    PURE_ELEMENT_EARTH:
+      Name: 'Flawless Earth Element'
+      Lore:
+        - '- Five-Phase Element'
+    PURE_FIVE_ELEMENT:
+      Name: 'Flawless Five-Phase Element'
+      Lore:
+        - '- Five-Phase Element'
+
+    SPEED_ELEMENT_64:
+      Name: 'Five-Phase Element Acceleration Core'
+      Lore:
+          - '- 64x speed'
+          - 'This is a machine component'
+
+
+  GEO:
+    GEO_MINER_PLUS:
+      Name: 'Natural Resource Miner-PLUS'
+      Lore:
+        - ' '
+        - 'A more powerful natural resource miner'
+        - 'Extracts resources from chunks'
+        - 'Can extract resources that cannot be mined with a pickaxe'
+        - ' '
+        - 'Speed: 1314x'
+        - '⇨ ⚡ 520 J/s'
+        - '⇨ ⚡ 1314 J storable'
+        - ' '
+        - 'Make sure you have performed a GEO terrain scan'
+    FIVE_ELEMENT_MINER:
+      Name: 'Five-Phase Resource Miner'
+      Lore:
+        - ''
+        - 'A special resource miner'
+        - 'Extracts five-phase resources from chunks'
+        - 'Can extract resources that cannot be mined with a pickaxe'
+        - ''
+        - 'Speed: 1x'
+        - '⇨ ⚡ 520 J/s'
+        - '⇨ ⚡ 1314 J storable'
+        - ''
+        - 'Make sure you have performed a GEO terrain scan'
+
+
+    RSC_MAGIC_MINER:
+      Name: 'Magic Resource Miner'
+      Lore:
+        - ""
+        - "Extracts magical resources from deep within chunks"
+        - "Can extract mysterious magical resources"
+        - "This machine consumes a moderate amount of power while operating"
+        - '⇨ ⚡ 520 J/s'
+        - '⇨ ⚡ 1314 J storable'
+        - "Operates similarly to the vanilla Slimefun oil pump"
+        - "Insert a matching-source item to mine a specified resource"
+        - "Please scan the terrain of the chunk first!"
+        - ""
+        - "Magic - 1.21 fixes/optimizations ~ Items/Machines"
+
+
+
+
+    WOOD_ELEMENT:
+      Name: 'Wood Element'
+      Lore:
+        - 'There are five elements in nature'
+        - 'They are: Gold, Wood, Water, Fire, and Earth'
+        - 'The Wood Element is full of vitality, symbolizing growth and renewal'
+        - 'It connects heaven and earth and embodies nature’s life force'
+        - 'Legends of the Wood Spirit have been passed down in ancient forests'
+        - 'Only those with kindness and patience can hear its whispers'
+    GOLD_ELEMENT:
+      Name: 'Gold Element'
+      Lore:
+        - 'There are five elements in nature'
+        - 'They are: Gold, Wood, Water, Fire, and Earth'
+        - 'The Gold Element is sharp and steadfast, symbolizing strength and order'
+        - 'It holds the essence of the earth, forming the bones of mountains and rivers'
+        - 'The Gold Spirit sleeps deep within ancient mineral veins'
+        - 'Only those with unwavering resolve can awaken its power'
+    WATER_ELEMENT:
+      Name: 'Water Element'
+      Lore:
+        - 'There are five elements in nature'
+        - 'They are: Gold, Wood, Water, Fire, and Earth'
+        - 'The Water Element is gentle and fluid, symbolizing change and acceptance'
+        - 'It nourishes all things and is the source of life’s flow'
+        - 'Legends of the Water Spirit are told along ancient rivers, lakes, and seas'
+        - 'Only those with pure hearts can sense its rhythm'
+    FIRE_ELEMENT:
+      Name: 'Fire Element'
+      Lore:
+        - 'There are five elements in nature'
+        - 'They are: Gold, Wood, Water, Fire, and Earth'
+        - 'The Fire Element is fierce and lively, symbolizing transformation and passion'
+        - 'It brings warmth and light, but can also bring destruction'
+        - 'The Fire Spirit sleeps deep within ancient volcanoes'
+        - 'Only those whose hearts burn with strong determination can wield its power'
+    EARTH_ELEMENT:
+      Name: 'Earth Element'
+      Lore:
+        - 'There are five elements in nature'
+        - 'They are: Gold, Wood, Water, Fire, and Earth'
+        - 'The Earth Element is steady and substantial, symbolizing resilience and support'
+        - 'It nurtures all things and is the foundation of life'
+        - 'In ancient legends, the Earth Spirit guards the secrets of the land'
+        - 'Only those who approach it with reverence can feel its power'
+
+    FIVE_ELEMENT:
+      Name: 'Five-Phase Element'
+      Lore:
+        - 'Combines the five elements'
+        - 'It represents Gold, Wood, Water, Fire, and Earth'
+        - 'They are the core and power of the natural world'
+        - 'A special material'
+
+
+    RSC_MAGIC_REDSTONE:
+      Name: 'Magic Redstone-rsc'
+      Lore:
+        - 'Magic 2.0 -> RSC Magic medium'
+    RSC_MAGIC_COSMIC_DUST:
+      Name: 'Cosmic Dust-rsc'
+      Lore:
+        - 'Magic 2.0 -> RSC Magic medium'
+    RSC_MAGIC_SOUL:
+      Name: 'Soul-rsc'
+      Lore:
+        - 'Magic 2.0 -> RSC Magic medium'
+
+
+
+
+
+
+
+
+
+  GENERATOR:
+    RESOURCE_MACHINE_WOOD_BASIC:
+      Name: 'Magical Verdantwood Source'
+      Lore:
+          - 'Ancient magic flows within...'
+          - 'Summons endless wood from the void.'
+          - ''
+          - 'Function: Automatically generates logs and leaves'
+          - 'Power requirement: Consumes a moderate amount of power per second'
+          - ''
+          - '“The secrets of nature, at your command.”'
+          - '⇨ ⚙ 4 s'
+          - '⇨ ⚡ 520 J/s'
+          - '⇨ ⚡ 1314 J storable'
+    RESOURCE_MACHINE_WOOD_ULTRA:
+      Name: 'Forest Whisperer’s Touch · Five-Phase'
+      Lore:
+        - 'Upgraded from the Verdantwood Source'
+        - 'Ancient magic flows within...'
+        - 'Summons endless wood from the void.'
+        - ''
+        - 'Function: Automatically generates logs and leaves'
+        - 'Power requirement: Consumes a massive amount of power per second'
+        - ''
+        - '“The secrets of nature, at your command.”'
+        - '⇨ ⚙ 3 s'
+        - '⇨ ⚡ 5200 J/s'
+        - '⇨ ⚡ 131452.0 J storable'
+    LIGHT_GEN_BASIC:
+      Name: 'Light Source Collector'
+      Lore:
+          - 'Collects an endless supply of light sources from the environment.'
+          - ''
+          - 'Function: Automatically generates light sources'
+          - 'Power requirement: Consumes a moderate amount of power per second'
+          - ''
+          - '“Endless light sources, beneath the sun...”'
+          - '⇨ ⚙ 16s'
+          - '⇨ ⚡ 520 J/s'
+          - '⇨ ⚡ 1314 J storable'
+
+    STRING_GEN_BASIC:
+      Name: 'String Duplicator'
+      Lore:
+        - 'This is a vanilla feature from before version 1.21'
+        - 'How could a feature be called a bug?'
+        - ''
+        - 'Function: Automatically generates and collects string'
+        - 'Power requirement: Consumes a tiny amount of power per second'
+        - ''
+        - '“Water touches the string, and then there are two...”'
+        - 'The Tao gives birth to One; One gives birth to Two; Two gives birth to Three; Three gives birth to all things'
+        - '⇨ ⚙ 1s'
+        - '⇨ ⚡ 5.2 J/s'
+        - '⇨ ⚡ 1314 J storable'
+    STRING_GEN_ULTRA:
+      Name: 'String Duplicator · Five-Phase'
+      Lore:
+        - 'This is a vanilla feature from before version 1.21'
+        - 'How could a feature be called a bug?'
+        - ''
+        - 'Function: Automatically generates and collects string'
+        - 'Power requirement: Consumes a small amount of power per second'
+        - ''
+        - '“Water touches the string, and then it becomes ?...”'
+        - 'Taiji gives birth to the Two Modes; the Two Modes give birth to the Four Symbols; the Four Symbols give birth to the Eight Trigrams'
+        - '⇨ ⚙ 1s'
+        - '⇨ ⚡ 52 J/s'
+        - '⇨ ⚡ 1314 J storable'
+
+    MINE_MAN_QUARTZ_BASIC:
+      Name: 'Powered Mining Robot-Quartz'
+      Lore:
+          - 'A capacitor, a magical mine, and a miracle'
+          - ''
+          - 'Function: Automatically generatesQuartz'
+          - 'Power requirement: Consumes a moderate amount of power per second'
+          - ''
+          - '“For countless ages, the mining robot has always been by your side...”'
+          - '⇨ ⚙ 2s'
+          - '⇨ ⚡ 520 J/s'
+          - '⇨ ⚡ 1314 J storable'
+    MINE_MAN_AMETHYST_SHARD_BASIC:
+      Name: 'Powered Mining Robot-Amethyst'
+      Lore:
+        - 'A capacitor, a magical mine, and a miracle'
+        - ''
+        - 'Function: Automatically generatesAmethyst'
+        - 'Power requirement: Consumes a moderate amount of power per second'
+        - ''
+        - '“For countless ages, the mining robot has always been by your side...”'
+        - '⇨ ⚙ 2s'
+        - '⇨ ⚡ 520 J/s'
+        - '⇨ ⚡ 1314 J storable'
+    MINE_MAN_REDSTONE_BASIC:
+      Name: 'Powered Mining Robot-Redstone'
+      Lore:
+        - 'A capacitor, a magical mine, and a miracle'
+        - ''
+        - 'Function: Automatically generatesRedstone'
+        - 'Power requirement: Consumes a moderate amount of power per second'
+        - ''
+        - '“For countless ages, the mining robot has always been by your side...”'
+        - '⇨ ⚙ 2s'
+        - '⇨ ⚡ 520 J/s'
+        - '⇨ ⚡ 1314 J storable'
+    MINE_MAN_DIAMOND_BASIC:
+      Name: 'Powered Mining Robot-Diamond'
+      Lore:
+        - 'A capacitor, a magical mine, and a miracle'
+        - ''
+        - 'Function: Automatically generatesDiamond'
+        - 'Power requirement: Consumes a moderate amount of power per second'
+        - ''
+        - '“For countless ages, the mining robot has always been by your side...”'
+        - '⇨ ⚙ 2s'
+        - '⇨ ⚡ 520 J/s'
+        - '⇨ ⚡ 1314 J storable'
+    MINE_MAN_LAPIS_LAZULI_BASIC:
+      Name: 'Powered Mining Robot-Lapis Lazuli'
+      Lore:
+        - 'A capacitor, a magical mine, and a miracle'
+        - ''
+        - 'Function: Automatically generatesLapis Lazuli'
+        - 'Power requirement: Consumes a moderate amount of power per second'
+        - ''
+        - '“For countless ages, the mining robot has always been by your side...”'
+        - '⇨ ⚙ 2s'
+        - '⇨ ⚡ 520 J/s'
+        - '⇨ ⚡ 1314 J storable'
+    MINE_MAN_EMERALD_BASIC:
+      Name: 'Powered Mining Robot-Emerald'
+      Lore:
+        - 'A capacitor, a magical mine, and a miracle'
+        - ''
+        - 'Function: Automatically generatesEmerald'
+        - 'Power requirement: Consumes a moderate amount of power per second'
+        - ''
+        - '“For countless ages, the mining robot has always been by your side...”'
+        - '⇨ ⚙ 2s'
+        - '⇨ ⚡ 520 J/s'
+        - '⇨ ⚡ 1314 J storable'
+    MINE_MAN_COAL_BASIC:
+      Name: 'Powered Mining Robot-Coal'
+      Lore:
+        - 'A capacitor, a magical mine, and a miracle'
+        - ''
+        - 'Function: Automatically generatesCoal'
+        - 'Power requirement: Consumes a moderate amount of power per second'
+        - ''
+        - '“For countless ages, the mining robot has always been by your side...”'
+        - '⇨ ⚙ 2s'
+        - '⇨ ⚡ 520 J/s'
+        - '⇨ ⚡ 1314 J storable'
+    MINE_MAN_NETHERITE_SCRAP_BASIC:
+      Name: 'Powered Mining Robot-Netherite Scrap'
+      Lore:
+        - 'A capacitor, a magical mine, and a miracle'
+        - ''
+        - 'Function: Automatically generatesNetherite Scrap'
+        - 'Power requirement: Consumes a moderate amount of power per second'
+        - ''
+        - '“For countless ages, the mining robot has always been by your side...”'
+        - '⇨ ⚙ 2s'
+        - '⇨ ⚡ 520 J/s'
+        - '⇨ ⚡ 1314 J storable'
+    MINE_MAN_IRON_DUST_BASIC:
+      Name: 'Powered Mining Robot-Iron Dust'
+      Lore:
+        - 'A capacitor, a magical mine, and a miracle'
+        - ''
+        - 'Function: Automatically generatesIron Dust'
+        - 'Power requirement: Consumes a moderate amount of power per second'
+        - ''
+        - '“For countless ages, the mining robot has always been by your side...”'
+        - '⇨ ⚙ 2s'
+        - '⇨ ⚡ 520 J/s'
+        - '⇨ ⚡ 1314 J storable'
+    MINE_MAN_GOLD_DUST_BASIC:
+      Name: 'Powered Mining Robot-Gold Dust'
+      Lore:
+        - 'A capacitor, a magical mine, and a miracle'
+        - ''
+        - 'Function: Automatically generatesGold Dust'
+        - 'Power requirement: Consumes a moderate amount of power per second'
+        - ''
+        - '“For countless ages, the mining robot has always been by your side...”'
+        - '⇨ ⚙ 2s'
+        - '⇨ ⚡ 520 J/s'
+        - '⇨ ⚡ 1314 J storable'
+    MINE_MAN_COPPER_DUST_BASIC:
+      Name: 'Powered Mining Robot-Copper Dust'
+      Lore:
+        - 'A capacitor, a magical mine, and a miracle'
+        - ''
+        - 'Function: Automatically generatesCopper Dust'
+        - 'Power requirement: Consumes a moderate amount of power per second'
+        - ''
+        - '“For countless ages, the mining robot has always been by your side...”'
+        - '⇨ ⚙ 2s'
+        - '⇨ ⚡ 520 J/s'
+        - '⇨ ⚡ 1314 J storable'
+    MINE_MAN_TIN_DUST_BASIC:
+      Name: 'Powered Mining Robot-Tin Dust'
+      Lore:
+        - 'A capacitor, a magical mine, and a miracle'
+        - ''
+        - 'Function: Automatically generatesTin Dust'
+        - 'Power requirement: Consumes a moderate amount of power per second'
+        - ''
+        - '“For countless ages, the mining robot has always been by your side...”'
+        - '⇨ ⚙ 2s'
+        - '⇨ ⚡ 520 J/s'
+        - '⇨ ⚡ 1314 J storable'
+    MINE_MAN_SILVER_DUST_BASIC:
+      Name: 'Powered Mining Robot-Silver Dust'
+      Lore:
+        - 'A capacitor, a magical mine, and a miracle'
+        - ''
+        - 'Function: Automatically generatesSilver Dust'
+        - 'Power requirement: Consumes a moderate amount of power per second'
+        - ''
+        - '“For countless ages, the mining robot has always been by your side...”'
+        - '⇨ ⚙ 2s'
+        - '⇨ ⚡ 520 J/s'
+        - '⇨ ⚡ 1314 J storable'
+    MINE_MAN_LEAD_DUST_BASIC:
+      Name: 'Powered Mining Robot-Lead Dust'
+      Lore:
+        - 'A capacitor, a magical mine, and a miracle'
+        - ''
+        - 'Function: Automatically generatesLead Dust'
+        - 'Power requirement: Consumes a moderate amount of power per second'
+        - ''
+        - '“For countless ages, the mining robot has always been by your side...”'
+        - '⇨ ⚙ 2s'
+        - '⇨ ⚡ 520 J/s'
+        - '⇨ ⚡ 1314 J storable'
+    MINE_MAN_ALUMINUM_DUST_BASIC:
+      Name: 'Powered Mining Robot-Aluminum Dust'
+      Lore:
+        - 'A capacitor, a magical mine, and a miracle'
+        - ''
+        - 'Function: Automatically generatesAluminum Dust'
+        - 'Power requirement: Consumes a moderate amount of power per second'
+        - ''
+        - '“For countless ages, the mining robot has always been by your side...”'
+        - '⇨ ⚙ 2s'
+        - '⇨ ⚡ 520 J/s'
+        - '⇨ ⚡ 1314 J storable'
+    MINE_MAN_ZINC_DUST_BASIC:
+      Name: 'Powered Mining Robot-Zinc Dust'
+      Lore:
+        - 'A capacitor, a magical mine, and a miracle'
+        - ''
+        - 'Function: Automatically generatesZinc Dust'
+        - 'Power requirement: Consumes a moderate amount of power per second'
+        - ''
+        - '“For countless ages, the mining robot has always been by your side..”'
+        - '⇨ ⚙ 2s'
+        - '⇨ ⚡ 520 J/s'
+        - '⇨ ⚡ 1314 J storable'
+    MINE_MAN_MAGNESIUM_DUST_BASIC:
+      Name: 'Powered Mining Robot-Magnesium Dust'
+      Lore:
+        - 'A capacitor, a magical mine, and a miracle'
+        - ''
+        - 'Function: Automatically generatesMagnesium Dust'
+        - 'Power requirement: Consumes a moderate amount of power per second'
+        - ''
+        - '“For countless ages, the mining robot has always been by your side...”'
+        - '⇨ ⚙ 2s'
+        - '⇨ ⚡ 520 J/s'
+        - '⇨ ⚡ 1314 J storable'
+    MINE_MAN_IRON_INGOT_BASIC:
+      Name: 'Powered Smelting Mining Robot-Iron Ingot'
+      Lore:
+        - 'A capacitor, a magical mine, and a miracle'
+        - ''
+        - 'Function: Automatically generatesIron Ingot'
+        - 'Power requirement: Consumes a moderate amount of power per second'
+        - ''
+        - '“For countless ages, the mining robot has always been by your side...”'
+        - '⇨ ⚙ 2s'
+        - '⇨ ⚡ 520 J/s'
+        - '⇨ ⚡ 1314 J storable'
+    MINE_MAN_GOLD_INGOT_BASIC:
+      Name: 'Powered Smelting Mining Robot-Gold Ingot'
+      Lore:
+        - 'A capacitor, a magical mine, and a miracle'
+        - ''
+        - 'Function: Automatically generatesGold Ingot'
+        - 'Power requirement: Consumes a moderate amount of power per second'
+        - ''
+        - '“For countless ages, the mining robot has always been by your side...”'
+        - '⇨ ⚙ 2s'
+        - '⇨ ⚡ 520 J/s'
+        - '⇨ ⚡ 1314 J storable'
+    MINE_MAN_COPPER_INGOT_BASIC:
+      Name: 'Powered Smelting Mining Robot-Copper Ingot'
+      Lore:
+        - 'A capacitor, a magical mine, and a miracle'
+        - ''
+        - 'Function: Automatically generatesCopper Ingot'
+        - 'Power requirement: Consumes a moderate amount of power per second'
+        - ''
+        - '“For countless ages, the mining robot has always been by your side...”'
+        - '⇨ ⚙ 2s'
+        - '⇨ ⚡ 520 J/s'
+        - '⇨ ⚡ 1314 J storable'
+    MINE_MAN_TIN_INGOT_BASIC:
+      Name: 'Powered Smelting Mining Robot-Tin Ingot'
+      Lore:
+        - 'A capacitor, a magical mine, and a miracle'
+        - ''
+        - 'Function: Automatically generatesTin Ingot'
+        - 'Power requirement: Consumes a moderate amount of power per second'
+        - ''
+        - '“For countless ages, the mining robot has always been by your side...”'
+        - '⇨ ⚙ 2s'
+        - '⇨ ⚡ 520 J/s'
+        - '⇨ ⚡ 1314 J storable'
+    MINE_MAN_SILVER_INGOT_BASIC:
+      Name: 'Powered Smelting Mining Robot-Silver Ingot'
+      Lore:
+        - 'A capacitor, a magical mine, and a miracle'
+        - ''
+        - 'Function: Automatically generatesSilver Ingot'
+        - 'Power requirement: Consumes a moderate amount of power per second'
+        - ''
+        - '“For countless ages, the mining robot has always been by your side...”'
+        - '⇨ ⚙ 2s'
+        - '⇨ ⚡ 520 J/s'
+        - '⇨ ⚡ 1314 J storable'
+    MINE_MAN_LEAD_INGOT_BASIC:
+      Name: 'Powered Smelting Mining Robot-Lead Ingot'
+      Lore:
+        - 'A capacitor, a magical mine, and a miracle'
+        - ''
+        - 'Function: Automatically generatesLead Ingot'
+        - 'Power requirement: Consumes a moderate amount of power per second'
+        - ''
+        - '“For countless ages, the mining robot has always been by your side...”'
+        - '⇨ ⚙ 2s'
+        - '⇨ ⚡ 520 J/s'
+        - '⇨ ⚡ 1314 J storable'
+    MINE_MAN_ALUMINUM_INGOT_BASIC:
+      Name: 'Powered Smelting Mining Robot-Aluminum Ingot'
+      Lore:
+        - 'A capacitor, a magical mine, and a miracle'
+        - ''
+        - 'Function: Automatically generatesAluminum Ingot'
+        - 'Power requirement: Consumes a moderate amount of power per second'
+        - ''
+        - '“For countless ages, the mining robot has always been by your side...”'
+        - '⇨ ⚙ 2s'
+        - '⇨ ⚡ 520 J/s'
+        - '⇨ ⚡ 1314 J storable'
+    MINE_MAN_ZINC_INGOT_BASIC:
+      Name: 'Powered Smelting Mining Robot-Zinc Ingot'
+      Lore:
+        - 'A capacitor, a magical mine, and a miracle'
+        - ''
+        - 'Function: Automatically generatesZinc Ingot'
+        - 'Power requirement: Consumes a moderate amount of power per second'
+        - ''
+        - '“For countless ages, the mining robot has always been by your side...”'
+        - '⇨ ⚙ 2s'
+        - '⇨ ⚡ 520 J/s'
+        - '⇨ ⚡ 1314 J storable'
+    MINE_MAN_MAGNESIUM_INGOT_BASIC:
+      Name: 'Powered Smelting Mining Robot-Magnesium Ingot'
+      Lore:
+        - 'A capacitor, a magical mine, and a miracle'
+        - ''
+        - 'Function: Automatically generatesMagnesium Ingot'
+        - 'Power requirement: Consumes a moderate amount of power per second'
+        - ''
+        - '“For countless ages, the mining robot has always been by your side...”'
+        - '⇨ ⚙ 2s'
+        - '⇨ ⚡ 520 J/s'
+        - '⇨ ⚡ 1314 J storable'
+    MINE_MAN_NETHERITE_INGOT_BASIC:
+      Name: 'Powered Mining Robot-Netherite Ingot'
+      Lore:
+        - 'A capacitor, a magical mine, and a miracle'
+        - ''
+        - 'Function: Automatically generatesNetherite Ingot'
+        - 'Power requirement: Consumes a moderate amount of power per second'
+        - ''
+        - '“For countless ages, the mining robot has always been by your side...”'
+        - '⇨ ⚙ 2s'
+        - '⇨ ⚡ 520 J/s'
+        - '⇨ ⚡ 1314 J storable'
+    MINE_MAN_MINERAL_BASIC:
+      Name: 'Powered Mining Robot-Single Block · Ore Vein'
+      Lore:
+        - 'Give the Single Block · Ore Vein to the robot'
+        - 'It will keep mining for you'
+        - ''
+        - 'Function: Automatically mines raw ores'
+        - 'Power requirement: Consumes a moderate amount of power per second'
+        - ''
+        - '“For countless ages, the mining robot has always been by your side...”'
+        - '⇨ ⚙ 2s'
+        - '⇨ ⚡ 520 J/s'
+        - '⇨ ⚡ 1314 J storable'
+    MINE_MAN_MINERAL_ULTRA:
+      Name: 'Five-Phase Mining Robot-Single Block · Ore Vein'
+      Lore:
+        - 'Powered by the strength of the five phases'
+        - 'It mines faster than an ordinary robot'
+        - ''
+        - 'Function: Automatically mines raw ores'
+        - 'Power requirement: Consumes a large amount of power per second'
+        - ''
+        - '“For countless ages, the mining robot has always been by your side...”'
+        - '⇨ ⚙ 1s'
+        - '⇨ ⚡ 5200 J/s'
+        - '⇨ ⚡ 131452.0 J storable'
+
+
+    FIVE_ELEMENT_GEN_BASIC:
+      Name: 'Five-Phase Spirit-Gathering Array [Basic]'
+      Lore:
+        - ' '
+        - '▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬'
+        - 'An ancient Eastern magical artifact'
+        - 'Contains the power of the five phases of heaven and earth'
+        - '▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬'
+        - 'Collectible elements:'
+        - ' ◉ Gold  | ◎ Wood  | ● Water  | ◐ Fire  | ◑ Earth'
+        - '▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬'
+        - 'How to use:'
+        - '  Place on the ground → automatically collects'
+        - '  Collection range: within 5 blocks'
+        - '  Collection rate: once every 3 seconds'
+        - '▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬'
+        - '“The five phases generate one another; all things cycle.”'
+        - ' '
+
+    ORIGIN_MATERIAL_GEN_MAKER_LITE:
+      Name: 'All-Things Foundry · Origin'
+      Lore:
+        - 'As alchemy advanced'
+        - 'people gradually approached the threshold of universal evolution'
+        - 'thus, the first “Rule” came into being'
+        - 'Although this was only a prototype of the “Rule”'
+        - 'it was indeed key to the quantitative progress of alchemical civilization'
+        - 'It truly defined the rules of sequence replication'
+        - 'Perhaps such rules had always existed'
+        - 'but had simply never been discovered'
+        - 'Or perhaps rules are designated by humanity?'
+        - 'It is the beginning of causality and the end of freedom'
+        - ''
+        - '⇨ ⚙ 5s'
+        - '⇨ ⚡ 520 J/s'
+        - '⇨ ⚡ 131452.0 J storable'
+        - ' '
+        - 'What you receive is never a coincidence, but a script written for you by the universe.'
+        - ' '
+
+    ORIGIN_MATERIAL_GEN_MAKER_ALPHA:
+      Name: 'Primordial Assembly Seat-α'
+      Lore:
+        - 'The only prototype that existed before the “All-Things Evolution Platform”'
+        - 'An important reference rule for the “Genesis Evolution Platform”'
+        - 'It is not used to forge matter, but to forge “rules”'
+        - 'When its creators tried to build a machine capable of evolving all things'
+        - 'they first had to define here what “all things” meant'
+        - 'The instant Assembly Seat-α activated, it exhausted every possible arrangement of matter in the universe'
+        - 'and collapsed them into immutable low-level code'
+        - 'The All-Things Evolution Platform appears to possess infinite creative power'
+        - 'but in truth, it merely executes the script already written by Primordial Assembly Seat-α'
+        - 'It is the beginning of causality and the end of freedom'
+        - ''
+        - '⇨ ⚙ 5s'
+        - '⇨ ⚡ 52000 J/s'
+        - '⇨ ⚡ 131452.0 J storable'
+        - ' '
+        - 'What you receive is never a coincidence, but a script written for you by the universe.'
+        - ' '
+
+    ORIGIN_MATERIAL_GEN_MAKER_BETA:
+      Name: 'Primordial Assembly Seat-β'
+      Lore:
+        - 'A prototype that appeared after “Primordial Assembly Seat-α”'
+        - 'An important reference rule for the “Genesis Evolution Platform”'
+        - 'It is not used to forge matter, but to forge “rules”'
+        - 'When its creators tried to build a machine capable of evolving all things'
+        - 'they first had to define here what “all things” meant'
+        - 'The instant Assembly Seat-β activated, it exhausted every possible arrangement of matter in the universe'
+        - 'and collapsed them into immutable low-level code'
+        - 'The All-Things Evolution Platform appears to possess infinite creative power'
+        - 'but in truth, it merely executes the script already written by Primordial Assembly Seat-β'
+        - 'It is the beginning of causality and the end of freedom'
+        - ''
+        - '⇨ ⚙ 5s'
+        - '⇨ ⚡ 52000 J/s'
+        - '⇨ ⚡ 131452.0 J storable'
+        - ' '
+        - 'What you receive is never a coincidence, but a script written for you by the universe.'
+        - ' '
+
+    ORIGIN_MATERIAL_GEN_LITE:
+      Name: 'All-Things Evolution Platform · Origin'
+      Lore:
+        - ' '
+        - 'The original prototype of the All-Things Evolution Platform.'
+        - 'Can analyze basic matter and extrapolate it into physical forms.'
+        - ' '
+        - 'Warning: Limited by available energy, it can only perform low-level evolution.'
+        - ' '
+        - 'All-Things Evolution Series · First Generation'
+        - 'Function: Matter analysis and basic-form reconstruction'
+        - ''
+        - '⇨ ⚙ 1s'
+        - '⇨ ⚡ 52 J/s'
+        - '⇨ ⚡ 131452.0 J storable'
+        - ''
+        - 'What you receive is never a coincidence, but a script written for you by the universe.'
+        - ' '
+
+    ORIGIN_MATERIAL_GEN_LITE_PRESS:
+      Name: 'All-Things Evolution Platform · Convergence'
+      Lore:
+        - ' '
+        - 'An altered form of the All-Things Evolution Platform.'
+        - 'Can control multiple All-Things Evolution Platform · Origin units simultaneously.'
+        - ' '
+        - 'Warning: Due to technical limitations, it can only control Origin-series All-Things Evolution Platforms.'
+        - ' '
+        - 'All-Things Evolution Series · Hub'
+        - 'Function: Centrally controls production by the All-Things Evolution Platform'
+        - ''
+        - '⇨ ⚙ 1s'
+        - '⇨ ⚡ 52 J/s'
+        - '⇨ ⚡ 131452.0 J storable'
+        - ''
+        - 'What you receive is never a coincidence, but a script written for you by the universe.'
+        - ' '
+
+    ORIGIN_MATERIAL_GEN:
+      Name: 'All-Things Evolution Platform · Swift'
+      Lore:
+        - ' '
+        - 'The ultimate form of the All-Things Evolution Platform.'
+        - 'Can analyze basic matter and extrapolate it into physical forms.'
+        - ' '
+        - 'Warning: Limited by current technology, it can only perform low-level evolution.'
+        - ''
+        - 'All-Things Evolution Series · Maximum Speed'
+        - 'Special effect: Extremely high item output rate'
+        - 'Function: Matter analysis and basic-form reconstruction'
+        - ''
+        - '⇨ ⚙ 1s'
+        - '⇨ ⚡ 52000 J/s'
+        - '⇨ ⚡ 131452.0 J storable'
+        - ''
+        - 'What you receive is never a coincidence, but a script written for you by the universe.'
+        - ' '
+
+    ORIGIN_MATERIAL_GEN_ULTRA:
+      Name: 'Ultimate Evolution Platform'
+      Lore:
+        - ' '
+        - '“Creation is merely lifting the veil from what has always existed.”'
+        - 'This device can analyze the underlying information of matter'
+        - 'and extrapolate it into any form in reality'
+        - ' '
+        - 'But remember alchemy’s first iron law'
+        - 'Equivalent exchange applies not only to mass, but also to causality'
+        - 'Perhaps you could use it to produce some US dollars?'
+        - 'Or perhaps a Holy Grail that restores health and mana?'
+        - ''
+        - '⇨ ⚙ 1s'
+        - '⇨ ⚡ 52000 J/s'
+        - '⇨ ⚡ 131452.0 J storable'
+        - ''
+        - 'What you receive is never a coincidence, but a script written for you by the universe.'
+        - ' '
+
+    SLIME_BOOK_GEN_ADVANCE:
+      Name: 'Magic Printing Press'
+      Lore:
+        - 'Powered by the strength of a Slime core'
+        - 'It prints more efficiently than an enchanting table'
+        - ''
+        - 'Function: Automatically prints enchanted books and knowledge books'
+        - 'Power requirement: Consumes a large amount of power per second'
+        - ''
+        - '“We don’t just print words; we bind souls...”'
+        - ''
+        - '⇨ ⚙ 2s'
+        - '⇨ ⚡ 520 J/s'
+        - '⇨ ⚡ 1314 J storable'
+
+
+  MACHINE:
+    PHANTON_SUPPRESSION:
+      Name: 'Phantom Suppressor'
+      Lore:
+        - 'Phantoms fear light. Makes sense, right?'
+        - 'Range: 20-block radius'
+        - 'As soon as one appears, it is immediately erased.'
+        - ''
+        - '⇨ ⚡ 520 J/s'
+        - '⇨ ⚡ 1314 J storable'
+
+
+
+  POWER_MACHINE:
+    POWER_FIRE_UNSTABLE:
+      Name: 'Unstable Combustion Generator'
+      Lore:
+        - 'A strange device that combines magic and technology.'
+        - ''
+        - 'Type: Unstable energy'
+        - 'Generation rate: 2–52,000 J/s'
+        - 'Maximum storage: 131,452.0 J'
+        - ''
+        - 'Unstable property:'
+        - 'Power generation efficiency fluctuates with the surrounding temperature.'
+
+    POWER_FIRE_STABILITY:
+      Name: 'Ultimate Combustion Generator'
+      Lore:
+        - 'Generates power using heat from below.'
+        - ''
+        - 'Type: Ultimate generator'
+        - 'Generation rate: 520–1,314,520 J/s'
+        - 'Maximum storage: 1,314,520 J'
+        - ''
+        - 'Unstable property:'
+        - 'Power generation efficiency fluctuates with the surrounding temperature.'
+
+    POWER_COLOR_EGG_BLOCK:
+      Name: 'Block · Easter Egg Generator'
+      Lore:
+        - 'Place any block on top to generate power.'
+        - 'Current hint: No further changes'
+        - ''
+        - 'Type: Easter egg generator'
+        - 'Generation rate: 2–131,452 J/s'
+        - 'Maximum storage: 1,314,520 J'
+        - ''
+        - 'Easter egg feature:'
+        - 'This generator produces power using a random value within a range.'
+    POWER_COLOR_EGG_KEY:
+      Name: 'Keyed · Easter Egg Generator'
+      Lore:
+        - 'Place items in slots 1–9 at the top'
+        - 'An occupied slot represents 1; an empty slot represents 0'
+        - 'For example, slots 1, 2, 5, 6, and 9 contain items'
+        - 'The corresponding key is: 110011001'
+        - 'Hint for key 1: See the changelog'
+        - 'Hint for key 2: See the changelog'
+        - ''
+        - 'Type: Easter egg generator'
+        - 'Generation rate: 5,200–131,452 J/s'
+        - 'Maximum storage: 1,314,520 J'
+        - ''
+        - 'Easter egg feature:'
+        - 'This generator produces power using a random value within a range.'
+
+
+    POWER_FISH_ELECTRIC:
+      Name: 'Bio Generator'
+      Lore:
+        - 'A bio generator capable of producing large amounts of power.'
+        - 'Place a captured electric eel inside to generate large amounts of power.'
+        - 'This machine’s power output efficiency varies with the eel’s size.'
+        - 'Type: Bio generator'
+        - 'Generation rate: Extremely high J/s'
+        - 'Maximum storage: 25,000,000 J'
+
+
+    FISH_VIVARIUM_EASY:
+      Name: 'Simple Ecosystem Tank'
+      Lore:
+        - 'A simple ecological cycle system'
+        - 'Used for the production cycle of magical fish'
+        - 'Includes mineral cycling and light regulation systems'
+        - 'Insert the corresponding magical fish to produce items continuously'
+        - 'Life pulses in the water; energy forms in stillness.'
+        - 'Can output products directly to the Magic Storage Terminal · Reconstructed Edition'
+        - 'Configure the corresponding storage item in advance'
+        - '⇨ ⚙ 0 s'
+        - '⇨ ⚡ 520 J/s'
+        - '⇨ ⚡ 131452.0 J storable'
+
+    FISH_VIVARIUM:
+      Name: 'Ecosystem Tank'
+      Lore:
+        - 'A precision ecological cycle system'
+        - 'Used for the production cycle of magical fish'
+        - 'Includes mineral cycling and light regulation systems'
+        - 'Insert the corresponding magical fish to produce items continuously'
+        - 'Life pulses in the water; energy forms in stillness.'
+        - 'Can output products directly to the Magic Storage Terminal · Reconstructed Edition'
+        - 'Configure the corresponding storage item in advance'
+        - '⇨ ⚙ 0 s'
+        - '⇨ ⚡ 520 J/s'
+        - '⇨ ⚡ 131452.0 J storable'
+
+    FISH_VIVARIUM_STACK:
+      Name: 'Aether Ecosystem Array'
+      Lore:
+        - 'A highly integrated ecological cycle system'
+        - 'Used for the production cycle of magical fish'
+        - 'Requires ecosystem tanks to build the ecological cycle system'
+        - 'Insert the corresponding magical fish to produce items continuously'
+        - 'Life pulses in the water; energy forms in stillness.'
+        - 'Only supports direct output to the Magic Storage Terminal · Reconstructed Edition'
+        - 'Configure the corresponding storage item in advance'
+        - 'Can recognize storage in Aether Secret Caskets'
+        - 'Place the Ecosystem Tank Storage Aether Secret Casket into the machine'
+        - 'Can be placed directly into Quantum Storage to collect products'
+        - 'Note: The maximum number of items produced per operation is 2.1B'
+        - '⇨ ⚙ 0 s'
+        - '⇨ ⚡ 52000 J/s'
+        - '⇨ ⚡ 1314520 J storable'
+
+
+    WHITE_SLOTS_CHEST_53:
+      Name: '53-Slot Overlapping Input/Output Chest'
+      Lore:
+        - 'Can be used as a container'
+        - 'Can serve as an intermediary between different storage systems'
+    CARGO_FRAGMENT_EXTRACT:
+      Name: 'Aether Secret Casket Converter'
+      Lore:
+        - 'Can be used on Quantum Storage'
+        - 'Extracts items from Quantum Storage into Aether Secret Caskets'
+
+
+    MAGIC_POWER_INPUT_MACHINE:
+      Name: 'Power Transfer Station · α'
+      Lore:
+        - 'Transfers power from the power grid into power carriers'
+        - 'For example: Aether · Spectral Electric Eel'
+        - 'Magic Power Card'
+        - ''
+        - 'Function: An important component for building a subdivided power-grid architecture'
+        - 'Power requirement: Extremely high'
+        - ''
+        - '⇨ ⚙ ? s'
+        - '⇨ ⚡ 0 ~ 2147483647 J/s'
+        - '⇨ ⚡ 2147483647 J storable'
+    MAGIC_POWER_OUTPUT_MACHINE:
+      Name: 'Power Transfer Station · β'
+      Lore:
+        - 'Transfers power from power carriers into the power grid'
+        - 'For example: Aether · Spectral Electric Eel'
+        - 'Magic Power Card'
+        - ''
+        - 'Function: An important component for building a subdivided power-grid architecture'
+        - 'Generation efficiency: Extremely high'
+        - ''
+        - '⇨ ⚙ ? s'
+        - '⇨ ⚡ 0 ~ 2147483647 J/s'
+        - '⇨ ⚡ 2147483647 J storable'
+
+
+
+
+
+  RECIPE_MACHINE:
+    PRE_BUILDINGS_MACHINE:
+      Name: 'Magic Construction Workshop'
+      Lore:
+        - 'A mysterious workshop filled with blueprints.'
+        - 'Provide the materials, and it can build them for you.'
+        - ''
+        - 'Function: Creates simple prefabricated structures'
+        - 'Power requirement: Consumes a small amount of power per second'
+        - ''
+        - 'Is it the power of magic, or the crystallized wisdom of ancient artisans?'
+        - 'In any case, this workshop holds secrets yet unknown.'
+        - '⇨ ⚙ ？ s'
+        - '⇨ ⚡ 52.0 J/s'
+        - '⇨ ⚡ 1314 J storable'
+    PRE_BUILDINGS_MACHINE_ADVANCED:
+      Name: 'Ultimate Magic Construction Workshop'
+      Lore:
+        - 'A mysterious workshop filled with blueprints.'
+        - 'Provide the materials, and it can build them for you.'
+        - ''
+        - 'Function: Creates large prefabricated structures'
+        - 'Power requirement: Consumes a large amount of power per second'
+        - ''
+        - 'Is it the power of magic, or the crystallized wisdom of ancient artisans?'
+        - 'In any case, this workshop holds secrets yet unknown.'
+        - '⇨ ⚙ ？ s'
+        - '⇨ ⚡ 520 J/s'
+        - '⇨ ⚡ 131452.0 J storable'
+    PRE_BUILDINGS_MACHINE_RESOURCE_ADVANCED:
+      Name: 'Magic Materials Workshop'
+      Lore:
+        - 'A mysterious workshop filled with high-precision instruments.'
+        - 'Provide the materials, and it can compress them for you.'
+        - ''
+        - 'Function: Creates prefabricated compressed magical materials'
+        - 'Power requirement: Consumes a large amount of power per second'
+        - ''
+        - 'Is it the power of magic, or the crystallized wisdom of ancient artisans?'
+        - 'In any case, this workshop holds secrets yet unknown.'
+        - '⇨ ⚙ ？ s'
+        - '⇨ ⚡ 520 J/s'
+        - '⇨ ⚡ 131452.0 J storable'
+    PRE_BUILDINGS_MACHINE_RESOURCE_ADVANCED_REVERSE:
+      Name: 'Magic Materials Workshop'
+      Lore:
+        - 'A mysterious workshop filled with high-precision instruments.'
+        - 'Provide the materials, and it can decompress them for you.'
+        - ''
+        - 'Function: Decompresses compressed magical materials'
+        - 'Power requirement: Consumes a large amount of power per second'
+        - ''
+        - 'Is it the power of magic, or the crystallized wisdom of ancient artisans?'
+        - 'In any case, this workshop holds secrets yet unknown.'
+        - '⇨ ⚙ ？ s'
+        - '⇨ ⚡ 520 J/s'
+        - '⇨ ⚡ 131452.0 J storable'
+    WOOD_TRANSFORM_BASIC:
+      Name: 'Jadewood Converter'
+      Lore:
+          - 'A mysterious machine that emits a faint emerald glow.'
+          - 'It is said to understand the souls of trees and transform one type of wood into another.'
+          - ''
+          - 'Function: Automatically converts logs or leaves'
+          - 'Power requirement: Consumes a small amount of electricity per second'
+          - ''
+          - 'Is it the power of nature, or the wisdom of ancient craftsmen?'
+          - 'Whatever the truth, this machine brings the secrets of the forest within reach.'
+          - '⇨ ⚙ 4 s'
+          - '⇨ ⚡ 52.0 J/s'
+          - '⇨ ⚡ 1314 J storage capacity'
+    WOOD_TRANSFORM_ULTRA:
+      Name: 'Ultimate Jadewood Converter'
+      Lore:
+        - 'A mysterious machine that emits a faint emerald glow.'
+        - 'It is said to understand the souls of trees and transform one type of wood into another.'
+        - ''
+        - 'Function: Automatically converts logs or leaves'
+        - 'Power requirement: Consumes a large amount of electricity per second'
+        - ''
+        - 'Is it the power of nature, or the wisdom of ancient craftsmen?'
+        - 'Whatever the truth, this machine brings the secrets of the forest within reach.'
+        - '⇨ ⚙ 1 s'
+        - '⇨ ⚡ 520 J/s'
+        - '⇨ ⚡ 1314 J storage capacity'
+    LIGHT_TRANSFORM_BASIC:
+      Name: 'Light Energy Activator'
+      Lore:
+        - 'It emits an eerie glow.'
+        - ''
+        - 'Function: Uses electricity to activate light energy'
+        - 'Power requirement: Consumes a small amount of electricity per second to extract light energy from light sources'
+        - ''
+        - '“Limited light sources, limited energy...”'
+        - '⇨ ⚙ ？ s'
+        - '⇨ ⚡ 52.0 J/s'
+        - '⇨ ⚡ 1314 J storage capacity'
+    LIGHT_EXTRACT_BASIC:
+      Name: 'Light Source Extractor'
+      Lore:
+          - 'Extracts a limited amount of light from luminous blocks.'
+          - ''
+          - 'Function: Automatically extracts light sources'
+          - 'Power requirement: Consumes a small amount of electricity per second'
+          - ''
+          - '“Limited light sources, within matter...”'
+          - '⇨ ⚙ ? s'
+          - '⇨ ⚡ 52.0 J/s'
+          - '⇨ ⚡ 1314 J storage capacity'
+    QUARTZ_PURE_MACHINE_BAISC:
+      Name: 'Pure Silicon Extractor'
+      Lore:
+          - 'Restructures the protons inside ingots, transforming them into pure silicon.'
+          - ''
+          - 'Function: Automatically extracts pure silicon'
+          - 'Power requirement: Consumes a small amount of electricity per second to extract silicon and a small amount of quartz'
+          - ''
+          - '“Pure silicon, everywhere...”'
+          - '⇨ ⚙ ? s'
+          - '⇨ ⚡ 52.0 J/s'
+          - '⇨ ⚡ 1314 J storage capacity'
+    QUARTZ_PURE_MACHINE_ULTRA:
+      Name: 'Pure Silicon Extractor · Five Elements'
+      Lore:
+        - 'Restructures the protons inside ingots, transforming them into pure silicon.'
+        - ''
+        - 'Function: Extracts pure silicon more quickly'
+        - 'Power requirement: Consumes a large amount of electricity per second to extract silicon and quartz'
+        - ''
+        - '“Pure silicon, everywhere...”'
+        - '⇨ ⚙ ? s'
+        - '⇨ ⚡ 520 J/s'
+        - '⇨ ⚡ 1314 J storage capacity'
+
+
+    INTEGRATION_ORIGIN_SLIME_MINERAL_POWDER_LINE:
+      Name: 'All-in-One Ore Dust Production Line'
+      Lore:
+        - 'Combines several machines from the original Slimefun.'
+        - 'Provides a complete ore dust production line.'
+        - 'Removes some unnecessary production processes.'
+        - ''
+        - 'Function: An ore dust production line'
+        - 'Power requirement: Consumes a small amount of electricity and raw materials per second'
+        - ''
+        - '“Pure silicon, everywhere...”'
+        - '⇨ ⚙ ? s'
+        - '⇨ ⚡ 52.0 J/s'
+        - '⇨ ⚡ 1314 J storage capacity'
+    INTEGRATION_ORIGIN_SLIME_MINERAL_POWDER_LINE_ULTRA:
+      Name: 'All-in-One Ore Dust Production Line · ULTRA'
+      Lore:
+        - 'Combines several machines from the original Slimefun.'
+        - 'Provides a complete ore dust production line.'
+        - 'Removes some unnecessary production processes.'
+        - 'Faster! Faster! Faster!'
+        - ''
+        - 'Function: An ore dust production line'
+        - 'Power requirement: Consumes a small amount of electricity and raw materials per second'
+        - ''
+        - '“Pure silicon, everywhere...”'
+        - '⇨ ⚙ ? s'
+        - '⇨ ⚡ 520 J/s'
+        - '⇨ ⚡ 1314 J storage capacity'
+    INTEGRATION_ORIGIN_SLIME_MINERAL_POWDER_LINE_DEFAULT:
+      Name: 'All-in-One Ore Dust Production Line (Separate Input/Output Slots)'
+      Lore:
+        - 'Combines several machines from the original Slimefun.'
+        - 'Provides a complete ore dust production line.'
+        - 'Removes some unnecessary production processes.'
+        - ''
+        - 'Function: An ore dust production line'
+        - 'Power requirement: Consumes a small amount of electricity and raw materials per second'
+        - ''
+        - '“Pure silicon, everywhere...”'
+        - '⇨ ⚙ ? s'
+        - '⇨ ⚡ 52.0 J/s'
+        - '⇨ ⚡ 1314 J storage capacity'
+    INTEGRATION_ORIGIN_SLIME_MINERAL_POWDER_LINE_ULTRA_DEFAULT:
+      Name: 'All-in-One Ore Dust Production Line · ULTRA (Separate Input/Output Slots)'
+      Lore:
+        - 'Combines several machines from the original Slimefun.'
+        - 'Provides a complete ore dust production line.'
+        - 'Removes some unnecessary production processes.'
+        - 'Faster! Faster! Faster!'
+        - ''
+        - 'Function: An ore dust production line'
+        - 'Power requirement: Consumes a small amount of electricity and raw materials per second'
+        - ''
+        - '“Pure silicon, everywhere...”'
+        - '⇨ ⚙ ? s'
+        - '⇨ ⚡ 520 J/s'
+        - '⇨ ⚡ 1314 J storage capacity'
+
+
+    INGOT_PURE_MACHINE:
+      Name: 'Magical Element Purifier'
+      Lore:
+        - 'Removes most impurities, along with a small amount of pure material?'
+        - ''
+        - 'Function: Purifies magical ingots'
+        - 'Power requirement: Consumes a moderate amount of electricity per second'
+        - ''
+        - '“What is it that we seek...”'
+        - '⇨ ⚙ ? s'
+        - '⇨ ⚡ 520 J/s'
+        - '⇨ ⚡ 1314 J storage capacity'
+
+    TWO_TO_MAGIC_GEO_MACHINE:
+      Name: 'Magic 2.0 -> RSC Magic Geo Resource Converter'
+      Lore:
+        - ' '
+        - 'Converts magical resources into resources.'
+        - 'Requires magical resources'
+        - ' '
+        - 'Function: Automatic conversion'
+        - 'Power requirement: Consumes a tiny amount of electricity per second'
+        - ' '
+        - '“The secrets of nature are at your fingertips.”'
+        - '⇨ ⚙ ？ s'
+        - '⇨ ⚡ 52 J/s'
+        - '⇨ ⚡ 1314 J storage capacity'
+
+    CRUDE_MACHINE_TEST:
+      Name: 'Test Primitive Machine'
+      Lore:
+        - ' '
+        - 'Test Primitive Machine'
+
+
+
+
+
+
+
+
+
+  TEMPLATE:
+    DIRT_MEAL_MACHINE:
+      Name: 'Magical Soil Garden'
+      Lore:
+        - 'Here, you can propagate ordinary soil into special types of soil.'
+        - 'Nether soil counts as soil too; we just call it Netherrack.'
+        - 'Whatever it is, if its name ends in “soil,” it counts as soil.'
+        - 'Some colored types cannot be propagated, though~'
+        - ''
+        - 'Function: Quickly propagates ordinary soil into special soil'
+        - 'Power requirement: Consumes a small amount of electricity and bone meal per second'
+        - ''
+        - '“Amazing, isn’t it? The mighty Jin Kela...”'
+        - '⇨ ⚙ ? s'
+        - '⇨ ⚡ 52.0 J/s'
+        - '⇨ ⚡ 1314 J storage capacity'
+    FISHING_MACHINE:
+      Name: 'Magical Fishing Farm'
+      Lore:
+        - 'Use electrical magic here to help you fish.'
+        - 'The fishing rod is only a medium and will not lose durability.'
+        - 'Just give it a fishing rod and bait, and it will start fishing automatically.'
+        - ''
+        - 'Function: Fishes using bait'
+        - 'Power requirement: Consumes a small amount of electricity and bait per second'
+        - ''
+        - '“A true angler never gets skunked and never comes home empty-handed...”'
+        - '⇨ ⚙ ? s'
+        - '⇨ ⚡ 52.0 J/s'
+        - '⇨ ⚡ 1314 J storage capacity'
+
+
+
+
+  SKY_BLOCK:
+    SINGLE_CUBE_ORIGIN:
+      Name: 'Genesis of All Things · Single Block · Origin'
+      Lore:
+        - 'Mine it.'
+        - 'It will disappear.'
+        - 'So, does love disappear too?'
+        - 'Then it reforms.'
+        - 'So, does love come back too?'
+        - 'It can become any block.'
+        - 'But it will never become an unbreakable block.'
+        - 'Fortune and Silk Touch have no effect on it~'
+        - ''
+        - 'Function: An infinite block that regenerates after being mined'
+        - 'How to use: Mine it with a special tool; otherwise, it will drop itself'
+        - ''
+        - 'Magic · Sky Block'
+
+    SINGLE_CUBE_ORE:
+      Name: 'Genesis of All Things · Single Block · Ore Vein'
+      Lore:
+        - 'Mine it.'
+        - 'It will disappear.'
+        - 'So, does love disappear too?'
+        - 'Then it reforms.'
+        - 'So, does love come back too?'
+        - 'It can become any ore block.'
+        - 'Sometimes it may also become an ore-vein host block.'
+        - 'Fortune and Silk Touch have no effect on it~'
+        - ''
+        - 'Function: An infinite block that regenerates after being mined'
+        - 'How to use: Mine it with a special tool; otherwise, it will drop itself'
+        - ''
+        - 'Magic · Sky Block'
+
+
+    SINGLE_DIAMOND_PICKAXE:
+      Name: 'Single Block · Diamond Pickaxe'
+      Lore:
+        - 'This is a magical pickaxe.'
+        - 'Unlike an ordinary pickaxe,'
+        - 'it can resonate with single blocks.'
+        - 'Mining a single block with it may produce unexpected results.'
+        - ''
+        - 'Can be used to mine single-block forms.'
+        - 'Mining them drops the corresponding item.'
+        - ''
+        - 'Magic · Sky Block'
+    SINGLE_DIAMOND_AXE:
+      Name: 'Single Block · Diamond Axe'
+      Lore:
+        - 'This is a magical axe.'
+        - 'Unlike an ordinary axe,'
+        - 'it can resonate with single blocks.'
+        - 'Mining a single block with it may produce unexpected results.'
+        - ''
+        - 'Can be used to mine single-block forms.'
+        - 'Mining them drops the corresponding item.'
+        - ''
+        - 'Magic · Sky Block'
+    SINGLE_DIAMOND_SHOVEL:
+      Name: 'Single Block · Diamond Shovel'
+      Lore:
+        - 'This is a magical shovel.'
+        - 'Unlike an ordinary shovel,'
+        - 'it can resonate with single blocks.'
+        - 'Mining a single block with it may produce unexpected results.'
+        - ''
+        - 'Can be used to mine single-block forms.'
+        - 'Mining them drops the corresponding item.'
+        - ''
+        - 'Magic · Sky Block'
+    SINGLE_DIAMOND_HOE:
+      Name: 'Single Block · Diamond Hoe'
+      Lore:
+        - 'This is a magical hoe.'
+        - 'Unlike an ordinary hoe,'
+        - 'it can resonate with single blocks.'
+        - 'Mining a single block with it may produce unexpected results.'
+        - ''
+        - 'Can be used to mine single-block forms.'
+        - 'Mining them drops the corresponding item.'
+        - ''
+        - 'Magic · Sky Block'
+
+
+
+
+
+
+
+  MIHOYO_ROLE:
+    MIHOYO_STAR_RAY_MACHINE:
+      Name: 'Starlight Scanner'
+      Lore:
+        - 'Lets you see the item inside a mystery box.'
+        - ''
+        - 'Function: Automatically opens mystery boxes'
+        - 'Power requirement: Starlight is everywhere'
+        - ''
+        - '“It must be what you wanted...”'
+        - '⇨ ⚙ 0.5 s'
+        - '⇨ ⚡ 0 J/s'
+        - '⇨ ⚡   J storage capacity'
+
+    HONKAI_STAR_RAIL_BOX:
+      Name: 'Honkai: Star Rail Character Mystery Box'
+      Lore:
+        - ""
+        - "Right-click to open the mystery box"
+        - "You can also use the Starlight Scanner to open this mystery box"
+        - "What you get"
+        - "depends on your luck"
+        - ""
+        - "Mysterious Mystery Box"
+    JING_LIU:
+      Name: 'Jingliu'
+      Lore:
+        - ''
+        - 'This is Jingliu'
+        - ''
+        - 'Honkai: Star Rail'
+    SILVER_WOLF:
+      Name: 'Silver Wolf'
+      Lore:
+        - ''
+        - 'This is Silver Wolf'
+        - ''
+        - 'Honkai: Star Rail'
+    KAFKA:
+      Name: 'Kafka'
+      Lore:
+        - ''
+        - 'This is Kafka'
+        - ''
+        - 'Honkai: Star Rail'
+    SUNDAY:
+      Name: 'Sunday'
+      Lore:
+        - ''
+        - 'This is Sunday'
+        - ''
+        - 'Honkai: Star Rail'
+    LUNAE:
+      Name: 'Dan Heng · Imbibitor Lunae'
+      Lore:
+        - ''
+        - 'This is Dan Heng · Imbibitor Lunae'
+        - ''
+        - 'Honkai: Star Rail'
+    HUOHUO:
+      Name: 'Huohuo'
+      Lore:
+        - ''
+        - 'This is Huohuo'
+        - ''
+        - 'Honkai: Star Rail'

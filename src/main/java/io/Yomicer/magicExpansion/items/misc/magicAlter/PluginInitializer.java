@@ -17,23 +17,23 @@ public class PluginInitializer {
     }
 
     public void initialize() {
-        // 初始化Keys
+        // Set up the keys
         altarWandKey = new NamespacedKey(plugin, "altar_wand");
         recipeBookKey = new NamespacedKey(plugin, "recipe_book");
 
-        // 初始化管理器
+        // Set up the managers
         altarManager = new MagicAltarManager(plugin);
         recipeBookManager = new RecipeBookManager(plugin);
 
-        // 注册事件监听器
+        // Register the event listeners
         Bukkit.getPluginManager().registerEvents(new MagicAltarListener(plugin), plugin);
         Bukkit.getPluginManager().registerEvents(new RecipeBookListener(plugin), plugin);
 
-        // 注册命令
+        // Register the commands
         plugin.getCommand("mxwand").setExecutor(new MagicAltarCommand(plugin));
         plugin.getCommand("mxalter").setExecutor(new MxEnchantCommand(plugin));
 
-        // 加载配方
+        // Load recipes
         altarManager.loadRecipes();
     }
 

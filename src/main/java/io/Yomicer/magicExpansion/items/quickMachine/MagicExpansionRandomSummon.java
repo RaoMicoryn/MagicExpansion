@@ -41,24 +41,24 @@ public class MagicExpansionRandomSummon extends SimpleSlimefunItem<ItemUseHandle
 
                 Player player = e.getPlayer();
                 ItemStack itemInHand = player.getInventory().getItemInMainHand();
-                // 检查玩家手上是否有物品
+                // Check the item in the player's handitem
                 if (e.getHand()!= HAND) {
-                    player.sendMessage(getGradientName("请使用主手使用~", createColorList()));
+                    player.sendMessage(getGradientName("Please use this with your main hand!", createColorList()));
                     return;
                 }
                 if(!ItemPermissionUtils.hasPermissionRe(player)){
                     return;
                 }
 
-                    // 减少手上的物品数量
+                    // Reduce the amount of the item in handitemamount
                     if (itemInHand.getAmount() > 1) {
                         itemInHand.setAmount(itemInHand.getAmount() - 1);
                     } else {
-                        player.getInventory().setItemInMainHand(null); // 如果数量为 1，则直接移除
+                        player.getInventory().setItemInMainHand(null); // If there's only one, remove it
                     }
-                    // 使用 entitySpawner
-                    // 在距离玩家 3 格的位置随机召唤一个生物
-                    // 调用 EntitySpawner 的实例方法
+                    // Use entitySpawner
+                    // Spawn a random mob 3 blocks away from the player
+                    // Call the EntitySpawner instance method
                     entitySpawner.spawnRandomEntityNearPlayer(player);
 
 
@@ -69,12 +69,12 @@ public class MagicExpansionRandomSummon extends SimpleSlimefunItem<ItemUseHandle
 
 
 
-    /*覆写颜色*/
+    /*Override colors*/
     /**
-     * 将 RGB 值转换为 Minecraft 颜色代码字符
+     * Convert an RGB value to a Minecraft color code character
      *
-     * @param value RGB 分量值（0-255）
-     * @return 十六进制字符（0-9 或 A-F）
+     * @param value RGB value (0-255)
+     * @return Hex character (0-9 or A-F)
      */
     public static char codeColor(int value) {
         if (value < 0 || value > 15) {
@@ -84,16 +84,16 @@ public class MagicExpansionRandomSummon extends SimpleSlimefunItem<ItemUseHandle
     }
 
     /**
-     * 生成带有渐变色的字符串（Minecraft §x 格式）
+     * Create a string with gradient colors (Minecraft §x format)
      *
-     * @param text       输入的字符串
-     * @param colorList  渐变色列表
-     * @return 带有渐变色的字符串
+     * @param text       Input text
+     * @param colorList  List of gradient colors
+     * @return String with gradient colors
      */
     public static String getGradientName(String text, List<Color> colorList) {
         StringBuilder stringBuilder = new StringBuilder();
 
-        // 如果文本为空或长度不足，补全空格
+        // Add spaces if the text is empty or too short
         if (text.length() == 0) {
             text += " ";
         }
@@ -103,16 +103,16 @@ public class MagicExpansionRandomSummon extends SimpleSlimefunItem<ItemUseHandle
 
         int length = text.length();
         for (int i = 0; i < length; i++) {
-            double p = ((double) i) / (length - 1) * (colorList.size() - 1); // 插值进度
-            Color color1 = colorList.get((int) Math.floor(p)); // 起始颜色
-            Color color2 = colorList.get((int) Math.ceil(p));  // 结束颜色
+            double p = ((double) i) / (length - 1) * (colorList.size() - 1); // Interpolation progress
+            Color color1 = colorList.get((int) Math.floor(p)); // Start color
+            Color color2 = colorList.get((int) Math.ceil(p));  // End color
 
-            // 计算插值后的 RGB 值
+            // Calculate the interpolated RGB value
             int red = (int) (color1.getRed() * (1 - p + Math.floor(p)) + color2.getRed() * (p - Math.floor(p)));
             int green = (int) (color1.getGreen() * (1 - p + Math.floor(p)) + color2.getGreen() * (p - Math.floor(p)));
             int blue = (int) (color1.getBlue() * (1 - p + Math.floor(p)) + color2.getBlue() * (p - Math.floor(p)));
 
-            // 构建 Minecraft 颜色代码
+            // Build the Minecraft color code
             stringBuilder.append("§x")
                     .append("§").append(codeColor(red / 16))
                     .append("§").append(codeColor(red % 16))
@@ -121,7 +121,7 @@ public class MagicExpansionRandomSummon extends SimpleSlimefunItem<ItemUseHandle
                     .append("§").append(codeColor(blue / 16))
                     .append("§").append(codeColor(blue % 16));
 
-            // 添加当前字符
+            // Add the current character
             stringBuilder.append(text.charAt(i));
         }
 
@@ -130,9 +130,9 @@ public class MagicExpansionRandomSummon extends SimpleSlimefunItem<ItemUseHandle
 
     private static List<Color> createColorList() {
         List<Color> colorList = new ArrayList<>();
-        colorList.add(Color.fromRGB(253, 183, 212)); // 淡粉色
-        colorList.add(Color.fromRGB(250, 126, 179)); // 中间色
-        colorList.add(Color.fromRGB(255, 105, 180)); // 亮粉色
+        colorList.add(Color.fromRGB(253, 183, 212)); // Light pink
+        colorList.add(Color.fromRGB(250, 126, 179)); // Middle color
+        colorList.add(Color.fromRGB(255, 105, 180)); // Bright pink
         return colorList;
     }
 

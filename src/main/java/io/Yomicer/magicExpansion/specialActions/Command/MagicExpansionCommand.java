@@ -10,31 +10,31 @@ public class MagicExpansionCommand implements CommandExecutor {
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
         if (args.length == 0) {
-            // 如果没有参数，显示帮助信息
-            sender.sendMessage("§a/magicexpansion reload slimefun §f- 重新加载所有 Slimefun 物品");
+            // Show help if no arguments are given
+            sender.sendMessage("§a/magicexpansion reload slimefun §f- Reload all Slimefun items");
             return true;
         }
 
-        // 检查权限（需要 OP 权限）
+        // Check permission (OP required)
         if (!sender.isOp()) {
-            sender.sendMessage("§c只有管理员才能执行此指令！");
+            sender.sendMessage("§cOnly admins can use this command!");
             return true;
         }
 
-        // 解析子命令
+        // Read the subcommand
         switch (args[0].toLowerCase()) {
             case "reload":
                 if (args.length == 2 && args[1].equalsIgnoreCase("slimefun")) {
-                    // 清空缓存并重新加载所有 Slimefun 物品
+                    // Clear the cache and reload all Slimefun items
                     MagicExpansionSlimefunItemCache.reloadCache();
-                    sender.sendMessage("§a已成功清空缓存并重新加载所有 Slimefun 物品！");
+                    sender.sendMessage("§aCache cleared and all Slimefun items reloaded!");
                 } else {
-                    sender.sendMessage("§c用法: /magicexpansion reload slimefun   重载魔法拓展对Slimefun物品的缓存");
+                    sender.sendMessage("§cUsage: /magicexpansion reload slimefun - Reload MagicExpansion’s Slimefun item cache");
                 }
                 break;
 
             default:
-                sender.sendMessage("§c未知子命令！请输入 /magicexpansion 查看帮助。");
+                sender.sendMessage("§cUnknown subcommand! Type /magicexpansion for help.");
                 break;
         }
 

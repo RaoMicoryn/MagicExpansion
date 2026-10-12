@@ -37,7 +37,7 @@ import java.util.concurrent.ThreadLocalRandom;
 public class LuckCapacitor extends SlimefunItem implements EnergyNetComponent {
 
     private final int capacity;
-    // 修复：删除实例 Random 字段，改为 ThreadLocalRandom（线程安全，ticker 异步线程调用）
+    // Fix: removed the instance Random field, use ThreadLocalRandom instead (thread-safe, ticker is called from an async thread)
     private final int pow1;
     private final int pow2;
     private final int sign;
@@ -76,7 +76,7 @@ public class LuckCapacitor extends SlimefunItem implements EnergyNetComponent {
         if (pow1 == pow2){
             randomCharge = pow1;
         } else {
-            // 修复：使用 ThreadLocalRandom 替代实例 Random（ticker 可能在异步线程调用，非线程安全）
+            // Fix: use ThreadLocalRandom instead of an instance Random (the ticker may be called from an async thread, not thread-safe)
             randomCharge = ThreadLocalRandom.current().nextInt(pow1, pow2);
         }
         if (sign != 1 && sign != -1){
@@ -99,8 +99,8 @@ public class LuckCapacitor extends SlimefunItem implements EnergyNetComponent {
             public void onPlayerBreak(BlockBreakEvent e, ItemStack item, List<ItemStack> drops) {
                 e.setDropItems(false);
                 Location loc = e.getBlock().getLocation();
-                // 修复：缓存缺失时回源 getCharge 读取真实电量（非玩家破坏路径如爆炸不会走本方法，
-                // 其残留缓存条目由本回源逻辑兜底保证玩家破坏时仍能取到正确电量）
+                // Fix: when the cache is missing, fall back to getCharge to read the real power (non-player break paths like explosions don't go through this method,
+                // its leftover cache entry is covered by this fallback so the right power can still be read when a player breaks it)
                 Integer cached = CHARGE_CACHE.get(loc);
                 int charge = cached != null ? cached : getCharge(loc);
                 ItemStack itemStack = LuckCapacitor.this.getItem();
@@ -108,14 +108,14 @@ public class LuckCapacitor extends SlimefunItem implements EnergyNetComponent {
                 ItemMeta meta = drop.getItemMeta();
                 if (charge != 0){
                     if (meta != null) {
-                        meta.setDisplayName(meta.getDisplayName()+" §r§b(§e⚡ §b电能: §e" + charge + " §bJ)");
+                        meta.setDisplayName(meta.getDisplayName()+" §r§b(§e⚡ §bEnergy: §e" + charge + " §bJ)");
                         PersistentDataContainer pdc = meta.getPersistentDataContainer();
                         pdc.set(CHARGE_KEY, PersistentDataType.INTEGER, charge);
                         drop.setItemMeta(meta);
                     }
                 }
                 e.getBlock().getWorld().dropItemNaturally(e.getBlock().getLocation(), drop);
-                // 修复：破坏后清理缓存条目，防止内存泄漏
+                // Fix: clean up the cache entry after breaking, to prevent a memory leak
                 CHARGE_CACHE.remove(loc);
             }
         };

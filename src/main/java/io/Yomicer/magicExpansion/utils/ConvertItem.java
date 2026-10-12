@@ -9,77 +9,77 @@ import org.bukkit.inventory.ItemStack;
 
 public class ConvertItem {
     public static ItemStack BasicCreateItem(String selectedItem) {
-        // 根据 ID 获取 Slimefun 物品
+        // Get the Slimefun item by ID
         SlimefunItem slimefunItem = SlimefunItem.getById(selectedItem);
 
-        // 检查是否成功获取到 Slimefun 物品
+        // Check whether the Slimefun item was found successfully
         if (slimefunItem == null) {
-            Debug.logInfo("检测到未安装魔法1.0,已为您替换为等价值材料。此物品在魔法1.0的ID为: "+ selectedItem);
-            return MagicExpansionItems.MAGIC_EXPANSION_TO_MAGIC_ITEM_BASIC; // 返回一个初级
+            Debug.logInfo("Magic 1.0 is not installed. Replaced with an equivalent material. This item’s Magic 1.0 ID is: "+ selectedItem);
+            return MagicExpansionItems.MAGIC_EXPANSION_TO_MAGIC_ITEM_BASIC; // Return a basic item
         }
 
-        // 获取物品并创建 ItemStack
+        // Get the item and create an ItemStack
         ItemStack itemStack = new ItemStack(slimefunItem.getItem());
 
         return itemStack;
     }
 
     public static SlimefunItemStack createItem(String selectedItem) {
-        // 根据 ID 获取 Slimefun 物品
+        // Get the Slimefun item by ID
         SlimefunItem slimefunItem = SlimefunItem.getById(selectedItem);
 
         if (slimefunItem == null) {
-            Debug.logInfo("无法找到 ID 为 " + selectedItem + " 的 Slimefun 物品！");
-            return MagicExpansionItems.MAGIC_EXPANSION_TO_MAGIC_ITEM_BASIC; // 返回默认物品
+            Debug.logInfo("Could not find an item with ID " + selectedItem + "!");
+            return MagicExpansionItems.MAGIC_EXPANSION_TO_MAGIC_ITEM_BASIC; // Return the default item
         }
 
-        // 正确返回 SlimefunItemStack
+        // Return the correct SlimefunItemStack
         return new SlimefunItemStack(
-                selectedItem, // 唯一ID
-                slimefunItem.getItem().clone()            // 克隆原始物品
+                selectedItem, // Unique ID
+                slimefunItem.getItem().clone()            // Clone the original item
         );
     }
 
 
     public static ItemStack AdvancedCreateItem(String selectedItem) {
-        // 根据 ID 获取 Slimefun 物品
+        // Get the Slimefun item by ID
         SlimefunItem slimefunItem = SlimefunItem.getById(selectedItem);
 
-        // 检查是否成功获取到 Slimefun 物品
+        // Check whether the Slimefun item was found successfully
         if (slimefunItem == null) {
-            Debug.logInfo("检测到未安装魔法1.0,已为您替换为等价值材料。此物品在魔法1.0的ID为: "+ selectedItem);
-            return MagicExpansionItems.MAGIC_EXPANSION_TO_MAGIC_ITEM_ADVANCED; // 返回一个进阶
+            Debug.logInfo("Magic 1.0 is not installed. Replaced with an equivalent material. This item’s Magic 1.0 ID is: "+ selectedItem);
+            return MagicExpansionItems.MAGIC_EXPANSION_TO_MAGIC_ITEM_ADVANCED; // Return an advanced item
         }
 
-        // 获取物品并创建 ItemStack
+        // Get the item and create an ItemStack
         ItemStack itemStack = new ItemStack(slimefunItem.getItem());
 
         return itemStack;
     }
 
     public static ItemStack stoneCreateItem(String selectedItem) {
-        // 根据 ID 获取 Slimefun 物品
+        // Get the Slimefun item by ID
         SlimefunItem slimefunItem = SlimefunItem.getById(selectedItem);
 
-        // 检查是否成功获取到 Slimefun 物品
+        // Check whether the Slimefun item was found successfully
         if (slimefunItem == null) {
-            Debug.logInfo("无法找到 ID 为 " + selectedItem + " 的 Slimefun 物品！");
-            Debug.logInfo("已经为你更新为石头");
-            return new ItemStack(Material.STONE); // 返回一个进阶
+            Debug.logInfo("Could not find an item with ID " + selectedItem + "!");
+            Debug.logInfo("Replaced with stone.");
+            return new ItemStack(Material.STONE); // Return an advanced item
         }
 
-        // 获取物品并创建 ItemStack
+        // Get the item and create an ItemStack
         ItemStack itemStack = new ItemStack(slimefunItem.getItem());
 
         return itemStack;
     }
 
     public static Boolean IfItemXist(String i) {
-        // 根据 ID 获取 Slimefun 物品
+        // Get the Slimefun item by ID
         SlimefunItem slimefunItem = SlimefunItem.getById(i);
-        // 检查是否成功获取到 Slimefun 物品
+        // Check whether the Slimefun item was found successfully
         if (slimefunItem == null) {
-            Debug.logInfo("无法找到 ID 为 " + i + " 的 Slimefun 物品！,跳过注册");
+            Debug.logInfo("Could not find an item with ID " + i + "!,skip registration");
             return false;
         }
         return true;

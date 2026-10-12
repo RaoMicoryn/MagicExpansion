@@ -14,9 +14,9 @@ public class MoreLure extends Lure {
     private final String key;
 
     /**
-     * 创建一个简单的鱼饵检测器
-     * @param item 要检测的物品（如 MAGIC_SUGAR）
-     * @param key  对应 lootTable 中的 key（如 "golden_lure"）
+     * Create a simple lure detector
+     * @param item the item to detect (like MAGIC_SUGAR)
+     * @param key  the matching key in lootTable (like "golden_lure")
      */
     public MoreLure(ItemStack item, String key) {
         this.item = item;

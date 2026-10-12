@@ -7,8 +7,8 @@ import io.github.thebusybiscuit.slimefun4.api.recipes.RecipeType;
 import org.bukkit.inventory.ItemStack;
 
 /**
- * 白芦羽: 芦花钓竿钓取的特殊钓物, 不可合成;
- * 获取方式通过自定义 RecipeType(芦花钓竿) 与配方(芦花钓鱼饵)展示。
+ * White Reed Feather: Special catch from the Reed Blossom Fishing Rod, Can't be crafted;
+ * Obtained through a custom RecipeType(Reed Blossom Fishing Rod) and recipe(Reed Blossom Fishing Bait)displayed.
  */
 public class BaiLuYu extends SlimefunItem {
 

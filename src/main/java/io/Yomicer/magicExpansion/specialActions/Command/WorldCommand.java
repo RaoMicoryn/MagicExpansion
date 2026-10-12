@@ -37,7 +37,7 @@ public class WorldCommand implements CommandExecutor, TabCompleter {
 
         Player player = (Player) sender;
 
-        // 权限检查
+        // Check permissions
         if (!player.isOp() && !player.hasPermission("MagicExpansion.use")) {
             player.sendMessage("§cYou do not have permission to use this command!");
             return true;
@@ -64,9 +64,9 @@ public class WorldCommand implements CommandExecutor, TabCompleter {
                 break;
 
             case "paste":
-                // 【B1修复】paste 子命令需要 magicexpansion.world.modify 权限，无权限提示并 return
+                // [Fix B1] The paste command needs magicexpansion.world.modify permission. Show a message and return if missing.
                 if (!player.hasPermission("magicexpansion.world.modify")) {
-                    player.sendMessage("§c你没有权限修改世界！(需要 magicexpansion.world.modify)");
+                    player.sendMessage("§cYou do not have permission to edit the world! (Needs magicexpansion.world.modify)");
                     return true;
                 }
                 if (args.length < 2) {
@@ -74,24 +74,24 @@ public class WorldCommand implements CommandExecutor, TabCompleter {
                     return true;
                 }
                 MapUtils.pasteMap(player, args[1]);
-                // 【B3修复】记录 paste 操作日志：操作者名与所粘贴的地图文件
+                // [Fix B3] Log the player name and map file they pasted
                 Bukkit.getLogger().info("[MagicExpansion] " + player.getName()
                         + " pasted map file '" + args[1] + "'");
                 break;
 
             case "clear":
-                // 【B1修复】clear 子命令需要 magicexpansion.world.modify 权限，无权限提示并 return
+                // [Fix B1] The clear command needs magicexpansion.world.modify permission. Show a message and return if missing.
                 if (!player.hasPermission("magicexpansion.world.modify")) {
-                    player.sendMessage("§c你没有权限修改世界！(需要 magicexpansion.world.modify)");
+                    player.sendMessage("§cYou do not have permission to edit the world! (Needs magicexpansion.world.modify)");
                     return true;
                 }
                 clearSelectedArea(player);
                 break;
 
             case "ctrlv":
-                // 【B1修复】ctrlv 与 paste 同为粘贴/修改世界功能，同样需要 magicexpansion.world.modify 权限
+                // [Fix B1] ctrlv also changes the world, so it needs magicexpansion.world.modify permission, just like paste
                 if (!player.hasPermission("magicexpansion.world.modify")) {
-                    player.sendMessage("§c你没有权限修改世界！(需要 magicexpansion.world.modify)");
+                    player.sendMessage("§cYou do not have permission to edit the world! (Needs magicexpansion.world.modify)");
                     return true;
                 }
                 pasteSelectedAreaToTargetBlock(player);
@@ -105,7 +105,7 @@ public class WorldCommand implements CommandExecutor, TabCompleter {
 
 
     /**
-     * 清除所选区域的方块
+     * Clear the blocks in the selected area
      */
     private void clearSelectedArea(Player player) {
         Location p1 = Events.point1.get(player.getUniqueId());
@@ -116,13 +116,13 @@ public class WorldCommand implements CommandExecutor, TabCompleter {
             return;
         }
 
-        // 【B2修复】校验两个选点必须位于同一世界，否则提示并 return
+        // [Fix B2] Make sure both selected points are in the same world. Otherwise, show a message and return.
         if (p1.getWorld() == null || !p1.getWorld().equals(p2.getWorld())) {
             player.sendMessage(ChatColor.RED + "The two selected points must be in the same world!");
             return;
         }
 
-        // 【B2修复】体积上限校验：区域尺寸不得超过 32*256*32，超限提示并 return
+        // [Fix B2] Check the area size. It must not exceed 32*256*32; otherwise, show a message and return.
         int sizeX = Math.abs(p1.getBlockX() - p2.getBlockX()) + 1;
         int sizeY = Math.abs(p1.getBlockY() - p2.getBlockY()) + 1;
         int sizeZ = Math.abs(p1.getBlockZ() - p2.getBlockZ()) + 1;
@@ -143,21 +143,21 @@ public class WorldCommand implements CommandExecutor, TabCompleter {
             for (int y = minY; y <= maxY; y++) {
                 for (int z = minZ; z <= maxZ; z++) {
                     Block block = p1.getWorld().getBlockAt(x, y, z);
-                    block.setType(org.bukkit.Material.AIR); // 将方块设置为空气
+                    block.setType(org.bukkit.Material.AIR); // Set the block to air
                 }
             }
         }
 
         player.sendMessage("§aCleared the selected area.");
 
-        // 【B3修复】记录清除操作日志：操作者名 + 区域坐标范围
+        // [Fix B3] Log the player name and the area coordinates
         Bukkit.getLogger().info("[MagicExpansion] " + player.getName() + " cleared area in world '"
                 + p1.getWorld().getName() + "' from (" + minX + "," + minY + "," + minZ
                 + ") to (" + maxX + "," + maxY + "," + maxZ + ")");
     }
 
     /**
-     * 将所选区域粘贴到玩家注视的方块上方 1 格
+     * Paste the selected area one block above the block the player is looking at
      */
     private void pasteSelectedAreaToTargetBlock(Player player) {
         Location p1 = Events.point1.get(player.getUniqueId());
@@ -168,30 +168,30 @@ public class WorldCommand implements CommandExecutor, TabCompleter {
             return;
         }
 
-        // 【B2修复】校验两个选点必须位于同一世界，否则提示并 return
+        // [Fix B2] Make sure both selected points are in the same world. Otherwise, show a message and return.
         if (p1.getWorld() == null || !p1.getWorld().equals(p2.getWorld())) {
             player.sendMessage("§cThe two selected points must be in the same world!");
             return;
         }
 
-        // 【B2修复】体积上限校验：区域尺寸不得超过 32*256*32，超限提示并 return
+        // [Fix B2] Check the area size. It must not exceed 32*256*32; otherwise, show a message and return.
         int sizeX = Math.abs(p1.getBlockX() - p2.getBlockX()) + 1;
         int sizeY = Math.abs(p1.getBlockY() - p2.getBlockY()) + 1;
         int sizeZ = Math.abs(p1.getBlockZ() - p2.getBlockZ()) + 1;
         if ((long) sizeX * sizeY * sizeZ > 32L * 256L * 32L) {
-            player.sendMessage("§cSelected area too large! Max: 32x256x32, current: "
+            player.sendMessage("§cSelected area is too big! Max: 32x256x32, current: "
                     + sizeX + "x" + sizeY + "x" + sizeZ);
             return;
         }
 
-        // 获取玩家注视的方块
+        // Get the block the player is looking at
         Block targetBlock = getTargetBlock(player);
         if (targetBlock == null) {
             player.sendMessage("§cYou need to look at a block!");
             return;
         }
 
-        Location pasteLocation = targetBlock.getLocation().add(0, 1, 0); // 粘贴到目标方块上方 1 格
+        Location pasteLocation = targetBlock.getLocation().add(0, 1, 0); // Paste one block above the target block
 
         List<MapUtils.BlockData> blocks = MapUtils.getBlocksInRegion(p1, p2);
         for (MapUtils.BlockData blockData : blocks) {
@@ -203,21 +203,21 @@ public class WorldCommand implements CommandExecutor, TabCompleter {
             );
 
             if (blockData.blockState != null && !blockData.blockState.isEmpty()) {
-                // 如果有 blockState，则使用它来设置方块数据
+                // If blockState is available, use it to set the block data
                 try {
                     location.getBlock().setBlockData(Bukkit.createBlockData(blockData.blockState));
                 } catch (IllegalArgumentException e) {
                     player.sendMessage("§cError setting block data: " + e.getMessage());
                 }
             } else {
-                // 如果没有 blockState，则仅设置方块类型
+                // If blockState is not available, only set the block type
                 location.getBlock().setType(Material.valueOf(blockData.type));
             }
         }
 
         player.sendMessage("§aPasted the selected area above the target block.");
 
-        // 【B3修复】记录粘贴操作日志：操作者名 + 源区域坐标范围与目标世界
+        // [Fix B3] Log the player name, source area coordinates, and target world
         Bukkit.getLogger().info("[MagicExpansion] " + player.getName() + " pasted selected region ("
                 + p1.getBlockX() + "," + p1.getBlockY() + "," + p1.getBlockZ() + ") to ("
                 + p2.getBlockX() + "," + p2.getBlockY() + "," + p2.getBlockZ() + ") from world '"
@@ -225,10 +225,10 @@ public class WorldCommand implements CommandExecutor, TabCompleter {
     }
 
     /**
-     * 获取玩家注视的方块
+     * Get the block the player is looking at
      */
     private Block getTargetBlock(Player player) {
-        BlockIterator iterator = new BlockIterator(player, 10); // 最远检测 5 格
+        BlockIterator iterator = new BlockIterator(player, 10); // Check up to 5 blocks away
         while (iterator.hasNext()) {
             Block block = iterator.next();
             if (!block.getType().isAir()) {
@@ -243,10 +243,10 @@ public class WorldCommand implements CommandExecutor, TabCompleter {
         List<String> suggestions = new ArrayList<>();
 
         if (args.length == 1) {
-            // 提供第一级补全：子命令
+            // Provide suggestions for the first argument: subcommands
             suggestions.addAll(Arrays.asList("select", "exitselect", "exportmap", "paste", "clear", "ctrlv"));
         } else if (args.length == 2 && args[0].equalsIgnoreCase("paste")) {
-            // 如果是 "paste" 子命令，提供文件名补全
+            // If the subcommand is "paste", suggest file names
             File mapsDir = new File(plugin.getDataFolder(), "maps");
             if (mapsDir.exists() && mapsDir.isDirectory()) {
                 for (File file : mapsDir.listFiles()) {
@@ -257,7 +257,7 @@ public class WorldCommand implements CommandExecutor, TabCompleter {
             }
         }
 
-        // 过滤补全建议，只显示与当前输入匹配的内容
+        // Filter suggestions so only matches for the current input are shown
         return filterSuggestions(suggestions, args[args.length - 1]);
     }
 

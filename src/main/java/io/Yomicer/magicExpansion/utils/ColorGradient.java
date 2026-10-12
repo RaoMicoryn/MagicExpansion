@@ -7,12 +7,12 @@ import java.util.List;
 import java.util.Random;
 
 public class ColorGradient {
-    /*覆写颜色*/
+    /*Override colors*/
     /**
-     * 将 RGB 值转换为 Minecraft 颜色代码字符
+     * Convert RGB values to Minecraft color-code characters
      *
-     * @param value RGB 分量值（0-255）
-     * @return 十六进制字符（0-9 或 A-F）
+     * @param value RGB component value (0–255)
+     * @return Hexadecimal character (0–9 or A–F)
      */
     public static char codeColor(int value) {
         if (value < 0 || value > 15) {
@@ -22,21 +22,21 @@ public class ColorGradient {
     }
 
     /**
-     * 生成带有渐变色的字符串（Minecraft §x 格式）
+     * Generate a gradient-colored string (Minecraft §x format)
      *
-     * @param text       输入的字符串
-     * @param colorList  渐变色列表
-     * @return 带有渐变色的字符串
+     * @param text       Input string
+     * @param colorList  Gradient color list
+     * @return Gradient-colored string
      */
     public static String getGradientName(String text, List<Color> colorList) {
-        // 如果未提供颜色列表，使用默认颜色列表
+        // Use the default color list if none is provided
         if (colorList == null || colorList.isEmpty()) {
             colorList = createColorList();
         }
 
         StringBuilder stringBuilder = new StringBuilder();
 
-        // 如果文本为空或长度不足，补全空格
+        // Pad with spaces if the text is empty or too short
         if (text.length() == 0) {
             text += " ";
         }
@@ -46,16 +46,16 @@ public class ColorGradient {
 
         int length = text.length();
         for (int i = 0; i < length; i++) {
-            double p = ((double) i) / (length - 1) * (colorList.size() - 1); // 插值进度
-            Color color1 = colorList.get((int) Math.floor(p)); // 起始颜色
-            Color color2 = colorList.get((int) Math.ceil(p));  // 结束颜色
+            double p = ((double) i) / (length - 1) * (colorList.size() - 1); // Interpolation progress
+            Color color1 = colorList.get((int) Math.floor(p)); // Start color
+            Color color2 = colorList.get((int) Math.ceil(p));  // End color
 
-            // 计算插值后的 RGB 值
+            // Calculate the interpolated RGB values
             int red = (int) (color1.getRed() * (1 - p + Math.floor(p)) + color2.getRed() * (p - Math.floor(p)));
             int green = (int) (color1.getGreen() * (1 - p + Math.floor(p)) + color2.getGreen() * (p - Math.floor(p)));
             int blue = (int) (color1.getBlue() * (1 - p + Math.floor(p)) + color2.getBlue() * (p - Math.floor(p)));
 
-            // 构建 Minecraft 颜色代码
+            // Build the Minecraft color code
             stringBuilder.append("§x")
                     .append("§").append(codeColor(red / 16))
                     .append("§").append(codeColor(red % 16))
@@ -64,7 +64,7 @@ public class ColorGradient {
                     .append("§").append(codeColor(blue / 16))
                     .append("§").append(codeColor(blue % 16));
 
-            // 添加当前字符
+            // Append the current character
             stringBuilder.append(text.charAt(i));
         }
 
@@ -72,21 +72,21 @@ public class ColorGradient {
     }
 
     /**
-     * 生成带有渐变色的字符串（Minecraft §x 格式）
+     * Generate a gradient-colored string (Minecraft §x format)
      *
-     * @param text       输入的字符串
-     * @param colorList  渐变色列表
-     * @return 带有渐变色的字符串
+     * @param text       Input string
+     * @param colorList  Gradient color list
+     * @return Gradient-colored string
      */
     public static String getGradientNameVer2(String text, List<Color> colorList) {
-        // 如果未提供颜色列表，使用默认颜色列表
+        // Use the default color list if none is provided
         if (colorList == null || colorList.isEmpty()) {
             colorList = createCustomColorListV2();
         }
 
         StringBuilder stringBuilder = new StringBuilder();
 
-        // 如果文本为空或长度不足，补全空格
+        // Pad with spaces if the text is empty or too short
         if (text.length() == 0) {
             text += " ";
         }
@@ -96,16 +96,16 @@ public class ColorGradient {
 
         int length = text.length();
         for (int i = 0; i < length; i++) {
-            double p = ((double) i) / (length - 1) * (colorList.size() - 1); // 插值进度
-            Color color1 = colorList.get((int) Math.floor(p)); // 起始颜色
-            Color color2 = colorList.get((int) Math.ceil(p));  // 结束颜色
+            double p = ((double) i) / (length - 1) * (colorList.size() - 1); // Interpolation progress
+            Color color1 = colorList.get((int) Math.floor(p)); // Start color
+            Color color2 = colorList.get((int) Math.ceil(p));  // End color
 
-            // 计算插值后的 RGB 值
+            // Calculate the interpolated RGB values
             int red = (int) (color1.getRed() * (1 - p + Math.floor(p)) + color2.getRed() * (p - Math.floor(p)));
             int green = (int) (color1.getGreen() * (1 - p + Math.floor(p)) + color2.getGreen() * (p - Math.floor(p)));
             int blue = (int) (color1.getBlue() * (1 - p + Math.floor(p)) + color2.getBlue() * (p - Math.floor(p)));
 
-            // 构建 Minecraft 颜色代码
+            // Build the Minecraft color code
             stringBuilder.append("§x")
                     .append("§").append(codeColor(red / 16))
                     .append("§").append(codeColor(red % 16))
@@ -114,7 +114,7 @@ public class ColorGradient {
                     .append("§").append(codeColor(blue / 16))
                     .append("§").append(codeColor(blue % 16));
 
-            // 添加当前字符
+            // Append the current character
             stringBuilder.append(text.charAt(i));
         }
 
@@ -123,28 +123,28 @@ public class ColorGradient {
 
 
     /**
-     * 生成纵向渐变的 Lore 列表
-     * - 自动计算总行数
-     * - 自动使用默认颜色列表
-     * - 行内颜色统一，行与行之间渐变
+     * Generate a vertical gradient Lore 列表
+     * - Automatically calculate the total number of lines
+     * - Automatically use the default color list
+     * - Keep colors uniform within each line and apply a gradient between lines
      *
-     * @param lore 原始文本列表
-     * @return 处理后的带颜色文本列表
+     * @param lore Original text list
+     * @return Processed colored text list
      */
     public static List<String> getVerticalGradientLineV2(List<String> lore) {
-        // 处理空列表情况
+        // Handle an empty list
         if (lore == null || lore.isEmpty()) {
             return new ArrayList<>();
         }
 
-        // 1. 自动获取默认颜色列表
+        // 1. Automatically get the default color list
         List<Color> colorList = createCustomColorListV2();
 
-        // 2. 自动计算总行数
+        // 2. Automatically calculate the total number of lines
         int totalLines = lore.size();
         List<String> result = new ArrayList<>();
 
-        // 3. 遍历每一行进行计算
+        // 3. Process each line
         for (int lineIndex = 0; lineIndex < totalLines; lineIndex++) {
             String text = lore.get(lineIndex);
 
@@ -161,12 +161,12 @@ public class ColorGradient {
                 p = ((double) lineIndex) / (totalLines - 1);
             }
 
-            // 确定起始和结束颜色索引
+            // Determine the start and end color indexes
             int maxIndex = colorList.size() - 1;
             int index1 = (int) Math.floor(p * maxIndex);
             int index2 = (int) Math.ceil(p * maxIndex);
 
-            // 边界保护
+            // Bounds check
             if (index1 > maxIndex) index1 = maxIndex;
             if (index2 > maxIndex) index2 = maxIndex;
 
@@ -175,7 +175,7 @@ public class ColorGradient {
 
             Color finalColor;
 
-            // 计算插值颜色
+            // Calculate the interpolated color
             if (index1 == index2) {
                 finalColor = color1;
             } else {
@@ -223,17 +223,17 @@ public class ColorGradient {
 
 
     /**
-     * 生成带有渐变色的字符串（Minecraft § 格式）
+     * Generate a gradient-colored string (Minecraft § format)
      *
-     * @param text 输入的字符串
-     * @return 带有渐变色的字符串
+     * @param text Input string
+     * @return Gradient-colored string
      */
     public static String getGradientName(String text) {
-        return getGradientName(text, null); // 调用原始方法，使用默认颜色列表
+        return getGradientName(text, null); // Call the original method using the default color list
     }
 
     public static String getGradientNameVer2(String text) {
-        return getGradientNameVer2(text, null); // 调用原始方法，使用默认颜色列表
+        return getGradientNameVer2(text, null); // Call the original method using the default color list
     }
 
 
@@ -241,9 +241,9 @@ public class ColorGradient {
     //default color
     private static List<Color> createColorList() {
         List<Color> colorList = new ArrayList<>();
-        colorList.add(Color.fromRGB(253, 183, 212)); // 淡粉色
-        colorList.add(Color.fromRGB(250, 126, 179)); // 中间色
-        colorList.add(Color.fromRGB(255, 105, 180)); // 亮粉色
+        colorList.add(Color.fromRGB(253, 183, 212)); // Light pink
+        colorList.add(Color.fromRGB(250, 126, 179)); // Intermediate color
+        colorList.add(Color.fromRGB(255, 105, 180)); // Bright pink
         return colorList;
     }
 
@@ -262,10 +262,10 @@ public class ColorGradient {
 
 
     /**
-     * 生成指定数量的随机颜色列表
+     * Generate a random color list of the specified size
      *
-     * @param count 随机颜色的数量
-     * @return 随机颜色列表
+     * @param count Number of random colors
+     * @return Random color list
      */
     private static List<Color> createRandomColorList(int count) {
         List<Color> colorList = new ArrayList<>();
@@ -280,11 +280,11 @@ public class ColorGradient {
     }
 
     /**
-     * 生成带有随机渐变色的字符串（Minecraft §x 格式）
+     * Generate a string with a random gradient (Minecraft §x format)
      *
-     * @param text  输入的字符串
-     * @param count 渐变色数量
-     * @return 带有随机渐变色的字符串
+     * @param text  Input string
+     * @param count Number of gradient colors
+     * @return String with a random gradient
      */
     public static String getRandomGradientName(String text, int count) {
         if (count <= 0) {
@@ -296,7 +296,7 @@ public class ColorGradient {
 
     // 如果需要直接调用，不指定颜色数量，默认使用3种颜色进行渐变
     public static String getRandomGradientName(String text) {
-        return getRandomGradientName(text, 3); // 默认三种颜色渐变
+        return getRandomGradientName(text, 3); // Default three-color gradient
     }
 
 

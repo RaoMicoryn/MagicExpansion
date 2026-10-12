@@ -20,30 +20,30 @@ import static io.Yomicer.magicExpansion.core.MagicExpansionItems.*;
 
 public class BlackMarketManager {
 
-    // 修复：改为 ConcurrentHashMap（异步/并发访问保护）
+    // Fix: Use ConcurrentHashMap to keep async and concurrent access safe
     private static final Map<UUID, List<BlackMarketTrade>> playerTrades = new ConcurrentHashMap<>();
     private static long lastRefreshTime = 0;
-    private static final long REFRESH_INTERVAL = 4 * 60 * 60 * 1000L; // 4小时(毫秒)
+    private static final long REFRESH_INTERVAL = 4 * 60 * 60 * 1000L; // 4 hours (in milliseconds)
 
-    // 简单奖励池 (80%概率)
+    // Common reward pool (80%chance)
     private static List<ItemStack> simpleRewardPool = new ArrayList<>();
 
-    // 困难奖励池及权重 (20%概率)
+    // Rare reward pool and weights (20%chance)
     private static Map<ItemStack, Integer> hardRewardPool = new LinkedHashMap<>();
 
-    // 全局概率定义 (简单0.8，困难0.2)
+    // Global chances (common 0.8, rare 0.2)
     public static final double SIMPLE_CHANCE = 0.80;
     public static final double HARD_CHANCE = 0.20;
 
-    // 消耗物池
+    // Cost item pool
     private static List<ItemStack> costItemPool = new ArrayList<>();
 
-    // 修复：改为 ConcurrentHashMap（每日已购记录需并发访问），并支持持久化
+    // Fix: Use ConcurrentHashMap for daily purchase records and save them to disk
     private static final Map<UUID, Set<Integer>> dailyPurchases = new ConcurrentHashMap<>();
-    // 修复：改为 ConcurrentHashMap
+    // Fix: Use ConcurrentHashMap
     private static final Map<UUID, Set<Integer>> revealedSlots = new ConcurrentHashMap<>();
 
-    // 修复：每日已购数据持久化文件（blackmarket_data.yml），重启后不丢失限购记录
+    // Fix: Save daily purchase data in blackmarket_data.yml so limits stay after restart
     private static File dataFile;
 
     public static class BlackMarketTrade {
@@ -59,9 +59,9 @@ public class BlackMarketManager {
         hardRewardPool.clear();
         costItemPool.clear();
 
-        MagicExpansion.getInstance().getLogger().info("正在初始化黑市物品池...");
+        MagicExpansion.getInstance().getLogger().info("Loading black market item pools...");
 
-        // 修复：初始化持久化文件并加载已保存的每日限购数据
+        // Fix: Set up the data file and load saved daily purchase limits
         dataFile = new File(MagicExpansion.getInstance().getDataFolder(), "blackmarket_data.yml");
         loadPurchasesData();
 
@@ -236,16 +236,16 @@ public class BlackMarketManager {
 
 
         } catch (Throwable e) {
-            MagicExpansion.getInstance().getLogger().warning("黑市物品池加载自定义物品时发生严重错误，仅加载原版兜底物品: ");
+            MagicExpansion.getInstance().getLogger().warning("Error loading custom items for the black market. Only default fallback items will be loaded: ");
             e.printStackTrace();
         }
 
-        // 再次兜底
+        // Extra fallback in case the pools are empty
         if (simpleRewardPool.isEmpty()) simpleRewardPool.add(new ItemStack(Material.DIRT));
         if (hardRewardPool.isEmpty()) hardRewardPool.put(new ItemStack(Material.BEDROCK), 1);
         if (costItemPool.isEmpty()) costItemPool.add(new ItemStack(Material.STONE));
 
-        MagicExpansion.getInstance().getLogger().info("黑市物品池初始化完成。简单物品: " + simpleRewardPool.size() + " 困难物品: " + hardRewardPool.size());
+        MagicExpansion.getInstance().getLogger().info("Black market item pools loaded. Common items: " + simpleRewardPool.size() + " Rare items: " + hardRewardPool.size());
 
         if (lastRefreshTime == 0) {
             lastRefreshTime = System.currentTimeMillis();
@@ -271,12 +271,12 @@ public class BlackMarketManager {
         lastRefreshTime = System.currentTimeMillis();
         dailyPurchases.clear();
         revealedSlots.clear();
-        // 修复：强制刷新时清空持久化数据文件内容（已购记录随刷新作废）
+        // Fix: Clear saved data when forcing a refresh, since purchase records reset too
         clearDataFile();
     }
 
     /**
-     * 修复：每日已购数据持久化 —— 保存 dailyPurchases（uuid -> 已购索引列表）与刷新时间
+     * Fix: Save daily purchase data (UUID -> purchased item indexes) and refresh time
      */
     private static void savePurchasesData() {
         if (dataFile == null) return;
@@ -288,18 +288,18 @@ public class BlackMarketManager {
             }
             yml.save(dataFile);
         } catch (IOException e) {
-            MagicExpansion.getInstance().getLogger().warning("黑市每日限购数据保存失败: " + e.getMessage());
+            MagicExpansion.getInstance().getLogger().warning("Failed to save black market daily purchase data: " + e.getMessage());
         }
     }
 
     /**
-     * 修复：初始化时从 blackmarket_data.yml 加载每日限购数据
+     * Fix: Load daily purchase data from blackmarket_data.yml during startup
      */
     private static void loadPurchasesData() {
         if (dataFile == null || !dataFile.exists()) return;
         try {
             YamlConfiguration yml = YamlConfiguration.loadConfiguration(dataFile);
-            // 恢复上次刷新时间，保证重启后刷新周期连续
+            // Restore the last refresh time so the refresh cycle continues after restart
             long savedTime = yml.getLong("lastRefreshTime", 0L);
             if (savedTime > 0) {
                 lastRefreshTime = savedTime;
@@ -312,23 +312,23 @@ public class BlackMarketManager {
                     List<Integer> indexes = sec.getIntegerList(key);
                     dailyPurchases.computeIfAbsent(uuid, k -> ConcurrentHashMap.newKeySet()).addAll(indexes);
                 } catch (IllegalArgumentException ignored) {
-                    // 非法 UUID 跳过
+                    // Skip invalid UUIDs
                 }
             }
         } catch (Throwable t) {
-            MagicExpansion.getInstance().getLogger().warning("黑市每日限购数据加载失败: " + t.getMessage());
+            MagicExpansion.getInstance().getLogger().warning("Failed to load black market daily purchase data: " + t.getMessage());
         }
     }
 
     /**
-     * 修复：清空数据文件内容（写入空配置）
+     * Fix: Clear the data file by saving an empty config
      */
     private static void clearDataFile() {
         if (dataFile == null) return;
         try {
             new YamlConfiguration().save(dataFile);
         } catch (IOException e) {
-            MagicExpansion.getInstance().getLogger().warning("黑市数据文件清空失败: " + e.getMessage());
+            MagicExpansion.getInstance().getLogger().warning("Failed to clear the black market data file: " + e.getMessage());
         }
     }
 
@@ -341,19 +341,19 @@ public class BlackMarketManager {
         long minutes = (remaining % (60 * 60 * 1000)) / (60 * 1000);
         long seconds = (remaining % (60 * 1000)) / 1000;
 
-        return hours + "小时" + minutes + "分" + seconds + "秒";
+        return hours + "h " + minutes + "m " + seconds + "s";
     }
 
     private static List<BlackMarketTrade> generateTradesForPlayer() {
-        // 每次生成前检查，确保池子绝对不为空
+        // Make sure the pools are never empty before generating trades
         if (simpleRewardPool.isEmpty()) simpleRewardPool.add(new ItemStack(Material.DIRT));
         if (hardRewardPool.isEmpty()) hardRewardPool.put(new ItemStack(Material.BEDROCK), 1);
         if (costItemPool.isEmpty()) costItemPool.add(new ItemStack(Material.STONE));
 
-        List<BlackMarketTrade> todayTrades = new ArrayList<>(); // 改为局部变量
+        List<BlackMarketTrade> todayTrades = new ArrayList<>(); // Use a local variable
         Random random = new Random();
 
-        // 过滤掉可能混入的 null 物品
+        // Remove any null items that may have slipped in
         List<ItemStack> hardItems = new ArrayList<>();
         List<Integer> weights = new ArrayList<>();
         for (Map.Entry<ItemStack, Integer> entry : hardRewardPool.entrySet()) {
@@ -444,7 +444,7 @@ public class BlackMarketManager {
 
     public static List<BlackMarketTrade> getTodayTrades(Player player) {
         checkAndRefresh();
-        // 如果该玩家没有生成过，则为他单独生成一份
+        // Generate a separate set if this player doesn't have one yet
         return playerTrades.computeIfAbsent(player.getUniqueId(), k -> generateTradesForPlayer());
     }
 
@@ -454,7 +454,7 @@ public class BlackMarketManager {
 
     public static void recordPurchase(UUID uuid, int index) {
         dailyPurchases.computeIfAbsent(uuid, k -> ConcurrentHashMap.newKeySet()).add(index);
-        // 修复：购买后立即写盘持久化，防止重启后限购记录丢失
+        // Fix: Save purchase data right away so purchase limits aren't lost after restart
         savePurchasesData();
     }
 
@@ -467,12 +467,12 @@ public class BlackMarketManager {
     }
 
     /**
-     * 修复（B1）：黑市数据属于 4 小时刷新周期内的会话数据（玩家专属 10 个交易、已购记录、已揭晓状态）。
-     * 玩家退出时**不得清理**——否则重登后 getTodayTrades 会重新生成 10 个盒子，
-     * 且 dailyPurchases 丢失导致已购记录失效，玩家可以无限重复开盒刷奖励。
-     * 这些数据会在每次 forceRefresh（刷新周期轮换）时统一清空，内存占用有界。
+     * Fix (B1): Black market data belongs to each 4-hour refresh cycle (10 player-specific trades, purchase records, and revealed items).
+     * **Do not clear this data when a player leaves**. Otherwise, logging back in would create 10 new boxes,
+     * and losing dailyPurchases would remove purchase limits, letting players reopen boxes for unlimited rewards.
+     * This data is cleared whenever forceRefresh starts a new cycle, keeping memory use under control.
      */
     public static void cleanup(UUID uuid) {
-        // 保留数据直到下一次 forceRefresh，禁止在退出时清空
+        // Keep the data until the next forceRefresh. Don't clear it when players leave.
     }
 }

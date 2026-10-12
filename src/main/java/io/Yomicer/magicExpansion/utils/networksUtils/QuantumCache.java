@@ -17,7 +17,7 @@ public class QuantumCache extends ItemStackCache {
 
     private final boolean supportsCustomMaxAmount;
 
-    // 原 Lombok @Setter 手工展开：写入库存上限
+    // Manual version of Lombok @Setter: sets the storage limit
     private long limit;
 
     public void setLimit(long limit) {
@@ -32,7 +32,7 @@ public class QuantumCache extends ItemStackCache {
         return limit;
     }
 
-    // 原 Lombok @Getter 手工展开：读取当前库存数量
+    // Manual version of Lombok @Getter: gets the current stored amount
     private long amount;
 
     public long getAmount() {
@@ -47,7 +47,7 @@ public class QuantumCache extends ItemStackCache {
         return amount;
     }
 
-    // 原 Lombok @Setter/@Getter 手工展开：超出上限的溢出标记
+    // Manual version of Lombok @Setter/@Getter: marks whether extra items are discarded when storage is full
     private boolean voidExcess;
 
     public boolean isVoidExcess() {
@@ -145,17 +145,17 @@ public class QuantumCache extends ItemStackCache {
     public void addMetaLore(@NotNull ItemMeta itemMeta) {
         List<String> old = itemMeta.getLore();
         final List<String> lore = old != null ? new ArrayList<>(old) : new ArrayList<>();
-        String itemName = "空";
+        String itemName = "Empty";
         if (getItemStack() != null) {
             itemName = ItemStackHelper.getDisplayName(this.getItemStack());
         }
         lore.add("");
-        lore.add(String.format("§e物品: %s", itemName));
+        lore.add(String.format("§eItem: %s", itemName));
         lore.add(String.format(
-                "§e数量: §f%s", this.getAmount()));
+                "§eAmount: §f%s", this.getAmount()));
         if (this.supportsCustomMaxAmount) {
             lore.add(String.format(
-                    "§e当前容量限制: §c%s", this.getLimit()));
+                    "§eCurrent storage limit: §c%s", this.getLimit()));
         }
 
         itemMeta.setLore(lore);
@@ -166,23 +166,23 @@ public class QuantumCache extends ItemStackCache {
         if (lore == null) {
             lore = new ArrayList<>();
         }
-        String itemName = "空";
+        String itemName = "Empty";
         if (getItemStack() != null) {
             itemName = ItemStackHelper.getDisplayName(this.getItemStack());
         }
         final int loreIndexModifier = this.supportsCustomMaxAmount ? 1 : 0;
         lore.set(
                 lore.size() - 2 - loreIndexModifier,
-                String.format("§e物品: %s", itemName));
+                String.format("§eItem: %s", itemName));
         lore.set(
                 lore.size() - 1 - loreIndexModifier,
                 String.format(
-                        "§e数量: §f%s", this.getAmount()));
+                        "§eAmount: §f%s", this.getAmount()));
         if (this.supportsCustomMaxAmount) {
             lore.set(
                     lore.size() - loreIndexModifier,
                     String.format(
-                            "§e当前容量限制: §c%s",
+                            "§eCurrent storage limit: §c%s",
                             this.getLimit()));
         }
 

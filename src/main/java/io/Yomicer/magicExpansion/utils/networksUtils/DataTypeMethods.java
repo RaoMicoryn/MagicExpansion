@@ -11,11 +11,11 @@ import org.jetbrains.annotations.Nullable;
 import java.util.Optional;
 
 /**
- * PDC 数据读写工具类（原 Lombok @UtilityClass 改为手工实现：final 类 + 私有构造，禁止实例化）
+ * PDC data read/write helper (changed from Lombok @UtilityClass to a final class with a private constructor, so it can't be instantiated)
  */
 public final class DataTypeMethods {
 
-    // 私有构造器：工具类不允许创建实例
+    // Private constructor: utility classes should not be instantiated
     private DataTypeMethods() {
     }
 

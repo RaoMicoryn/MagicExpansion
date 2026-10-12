@@ -35,14 +35,14 @@ public class WordClear extends SimpleSlimefunItem<ItemUseHandler> implements Not
             UUID uuid = p.getUniqueId();
 
 
-            // --- 权限检测 ---
+            // --- Check permissions ---
             if (!ItemPermissionUtils.hasPermissionPoint(p, loc)) {
-                p.sendMessage("§c你没有权限在此区域移除全息文字！");
+                p.sendMessage("§cYou can’t remove hologram text in this area!");
                 p.playSound(loc, Sound.BLOCK_NOTE_BLOCK_BASS, 1.0f, 0.5f);
                 return;
             }
 
-            // --- 查找最近的全息盔甲架 ---
+            // --- Find the nearest hologram armor stand ---
             List<Entity> entities = (List<Entity>) (List<?>) loc.getNearbyEntities(3, 3, 3);
             ArmorStand nearestHologram = null;
             double nearestDistance = 999;
@@ -50,11 +50,11 @@ public class WordClear extends SimpleSlimefunItem<ItemUseHandler> implements Not
             for (Entity en : entities) {
                 if (en.getType() == EntityType.ARMOR_STAND) {
                     ArmorStand as = (ArmorStand) en;
-                    // 检查是否是全息显示用的盔甲架 (隐形、无重力、标记)
-                    // 修复(U)：增加 CustomName 非空校验，只清理带文字的全息盔甲架，
-                    // 避免误删其他插件/技术性的无名盔甲架。
-                    // 说明：放置侧（DrawMachine.createTextArmorStand 等）未写入插件 metadata/PDC 标记
-                    // 且该文件不在本次可修改清单中，故退化为校验"隐形 marker + 有自定义名"的本插件全息特征
+                    // Check if this armor stand is used for holograms (invisible, no gravity, marker)
+                    // Fix (U): Check that CustomName is not empty, so only hologram armor stands with text are removed,
+                    // to avoid removing unnamed armor stands used by other plugins or systems.
+                    // Note: The placement code (such as DrawMachine.createTextArmorStand) does not add plugin metadata/PDC tags
+                    // and that code isn’t part of this edit, so we identify our holograms by checking for an invisible marker with a custom name
                     if (as.isInvisible() && !as.hasGravity() && as.isMarker() && as.getCustomName() != null) {
                         double distance = loc.distance(as.getLocation());
                         if (distance < nearestDistance) {
@@ -65,57 +65,57 @@ public class WordClear extends SimpleSlimefunItem<ItemUseHandler> implements Not
                 }
             }
 
-            // --- 逻辑处理 ---
+            // --- Handle the logic ---
             String metaKey = "hologramToRemove";
             List<MetadataValue> meta = p.getMetadata(metaKey);
             ArmorStand pendingStand = null;
 
-            // 检查是否有待确认的目标
+            // Check if there is a target waiting for confirmation
             if (meta != null && !meta.isEmpty()) {
-                // 尝试获取存储的盔甲架引用 (这里使用了弱引用或直接存储，视具体实现而定，这里假设存储的是实体)
-                // 注意：在Java中存储实体引用可能因区块卸载失效，但在短时使用中可行
+                // Try to get the saved armor stand reference (this assumes the entity itself was saved)
+                // Note: An entity reference may stop working when its chunk unloads, but it should be fine for short-term use
                 try {
                     pendingStand = (ArmorStand) meta.get(0).value();
                 } catch (Exception ignored) {}
             }
 
-            // 如果玩家之前选中了一个，且这次点击的还是同一个（或者之前的还有效），则执行删除
+            // If the player already picked one and clicks the same one again, remove it
             if (pendingStand != null && pendingStand.isValid()) {
-                // 如果这次也找到了最近的，且就是之前那个（距离极近），或者是同一个对象引用
+                // If the nearest one is the same as the previously selected one
                 if (nearestHologram != null && nearestHologram.getUniqueId().equals(pendingStand.getUniqueId())) {
-                    // 再次检查权限
+                    // Check permissions again
                     if (!ItemPermissionUtils.hasPermissionPoint(p, nearestHologram.getLocation())) {
-                        p.sendMessage("§c你没有权限移除这个全息文字！");
+                        p.sendMessage("§cYou can’t remove this hologram text!");
                         p.playSound(loc, Sound.BLOCK_NOTE_BLOCK_BASS, 1.0f, 0.5f);
                         p.removeMetadata(metaKey, MagicExpansion.getInstance());
                         return;
                     }
 
-                    // 执行删除
+                    // Remove it
                     nearestHologram.remove();
-                    p.sendMessage("§6成功清除全息文字！");
+                    p.sendMessage("§6Hologram text removed!");
                     p.playSound(loc, Sound.ENTITY_EXPERIENCE_ORB_PICKUP, 1.0f, 1.5f);
                     p.removeMetadata(metaKey, MagicExpansion.getInstance());
                     return;
                 }
             }
 
-            // 如果没有待确认的，或者之前的失效了，或者这次选中的是新的
+            // If there’s no pending target, the old one is no longer valid, or the player picked a new one
             if (nearestHologram != null) {
-                // 设置元数据标记
+                // Set the metadata marker
                 p.setMetadata(metaKey, new FixedMetadataValue(MagicExpansion.getInstance(), nearestHologram));
 
                 String content = nearestHologram.getCustomName();
-                if (content == null) content = "§7(无文字)";
+                if (content == null) content = "§7(No text)";
 
-                p.sendMessage("§e检测到最近的全息文字: " + content);
-                p.sendMessage("§7距离: " + String.format("%.1f", nearestDistance) + " 格 - 再次右键确认清除！");
+                p.sendMessage("§eNearest hologram text found: " + content);
+                p.sendMessage("§7Distance: " + String.format("%.1f", nearestDistance) + " blocks away. Right-click again to remove it!");
                 p.playSound(loc, Sound.BLOCK_NOTE_BLOCK_CHIME, 0.5f, 1.0f);
             } else {
-                // 范围内没找到
-                p.sendMessage("§b3 格范围内未找到全息文字！");
+                // Nothing found nearby
+                p.sendMessage("§bNo hologram text found within 3 blocks!");
                 p.playSound(loc, Sound.BLOCK_NOTE_BLOCK_BASS, 1.0f, 0.5f);
-                // 清除无效的元数据
+                // Clear invalid metadata
                 p.removeMetadata(metaKey, MagicExpansion.getInstance());
             }
         };

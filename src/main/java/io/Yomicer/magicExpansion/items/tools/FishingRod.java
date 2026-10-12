@@ -27,19 +27,19 @@ public class FishingRod extends SlimefunItem implements RecipeDisplayItem {
     private final boolean glow;
     private final Map<String, List<WeightedItem>> lootTable;
 
-    // ✅ 所有可使用的鱼饵定义在这里（Material, 显示名, Lore）
+    // ✅ All usable bait is listed here (material, display name, lore)
     private final List<ItemStack> USABLE_LURES;
 
 
     /**
-     * 构造器
+     * Constructor
      *
-     * @param itemGroup   分类
-     * @param item        物品
-     * @param recipeType  合成方式
-     * @param recipe      合成表
-     * @param enchantments 要添加的附魔（附魔 -> 等级）
-     * @param glow         是否显示附魔光效（true=发光，false=隐藏附魔）
+     * @param itemGroup   Category
+     * @param item        Item
+     * @param recipeType  Recipe type
+     * @param recipe      Recipe
+     * @param enchantments Enchantments to add (enchantment -> level)
+     * @param glow         Whether to show the enchantment glow (true = show, false = hide)
      */
     public FishingRod(ItemGroup itemGroup,
                       SlimefunItemStack item,
@@ -63,10 +63,10 @@ public class FishingRod extends SlimefunItem implements RecipeDisplayItem {
         ItemMeta meta = itemStack.getItemMeta();
 
         if (meta != null) {
-            // 1. 设置无法破坏（原有功能）
+            // 1. Make the item unbreakable (existing behavior)
             meta.setUnbreakable(true);
 
-            // 2. 添加外部传入的附魔
+            // 2. Add the enchantments passed in
             if (enchantments != null && !enchantments.isEmpty()) {
                 for (Map.Entry<Enchantment, Integer> entry : enchantments.entrySet()) {
                     Enchantment enchant = entry.getKey();
@@ -105,11 +105,11 @@ public class FishingRod extends SlimefunItem implements RecipeDisplayItem {
     @Override
     public @NotNull List<ItemStack> getDisplayRecipes() {
         List<ItemStack> display = new ArrayList<>();
-        display.add(new CustomItemStack(Material.KNOWLEDGE_BOOK, getGradientName("可使用的鱼饵⇩"),getGradientName("越靠前的鱼饵优先级越高")));
+        display.add(new CustomItemStack(Material.KNOWLEDGE_BOOK, getGradientName("Available Bait ⇩"),getGradientName("Bait listed first has higher priority")));
         display.add(new CustomItemStack(Material.AIR));
-        display.add(new CustomItemStack(Material.KNOWLEDGE_BOOK, getGradientName("可使用的鱼饵⇩"),getGradientName("副手鱼饵有绝对优先级，空气优先级永远最低")));
-        display.add(new CustomItemStack(Material.LIGHT_GRAY_STAINED_GLASS_PANE, getGradientName("空气")));
-        // 添加所有鱼饵
+        display.add(new CustomItemStack(Material.KNOWLEDGE_BOOK, getGradientName("Available Bait ⇩"),getGradientName("Offhand bait always comes first. No bait has the lowest priority")));
+        display.add(new CustomItemStack(Material.LIGHT_GRAY_STAINED_GLASS_PANE, getGradientName("No Bait")));
+        // Add all bait
         for (ItemStack lure : USABLE_LURES) {
             display.add(new CustomItemStack(Material.AIR));
             display.add(lure);

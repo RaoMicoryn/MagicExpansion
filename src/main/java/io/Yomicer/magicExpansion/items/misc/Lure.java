@@ -10,7 +10,6 @@ public abstract class Lure {
 
     public abstract boolean hasLure(Player player);
     public abstract List<WeightedItem> getLootPool();
-    public abstract String getKey(); // 新增
+    public abstract String getKey(); // New
     public abstract ItemStack getItem();
 }
-

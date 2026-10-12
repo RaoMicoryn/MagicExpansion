@@ -24,7 +24,7 @@ import static io.Yomicer.magicExpansion.Listener.SlimefunRegistryGiftBox.itemMap
 
 public class HonkaiStarRailBox extends SimpleSlimefunItem<ItemUseHandler> implements NotPlaceable {
 
-    // 修复(M)：Random 改为共享静态实例，避免每次开盒新建 Random
+    // Fix (M): Random changed to a shared static instance, to avoid creating a new Random
     private static final Random RANDOM = new Random();
 
     public HonkaiStarRailBox(ItemGroup itemGroup, SlimefunItemStack item, RecipeType recipeType, ItemStack[] recipe) {
@@ -33,7 +33,7 @@ public class HonkaiStarRailBox extends SimpleSlimefunItem<ItemUseHandler> implem
 
 
 
-    // 随机获取一个物品的 ItemStack
+    // Get a random item's ItemStack
     public ItemStack getRandomItemStack(Map<String, SlimefunItem> itemMap) {
         if (itemMap.isEmpty()) {
             return null;
@@ -42,18 +42,18 @@ public class HonkaiStarRailBox extends SimpleSlimefunItem<ItemUseHandler> implem
         Collection<SlimefunItem> values = itemMap.values();
         List<SlimefunItem> list = new ArrayList<>(values);
 
-        // 修复(M)：使用共享静态 Random
+        // Fix (M): Use a shared static Random
         SlimefunItem randomItem = list.get(RANDOM.nextInt(list.size()));
         return randomItem.getItem().clone();
     }
 
-    // 在指定位置生成一个随机物品
+    // Spawn a random item at the given location
     public void spawnRandomItem(Location location, Player player) {
         ItemStack gift = getRandomItemStack(itemMapMihoyoHonkai);
 
         if (gift != null) {
             SlimefunUtils.spawnItem(location, gift, ItemSpawnReason.CHRISTMAS_PRESENT_OPENED, true, player);
-            player.sendMessage("§a恭喜你，从打开 Honkai: Star Rail 盲盒中开出了" + gift.getItemMeta().getDisplayName() + "！");
+            player.sendMessage("§aCongrats! You opened a Honkai: Star Rail blind box and got " + gift.getItemMeta().getDisplayName() + "!");
         }
     }
 
@@ -64,10 +64,10 @@ public class HonkaiStarRailBox extends SimpleSlimefunItem<ItemUseHandler> implem
         return (e) -> {
             e.cancel();
             e.getClickedBlock().ifPresent((block) -> {
-                // 修复(M)：先判奖池非空再消耗盲盒，防止奖池为空时吞掉物品
+                // Fix (M): Check the prize pool is not empty before using up the blind box, so an item isn't swallowed when the pool is empty
                 ItemStack gift = getRandomItemStack(itemMapMihoyoHonkai);
                 if (gift == null) {
-                    e.getPlayer().sendMessage("§c奖池为空，盲盒未消耗，无法开出物品！");
+                    e.getPlayer().sendMessage("§cThe prize pool is empty, the blind box wasn't used up, can't open any item!");
                     return;
                 }
 
@@ -78,7 +78,7 @@ public class HonkaiStarRailBox extends SimpleSlimefunItem<ItemUseHandler> implem
                 FireworkUtils.launchRandom(e.getPlayer(), 3);
                 Block b = block.getRelative(e.getClickedFace());
                 SlimefunUtils.spawnItem(b.getLocation(), gift, ItemSpawnReason.CHRISTMAS_PRESENT_OPENED, true, e.getPlayer());
-                e.getPlayer().sendMessage("§a恭喜你，从打开 Honkai: Star Rail 盲盒中开出了" + gift.getItemMeta().getDisplayName() + "！");
+                e.getPlayer().sendMessage("§aCongrats! You opened a Honkai: Star Rail blind box and got " + gift.getItemMeta().getDisplayName() + "!");
 
             });
         };

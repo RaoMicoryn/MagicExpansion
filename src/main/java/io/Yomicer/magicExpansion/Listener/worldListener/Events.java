@@ -14,7 +14,7 @@ import java.util.concurrent.ConcurrentHashMap;
 
 public class Events implements Listener {
 
-    // 修复：HashMap 改为 ConcurrentHashMap，避免多线程/异步访问时的并发问题
+    // Fix: Use ConcurrentHashMap instead of HashMap to avoid issues when multiple threads access it.
     public static final Map<UUID, Boolean> selectMode = new ConcurrentHashMap<>();
     public static final Map<UUID, Location> point1 = new ConcurrentHashMap<>();
     public static final Map<UUID, Location> point2 = new ConcurrentHashMap<>();
@@ -23,13 +23,13 @@ public class Events implements Listener {
     public void onPlayerInteract(PlayerInteractEvent event) {
         Player player = event.getPlayer();
 
-        // 修复：副手交互会触发两次事件，过滤 OFF_HAND 防止重复选点
+        // Fix: Off-hand clicks can trigger the event twice, so ignore them to avoid selecting points twice.
         if (event.getHand() == EquipmentSlot.OFF_HAND) {
             return;
         }
 
         if (!selectMode.getOrDefault(player.getUniqueId(), false)) {
-            return; // 玩家不在选择模式
+            return; // The player is not in selection mode.
         }
 
         if (event.getAction().name().contains("LEFT_CLICK_BLOCK")) {
@@ -42,11 +42,11 @@ public class Events implements Listener {
             player.sendMessage("Point 2 selected at " + block.getLocation());
         }
 
-        event.setCancelled(true); // 阻止破坏方块或打开容器
+        event.setCancelled(true); // Stop the player from breaking blocks or opening containers.
     }
 
     /**
-     * 修复：玩家退出时清理该玩家的选择模式与选点数据，防止内存泄漏
+     * Fix: Clear the player's selection mode and selected points when they leave, to avoid memory leaks.
      */
     public static void cleanup(UUID uuid) {
         selectMode.remove(uuid);

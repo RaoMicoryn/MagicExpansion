@@ -14,21 +14,21 @@ public class BaseFish {
     private Material material;
     private List<String> additionalLore = new ArrayList<>();
 
-    // 私有构造函数
+    // Private constructor
     private BaseFish(Fish originalFish) {
         this.originalFish = originalFish;
         this.material = getMaterialByRarity(originalFish.getRarity());
     }
 
     /**
-     * 静态方法创建BaseFish实例
+     * Static method to create a BaseFish instance
      */
     public static BaseFish of(Fish fish) {
         return new BaseFish(fish);
     }
 
     /**
-     * 为每个鱼类创建静态实例（方便直接调用）
+     * Make a static instance for each fish (easy to call directly)
      */
     public static final BaseFish SanWenFish = of(Fish.SanWenFish);
     public static final BaseFish XueFish = of(Fish.XueFish);
@@ -66,7 +66,7 @@ public class BaseFish {
     public static final BaseFish EnchantedBottleFish = of(Fish.EnchantedBottleFish);
 
 
-    //合金锭鱼
+    //Alloy ingot fish
     public static final BaseFish ReinforcedAlloyFish = of(Fish.ReinforcedAlloyFish);
     public static final BaseFish HardenedMetalFish = of(Fish.HardenedMetalFish);
     public static final BaseFish DamascusSoulFish = of(Fish.DamascusSoulFish);
@@ -99,26 +99,26 @@ public class BaseFish {
     public static final BaseFish MYSTIC_EEL = of(Fish.MYSTIC_EEL);
 
     /**
-     * 根据稀有度获取材质
+     * Get the material by rarity
      */
     private Material getMaterialByRarity(Fish.Rarity originalRarity) {
         return switch (originalRarity) {
-            case COMMON -> Material.COD_BUCKET;           // 普通 - 鳕鱼桶
-            case UNCOMMON -> Material.SALMON_BUCKET;      // 不常见 - 鲑鱼桶
+            case COMMON -> Material.COD_BUCKET;           // Common - cod bucket
+            case UNCOMMON -> Material.SALMON_BUCKET;      // Uncommon - salmon bucket
             case RARE, RARE_POOL_DUST, RARE_POOL_ORE, RARE_POOL_INDUSTRY ->
-                    Material.PUFFERFISH_BUCKET;               // 稀有 - 河豚桶
+                    Material.PUFFERFISH_BUCKET;               // Rare - pufferfish bucket
             case EPIC, EPIC_POOL_INDUSTRY, EPIC_POOL_ALLOY_INGOT ->
-                    Material.TROPICAL_FISH_BUCKET;            // 史诗 - 热带鱼桶
+                    Material.TROPICAL_FISH_BUCKET;            // Epic - tropical fish bucket
             case LEGENDARY, LEGENDARY_EEL ->
-                    Material.AXOLOTL_BUCKET;                  // 传说 - 美西螈桶
+                    Material.AXOLOTL_BUCKET;                  // Legendary - axolotl bucket
             case MYTHICAL ->
-                Material.NAUTILUS_SHELL;                    // 神话 鹦鹉螺壳
+                Material.NAUTILUS_SHELL;                    // Mythical - nautilus shell
             default -> Material.COD_BUCKET;
         };
     }
 
     /**
-     * 创建一个当前实例的副本
+     * Make a copy of the current instance
      */
     public BaseFish copy() {
         BaseFish copy = new BaseFish(this.originalFish);
@@ -128,7 +128,7 @@ public class BaseFish {
     }
 
     /**
-     * 链式添加Lore
+     * Add lore (chainable)
      */
     public BaseFish addLore(String... lines) {
         additionalLore.addAll(Arrays.asList(lines));
@@ -136,7 +136,7 @@ public class BaseFish {
     }
 
     /**
-     * 清空额外Lore
+     * Clear the extra lore
      */
     public BaseFish clearLore() {
         additionalLore.clear();
@@ -144,7 +144,7 @@ public class BaseFish {
     }
 
     /**
-     * 设置材质（覆盖根据稀有度设置的材质）
+     * Set the material (overrides the material set by rarity)
      */
     public BaseFish setMaterial(Material material) {
         this.material = material;
@@ -152,7 +152,7 @@ public class BaseFish {
     }
 
     /**
-     * 构建ItemStack
+     * Build the ItemStack
      */
     public ItemStack build() {
         ItemStack item = new ItemStack(material);
@@ -160,7 +160,7 @@ public class BaseFish {
         if (meta != null) {
             meta.setDisplayName(originalFish.getDisplayName());
 
-            // 合并原有Lore和额外添加的Lore
+            // Merge the original lore and the extra lore
             List<String> lore = new ArrayList<>();
             lore.addAll(Arrays.asList(originalFish.getLoreLines()));
             if (!additionalLore.isEmpty()) {
@@ -174,7 +174,7 @@ public class BaseFish {
     }
 
     /**
-     * 快速获取ItemStack（不添加额外Lore）
+     * Quickly get the ItemStack (without extra lore)
      */
     public ItemStack toItemStack() {
         return build();

@@ -40,28 +40,28 @@ public class TestMusicRightClick extends SimpleSlimefunItem<ItemUseHandler> impl
     public ItemUseHandler getItemHandler() {
 
         return e -> {
-            // 阻止默认行为（放置方块或使用物品）
+            // Stop the default action (placing a block or using the item)
             e.setUseItem(Event.Result.DENY);
             e.setUseBlock(Event.Result.DENY);
-            // 获取玩家
+            // Get the player
             Player player = e.getPlayer();
             UUID playerId = player.getUniqueId();
             long now = System.currentTimeMillis();
-            // 每次使用时清理过期的冷却记录
+            // Clear expired cooldown records each time the item is used
             cooldowns.entrySet().removeIf(entry -> now - entry.getValue() >= COOLDOWN_MS);
-            // 检查冷却
+            // Check the cooldown
             if (cooldowns.containsKey(playerId)) {
                 long lastUsed = cooldowns.get(playerId);
                 if (now - lastUsed < COOLDOWN_MS) {
                     long remaining = (COOLDOWN_MS - (now - lastUsed)) / 1000 + 1;
-                    player.sendMessage("§c该道具冷却中，请等待 " + remaining + " 秒后再使用。");
+                    player.sendMessage("§cThis item is on cooldown. Please wait " + remaining + " seconds before using it again.");
                     return;
                 }
             }
-            //player.sendTitle("✨🌹", "聆听星空的低语...", 10, 60, 10);
-            // 播放旋律（调用我们封装的函数）
+            //player.sendTitle("✨🌹", "Listen to the whispers of the stars...", 10, 60, 10);
+            // Play the melody (using our helper function)
             new ZKBTMPlayer(MagicExpansion.getInstance()).playCuteMusic(player);
-            // ✅ 使用成功，更新冷却时间
+            // ✅ Item used successfully; update the cooldown
             cooldowns.put(playerId, now);
         };
     }

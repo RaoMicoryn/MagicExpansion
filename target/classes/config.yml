@@ -1,0 +1,77 @@
+options:
+  auto-update: true
+  ignore-outdated-warning: false
+  test: false
+  clear-old-config: false
+
+StarShardsSword:
+  help: '##### Starfall Judgment settings #####'
+  StarShards_Atk_Mix: 3.8
+  # Base attack multiplier, default: 3.8 (+280%)
+  StarShards_Atk_Add: 1314.0
+  # Base attack bonus, default: 1314.0
+  StarShards_Atk_Mult: 6.18
+  # Base attack multiplier, default: 6.18 (+618%)
+  StarShards_AtkSpeed: 20.0
+  # Attack speed, default: 20.0 (+2000%)
+  StarShards_Atk_ExtraPercent: 0.08
+  # Attack bonus, default: 0.15 (+15%). Fixed extra percentage damage
+  StarShards_Atk_Blood: 0.05
+  # Bleed effect, default: 0.03 (+3%). Can stack; each stack works separately
+  StarShards_Atk_Fire: 0.8
+  # Extra fire damage multiplier for Blazing Slash, default: 0.8. Based on this attack's damage
+  StarShards_ArcaneBlast_Mult: 0.6
+  # Arcane Blast damage multiplier, default: 0.6. Based on this attack's damage
+  StarShards_Health_Add: 1314.0
+  # Base health bonus, default: 1314.0
+  StarShards_Health_Mult: 6.18
+  # Base health multiplier, default: 6.18 (+618%)
+  StarShards_MoveSpeed: 0.618
+  # Movement speed, default: 0.618 (+61.8%)
+  StarShards_Armor: 200.0
+  # Armor, default: 200.0
+  StarShards_Toughness: 200.0
+  # Armor toughness, default: 200.0
+  StarShards_FlySpeed: 13.14
+  # Flight speed, default: 13.14 (+131.4%)
+  StarShards_BlazingSlash_CD: 1
+  # Left-click skill cooldown, default: 1.0
+  StarShards_ArcaneBlast_CD: 3
+  # Shift + left-click skill cooldown, default: 3.0
+  StarShards_AstralShield_CD: 5
+  # Right-click skill cooldown, default: 5.0
+  StarShards_AstralShield_During: 5
+  # Right-click skill duration, default: 5.0
+  StarShards_InstantBlink_CD: 3
+  # Shift + right-click skill cooldown, default: 3.0
+
+Fish:
+  FishingRod:
+    FISHING_ROD_FINAL_STICK: # Final fishing rod settings
+      Enable:
+       FinalLure: true # Whether to enable the Final Bait [Bait: Memory Fragment] (works separately)
+       FinalLure_Obtain: true # Whether the Final Bait [Bait: Memory Fragment] can be caught from water (works separately)
+    admin-give:
+      max-weight: 10000.0
+
+
+qwen-help:
+  help: '##### These are setup tips for qwen-help. Please don''t delete them, though deleting them won''t cause much trouble'
+  cooldown: '##### Time between player AI questions. Default: 3 seconds'
+  api-key: '##### Enter the API key from the Alibaba Cloud Bailian console. New users get plenty of free usage, which is usually enough'
+  endpoint: '##### This is the endpoint. The default is fine, and it''s recommended since Alibaba Cloud offers free usage'
+  model: '##### Custom model options include qwen-max, qwen3-max, qwen-plus, qwen-plus-2025-09-11, and more. Check the official site for details'
+  model-extra: 'By default, qwen-plus and qwen-plus-2025-09-11 give the most complete and longest replies. The first max model gives shorter, less detailed replies'
+  model-extra1: 'qwen-plus is the main version, while qwen-plus-2025-09-11 is a snapshot version. Each snapshot has its own free usage quota'
+  model-extra2: 'qwen3-max is an upgraded version of max and gives slightly more detailed replies'
+  model-extra3: 'If you want shorter replies, qwen-max is a good choice'
+  model-extra4: 'In build 34 and later, replies from all models were adjusted to be shorter by default. Players can ask the AI to change the reply length'
+  ai-error: '##### Message shown when the AI reply fails'
+
+
+qwen:
+  api-key: "your_api_key_here"
+  endpoint: "https://dashscope.aliyuncs.com/api/v1/services/aigc/text-generation/generation"
+  model: "qwen-plus-2025-09-11"
+  ai-error: "&c❌ AI request failed. Please try again later"
+  cooldown: 3

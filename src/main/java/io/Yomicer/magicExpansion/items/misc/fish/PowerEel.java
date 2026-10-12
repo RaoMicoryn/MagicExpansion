@@ -36,11 +36,11 @@ import static io.Yomicer.magicExpansion.utils.ColorGradient.getRandomGradientNam
 
 public class PowerEel extends SimpleSlimefunItem<ItemUseHandler> implements NotPlaceable {
 
-    // 定义 NamespacedKey
+    // Define the NamespacedKeys
     private static final NamespacedKey MaxPower = new NamespacedKey(MagicExpansion.getInstance(), "max_power");
     private static final NamespacedKey NowPower = new NamespacedKey(MagicExpansion.getInstance(), "now_power");
 
-    // 修复：static 等待标记，防止同一玩家等待期间重复注册临时监听器
+    // Fix: static waiting flag, so the same player can't register extra temporary listeners while already waiting
     private static final Map<UUID, Boolean> WAITING_INPUT = new ConcurrentHashMap<>();
 
     public PowerEel(ItemGroup itemGroup, SlimefunItemStack item, RecipeType recipeType, ItemStack[] recipe) {
@@ -51,17 +51,17 @@ public class PowerEel extends SimpleSlimefunItem<ItemUseHandler> implements NotP
     public @NotNull ItemUseHandler getItemHandler() {
         return e -> {
 
-            // 阻止默认行为（放置方块或使用物品）
+            // Stop the default behavior (placing a block or using the item)
             e.setUseItem(Event.Result.DENY);
             e.setUseBlock(Event.Result.DENY);
             ItemStack item = e.getItem();
             Player player = e.getPlayer();
-            // 必须按住 Shift 才能设置
+            // You must hold Shift to set it
             if (!player.isSneaking()) {
-                player.sendMessage("§e提示: 按住 Shift + 右键 来设置最大储能值。");
+                player.sendMessage("§eTip: Hold Shift + Right Click to set the max energy storage.");
                 return;
             }
-            // 开始等待输入
+            // Start waiting for input
             waitForMaxPowerInput(player, item);
 
         };
@@ -70,86 +70,86 @@ public class PowerEel extends SimpleSlimefunItem<ItemUseHandler> implements NotP
 
 
     /**
-     * 等待玩家输入最大储能值（正整数，long 范围）
+     * Wait for the player to type the max energy storage value (a positive whole number, within the long range)
      */
     private void waitForMaxPowerInput(Player player, ItemStack item) {
-        // 修复：同一玩家等待期间忽略再次触发，防止重复注册监听器（等待结束/超时移除标记）
+        // Fix: if the same player triggers this again while waiting, ignore it so listeners aren't registered twice (the flag is removed when waiting ends or times out)
         if (WAITING_INPUT.putIfAbsent(player.getUniqueId(), true) != null) {
-            player.sendMessage(getRandomGradientName("[魔法2.0] 你已有一个待输入的设置请求，请先完成或输入 'cancel' 取消。"));
+            player.sendMessage(getRandomGradientName("[Magic 2.0] You already have a pending setup request. Finish it first, or type 'cancel' to cancel it."));
             return;
         }
 
-        player.sendMessage(getRandomGradientName("[魔法2.0] 请输入一个正整数作为最大储能值（ 1 ~ "+ Long.MAX_VALUE +" ）："));
-        player.sendMessage(getRandomGradientName("提示：输入 'cancel' 可取消操作。"));
+        player.sendMessage(getRandomGradientName("[Magic 2.0] Type a whole number for the max energy storage ( 1 ~ "+ Long.MAX_VALUE +" ):"));
+        player.sendMessage(getRandomGradientName("Tip: Type 'cancel' to cancel."));
 
-        // <<< 声明任务变量，用于后续取消 >>>
+        // <<< Declare the task variable so we can cancel it later >>>
         BukkitTask[] timeoutTask = new BukkitTask[1];
-        // 创建临时监听器
+        // Create the temporary listener
         Listener tempListener = new Listener() {
             @EventHandler(priority = EventPriority.HIGHEST, ignoreCancelled = true)
             public void onPlayerChat(AsyncPlayerChatEvent event) {
                 Player p = event.getPlayer();
                 if (!p.equals(player)) return;
 
-                event.setCancelled(true); // 拦截消息
+                event.setCancelled(true); // Block the message
 
-                // 修复：异步聊天线程中只做文本读取与解析（异步安全部分）
+                // Fix: in the async chat thread, only read and parse the text (the async-safe part)
                 String message = event.getMessage().trim();
 
                 if ("cancel".equalsIgnoreCase(message)) {
-                    player.sendMessage(getRandomGradientName("[魔法2.0] 已取消操作。"));
+                    player.sendMessage(getRandomGradientName("[Magic 2.0] Cancelled."));
                 }else {
 
                     try {
                         long maxPowerValue = Long.parseLong(message);
                         if (maxPowerValue <= 0) {
-                            player.sendMessage(getRandomGradientName("错误：请输入一个大于 0 的正整数。"));
-                            return; // 不注销，继续等待
+                            player.sendMessage(getRandomGradientName("Error: Please type a whole number bigger than 0."));
+                            return; // Don't unregister, keep waiting
                         }
 
-                        // 修复：物品(PDC/Lore)修改切回主线程执行，避免异步线程操作物品
+                        // Fix: changing the item (PDC/Lore) is moved back to the main thread, so we don't touch items from the async thread
                         final long value = maxPowerValue;
                         org.bukkit.Bukkit.getScheduler().runTask(MagicExpansion.getInstance(), () -> {
                             handlePowerConfiguration(item, value);
-                            player.sendMessage(getRandomGradientName("✔ 成功设置最大储能值为: " + value + " J"));
-                            player.updateInventory(); // 强制刷新
+                            player.sendMessage(getRandomGradientName("✔ Max energy storage set to: " + value + " J"));
+                            player.updateInventory(); // Force a refresh
                         });
 
                     } catch (NumberFormatException ex) {
-                        player.sendMessage(getRandomGradientName("错误：'" + message + "' 不是一个有效的整数，请重新输入。"));
-                        return; // 继续等待
+                        player.sendMessage(getRandomGradientName("Error: '" + message + "' isn't a valid whole number, please try again."));
+                        return; // Keep waiting
                     }
                 }
 
-                // 修复：等待结束移除防重复标记
+                // Fix: when waiting ends, remove the anti-duplicate flag
                 WAITING_INPUT.remove(player.getUniqueId());
 
-                // <<< 输入完成或取消：取消超时任务 >>>
+                // <<< Input finished or cancelled: cancel the timeout task >>>
                 if (timeoutTask[0] != null && !timeoutTask[0].isCancelled()) {
                     timeoutTask[0].cancel();
                 }
 
-                // 完成后注销监听器
+                // Unregister the listener when done
                 org.bukkit.event.HandlerList.unregisterAll(this);
             }
         };
 
-        // 注册临时监听器
+        // Register the temporary listener
         MagicExpansion.getInstance().getServer().getPluginManager().registerEvents(tempListener, MagicExpansion.getInstance());
 
-        // 设置 15 秒超时
+        // Set a 15 second timeout
         timeoutTask[0] = MagicExpansion.getInstance().getServer().getScheduler().runTaskLater(MagicExpansion.getInstance(), () -> {
             org.bukkit.event.HandlerList.unregisterAll(tempListener);
-            // 修复：超时后移除防重复标记
+            // Fix: after a timeout, remove the anti-duplicate flag
             WAITING_INPUT.remove(player.getUniqueId());
             if (player.isOnline()) {
-                player.sendMessage(getRandomGradientName("[魔法2.0] ⏰ 输入超时（15秒），已自动取消。"));
+                player.sendMessage(getRandomGradientName("[Magic 2.0] ⏰ Timed out (15 seconds), cancelled automatically."));
             }
-        }, 300L); // 15秒 = 300 ticks
+        }, 300L); // 15 seconds = 300 ticks
     }
 
     /**
-     * 处理物品的储能配置（PDC + Lore 更新）
+     * Handle the item's energy storage setup (update PDC + Lore)
      */
     private void handlePowerConfiguration(ItemStack item, long maxPowerValue) {
         ItemMeta meta = item.getItemMeta();
@@ -157,15 +157,15 @@ public class PowerEel extends SimpleSlimefunItem<ItemUseHandler> implements NotP
 
         PersistentDataContainer pdc = meta.getPersistentDataContainer();
 
-        // 获取当前电量（继承或初始化为0）
+        // Get the current energy (keep it, or start from 0)
         long nowPower = pdc.has(NowPower, PersistentDataType.LONG)
                 ? pdc.get(NowPower, PersistentDataType.LONG) : 0L;
 
-        // 设置最大电量
+        // Set the max energy
         pdc.set(MaxPower, PersistentDataType.LONG, maxPowerValue);
-        pdc.set(NowPower, PersistentDataType.LONG, nowPower); // 显式设置（确保存在）
+        pdc.set(NowPower, PersistentDataType.LONG, nowPower); // Set it explicitly (makes sure it exists)
 
-        // 更新 Lore：保留前11行，添加电量信息
+        // Update the lore: keep the first 11 lines, then add the energy info
         List<String> lore = new ArrayList<>();
         if (meta.hasLore()) {
             List<String> existingLore = meta.getLore();
@@ -175,8 +175,8 @@ public class PowerEel extends SimpleSlimefunItem<ItemUseHandler> implements NotP
             }
         }
 
-        // 添加电量显示
-        String powerLine = ("§x§F§F§3§2§C§E当前储电量: " + nowPower + "/" + maxPowerValue + " J");
+        // Add the energy display
+        String powerLine = ("§x§F§F§3§2§C§ECurrent energy: " + nowPower + "/" + maxPowerValue + " J");
         lore.add(powerLine);
 
         meta.setLore(lore);

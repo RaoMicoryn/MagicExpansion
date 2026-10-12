@@ -18,7 +18,7 @@ import java.util.Map;
 public class SlimefunRegistryListener implements Listener {
 
 
-    // 预加载的 增强型合成台 配方列表（静态常量）
+    // Preloaded Enhanced Crafting Table recipes (static list).
     public static final List<Map<String, Integer>> ENHANCED_CRAFTING_TABLE_RECIPES = new ArrayList<>();
 
     public static final List<Map<String, Integer>> ARMOR_FORGE_RECIPES = new ArrayList<>();
@@ -48,7 +48,7 @@ public class SlimefunRegistryListener implements Listener {
 
     private void loadRecipes(List<Map<String, Integer>> Recipes, RecipeType type) {
 
-        // 在类加载时预加载所有 SMELTERY 类型的配方
+        // Preload all recipes of this type when the class loads.
         List<SlimefunItem> smelteryItems = Slimefun.getRegistry().getAllSlimefunItems().stream()
                 .filter(item -> item.getRecipeType() == type)
                 .toList();
@@ -57,30 +57,30 @@ public class SlimefunRegistryListener implements Listener {
             ItemStack[] recipe = item.getRecipe();
             Map<String, Integer> recipeMap = new HashMap<>();
 
-            // 遍历配方中的每个物品
+            // Go through each item in the recipe.
             for (ItemStack requiredItem : recipe) {
                 if (requiredItem == null || requiredItem.getType() == Material.AIR) {
-                    continue; // 忽略空槽位
+                    continue; // Skip empty slots.
                 }
 
                 int requiredAmount = requiredItem.getAmount();
 
-                // 判断是否为 SlimefunItem
+                // Check whether this is a SlimefunItem.
                 String itemKey;
                 SlimefunItem slimefunItem = SlimefunItem.getByItem(requiredItem);
                 if (slimefunItem != null) {
-                    // 如果是 SlimefunItem，使用其 ID 作为键
+                    // If it is a SlimefunItem, use its ID as the key.
                     itemKey = "sf:" + slimefunItem.getId();
                 } else {
-                    // 如果不是 SlimefunItem，则默认为原版物品
+                    // If it isn't a SlimefunItem, treat it as a vanilla Minecraft item.
                     itemKey = "mc:" + requiredItem.getType().name();
                 }
 
-                // 整合相同物品的数量
+                // Add up the amounts of matching items.
                 recipeMap.put(itemKey, recipeMap.getOrDefault(itemKey, 0) + requiredAmount);
             }
 
-            // 将整合后的配方存入列表
+            // Add the combined recipe to the list.
             Recipes.add(recipeMap);
         }
 

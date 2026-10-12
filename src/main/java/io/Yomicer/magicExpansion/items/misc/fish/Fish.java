@@ -5,519 +5,519 @@ import io.Yomicer.magicExpansion.utils.ColorGradient;
 import java.util.Random;
 
 public enum Fish {
-    SanWenFish(Rarity.COMMON.colorCode+"三文鱼", 5.0, 31.0, Rarity.COMMON,
-            ("§x§6§B§E§E§D§1河流与海洋的常客。"),
-            ("§x§B§F§A§A§D§0肉质鲜美，广受欢迎。"),
-            ("§x§F§F§3§2§C§E三文鱼体重大多都在 5 - 31 kg之间。")
+    SanWenFish(Rarity.COMMON.colorCode+"Salmon", 5.0, 31.0, Rarity.COMMON,
+            ("§x§6§B§E§E§D§1Regular in rivers and seas."),
+            ("§x§B§F§A§A§D§0Tasty meat, loved by many."),
+            ("§x§F§F§3§2§C§ESalmon usually weighs between 5 - 31 kg.")
     ),
-    XueFish(Rarity.COMMON.colorCode+"鳕鱼", 2.0, 96.0, Rarity.COMMON,
-            ("§x§6§B§E§E§D§1寒冷水域的居民。"),
-            ("§x§B§F§A§A§D§0适合制作鱼条。"),
-            ("§x§F§F§3§2§C§E鳕鱼体重大多都在 2 - 96 kg之间。")
+    XueFish(Rarity.COMMON.colorCode+"Cod", 2.0, 96.0, Rarity.COMMON,
+            ("§x§6§B§E§E§D§1Lives in cold waters."),
+            ("§x§B§F§A§A§D§0Good for making fish sticks."),
+            ("§x§F§F§3§2§C§ECod usually weighs between 2 - 96 kg.")
     ),
-    HeTun(Rarity.UNCOMMON.colorCode+"河豚", 0.2, 1.5, Rarity.UNCOMMON,
-            ("§x§6§B§E§E§D§1小心！它会膨胀！"),
-            ("§x§B§F§A§A§D§0据说美味但有剧毒……"),
-            ("§x§F§F§3§2§C§E河豚体重大多都在 0.2 - 1.5 kg之间。")
+    HeTun(Rarity.UNCOMMON.colorCode+"Pufferfish", 0.2, 1.5, Rarity.UNCOMMON,
+            ("§x§6§B§E§E§D§1Careful! It puffs up!"),
+            ("§x§B§F§A§A§D§0Said to be tasty but very poisonous..."),
+            ("§x§F§F§3§2§C§EPufferfish usually weighs between 0.2 - 1.5 kg.")
     ),
-    ReDaiFish(Rarity.RARE.colorCode+"热带鱼", 0.1, 4, Rarity.RARE,
-            ("§x§6§B§E§E§D§1色彩斑斓的小家伙。"),
-            ("§x§B§F§A§A§D§0只在温暖的水域出现。"),
-            ("§x§F§F§3§2§C§E热带鱼体重大多都在 0.1 - 4 kg之间。")
-    ),
-
-    TestFish(Rarity.RARE.colorCode+"测试鱼", 1.0, 64.0, Rarity.RARE,
-            ("§x§6§B§E§E§D§1闪烁着金属光泽的小鱼，游动时会洒下细碎的铜色光点。"),
-            ("§x§B§0§C§5§D§0传说它由古老的铜矿渗水孕育而成，只在富含矿物质的水域存活。"),
-            ("§x§C§E§8§7§A§8可在生态缸中进行稳定生产。"),
-            ("§x§F§F§3§2§C§E铜粉鱼体重大多都在 1 - 64 kg之间。")
+    ReDaiFish(Rarity.RARE.colorCode+"Tropical Fish", 0.1, 4, Rarity.RARE,
+            ("§x§6§B§E§E§D§1A small, colorful fish."),
+            ("§x§B§F§A§A§D§0Only shows up in warm waters."),
+            ("§x§F§F§3§2§C§ETropical Fish usually weighs between 0.1 - 4 kg.")
     ),
 
-
-    /**
-     * 矿粉鱼-稀有
-     */
-
-    CopperDustFish(Rarity.RARE.colorCode+"赤鳞鱼", 1.0, 64.0, Rarity.RARE,
-            ("§x§6§B§E§E§D§1闪烁着金属光泽的小鱼，游动时会洒下细碎的铜色光点。"),
-            ("§x§A§A§C§D§D§0传说它由古老的铜矿渗水孕育而成，只在富含矿物质的水域存活。"),
-            ("§x§B§F§B§A§D§0可在生态缸中进行稳定生产。"),
-            ("§x§9§C§5§2§8§B铜粉鱼体重大多都在 1 - 64 kg之间。"),
-            ("§x§F§F§3§2§C§E「特殊作用」可生产：铜粉")
-    ),
-
-    GoldDustFish(Rarity.RARE.colorCode + "金砂鱼", 1.0, 64.0, Rarity.RARE,
-            ("§x§6§B§E§E§D§1通体金黄，鳞片如熔金般流动，游动时留下淡淡光痕。"),
-            ("§x§A§A§C§D§D§0被认为是地脉金脉的化身，只在高温岩层附近的水域出没。"),
-            ("§x§B§F§B§A§D§0可在生态缸中进行稳定生产。"),
-            ("§x§9§C§5§2§8§B金砂鱼体重大多都在 1 - 64 kg 之间。"),
-            ("§x§F§F§3§2§C§E「特殊作用」可生产：金粉")
-    ),
-
-    IronDustFish(Rarity.RARE.colorCode + "铁鳞鱼", 1.0, 64.0, Rarity.RARE,
-            ("§x§6§B§E§E§D§1银灰色的鳞片坚硬如铁，游动时发出轻微的金属摩擦声。"),
-            ("§x§A§A§C§D§D§0常出现在沉船残骸附近，以锈蚀的金属为食，生命力极强。"),
-            ("§x§B§F§B§A§D§0可在生态缸中进行稳定生产。"),
-            ("§x§9§C§5§2§8§B铁鳞鱼体重大多都在 1 - 64 kg 之间。"),
-            ("§x§F§F§3§2§C§E「特殊作用」可生产：铁粉")
-    ),
-
-    TinDustFish(Rarity.RARE.colorCode + "锡斑鱼", 1.0, 64.0, Rarity.RARE,
-            ("§x§6§B§E§E§D§1体表布满银白色斑点，游动时如水银滚动，反射幽蓝光泽。"),
-            ("§x§A§A§C§D§D§0偏好酸性水域，常在废弃冶炼厂排水口附近成群出现。"),
-            ("§x§B§F§B§A§D§0可在生态缸中进行稳定生产。"),
-            ("§x§9§C§5§2§8§B锡斑鱼体重大多都在 1 - 64 kg 之间。"),
-            ("§x§F§F§3§2§C§E「特殊作用」可生产：锡粉")
-    ),
-
-    SilverDustFish(Rarity.RARE.colorCode + "银光鱼", 1.0, 64.0, Rarity.RARE,
-            ("§x§6§B§E§E§D§1通体如镜面般光滑，月光下会反射出梦幻般的银白色光辉。"),
-            ("§x§A§A§C§D§D§0传说是在满月之夜由银矿结晶化而成，极其惧怕阳光。"),
-            ("§x§B§F§B§A§D§0可在生态缸中进行稳定生产。"),
-            ("§x§9§C§5§2§8§B银光鱼体重大多都在 1 - 64 kg 之间。"),
-            ("§x§F§F§3§2§C§E「特殊作用」可生产：银粉")
-    ),
-
-    AluminumDustFish(Rarity.RARE.colorCode + "铝影鱼", 1.0, 64.0, Rarity.RARE,
-            ("§x§6§B§E§E§D§1轻盈如影，通体呈淡银白色，几乎不扰动水面。"),
-            ("§x§A§A§C§D§D§0现代工业的意外产物，能在高碱性废水中存活并繁衍。"),
-            ("§x§B§F§B§A§D§0可在生态缸中进行稳定生产。"),
-            ("§x§9§C§5§2§8§B铝影鱼体重大多都在 1 - 64 kg 之间。"),
-            ("§x§F§F§3§2§C§E「特殊作用」可生产：铝粉")
-    ),
-
-    LeadDustFish(Rarity.RARE.colorCode + "铅毒鱼", 1.0, 64.0, Rarity.RARE,
-            ("§x§6§B§E§E§D§1体色暗沉如铅，周身散发微弱的紫色毒雾，令其他生物避之不及。"),
-            ("§x§A§A§C§D§D§0诞生于被严重污染的水域，体内富集大量重金属毒素。"),
-            ("§x§B§F§B§A§D§0可在生态缸中进行稳定生产。"),
-            ("§x§9§C§5§2§8§B铅毒鱼体重大多都在 1 - 64 kg 之间。"),
-            ("§x§F§F§3§2§C§E「特殊作用」可生产：铅粉")
-    ),
-
-    ZincDustFish(Rarity.RARE.colorCode + "锌花鱼", 1.0, 64.0, Rarity.RARE,
-            ("§x§6§B§E§E§D§1体表覆盖着蓝绿色氧化层花纹，游动时会析出微小晶体。"),
-            ("§x§A§A§C§D§D§0常见于老旧镀锌管道附近，以腐蚀产物为食。"),
-            ("§x§B§F§B§A§D§0可在生态缸中进行稳定生产。"),
-            ("§x§9§C§5§2§8§B锌花鱼体重大多都在 1 - 64 kg 之间。"),
-            ("§x§F§F§3§2§C§E「特殊作用」可生产：锌粉")
-    ),
-
-    MagnesiumDustFish(Rarity.RARE.colorCode + "镁光鱼", 1.0, 64.0, Rarity.RARE,
-            ("§x§6§B§E§E§D§1体内富含易燃物质，受惊时会瞬间爆发出刺眼白光。"),
-            ("§x§A§A§C§D§D§0极其活跃，常在雷雨天跃出水面，仿佛在吸收电能。"),
-            ("§x§B§F§B§A§D§0可在生态缸中进行稳定生产。"),
-            ("§x§9§C§5§2§8§B镁光鱼体重大多都在 1 - 64 kg 之间。"),
-            ("§x§F§F§3§2§C§E「特殊作用」可生产：镁粉")
+    TestFish(Rarity.RARE.colorCode+"Test Fish", 1.0, 64.0, Rarity.RARE,
+            ("§x§6§B§E§E§D§1A small fish with a metallic shine that sprinkles tiny copper-colored specks as it swims."),
+            ("§x§B§0§C§5§D§0Legend says it was born from seepage of an old copper mine, and it only survives in mineral-rich waters."),
+            ("§x§C§E§8§7§A§8Can be produced steadily in a vivarium."),
+            ("§x§F§F§3§2§C§ECopper Dust Fish usually weighs between 1 - 64 kg.")
     ),
 
 
     /**
-     * 矿物鱼-稀有
+     * Dust Fish - Rare
      */
 
-    // 【CoalFish】用于生产：煤炭（Coal）
-    CoalFish(Rarity.RARE.colorCode + "煤晶鱼", 1.0, 64.0, Rarity.RARE,
-            ("§x§6§B§E§E§D§1体内凝结着微型煤炭晶体，受压时会迸发火花。"),
-            ("§x§A§A§C§D§D§0常在地底暗河中穿梭，喜好靠近熔岩区域取暖。"),
-            ("§x§B§F§B§A§D§0其代谢产物可直接用于燃料生产。"),
-            ("§x§9§C§5§2§8§B煤晶鱼体重大多都在 1 - 64 kg 之间。"),
-            ("§x§F§F§3§2§C§E「特殊作用」可生产：煤炭")
-    ),
-    // 【EmeraldFish】用于生产：绿宝石（Emerald）
-    EmeraldFish(Rarity.RARE.colorCode + "翠宝鱼", 1.0, 64.0, Rarity.RARE,
-            ("§x§6§B§E§E§D§1鳞片如绿宝石般通透，映出丛林深处的光影。"),
-            ("§x§A§A§C§D§D§0只在附魔台附近水源中偶有出没。"),
-            ("§x§B§F§B§A§D§0据说能提升周围物品的附魔概率。"),
-            ("§x§9§C§5§2§8§B翠宝鱼体重大多都在 1 - 64 kg 之间。"),
-            ("§x§F§F§3§2§C§E「特殊作用」可生产：绿宝石")
-    ),
-    // 【LapisFish】用于生产：青金石（Lapis Lazuli）
-    LapisFish(Rarity.RARE.colorCode + "靛灵鱼", 1.0, 64.0, Rarity.RARE,
-            ("§x§6§B§E§E§D§1体内流淌着深蓝色的矿物流体，静谧如夜空。"),
-            ("§x§A§A§C§D§D§0游动时会释放微弱的魔法波动，干扰红石信号。"),
-            ("§x§B§F§B§A§D§0其分泌物是顶级附魔染料的核心成分。"),
-            ("§x§9§C§5§2§8§B靛灵鱼体重大多都在 1 - 64 kg 之间。"),
-            ("§x§F§F§3§2§C§E「特殊作用」可生产：青金石")
-    ),
-    // 【DiamondFish】用于生产：钻石（Diamond）
-    DiamondFish(Rarity.RARE.colorCode + "晶耀鱼", 1.0, 64.0, Rarity.RARE,
-            ("§x§6§B§E§E§D§1全身覆盖类钻石结晶鳞片，硬度接近地核矿物。"),
-            ("§x§A§A§C§D§D§0仅在高压水晶洞穴中稳定存活。"),
-            ("§x§B§F§B§A§D§0可通过生态缸模拟深层地壳环境进行培育。"),
-            ("§x§9§C§5§2§8§B晶耀鱼体重大多都在 1 - 64 kg 之间。"),
-            ("§x§F§F§3§2§C§E「特殊作用」可生产：钻石")
-    ),
-    // 【QuartzFish】用于生产：下界石英（Nether Quartz）
-    QuartzFish(Rarity.RARE.colorCode + "焰晶鱼", 1.0, 64.0, Rarity.RARE,
-            ("§x§6§B§E§E§D§1体内燃烧着不灭的红色石英核心，持续释放热量。"),
-            ("§x§A§A§C§D§D§0常在下界传送门附近游弋，似能感知维度波动。"),
-            ("§x§B§F§B§A§D§0是红石精密仪器所需石英的稳定生产源。"),
-            ("§x§9§C§5§2§8§B焰晶鱼体重大多都在 1 - 64 kg 之间。"),
-            ("§x§F§F§3§2§C§E「特殊作用」可生产：下界石英")
-    ),
-    // 【AmethystFish】用于生产：紫水晶碎片（Amethyst Shard）
-    AmethystFish(Rarity.RARE.colorCode + "震颤鱼", 1.0, 64.0, Rarity.RARE,
-            ("§x§6§B§E§E§D§1头部生长天然紫水晶簇，对雷暴频率极为敏感。"),
-            ("§x§A§A§C§D§D§0在雷雨天会集体共振，发出清脆鸣响。"),
-            ("§x§B§F§B§A§D§0可用于自动化系统中的信号触发与计时模块。"),
-            ("§x§9§C§5§2§8§B震颤鱼体重大多都在 1 - 64 kg 之间。"),
-            ("§x§F§F§3§2§C§E「特殊作用」可生产：紫水晶碎片")
-    ),
-    // 【IronFish】用于生产：铁锭（Iron Ingot）
-    IronFish(Rarity.RARE.colorCode + "铁核鱼", 1.0, 64.0, Rarity.RARE,
-            ("§x§6§B§E§E§D§1体内富含磁性铁矿，可自然聚集成铁块结构。"),
-            ("§x§A§A§C§D§D§0常成群活动，形成移动的微型磁场。"),
-            ("§x§B§F§B§A§D§0是生态冶金系统中最稳定的铁资源供应者。"),
-            ("§x§9§C§5§2§8§B铁核鱼体重大多都在 1 - 64 kg 之间。"),
-            ("§x§F§F§3§2§C§E「特殊作用」可生产：铁锭")
-    ),
-    // 【GoldFish】用于生产：金锭（Gold Ingot）
-    GoldFish(Rarity.RARE.colorCode + "鎏核鱼", 1.0, 64.0, Rarity.RARE,
-            ("§x§6§B§E§E§D§1体内流淌液态黄金，在阳光下反射帝王光辉。"),
-            ("§x§A§A§C§D§D§0对红石能量高度敏感，常用于自动交易系统。"),
-            ("§x§B§F§B§A§D§0可通过喂食南瓜饼提升金锭产出效率。"),
-            ("§x§9§C§5§2§8§B鎏核鱼体重大多都在 1 - 64 kg 之间。"),
-            ("§x§F§F§3§2§C§E「特殊作用」可生产：金锭")
-    ),
-    // 【CopperFish】用于生产：铜锭（Copper Ingot）
-    CopperFish(Rarity.RARE.colorCode + "铜脉鱼", 1.0, 64.0, Rarity.RARE,
-            ("§x§6§B§E§E§D§1体内有天然铜脉网络，能传导微弱电流。"),
-            ("§x§A§A§C§D§D§0鳞片随环境氧化，颜色从赤红渐变为青绿。"),
-            ("§x§B§F§B§A§D§0是红石电路与避雷针材料的可持续来源。"),
-            ("§x§9§C§5§2§8§B铜脉鱼体重大多都在 1 - 64 kg 之间。"),
-            ("§x§F§F§3§2§C§E「特殊作用」可生产：铜锭")
-    ),
-    // 【脉动鱼】用于生产：红石粉（Redstone Dust）
-    RedstoneFish(Rarity.RARE.colorCode + "赤脉鱼", 1.0, 64.0, Rarity.RARE,
-            ("§x§6§B§E§E§D§1栖息于地底强磁场与矿物脉动交汇处，体内共生着微型红石菌群。"),
-            ("§x§A§A§C§D§D§0鱼鳍如电路板纹路，游动时体表闪烁着规律的红色脉冲光。"),
-            ("§x§B§F§B§A§D§0其脊髓与内脏富含活性红石微粒，是能量传导与自动化装置的核心原料。"),
-            ("§x§9§C§5§2§8§B脉动鱼体重多在 1 - 64 kg 之间，脉冲频率越高，红石纯度越佳。"),
-            ("§x§F§F§3§2§C§E「特殊作用」可生产：红石粉")
-    ),
-    // 【NetheriteFish】用于生产：下界合金锭（Netherite Ingot）
-    NetheriteFish(Rarity.RARE.colorCode + "狱铸鱼", 1.0, 64.0, Rarity.RARE,
-            ("§x§6§B§E§E§D§1由下界烈焰与远古合金融合而成，周身缠绕黑焰。"),
-            ("§x§9§5§C§4§D§0可在改良型生态熔炉缸中稳定生成下界合金锭。"),
-            ("§x§B§F§B§A§D§0免疫火焰与爆炸，是顶级装备材料的唯一活体来源。"),
-            ("§x§A§D§A§2§9§E传说中狱铸鱼体重恒定为 64 kg，因其已超越凡俗衡量。"),
-            ("§x§C§B§4§2§A§6但是绝大多数狱铸鱼体重都在 1 - 64 kg 之间。"),
-            ("§x§F§F§3§2§C§E「特殊作用」可生产：下界合金锭")
-    ),
-    // 【GlowStoneFish】用于生产：萤石粉（Glowstone Dust）
-    GlowStoneDustFish(Rarity.RARE.colorCode + "灯笼鱼", 1.0, 64.0, Rarity.RARE,
-            ("§x§6§B§E§E§D§1体内悬浮着微型发光菌群，如深海中的移动星辰。"),
-            ("§x§9§5§C§4§D§0只在完全黑暗的洞穴水体中出没，惧怕任何光源。"),
-            ("§x§B§F§B§A§D§0其分泌物是高级照明装置与魔法增幅器的核心材料。"),
-            ("§x§A§D§A§2§9§E灯笼鱼体重大多在 1 - 64 kg 之间，轻盈如雾。"),
-            ("§x§C§B§4§2§A§6「特殊作用」可生产：萤石粉"),
-            ("§x§F§F§3§2§C§E「特殊作用」可用于发电")
+    CopperDustFish(Rarity.RARE.colorCode+"Red Scale Fish", 1.0, 64.0, Rarity.RARE,
+            ("§x§6§B§E§E§D§1A small fish with a metallic shine that sprinkles tiny copper-colored specks as it swims."),
+            ("§x§A§A§C§D§D§0Legend says it was born from seepage of an old copper mine, and it only survives in mineral-rich waters."),
+            ("§x§B§F§B§A§D§0Can be produced steadily in a vivarium."),
+            ("§x§9§C§5§2§8§BCopper Dust Fish usually weighs between 1 - 64 kg."),
+            ("§x§F§F§3§2§C§E[Special effect] Makes: Copper Dust")
     ),
 
-    // 【塑灵鱼】用于生产：塑料纸（Plastic Paper）
-    ShuLingYu(Rarity.RARE.colorCode + "塑灵鱼", 1.0, 64.0, Rarity.RARE,
-            ("§x§6§B§E§E§D§1体内缠绕微塑料纤维网络，可过滤水体污染物。"),
-            ("§x§A§A§C§D§D§0体表覆盖半透明聚合物鳞片，折射出虹彩光泽。"),
-            ("§x§B§F§B§A§D§0其分泌物经处理可制成工业生产常用的塑料纸。"),
-            ("§x§9§C§5§2§8§B塑灵鱼体重大多在 1 - 64 kg 范围内。"),
-            ("§x§F§F§3§2§C§E「特殊作用」可生产：塑料纸")
+    GoldDustFish(Rarity.RARE.colorCode + "Gold Sand Fish", 1.0, 64.0, Rarity.RARE,
+            ("§x§6§B§E§E§D§1Golden all over, scales flow like molten gold, leaving a faint trail of light as it swims."),
+            ("§x§A§A§C§D§D§0Thought to be the embodiment of the earth's gold veins, only appears in waters near hot rock layers."),
+            ("§x§B§F§B§A§D§0Can be produced steadily in a vivarium."),
+            ("§x§9§C§5§2§8§BGold Sand Fish usually weighs between 1 - 64 kg."),
+            ("§x§F§F§3§2§C§E[Special effect] Makes: Gold Dust")
     ),
-    // 【铀核鱼】用于生产：铀锭（Uranium Ingot）
-    UraniumFish(Rarity.RARE.colorCode + "铀核鱼", 1.0, 64.0, Rarity.RARE,
-            ("§x§6§B§E§E§D§1体内含有微量放射性同位素，鳃部能富集水中的铀元素。"),
-            ("§x§A§A§C§D§D§0体色呈深绿至墨黑，散发微弱荧光，接近时有温热感。"),
-            ("§x§B§F§B§A§D§0是核能科技与高级反应堆的核心原材料来源。"),
-            ("§x§9§C§5§2§8§B铀核鱼体重通常在 1 - 64 kg 之间。"),
-            ("§x§F§F§3§2§C§E「特殊作用」可生产：铀锭")
+
+    IronDustFish(Rarity.RARE.colorCode + "Iron Scale Fish", 1.0, 64.0, Rarity.RARE,
+            ("§x§6§B§E§E§D§1Silver-gray scales as hard as iron, making a faint metal scraping sound as it swims."),
+            ("§x§A§A§C§D§D§0Often found near shipwrecks, eats rusty metal, and is very tough."),
+            ("§x§B§F§B§A§D§0Can be produced steadily in a vivarium."),
+            ("§x§9§C§5§2§8§BIron Scale Fish usually weighs between 1 - 64 kg."),
+            ("§x§F§F§3§2§C§E[Special effect] Makes: Iron Dust")
     ),
-    // 【油岩鱼】用于生产：原油桶（Crude Oil Barrel）
-    OilRockFish(Rarity.RARE.colorCode + "油岩鱼", 1.0, 64.0, Rarity.RARE,
-            ("§x§6§B§E§E§D§1栖息于深海油脉裂谷，体腔可自然合成液态烃类物质。"),
-            ("§x§A§A§C§D§D§0表皮如浸油岩石，滑腻厚重，散发淡淡石油气味。"),
-            ("§x§B§F§B§A§D§0捕获后可稳定提取原油，是能源工业的重要生物载体。"),
-            ("§x§9§C§5§2§8§B油岩鱼体重普遍在 1 - 64 kg 范围内。"),
-            ("§x§F§F§3§2§C§E「特殊作用」可生产：原油桶")
+
+    TinDustFish(Rarity.RARE.colorCode + "Tin Spot Fish", 1.0, 64.0, Rarity.RARE,
+            ("§x§6§B§E§E§D§1Covered in silvery-white spots, rolls like mercury as it swims, with a faint blue shine."),
+            ("§x§A§A§C§D§D§0Likes acidic water, often shows up in groups near the drains of abandoned smelters."),
+            ("§x§B§F§B§A§D§0Can be produced steadily in a vivarium."),
+            ("§x§9§C§5§2§8§BTin Spot Fish usually weighs between 1 - 64 kg."),
+            ("§x§F§F§3§2§C§E[Special effect] Makes: Tin Dust")
     ),
-    // 【泡晶鱼】用于生产：起泡锭（Foamium Ingot）
-    FoamCrystalFish(Rarity.EPIC.colorCode + "泡晶鱼", 1.0, 64.0, Rarity.EPIC,
-            ("§x§6§B§E§E§D§1体内共生泡沫结晶菌，呼吸时释放含金属微泡。"),
-            ("§x§A§A§C§D§D§0通体如半固态泡沫，轻盈透明，遇光膨胀闪烁。"),
-            ("§x§B§F§B§A§D§0其结晶腺体可提炼出轻质高强的起泡锭，用于辐射物品制造。"),
-            ("§x§9§C§5§2§8§B泡晶鱼体重多在 1 - 64 kg 之间。"),
-            ("§x§F§F§3§2§C§E「特殊作用」可生产：起泡锭")
+
+    SilverDustFish(Rarity.RARE.colorCode + "Silver Glow Fish", 1.0, 64.0, Rarity.RARE,
+            ("§x§6§B§E§E§D§1Smooth like a mirror all over, reflecting a dreamy silver glow under the moonlight."),
+            ("§x§A§A§C§D§D§0Legend says it formed from silver ore crystallizing on a full moon night, and it is terrified of sunlight."),
+            ("§x§B§F§B§A§D§0Can be produced steadily in a vivarium."),
+            ("§x§9§C§5§2§8§BSilver Glow Fish usually weighs between 1 - 64 kg."),
+            ("§x§F§F§3§2§C§E[Special effect] Makes: Silver Dust")
     ),
-    // 【黑曜鱼】用于生产：黑金刚石（Black Diamond）
-    BlackDiamondFish(Rarity.EPIC.colorCode + "黑曜鱼", 1.0, 64.0, Rarity.EPIC,
-            ("§x§6§B§E§E§D§1生于地壳高压层，骨骼由天然纳米级碳晶构成。"),
-            ("§x§A§A§C§D§D§0体表如碎曜石拼接，漆黑深邃，切割时迸发金属寒光。"),
-            ("§x§B§F§B§A§D§0每百年蜕一次晶皮，可炼出比钻石更坚硬的黑金刚石。"),
-            ("§x§9§C§5§2§8§B黑曜鱼体重可达 1 - 64 kg，越重者晶化程度越高。"),
-            ("§x§F§F§3§2§C§E「特殊作用」可生产：黑金刚石")
+
+    AluminumDustFish(Rarity.RARE.colorCode + "Aluminum Shadow Fish", 1.0, 64.0, Rarity.RARE,
+            ("§x§6§B§E§E§D§1Light as a shadow, pale silver-white, barely disturbs the water surface."),
+            ("§x§A§A§C§D§D§0An accidental product of modern industry, can survive and breed in highly alkaline wastewater."),
+            ("§x§B§F§B§A§D§0Can be produced steadily in a vivarium."),
+            ("§x§9§C§5§2§8§BAluminum Shadow Fish usually weighs between 1 - 64 kg."),
+            ("§x§F§F§3§2§C§E[Special effect] Makes: Aluminum Dust")
     ),
-    // 【酸晶鱼】用于生产：硫酸盐（Sulfate Crystals）
-    SulfateFish(Rarity.RARE.colorCode + "酸晶鱼", 1.0, 64.0, Rarity.RARE,
-            ("§x§6§B§E§E§D§1栖息于火山酸水湖，体内腺体可代谢硫化物生成结晶。"),
-            ("§x§A§A§C§D§D§0体表覆盖细小硫酸盐晶簇，触碰会释放淡淡硫磺气味。"),
-            ("§x§B§F§B§A§D§0其排出的晶体是工业制酸与肥料生产的重要原料。"),
-            ("§x§9§C§5§2§8§B酸晶鱼体重一般在 1 - 64 kg 范围内。"),
-            ("§x§F§F§3§2§C§E「特殊作用」可生产：硫酸盐")
+
+    LeadDustFish(Rarity.RARE.colorCode + "Lead Poison Fish", 1.0, 64.0, Rarity.RARE,
+            ("§x§6§B§E§E§D§1Dull like lead, gives off a faint purple poison mist that other creatures stay away from."),
+            ("§x§A§A§C§D§D§0Born in badly polluted water, its body is full of heavy metal toxins."),
+            ("§x§B§F§B§A§D§0Can be produced steadily in a vivarium."),
+            ("§x§9§C§5§2§8§BLead Poison Fish usually weighs between 1 - 64 kg."),
+            ("§x§F§F§3§2§C§E[Special effect] Makes: Lead Dust")
     ),
-    // 【晶鳞鱼】用于生产：硅（Silicon）
-    SiliconFish(Rarity.RARE.colorCode + "晶鳞鱼", 1.0, 64.0, Rarity.RARE,
-            ("§x§6§B§E§E§D§1生活在高硅沙质水域，鳃部可高效吸收并提纯二氧化硅。"),
-            ("§x§A§A§C§D§D§0鳞片如微型晶片，排列规整，在阳光下呈现半导体光泽。"),
-            ("§x§B§F§B§A§D§0体内沉积的高纯度硅晶体，是电子工业与太阳能板的核心材料。"),
-            ("§x§9§C§5§2§8§B晶鳞鱼体重多在 1 - 64 kg 之间，越老者硅化程度越高。"),
-            ("§x§F§F§3§2§C§E「特殊作用」可生产：硅")
+
+    ZincDustFish(Rarity.RARE.colorCode + "Zinc Flower Fish", 1.0, 64.0, Rarity.RARE,
+            ("§x§6§B§E§E§D§1Its body is covered in blue-green oxide patterns and sheds tiny crystals as it swims."),
+            ("§x§A§A§C§D§D§0Common near old galvanized pipes, feeds on corrosion."),
+            ("§x§B§F§B§A§D§0Can be produced steadily in a vivarium."),
+            ("§x§9§C§5§2§8§BZinc Flower Fish usually weighs between 1 - 64 kg."),
+            ("§x§F§F§3§2§C§E[Special effect] Makes: Zinc Dust")
     ),
-    // 【灵咒鱼】用于生产：附魔瓶（Bottled Enchanting）
-    EnchantedBottleFish(Rarity.EPIC.colorCode + "灵咒鱼", 1.0, 64.0, Rarity.EPIC,
-            ("§x§6§B§E§E§D§1游弋于魔法漩涡与古代符文阵之间，以逸散的附魔能量为食。"),
-            ("§x§9§5§C§4§D§0通体半透明，体内似有无数微型符文如萤火般流转，永不熄灭。"),
-            ("§x§B§F§B§A§D§0其体液蕴含不稳定的奥术精华，可凝结为蕴含随机魔力的附魔瓶。"),
-            ("§x§A§D§A§2§9§E灵咒鱼极为罕见，需用魔法钓竿垂钓，否则符文溃散，魔力尽失。"),
-            ("§x§C§B§4§2§A§6灵咒鱼体重多在 1 - 64 kg 之间，越老者灵咒程度越高。"),
-            ("§x§F§F§3§2§C§E「特殊作用」可生产：附魔之瓶")
+
+    MagnesiumDustFish(Rarity.RARE.colorCode + "Magnesium Glow Fish", 1.0, 64.0, Rarity.RARE,
+            ("§x§6§B§E§E§D§1Full of flammable stuff inside, flashes a blinding white light when startled."),
+            ("§x§A§A§C§D§D§0Very active, often jumps out of the water in thunderstorms, as if absorbing electricity."),
+            ("§x§B§F§B§A§D§0Can be produced steadily in a vivarium."),
+            ("§x§9§C§5§2§8§BMagnesium Glow Fish usually weighs between 1 - 64 kg."),
+            ("§x§F§F§3§2§C§E[Special effect] Makes: Magnesium Dust")
     ),
 
 
+    /**
+     * Ore Fish - Rare
+     */
 
-
-    //【合金锭鱼】
-
-    // 【合金灵鱼】用于生产：强化合金锭
-    ReinforcedAlloyFish(Rarity.EPIC.colorCode + "强化灵鱼", 1.0, 64.0, Rarity.EPIC,
-            ("§x§6§B§E§E§D§1游走于高压反应堆与强化能量场之间，以辐射淬炼与结构应力为食。"),
-            ("§x§9§5§C§4§D§0躯体如多层复合装甲，表面浮现出暗红与银灰交织的强化纹路。"),
-            ("§x§B§F§B§A§D§0其脊骨凝结成‘强化合金锭’，是未来科技的核心基材。"),
-            ("§x§A§D§A§2§9§E需用魔法钓竿垂钓，否则灵鱼自毁，锭核崩解。"),
-            ("§x§C§B§4§2§A§6强化灵鱼体重多在 1 - 64 kg 之间，越重者结构越稳定。"),
-            ("§x§F§F§3§2§C§E「特殊作用」可生产：强化合金锭")
+    // [CoalFish]makes: Coal (Coal)
+    CoalFish(Rarity.RARE.colorCode + "Coal Crystal Fish", 1.0, 64.0, Rarity.RARE,
+            ("§x§6§B§E§E§D§1Tiny coal crystals form inside it, and it throws sparks when squeezed."),
+            ("§x§A§A§C§D§D§0Often swims in underground rivers, likes to stay near lava to keep warm."),
+            ("§x§B§F§B§A§D§0Its waste can be used directly to make fuel."),
+            ("§x§9§C§5§2§8§BCoal Crystal Fish usually weighs between 1 - 64 kg."),
+            ("§x§F§F§3§2§C§E[Special effect] Makes: Coal")
+    ),
+    // [EmeraldFish]makes: Emerald (Emerald)
+    EmeraldFish(Rarity.RARE.colorCode + "Emerald Fish", 1.0, 64.0, Rarity.RARE,
+            ("§x§6§B§E§E§D§1Scales are clear like emeralds, reflecting the light and shadow of the deep jungle."),
+            ("§x§A§A§C§D§D§0Only seen now and then in water near enchanting tables."),
+            ("§x§B§F§B§A§D§0Said to raise the enchant chance of nearby items."),
+            ("§x§9§C§5§2§8§BEmerald Fish usually weighs between 1 - 64 kg."),
+            ("§x§F§F§3§2§C§E[Special effect] Makes: Emerald")
+    ),
+    // [LapisFish]makes: Lapis Lazuli (Lapis Lazuli)
+    LapisFish(Rarity.RARE.colorCode + "Lapis Spirit Fish", 1.0, 64.0, Rarity.RARE,
+            ("§x§6§B§E§E§D§1Deep blue mineral fluid flows inside it, calm like the night sky."),
+            ("§x§A§A§C§D§D§0Gives off faint magic waves as it swims, which mess with redstone signals."),
+            ("§x§B§F§B§A§D§0Its secretions are the key ingredient of top-tier enchanting dye."),
+            ("§x§9§C§5§2§8§BLapis Spirit Fish usually weighs between 1 - 64 kg."),
+            ("§x§F§F§3§2§C§E[Special effect] Makes: Lapis Lazuli")
+    ),
+    // [DiamondFish]makes: Diamond (Diamond)
+    DiamondFish(Rarity.RARE.colorCode + "Diamond Shine Fish", 1.0, 64.0, Rarity.RARE,
+            ("§x§6§B§E§E§D§1Covered in diamond-like crystal scales, nearly as hard as minerals from the earth's core."),
+            ("§x§A§A§C§D§D§0Only survives steadily in high-pressure crystal caves."),
+            ("§x§B§F§B§A§D§0Can be raised in a vivarium that copies the deep crust environment."),
+            ("§x§9§C§5§2§8§BDiamond Shine Fish usually weighs between 1 - 64 kg."),
+            ("§x§F§F§3§2§C§E[Special effect] Makes: Diamond")
+    ),
+    // [QuartzFish]makes: Nether Quartz (Nether Quartz)
+    QuartzFish(Rarity.RARE.colorCode + "Flame Crystal Fish", 1.0, 64.0, Rarity.RARE,
+            ("§x§6§B§E§E§D§1A red quartz core burns nonstop inside it, giving off heat all the time."),
+            ("§x§A§A§C§D§D§0Often swims near Nether portals, seems to sense dimension ripples."),
+            ("§x§B§F§B§A§D§0A steady source of the quartz needed for precise redstone devices."),
+            ("§x§9§C§5§2§8§BFlame Crystal Fish usually weighs between 1 - 64 kg."),
+            ("§x§F§F§3§2§C§E[Special effect] Makes: Nether Quartz")
+    ),
+    // [AmethystFish]makes: Amethyst Shard (Amethyst Shard)
+    AmethystFish(Rarity.RARE.colorCode + "Tremor Fish", 1.0, 64.0, Rarity.RARE,
+            ("§x§6§B§E§E§D§1Natural amethyst clusters grow on its head, and it is very sensitive to thunderstorm frequencies."),
+            ("§x§A§A§C§D§D§0In thunderstorms they resonate together with a clear ringing sound."),
+            ("§x§B§F§B§A§D§0Can be used for signal triggers and timer modules in automation systems."),
+            ("§x§9§C§5§2§8§BTremor Fish usually weighs between 1 - 64 kg."),
+            ("§x§F§F§3§2§C§E[Special effect] Makes: Amethyst Shard")
+    ),
+    // [IronFish]makes: Iron Ingot (Iron Ingot)
+    IronFish(Rarity.RARE.colorCode + "Iron Core Fish", 1.0, 64.0, Rarity.RARE,
+            ("§x§6§B§E§E§D§1Full of magnetic iron ore inside, which can naturally gather into iron blocks."),
+            ("§x§A§A§C§D§D§0Often moves in groups, making a moving mini magnetic field."),
+            ("§x§B§F§B§A§D§0The steadiest iron supplier in vivarium smelting systems."),
+            ("§x§9§C§5§2§8§BIron Core Fish usually weighs between 1 - 64 kg."),
+            ("§x§F§F§3§2§C§E[Special effect] Makes: Iron Ingot")
+    ),
+    // [GoldFish]makes: Gold Ingot (Gold Ingot)
+    GoldFish(Rarity.RARE.colorCode + "Gold Core Fish", 1.0, 64.0, Rarity.RARE,
+            ("§x§6§B§E§E§D§1Liquid gold flows inside it, reflecting a royal glow in the sunlight."),
+            ("§x§A§A§C§D§D§0Very sensitive to redstone energy, often used in auto-trading systems."),
+            ("§x§B§F§B§A§D§0Feed it pumpkin pie to boost gold ingot output."),
+            ("§x§9§C§5§2§8§BGold Core Fish usually weighs between 1 - 64 kg."),
+            ("§x§F§F§3§2§C§E[Special effect] Makes: Gold Ingot")
+    ),
+    // [CopperFish]makes: Copper Ingot (Copper Ingot)
+    CopperFish(Rarity.RARE.colorCode + "Copper Vein Fish", 1.0, 64.0, Rarity.RARE,
+            ("§x§6§B§E§E§D§1Has a natural network of copper veins inside that conducts weak current."),
+            ("§x§A§A§C§D§D§0Its scales oxidize with the environment, slowly changing from red to green."),
+            ("§x§B§F§B§A§D§0A renewable source of materials for redstone circuits and lightning rods."),
+            ("§x§9§C§5§2§8§BCopper Vein Fish usually weighs between 1 - 64 kg."),
+            ("§x§F§F§3§2§C§E[Special effect] Makes: Copper Ingot")
+    ),
+    // [Pulse Fish]makes: Redstone Dust (Redstone Dust)
+    RedstoneFish(Rarity.RARE.colorCode + "Red Vein Fish", 1.0, 64.0, Rarity.RARE,
+            ("§x§6§B§E§E§D§1Lives where strong underground magnetic fields meet mineral pulses, with tiny redstone bacteria living inside it."),
+            ("§x§A§A§C§D§D§0Its fins look like circuit board patterns, and its body flashes steady red pulses as it swims."),
+            ("§x§B§F§B§A§D§0Its spine and organs are full of active redstone particles, a key material for power transfer and automation devices."),
+            ("§x§9§C§5§2§8§BPulse Fish usually weigh between 1 - 64 kg. The faster the pulse, the purer the redstone."),
+            ("§x§F§F§3§2§C§E[Special effect] Makes: Redstone Dust")
+    ),
+    // [NetheriteFish]makes: Netherite Ingot (Netherite Ingot)
+    NetheriteFish(Rarity.RARE.colorCode + "Netherforged Fish", 1.0, 64.0, Rarity.RARE,
+            ("§x§6§B§E§E§D§1Formed from Nether flames fused with ancient alloy, wrapped in black fire."),
+            ("§x§9§5§C§4§D§0Can steadily make netherite ingots in an upgraded vivarium furnace tank."),
+            ("§x§B§F§B§A§D§0Immune to fire and explosions, the only living source of top-tier gear material."),
+            ("§x§A§D§A§2§9§ELegend says a Netherforged Fish always weighs exactly 64 kg, because it is beyond ordinary measure."),
+            ("§x§C§B§4§2§A§6But most Netherforged Fish weigh between 1 - 64 kg."),
+            ("§x§F§F§3§2§C§E[Special effect] Makes: Netherite Ingot")
+    ),
+    // [GlowStoneFish]makes: Glowstone Dust (Glowstone Dust)
+    GlowStoneDustFish(Rarity.RARE.colorCode + "Lantern Fish", 1.0, 64.0, Rarity.RARE,
+            ("§x§6§B§E§E§D§1Tiny glowing bacteria float inside it, like moving stars in the deep sea."),
+            ("§x§9§5§C§4§D§0Only shows up in completely dark cave water, afraid of any light."),
+            ("§x§B§F§B§A§D§0Its secretions are the key material for advanced lighting devices and magic amplifiers."),
+            ("§x§A§D§A§2§9§ELantern Fish usually weigh between 1 - 64 kg, light as mist."),
+            ("§x§C§B§4§2§A§6[Special effect] Makes: Glowstone Dust"),
+            ("§x§F§F§3§2§C§E[Special effect] Can be used to make power")
     ),
 
-    // 【硬化灵鱼】用于生产：硬化金属
-    HardenedMetalFish(Rarity.EPIC.colorCode + "硬化灵鱼", 1.0, 64.0, Rarity.EPIC,
-            ("§x§6§B§E§E§D§1栖息于深地淬火池与高压锻压机之间，以极寒与烈焰交替淬炼为生。"),
-            ("§x§9§5§C§4§D§0体表覆盖如陶瓷般坚硬的金属釉层，触之冰冷刺骨。"),
-            ("§x§B§F§B§A§D§0体内结晶为‘硬化金属’，表面布满龟裂纹路，却坚不可摧。"),
-            ("§x§A§D§A§2§9§E需用魔法钓竿垂钓，恒温环境下会陷入假死。"),
-            ("§x§C§B§4§2§A§6硬化灵鱼体重多在 1 - 64 kg 之间，越老者釉层越厚。"),
-            ("§x§F§F§3§2§C§E「特殊作用」可生产：硬化金属")
+    // [Plastic Spirit Fish]makes: Plastic Sheet (Plastic Paper)
+    ShuLingYu(Rarity.RARE.colorCode + "Plastic Spirit Fish", 1.0, 64.0, Rarity.RARE,
+            ("§x§6§B§E§E§D§1A network of micro plastic fibers wraps inside it and filters pollutants from the water."),
+            ("§x§A§A§C§D§D§0Covered in see-through polymer scales that shine in rainbow colors."),
+            ("§x§B§F§B§A§D§0Its secretions can be processed into plastic sheets, commonly used in industry."),
+            ("§x§9§C§5§2§8§BPlastic Spirit Fish usually weighs between 1 - 64 kg."),
+            ("§x§F§F§3§2§C§E[Special effect] Makes: Plastic Sheet")
     ),
-
-    // 【大马士革灵鱼】用于生产：大马士革钢锭
-    DamascusSoulFish(Rarity.EPIC.colorCode + "大马士革灵鱼", 1.0, 64.0, Rarity.EPIC,
-            ("§x§6§B§E§E§D§1诞生于千层叠锻的火焰之河，以折叠锻打的韵律与碳晶生长为能。"),
-            ("§x§9§5§C§4§D§0通体如流动的水波纹钢，鳞片层层交叠，泛着幽蓝与暗金的交错光泽。"),
-            ("§x§B§F§B§A§D§0体内沉眠着‘大马士革钢锭’，是工艺与灵魂的完美融合。"),
-            ("§x§A§D§A§2§9§E需用魔法钓竿垂钓，需以古法钓具静取。"),
-            ("§x§C§B§4§2§A§6大马士革灵鱼体重多在 1 - 64 kg 之间，纹路越繁复者品质越高。"),
-            ("§x§F§F§3§2§C§E「特殊作用」可生产：大马士革钢锭")
+    // [Uranium Core Fish]makes: Uranium Ingot (Uranium Ingot)
+    UraniumFish(Rarity.RARE.colorCode + "Uranium Core Fish", 1.0, 64.0, Rarity.RARE,
+            ("§x§6§B§E§E§D§1Contains traces of radioactive isotopes, and its gills collect uranium from the water."),
+            ("§x§A§A§C§D§D§0Deep green to jet black, gives off a faint glow, and feels warm when you get close."),
+            ("§x§B§F§B§A§D§0A key raw material source for nuclear tech and advanced reactors."),
+            ("§x§9§C§5§2§8§BUranium Core Fish usually weighs between 1 - 64 kg."),
+            ("§x§F§F§3§2§C§E[Special effect] Makes: Uranium Ingot")
     ),
-
-    // 【钢魄鱼】用于生产：钢锭
-    SteelSoulFish(Rarity.EPIC.colorCode + "钢魄鱼", 1.0, 64.0, Rarity.EPIC,
-            ("§x§6§B§E§E§D§1栖息于熔炉核心与冷却钢水之间，以碳火之息与锤击韵律为养。"),
-            ("§x§9§5§C§4§D§0通体银灰泛蓝，鳞片如轧制钢板层层交叠，坚韧不可摧。"),
-            ("§x§B§F§B§A§D§0体内凝有‘钢锭’核心，乃工业脊梁的活体源头。"),
-            ("§x§A§D§A§2§9§E需用魔法钓竿垂钓，静默是成功的关键。"),
-            ("§x§C§B§4§2§A§6钢魄鱼体重多在 1 - 64 kg 之间，越沉者钢质越密。"),
-            ("§x§F§F§3§2§C§E「特殊作用」可生产：钢锭")
+    // [Oil Rock Fish]makes: Crude Oil Bucket (Crude Oil Barrel)
+    OilRockFish(Rarity.RARE.colorCode + "Oil Rock Fish", 1.0, 64.0, Rarity.RARE,
+            ("§x§6§B§E§E§D§1Lives in deep-sea oil vein rifts, and its body cavity naturally makes liquid hydrocarbons."),
+            ("§x§A§A§C§D§D§0Skin like oil-soaked rock, slick and heavy, with a faint smell of petroleum."),
+            ("§x§B§F§B§A§D§0Crude oil can be extracted from it steadily after catching it, an important living carrier for the energy industry."),
+            ("§x§9§C§5§2§8§BOil Rock Fish usually weighs between 1 - 64 kg."),
+            ("§x§F§F§3§2§C§E[Special effect] Makes: Crude Oil Bucket")
     ),
-
-    // 【青铜古影鱼】用于生产：青铜锭
-    BronzeAncientFish(Rarity.EPIC.colorCode + "青铜古影鱼", 1.0, 64.0, Rarity.EPIC,
-            ("§x§6§B§E§E§D§1穿梭于远古遗迹的铜管回廊与锡矿暗河之间，饮岁月锈迹为生。"),
-            ("§x§9§5§C§4§D§0身披青绿锈甲，游动时发出低沉的编钟余音，仿佛历史在低语。"),
-            ("§x§B§F§B§A§D§0腹中孕育‘青铜锭’，是文明初启时的金属圣物。"),
-            ("§x§A§D§A§2§9§E需用魔法钓竿垂钓，稍有惊扰便化为铜尘消散。"),
-            ("§x§C§B§4§2§A§6青铜古影鱼体重多在 1 - 64 kg 之间，越古者锈色越深。"),
-            ("§x§F§F§3§2§C§E「特殊作用」可生产：青铜锭")
+    // [Bubble Crystal Fish]makes: Foam Ingot (Foamium Ingot)
+    FoamCrystalFish(Rarity.EPIC.colorCode + "Bubble Crystal Fish", 1.0, 64.0, Rarity.EPIC,
+            ("§x§6§B§E§E§D§1Foam-crystal bacteria live inside it, and it releases tiny metal-filled bubbles when it breathes."),
+            ("§x§A§A§C§D§D§0Like semi-solid foam all over, light and see-through, swells and sparkles in the light."),
+            ("§x§B§F§B§A§D§0Its crystal glands can be refined into light but strong foam ingots, used to make radiation items."),
+            ("§x§9§C§5§2§8§BBubble Crystal Fish usually weighs between 1 - 64 kg."),
+            ("§x§F§F§3§2§C§E[Special effect] Makes: Foam Ingot")
     ),
-
-    // 【硬铝天翔鱼】用于生产：硬铝锭
-    HardlightAluFish(Rarity.EPIC.colorCode + "硬铝天翔鱼", 1.0, 64.0, Rarity.EPIC,
-            ("§x§6§B§E§E§D§1翱翔于高空风暴与雷云之间，以闪电离子与轻金属尘为食。"),
-            ("§x§9§5§C§4§D§0躯体银白透亮，如航空合金锻造，边缘薄如刀锋，破风无声。"),
-            ("§x§B§F§B§A§D§0体内结晶为‘硬铝锭’，轻盈而坚不可摧。"),
-            ("§x§A§D§A§2§9§E需用魔法钓竿垂钓，否则瞬间汽化。"),
-            ("§x§C§B§4§2§A§6硬铝天翔鱼体重多在 1 - 64 kg 之间，越轻盈者越接近完美合金。"),
-            ("§x§F§F§3§2§C§E「特殊作用」可生产：硬铝锭")
+    // [Obsidian Fish]makes: Black Diamond (Black Diamond)
+    BlackDiamondFish(Rarity.EPIC.colorCode + "Obsidian Fish", 1.0, 64.0, Rarity.EPIC,
+            ("§x§6§B§E§E§D§1Born in the high-pressure layer of the crust, its bones are made of natural nano-scale carbon crystals."),
+            ("§x§A§A§C§D§D§0Body looks pieced together from broken obsidian, pitch black and deep, and flashes cold metal light when cut."),
+            ("§x§B§F§B§A§D§0Sheds its crystal skin once every hundred years, which can be refined into black diamond harder than diamond."),
+            ("§x§9§C§5§2§8§BObsidian Fish can weigh 1 - 64 kg. The heavier it is, the more crystallized."),
+            ("§x§F§F§3§2§C§E[Special effect] Makes: Black Diamond")
     ),
-
-    // 【银铜灵鱼】用于生产：银铜合金锭
-    SilverCopperFish(Rarity.EPIC.colorCode + "银铜灵鱼", 1.0, 64.0, Rarity.EPIC,
-            ("§x§6§B§E§E§D§1潜行于月光映照的银矿溪与铜脉交汇处，饮星辉与导电粒子为生。"),
-            ("§x§9§5§C§4§D§0体色如月白银水，游动时留下微弱电流轨迹，触之微麻。"),
-            ("§x§B§F§B§A§D§0体内凝结‘银铜合金锭’，导电性极佳，常用于高阶电路。"),
-            ("§x§A§D§A§2§9§E需用魔法钓竿垂钓，阴云或日光下完全隐形。"),
-            ("§x§C§B§4§2§A§6银铜灵鱼体重多在 1 - 64 kg 之间，越亮者纯度越高。"),
-            ("§x§F§F§3§2§C§E「特殊作用」可生产：银铜合金锭")
+    // [Acid Crystal Fish]makes: Sulfate (Sulfate Crystals)
+    SulfateFish(Rarity.RARE.colorCode + "Acid Crystal Fish", 1.0, 64.0, Rarity.RARE,
+            ("§x§6§B§E§E§D§1Lives in volcanic acid lakes, and its glands turn sulfides into crystals."),
+            ("§x§A§A§C§D§D§0Covered in tiny sulfate crystal clusters, gives off a faint sulfur smell when touched."),
+            ("§x§B§F§B§A§D§0The crystals it gives off are an important material for making acid and fertilizer."),
+            ("§x§9§C§5§2§8§BAcid Crystal Fish usually weighs between 1 - 64 kg."),
+            ("§x§F§F§3§2§C§E[Special effect] Makes: Sulfate")
     ),
-
-    // 【黄铜鸣音鱼】用于生产：黄铜锭
-    BrassResonanceFish(Rarity.EPIC.colorCode + "黄铜鸣音鱼", 1.0, 64.0, Rarity.EPIC,
-            ("§x§6§B§E§E§D§1藏身于废弃管风琴与铜管工厂的积水深处，以声波振动为能。"),
-            ("§x§9§5§C§4§D§0体色金黄耀目，游动时发出如号角般的低频嗡鸣。"),
-            ("§x§B§F§B§A§D§0体内共鸣腔凝结出‘黄铜锭’，是音乐与金属的完美融合。"),
-            ("§x§A§D§A§2§9§E需用魔法钓竿垂钓，否则引发共振，鱼体炸裂。"),
-            ("§x§C§B§4§2§A§6黄铜鸣音鱼体重多在 1 - 64 kg 之间，嗡鸣越纯者品质越佳。"),
-            ("§x§F§F§3§2§C§E「特殊作用」可生产：黄铜锭")
+    // [Crystal Scale Fish]makes: Silicon (Silicon)
+    SiliconFish(Rarity.RARE.colorCode + "Crystal Scale Fish", 1.0, 64.0, Rarity.RARE,
+            ("§x§6§B§E§E§D§1Lives in sandy, silicon-rich waters, and its gills absorb and purify silicon dioxide very well."),
+            ("§x§A§A§C§D§D§0Scales are like tiny chips, neatly lined up, with a semiconductor shine in the sunlight."),
+            ("§x§B§F§B§A§D§0The high-purity silicon crystals built up inside it are a key material for electronics and solar panels."),
+            ("§x§9§C§5§2§8§BCrystal Scale Fish usually weigh between 1 - 64 kg. The older it is, the more silicified."),
+            ("§x§F§F§3§2§C§E[Special effect] Makes: Silicon")
     ),
-
-    // 【铝黄铜灵鱼】用于生产：铝黄铜锭
-    AluminumBrassFish(Rarity.EPIC.colorCode + "铝黄铜灵鱼", 1.0, 64.0, Rarity.EPIC,
-            ("§x§6§B§E§E§D§1栖息于高温散热器与工业冷却塔之间，以热流与抗腐蚀能量为食。"),
-            ("§x§9§5§C§4§D§0体表呈淡金与灰白交织，如散热鳍片般结构分明，触之微温。"),
-            ("§x§B§F§B§A§D§0体内结晶为‘铝黄铜锭’，耐高温且高效导热。"),
-            ("§x§A§D§A§2§9§E需用魔法钓竿垂钓，温差不足则沉眠不醒。"),
-            ("§x§C§B§4§2§A§6铝黄铜灵鱼体重多在 1 - 64 kg 之间，越热越活跃。"),
-            ("§x§F§F§3§2§C§E「特殊作用」可生产：铝黄铜锭")
-    ),
-
-    // 【铝青铜灵鱼】用于生产：铝青铜锭
-    AluminumBronzeFish(Rarity.EPIC.colorCode + "铝青铜灵鱼", 1.0, 64.0, Rarity.EPIC,
-            ("§x§6§B§E§E§D§1游弋于深海高压区与青铜遗迹之间，以海流电解和金属抗蚀力为食。"),
-            ("§x§9§5§C§4§D§0体表呈金褐与银灰交织，鳞片如耐腐蚀合金锻造，散发微弱阴极光泽。"),
-            ("§x§B§F§B§A§D§0体内凝结‘铝青铜锭’，兼具强度与抗海水侵蚀的神圣平衡。"),
-            ("§x§A§D§A§2§9§E需用魔法钓竿垂钓，否则引来电鳗群攻击。"),
-            ("§x§C§B§4§2§A§6铝青铜灵鱼体重多在 1 - 64 kg 之间，光泽越稳定者合金越纯净。"),
-            ("§x§F§F§3§2§C§E「特殊作用」可生产：铝青铜锭")
-    ),
-
-    // 【科林斯青铜灵鱼】用于生产：科林斯青铜锭
-    CorinthianBronzeFish(Rarity.EPIC.colorCode + "科林斯青铜灵鱼", 1.0, 64.0, Rarity.EPIC,
-            ("§x§6§B§E§E§D§1藏身于失落神庙的机械机关之中，以古代魔法铭文与金属记忆为食。"),
-            ("§x§9§5§C§4§D§0体表雕刻着微型科林斯柱纹，铜绿中透出神秘符文光泽。"),
-            ("§x§B§F§B§A§D§0体内封印‘科林斯青铜锭’，蕴含古代智能的金属意识。"),
-            ("§x§A§D§A§2§9§E需用魔法钓竿垂钓，否则触发陷阱。"),
-            ("§x§C§B§4§2§A§6科林斯青铜灵鱼体重多在 1 - 64 kg 之间，纹路越繁复越珍贵。"),
-            ("§x§F§F§3§2§C§E「特殊作用」可生产：科林斯青铜锭")
-    ),
-
-    // 【焊锡灵鱼】用于生产：焊锡锭
-    SolderFlowFish(Rarity.EPIC.colorCode + "焊锡灵鱼", 1.0, 64.0, Rarity.EPIC,
-            ("§x§6§B§E§E§D§1穿梭于废弃电路板与熔锡池之间，以电子流与低温熔融为生。"),
-            ("§x§9§5§C§4§D§0身体柔软如液态金属，银灰中泛出彩虹光泽，可随意变形。"),
-            ("§x§B§F§B§A§D§0体内凝结‘焊锡锭’，是连接电路与灵魂的桥梁。"),
-            ("§x§A§D§A§2§9§E需用魔法钓竿垂钓，高温会使其完全液化逃逸。"),
-            ("§x§C§B§4§2§A§6焊锡灵鱼体重多在 1 - 64 kg 之间，越柔韧者导电性越好。"),
-            ("§x§F§F§3§2§C§E「特殊作用」可生产：焊锡锭")
-    ),
-
-    // 【镍魄鱼】用于生产：镍锭
-    NickelSpiritFish(Rarity.EPIC.colorCode + "镍魄鱼", 1.0, 64.0, Rarity.EPIC,
-            ("§x§6§B§E§E§D§1潜伏于地核边缘与陨石坑之间，以地磁与陨镍结晶为食。"),
-            ("§x§9§5§C§4§D§0体色银白带青，游动时扰动磁场，指南针为之紊乱。"),
-            ("§x§B§F§B§A§D§0体内蕴藏‘镍锭’，是合金之母，坚不可腐。"),
-            ("§x§A§D§A§2§9§E需用魔法钓竿垂钓，平静天气中完全隐形。"),
-            ("§x§C§B§4§2§A§6镍魄鱼体重多在 1 - 64 kg 之间，磁性越强者越稀有。"),
-            ("§x§F§F§3§2§C§E「特殊作用」可生产：镍锭")
-    ),
-
-    // 【钴焰鱼】用于生产：钴锭
-    CobaltFlameFish(Rarity.EPIC.colorCode + "钴焰鱼", 1.0, 64.0, Rarity.EPIC,
-            ("§x§6§B§E§E§D§1诞生于火山熔岩与放射性矿脉之间，以高温与蓝焰能量为生。"),
-            ("§x§9§5§C§4§D§0通体深蓝如夜空，鳞片燃烧着不灭的幽蓝火焰。"),
-            ("§x§B§F§B§A§D§0体内凝结‘钴锭’，是高温合金与电池之心。"),
-            ("§x§A§D§A§2§9§E需用魔法钓竿垂钓，否则火焰反噬钓者。"),
-            ("§x§C§B§4§2§A§6钴焰鱼体重多在 1 - 64 kg 之间，火焰越盛者能量越强。"),
-            ("§x§F§F§3§2§C§E「特殊作用」可生产：钴锭")
-    ),
-
-    // 【硅铁灵鱼】用于生产：硅铁
-    SiliconIronFish(Rarity.EPIC.colorCode + "硅铁灵鱼", 1.0, 64.0, Rarity.EPIC,
-            ("§x§6§B§E§E§D§1栖息于半导体废料场与高炉残渣之间，以硅晶生长与铁磁能量为食。"),
-            ("§x§9§5§C§4§D§0体表如晶圆与金属的融合体，反射出彩虹般的干涉色。"),
-            ("§x§B§F§B§A§D§0体内结晶为‘硅铁’，是电子工业的奠基材料。"),
-            ("§x§A§D§A§2§9§E需用魔法钓竿垂钓，否则信号干扰致其自毁。"),
-            ("§x§C§B§4§2§A§6硅铁灵鱼体重多在 1 - 64 kg 之间，越规整者纯度越高。"),
-            ("§x§F§F§3§2§C§E「特殊作用」可生产：硅铁")
-    ),
-
-    // 【碳魂鱼】用于生产：碳块
-    CarbonSoulFish(Rarity.EPIC.colorCode + "碳魂鱼", 1.0, 64.0, Rarity.EPIC,
-            ("§x§6§B§E§E§D§1游弋于地底煤层与钻石形成带之间，以高压与时间结晶为食。"),
-            ("§x§9§5§C§4§D§0通体漆黑如墨，鳞片如石墨层层堆叠，眼如钻石闪烁。"),
-            ("§x§B§F§B§A§D§0体内压缩成‘碳块’，是生命与矿物的共同起源。"),
-            ("§x§A§D§A§2§9§E需用魔法钓竿垂钓，常压中会迅速崩解。"),
-            ("§x§C§B§4§2§A§6碳魂鱼体重多在 1 - 64 kg 之间，越黑越密实者越珍贵。"),
-            ("§x§F§F§3§2§C§E「特殊作用」可生产：碳块")
-    ),
-
-    // 【镀金灵鱼】用于生产：镀金铁锭
-    GildedIronFish(Rarity.EPIC.colorCode + "镀金灵鱼", 1.0, 64.0, Rarity.EPIC,
-            ("§x§6§B§E§E§D§1穿梭于王座厅的金箔水池与铁梁之间，以荣耀与腐蚀抗性为食。"),
-            ("§x§9§5§C§4§D§0铁质躯干外覆流动金膜，游动时洒落金色光尘。"),
-            ("§x§B§F§B§A§D§0体内凝结‘镀金铁锭’，外华内坚，象征权力与防御。"),
-            ("§x§A§D§A§2§9§E需用魔法钓竿垂钓，亵渎者将遭金液灼伤。"),
-            ("§x§C§B§4§2§A§6镀金灵鱼体重多在 1 - 64 kg 之间，金层越厚越稀有。"),
-            ("§x§F§F§3§2§C§E「特殊作用」可生产：镀金铁锭")
-    ),
-
-    // 【红石合金灵鱼】用于生产：红石合金锭
-    RedstoneAlloyFish(Rarity.EPIC.colorCode + "红石合金灵鱼", 1.0, 64.0, Rarity.EPIC,
-            ("§x§6§B§E§E§D§1诞生于红石脉动与金属导线交织的地下网络，以信号流为生。"),
-            ("§x§9§5§C§4§D§0体色暗红泛光，体内有脉冲般的红光循环流动，如活体电路。"),
-            ("§x§B§F§B§A§D§0体内结晶为‘红石合金锭’，是自动化与魔法的桥梁。"),
-            ("§x§A§D§A§2§9§E需用魔法钓竿垂钓，否则脉冲紊乱导致自爆。"),
-            ("§x§C§B§4§2§A§6红石合金灵鱼体重多在 1 - 64 kg 之间，脉冲越稳者越优质。"),
-            ("§x§F§F§3§2§C§E「特殊作用」可生产：红石合金锭")
-    ),
-
-    // 【镎影鱼】用于生产：镎
-    NeptuniumShadowFish(Rarity.EPIC.colorCode + "镎影鱼", 1.0, 64.0, Rarity.EPIC,
-            ("§x§6§B§E§E§D§1潜行于核反应堆废料池与深地辐射带之间，以慢中子流为食。"),
-            ("§x§9§5§C§4§D§0形如幽影，半透明躯体中闪烁着淡紫色辐射光晕。"),
-            ("§x§B§F§B§A§D§0体内凝聚‘镎’元素，是人工超铀金属的活体结晶。"),
-            ("§x§A§D§A§2§9§E需用魔法钓竿垂钓，暴露过久将导致基因变异。"),
-            ("§x§C§B§4§2§A§6镎影鱼体重多在 1 - 64 kg 之间，光晕越强辐射越高。"),
-            ("§x§F§F§3§2§C§E「特殊作用」可生产：镎")
-    ),
-
-    // 【钚心鱼】用于生产：钚
-    PlutoniumCoreFish(Rarity.EPIC.colorCode + "钚心鱼", 1.0, 64.0, Rarity.EPIC,
-            ("§x§6§B§E§E§D§1沉眠于最深地核与废弃核芯之间，以衰变热与暗能量为生。"),
-            ("§x§9§5§C§4§D§0通体暗红如熔岩核心，心脏处有持续脉动的蓝色光点。"),
-            ("§x§B§F§B§A§D§0体内孕育‘钚’，是毁灭与能源的终极化身。"),
-            ("§x§A§D§A§2§9§E需用魔法钓竿垂钓，捕获后可使用任何容器密封。"),
-            ("§x§C§B§4§2§A§6钚心鱼体重多在 1 - 64 kg 之间，脉动越强能量越恐怖。"),
-            ("§x§F§F§3§2§C§E「特殊作用」可生产：钚")
+    // [Curse Spirit Fish]makes: 附魔瓶 (Bottled Enchanting)
+    EnchantedBottleFish(Rarity.EPIC.colorCode + "Curse Spirit Fish", 1.0, 64.0, Rarity.EPIC,
+            ("§x§6§B§E§E§D§1Swims between magic whirlpools and ancient rune circles, feeding on leaked enchant energy."),
+            ("§x§9§5§C§4§D§0See-through all over, with countless tiny runes drifting inside it like fireflies that never go out."),
+            ("§x§B§F§B§A§D§0Its body fluid holds unstable arcane essence that can condense into enchanting bottles with random magic."),
+            ("§x§A§D§A§2§9§ECurse Spirit Fish are extremely rare. You need a magic fishing rod, or the runes fall apart and all the magic is lost."),
+            ("§x§C§B§4§2§A§6Curse Spirit Fish usually weigh between 1 - 64 kg. The older it is, the stronger its curse."),
+            ("§x§F§F§3§2§C§E[Special effect] Makes: Bottle o' Enchanting")
     ),
 
 
 
 
+    //[Alloy Ingot Fish]
 
-    LegendaryLuFish(Rarity.LEGENDARY.colorCode+"传奇鲈鱼", 2.0, 31.0, Rarity.LEGENDARY,
-            ("§x§6§B§E§E§D§1传说中的巨物！"),
-            ("§x§B§0§C§5§D§0每个钓手的梦想。"),
-            ("§x§C§E§8§7§A§8据说能带来好运。"),
-            ("§x§F§F§3§2§C§E传奇鲈鱼体重大多都在 2 - 31 kg之间。")
+    // [Alloy Spirit Fish]makes: Reinforced Alloy Ingot
+    ReinforcedAlloyFish(Rarity.EPIC.colorCode + "Reinforced Spirit Fish", 1.0, 64.0, Rarity.EPIC,
+            ("§x§6§B§E§E§D§1Roams between high-pressure reactors and reinforcing energy fields, feeding on tempering radiation and structural stress."),
+            ("§x§9§5§C§4§D§0Body like multi-layer composite armor, with reinforced patterns of dark red and silver-gray on the surface."),
+            ("§x§B§F§B§A§D§0Its spine forms a 'Reinforced Alloy Ingot', the core base material of future tech."),
+            ("§x§A§D§A§2§9§ENeeds a magic fishing rod, or the spirit fish destroys itself and the ingot core falls apart."),
+            ("§x§C§B§4§2§A§6Reinforced Spirit Fish usually weigh between 1 - 64 kg. The heavier it is, the steadier its structure."),
+            ("§x§F§F§3§2§C§E[Special effect] Makes: Reinforced Alloy Ingot")
     ),
-    LegendaryEelFish(Rarity.LEGENDARY.colorCode+"以太·虚灵电鳗", 666.666, 888.888, Rarity.LEGENDARY,
-            ("§x§6§B§E§E§D§1可以被用作工业电力传输的载体！"),
-            ("§x§8§A§E§0§D§1由于特殊原因，魔法师们找到了这种传说鱼的唯一钓饵。"),
-            ("§x§A§A§C§D§D§0使得这种传说鱼极易被捕获，但也只是相对于不了解这种鱼的习性之前"),
-            ("§x§B§7§C§2§D§0实际捕获概率还是比较低的。"),
-            ("§x§B§F§B§A§D§0按理来说现在这种鱼应该属于史诗鱼。"),
-            ("§x§B§5§9§F§B§0但是由于其逆天特性，还是应该被列为传说鱼。"),
-            ("§x§9§C§5§2§8§B最多能存储 "+ Long.MAX_VALUE +" J电量"),
-            ("§x§B§1§4§2§9§A需用魔法钓竿垂钓，该鱼对魔法糖比较感兴趣。"),
-            ("§x§C§6§3§2§A§9以太·虚灵电鳗体重在 666.666 ~ 888.888 kg 之间。"),
+
+    // [Hardened Spirit Fish]makes: Hardened Metal
+    HardenedMetalFish(Rarity.EPIC.colorCode + "Hardened Spirit Fish", 1.0, 64.0, Rarity.EPIC,
+            ("§x§6§B§E§E§D§1Lives between deep underground quench pools and high-pressure forging presses, tempered by alternating extreme cold and blazing fire."),
+            ("§x§9§5§C§4§D§0Covered in a metal glaze as hard as ceramic, bitterly cold to the touch."),
+            ("§x§B§F§B§A§D§0Crystallizes into 'Hardened Metal' inside, its surface cracked all over, yet unbreakable."),
+            ("§x§A§D§A§2§9§ENeeds a magic fishing rod, and it plays dead in a constant-temperature environment."),
+            ("§x§C§B§4§2§A§6Hardened Spirit Fish usually weigh between 1 - 64 kg. The older it is, the thicker its glaze."),
+            ("§x§F§F§3§2§C§E[Special effect] Makes: Hardened Metal")
+    ),
+
+    // [Damascus Spirit Fish]makes: Damascus Steel Ingot
+    DamascusSoulFish(Rarity.EPIC.colorCode + "Damascus Spirit Fish", 1.0, 64.0, Rarity.EPIC,
+            ("§x§6§B§E§E§D§1Born in a river of fire from thousand-layer forging, powered by the rhythm of fold-hammering and carbon crystal growth."),
+            ("§x§9§5§C§4§D§0Like flowing watered steel all over, scales overlap layer by layer, shining in mixed dark blue and dark gold."),
+            ("§x§B§F§B§A§D§0A 'Damascus Steel Ingot' sleeps inside it, a perfect blend of craft and soul."),
+            ("§x§A§D§A§2§9§ENeeds a magic fishing rod, and has to be caught quietly with old-style fishing gear."),
+            ("§x§C§B§4§2§A§6Damascus Spirit Fish usually weigh between 1 - 64 kg. The more complex the pattern, the better the quality."),
+            ("§x§F§F§3§2§C§E[Special effect] Makes: Damascus Steel Ingot")
+    ),
+
+    // [Steel Soul Fish]makes: Steel Ingot
+    SteelSoulFish(Rarity.EPIC.colorCode + "Steel Soul Fish", 1.0, 64.0, Rarity.EPIC,
+            ("§x§6§B§E§E§D§1Lives between furnace cores and cooling molten steel, fed by carbon fire breath and hammer rhythm."),
+            ("§x§9§5§C§4§D§0Silver-gray with a blue tint, scales overlap like rolled steel plates, tough and unbreakable."),
+            ("§x§B§F§B§A§D§0A 'Steel Ingot' core forms inside it, the living source of industry's backbone."),
+            ("§x§A§D§A§2§9§ENeeds a magic fishing rod, and staying quiet is the key to catching it."),
+            ("§x§C§B§4§2§A§6Steel Soul Fish usually weigh between 1 - 64 kg. The heavier it is, the denser the steel."),
+            ("§x§F§F§3§2§C§E[Special effect] Makes: Steel Ingot")
+    ),
+
+    // [Bronze Shadow Fish]makes: Bronze Ingot
+    BronzeAncientFish(Rarity.EPIC.colorCode + "Bronze Shadow Fish", 1.0, 64.0, Rarity.EPIC,
+            ("§x§6§B§E§E§D§1Moves between copper pipe corridors of ancient ruins and dark tin ore rivers, living on the rust of the ages."),
+            ("§x§9§5§C§4§D§0Wears green rust armor, and makes a low bell chime echo as it swims, like history whispering."),
+            ("§x§B§F§B§A§D§0A 'Bronze Ingot' grows in its belly, a sacred metal from the dawn of civilization."),
+            ("§x§A§D§A§2§9§ENeeds a magic fishing rod, and turns into copper dust and vanishes if disturbed even a little."),
+            ("§x§C§B§4§2§A§6Bronze Shadow Fish usually weigh between 1 - 64 kg. The older it is, the deeper the rust color."),
+            ("§x§F§F§3§2§C§E[Special effect] Makes: Bronze Ingot")
+    ),
+
+    // [Duralumin Sky Fish]makes: Duralumin Ingot
+    HardlightAluFish(Rarity.EPIC.colorCode + "Duralumin Sky Fish", 1.0, 64.0, Rarity.EPIC,
+            ("§x§6§B§E§E§D§1Soars between high-altitude storms and thunderclouds, feeding on lightning ions and light metal dust."),
+            ("§x§9§5§C§4§D§0Silver-white and clear, like forged aviation alloy, edges thin as a blade, cutting the wind silently."),
+            ("§x§B§F§B§A§D§0Crystallizes into a 'Duralumin Ingot' inside, light but unbreakable."),
+            ("§x§A§D§A§2§9§ENeeds a magic fishing rod, or it vaporizes instantly."),
+            ("§x§C§B§4§2§A§6Duralumin Sky Fish usually weigh between 1 - 64 kg. The lighter it is, the closer to a perfect alloy."),
+            ("§x§F§F§3§2§C§E[Special effect] Makes: Duralumin Ingot")
+    ),
+
+    // [Silver Copper Spirit Fish]makes: Silver Copper Alloy Ingot
+    SilverCopperFish(Rarity.EPIC.colorCode + "Silver Copper Spirit Fish", 1.0, 64.0, Rarity.EPIC,
+            ("§x§6§B§E§E§D§1Sneaks around where moonlit silver ore streams meet copper veins, living on starlight and conductive particles."),
+            ("§x§9§5§C§4§D§0Colored like moon-white silver water, leaves a faint electric trail as it swims, and tingles when touched."),
+            ("§x§B§F§B§A§D§0A 'Silver Copper Alloy Ingot' forms inside it, with great conductivity, often used in high-end circuits."),
+            ("§x§A§D§A§2§9§ENeeds a magic fishing rod, and is completely invisible under cloudy skies or sunlight."),
+            ("§x§C§B§4§2§A§6Silver Copper Spirit Fish usually weigh between 1 - 64 kg. The brighter it is, the higher the purity."),
+            ("§x§F§F§3§2§C§E[Special effect] Makes: Silver Copper Alloy Ingot")
+    ),
+
+    // [Brass Chime Fish]makes: Brass Ingot
+    BrassResonanceFish(Rarity.EPIC.colorCode + "Brass Chime Fish", 1.0, 64.0, Rarity.EPIC,
+            ("§x§6§B§E§E§D§1Hides deep in the standing water of abandoned pipe organs and brass factories, powered by sound vibrations."),
+            ("§x§9§5§C§4§D§0Dazzling golden, and makes a low horn-like hum as it swims."),
+            ("§x§B§F§B§A§D§0Its resonance chamber forms a 'Brass Ingot', a perfect blend of music and metal."),
+            ("§x§A§D§A§2§9§ENeeds a magic fishing rod, or it causes resonance and the fish bursts."),
+            ("§x§C§B§4§2§A§6Brass Chime Fish usually weigh between 1 - 64 kg. The purer the hum, the better the quality."),
+            ("§x§F§F§3§2§C§E[Special effect] Makes: Brass Ingot")
+    ),
+
+    // [Aluminum Brass Spirit Fish]makes: Aluminum Brass Ingot
+    AluminumBrassFish(Rarity.EPIC.colorCode + "Aluminum Brass Spirit Fish", 1.0, 64.0, Rarity.EPIC,
+            ("§x§6§B§E§E§D§1Lives between hot radiators and industrial cooling towers, feeding on heat flow and anti-corrosion energy."),
+            ("§x§9§5§C§4§D§0Pale gold mixed with gray-white, with clear heat-sink-fin-like structure, slightly warm to the touch."),
+            ("§x§B§F§B§A§D§0Crystallizes into an 'Aluminum Brass Ingot' inside, heat-resistant and great at conducting heat."),
+            ("§x§A§D§A§2§9§ENeeds a magic fishing rod, and sleeps and won't wake if the temperature difference is too small."),
+            ("§x§C§B§4§2§A§6Aluminum Brass Spirit Fish usually weigh between 1 - 64 kg. The hotter it gets, the more active."),
+            ("§x§F§F§3§2§C§E[Special effect] Makes: Aluminum Brass Ingot")
+    ),
+
+    // [Aluminum Bronze Spirit Fish]makes: Aluminum Bronze Ingot
+    AluminumBronzeFish(Rarity.EPIC.colorCode + "Aluminum Bronze Spirit Fish", 1.0, 64.0, Rarity.EPIC,
+            ("§x§6§B§E§E§D§1Swims between deep-sea high-pressure zones and bronze ruins, feeding on ocean current electrolysis and metal corrosion resistance."),
+            ("§x§9§5§C§4§D§0Gold-brown mixed with silver-gray, scales look forged from corrosion-resistant alloy, with a faint cathode shine."),
+            ("§x§B§F§B§A§D§0An 'Aluminum Bronze Ingot' forms inside it, a divine balance of strength and seawater resistance."),
+            ("§x§A§D§A§2§9§ENeeds a magic fishing rod, or a swarm of electric eels will attack."),
+            ("§x§C§B§4§2§A§6Aluminum Bronze Spirit Fish usually weigh between 1 - 64 kg. The steadier the shine, the purer the alloy."),
+            ("§x§F§F§3§2§C§E[Special effect] Makes: Aluminum Bronze Ingot")
+    ),
+
+    // [Corinthian Bronze Spirit Fish]makes: Corinthian Bronze Ingot
+    CorinthianBronzeFish(Rarity.EPIC.colorCode + "Corinthian Bronze Spirit Fish", 1.0, 64.0, Rarity.EPIC,
+            ("§x§6§B§E§E§D§1Hides inside mechanical traps of lost temples, feeding on ancient magic inscriptions and metal memory."),
+            ("§x§9§5§C§4§D§0Tiny Corinthian column patterns are carved on its body, with a mysterious rune shine showing through the verdigris."),
+            ("§x§B§F§B§A§D§0A 'Corinthian Bronze Ingot' is sealed inside it, holding the metal consciousness of ancient intelligence."),
+            ("§x§A§D§A§2§9§ENeeds a magic fishing rod, or it sets off a trap."),
+            ("§x§C§B§4§2§A§6Corinthian Bronze Spirit Fish usually weigh between 1 - 64 kg. The more complex the pattern, the more valuable."),
+            ("§x§F§F§3§2§C§E[Special effect] Makes: Corinthian Bronze Ingot")
+    ),
+
+    // [Solder Spirit Fish]makes: Solder Ingot
+    SolderFlowFish(Rarity.EPIC.colorCode + "Solder Spirit Fish", 1.0, 64.0, Rarity.EPIC,
+            ("§x§6§B§E§E§D§1Moves between abandoned circuit boards and molten tin pools, living on electron flow and low-temperature melting."),
+            ("§x§9§5§C§4§D§0Soft like liquid metal, silver-gray with a rainbow shine, and can change shape freely."),
+            ("§x§B§F§B§A§D§0A 'Solder Ingot' forms inside it, a bridge between circuits and souls."),
+            ("§x§A§D§A§2§9§ENeeds a magic fishing rod, and high heat makes it melt completely and escape."),
+            ("§x§C§B§4§2§A§6Solder Spirit Fish usually weigh between 1 - 64 kg. The more flexible it is, the better it conducts."),
+            ("§x§F§F§3§2§C§E[Special effect] Makes: Solder Ingot")
+    ),
+
+    // [Nickel Soul Fish]makes: Nickel Ingot
+    NickelSpiritFish(Rarity.EPIC.colorCode + "Nickel Soul Fish", 1.0, 64.0, Rarity.EPIC,
+            ("§x§6§B§E§E§D§1Lurks between the edge of the earth's core and meteor craters, feeding on geomagnetism and meteoric nickel crystals."),
+            ("§x§9§5§C§4§D§0Silver-white with a green tint, disturbs the magnetic field as it swims and throws compasses off."),
+            ("§x§B§F§B§A§D§0Holds a 'Nickel Ingot' inside, the mother of alloys, strong and rust-proof."),
+            ("§x§A§D§A§2§9§ENeeds a magic fishing rod, and is completely invisible in calm weather."),
+            ("§x§C§B§4§2§A§6Nickel Soul Fish usually weigh between 1 - 64 kg. The stronger the magnetism, the rarer."),
+            ("§x§F§F§3§2§C§E[Special effect] Makes: Nickel Ingot")
+    ),
+
+    // [Cobalt Flame Fish]makes: Cobalt Ingot
+    CobaltFlameFish(Rarity.EPIC.colorCode + "Cobalt Flame Fish", 1.0, 64.0, Rarity.EPIC,
+            ("§x§6§B§E§E§D§1Born between volcanic lava and radioactive ore veins, living on high heat and blue flame energy."),
+            ("§x§9§5§C§4§D§0Deep blue like the night sky, scales burning with an unending pale blue flame."),
+            ("§x§B§F§B§A§D§0A 'Cobalt Ingot' forms inside it, the heart of high-temperature alloys and batteries."),
+            ("§x§A§D§A§2§9§ENeeds a magic fishing rod, or the flames hit back at the angler."),
+            ("§x§C§B§4§2§A§6Cobalt Flame Fish usually weigh between 1 - 64 kg. The bigger the flame, the stronger the energy."),
+            ("§x§F§F§3§2§C§E[Special effect] Makes: Cobalt Ingot")
+    ),
+
+    // [Ferrosilicon Spirit Fish]makes: Ferrosilicon
+    SiliconIronFish(Rarity.EPIC.colorCode + "Ferrosilicon Spirit Fish", 1.0, 64.0, Rarity.EPIC,
+            ("§x§6§B§E§E§D§1Lives between semiconductor scrap yards and blast furnace slag, feeding on silicon crystal growth and ferromagnetic energy."),
+            ("§x§9§5§C§4§D§0Its body looks like wafer and metal fused together, reflecting rainbow-like interference colors."),
+            ("§x§B§F§B§A§D§0Crystallizes into 'Ferrosilicon' inside, the foundation material of the electronics industry."),
+            ("§x§A§D§A§2§9§ENeeds a magic fishing rod, or signal interference makes it destroy itself."),
+            ("§x§C§B§4§2§A§6Ferrosilicon Spirit Fish usually weigh between 1 - 64 kg. The tidier it is, the higher the purity."),
+            ("§x§F§F§3§2§C§E[Special effect] Makes: Ferrosilicon")
+    ),
+
+    // [Carbon Soul Fish]makes: Carbon Block
+    CarbonSoulFish(Rarity.EPIC.colorCode + "Carbon Soul Fish", 1.0, 64.0, Rarity.EPIC,
+            ("§x§6§B§E§E§D§1Swims between underground coal seams and diamond formation zones, feeding on high pressure and time-grown crystals."),
+            ("§x§9§5§C§4§D§0Black as ink all over, scales stacked like layers of graphite, eyes sparkling like diamonds."),
+            ("§x§B§F§B§A§D§0Compressed into a 'Carbon Block' inside, the shared origin of life and minerals."),
+            ("§x§A§D§A§2§9§ENeeds a magic fishing rod, and quickly breaks down under normal pressure."),
+            ("§x§C§B§4§2§A§6Carbon Soul Fish usually weigh between 1 - 64 kg. The blacker and denser, the more valuable."),
+            ("§x§F§F§3§2§C§E[Special effect] Makes: Carbon Block")
+    ),
+
+    // [Gilded Spirit Fish]makes: Gilded Iron Ingot
+    GildedIronFish(Rarity.EPIC.colorCode + "Gilded Spirit Fish", 1.0, 64.0, Rarity.EPIC,
+            ("§x§6§B§E§E§D§1Moves between the gold-leaf pools and iron beams of throne halls, feeding on glory and corrosion resistance."),
+            ("§x§9§5§C§4§D§0Iron body wrapped in a flowing gold film, scattering golden dust as it swims."),
+            ("§x§B§F§B§A§D§0A 'Gilded Iron Ingot' forms inside it, fancy outside and solid inside, a symbol of power and defense."),
+            ("§x§A§D§A§2§9§ENeeds a magic fishing rod, and blasphemers get burned by molten gold."),
+            ("§x§C§B§4§2§A§6Gilded Spirit Fish usually weigh between 1 - 64 kg. The thicker the gold layer, the rarer."),
+            ("§x§F§F§3§2§C§E[Special effect] Makes: Gilded Iron Ingot")
+    ),
+
+    // [Redstone Alloy Spirit Fish]makes: Redstone Alloy Ingot
+    RedstoneAlloyFish(Rarity.EPIC.colorCode + "Redstone Alloy Spirit Fish", 1.0, 64.0, Rarity.EPIC,
+            ("§x§6§B§E§E§D§1Born in an underground network where redstone pulses and metal wires weave together, living on signal flow."),
+            ("§x§9§5§C§4§D§0Dark red and glowing, with pulse-like red light circling inside it, like a living circuit."),
+            ("§x§B§F§B§A§D§0Crystallizes into a 'Redstone Alloy Ingot' inside, a bridge between automation and magic."),
+            ("§x§A§D§A§2§9§ENeeds a magic fishing rod, or its pulses go haywire and it blows itself up."),
+            ("§x§C§B§4§2§A§6Redstone Alloy Spirit Fish usually weigh between 1 - 64 kg. The steadier the pulse, the better the quality."),
+            ("§x§F§F§3§2§C§E[Special effect] Makes: Redstone Alloy Ingot")
+    ),
+
+    // [Neptunium Shadow Fish]makes: Neptunium
+    NeptuniumShadowFish(Rarity.EPIC.colorCode + "Neptunium Shadow Fish", 1.0, 64.0, Rarity.EPIC,
+            ("§x§6§B§E§E§D§1Sneaks between nuclear reactor waste pools and deep underground radiation belts, feeding on slow neutron flow."),
+            ("§x§9§5§C§4§D§0Shaped like a ghost, with a pale purple radiation glow flickering in its see-through body."),
+            ("§x§B§F§B§A§D§0Holds the element 'Neptunium' inside, a living crystal of man-made transuranic metal."),
+            ("§x§A§D§A§2§9§ENeeds a magic fishing rod, and too much exposure causes gene mutation."),
+            ("§x§C§B§4§2§A§6Neptunium Shadow Fish usually weigh between 1 - 64 kg. The stronger the glow, the higher the radiation."),
+            ("§x§F§F§3§2§C§E[Special effect] Makes: Neptunium")
+    ),
+
+    // [Plutonium Heart Fish]makes: Plutonium
+    PlutoniumCoreFish(Rarity.EPIC.colorCode + "Plutonium Heart Fish", 1.0, 64.0, Rarity.EPIC,
+            ("§x§6§B§E§E§D§1Sleeps between the deepest earth core and abandoned reactor cores, living on decay heat and dark energy."),
+            ("§x§9§5§C§4§D§0Dark red like a lava core, with a steadily pulsing blue light at its heart."),
+            ("§x§B§F§B§A§D§0Holds 'Plutonium' inside, the ultimate form of destruction and energy."),
+            ("§x§A§D§A§2§9§ENeeds a magic fishing rod, and after catching it can be sealed in any container."),
+            ("§x§C§B§4§2§A§6Plutonium Heart Fish usually weigh between 1 - 64 kg. The stronger the pulse, the scarier the energy."),
+            ("§x§F§F§3§2§C§E[Special effect] Makes: Plutonium")
+    ),
+
+
+
+
+
+    LegendaryLuFish(Rarity.LEGENDARY.colorCode+"Legendary Bass", 2.0, 31.0, Rarity.LEGENDARY,
+            ("§x§6§B§E§E§D§1A legendary giant!"),
+            ("§x§B§0§C§5§D§0Every angler's dream."),
+            ("§x§C§E§8§7§A§8Said to bring good luck."),
+            ("§x§F§F§3§2§C§ELegendary Bass usually weighs between 2 - 31 kg.")
+    ),
+    LegendaryEelFish(Rarity.LEGENDARY.colorCode+"Ether · Phantom Eel", 666.666, 888.888, Rarity.LEGENDARY,
+            ("§x§6§B§E§E§D§1Can be used as a carrier for industrial power transfer!"),
+            ("§x§8§A§E§0§D§1For special reasons, magicians found the one and only bait for this legendary fish."),
+            ("§x§A§A§C§D§D§0That makes this legendary fish very easy to catch, but only compared to before anyone understood its habits."),
+            ("§x§B§7§C§2§D§0The real catch chance is still pretty low."),
+            ("§x§B§F§B§A§D§0By that logic it should count as an epic fish now."),
+            ("§x§B§5§9§F§B§0But because of its absurd traits, it should still be ranked as a legendary fish."),
+            ("§x§9§C§5§2§8§BCan store up to "+ Long.MAX_VALUE +" J of power"),
+            ("§x§B§1§4§2§9§ANeeds a magic fishing rod, and this fish is quite interested in magic sugar."),
+            ("§x§C§6§3§2§A§9Ether · Phantom Eel weighs between 666.666 ~ 888.888 kg."),
             " ",
-            ("§x§D§B§2§2§B§8shift + 右键 设置储电上限"),
-            ("§x§F§F§3§2§C§E当前储电量: 未初始化")
+            ("§x§D§B§2§2§B§8shift + right-click to set the power storage limit"),
+            ("§x§F§F§3§2§C§ECurrent stored power: Not initialized")
     ),
 
 
-    MYSTIC_EEL(Rarity.EPIC.colorCode+"裸背电鳗", 2.0, 21.0, Rarity.EPIC,
-            ("§x§6§B§E§E§D§1深海中的幽影。"),
-            ("§x§9§5§C§4§D§0散发着微弱的蓝光。"),
-            ("§x§B§F§B§A§D§0没人知道它来自何方。"),
-            ("§x§A§D§A§2§9§E可产生高达600伏的电压和1安培的电流。"),
-            ("§x§C§B§4§2§A§6裸背电鳗体重大多都在 2 - 21 kg之间。"),
-            ("§x§F§F§3§2§C§E[特殊作用]可用于发电")
+    MYSTIC_EEL(Rarity.EPIC.colorCode+"Naked-back Eel", 2.0, 21.0, Rarity.EPIC,
+            ("§x§6§B§E§E§D§1A shadow in the deep sea."),
+            ("§x§9§5§C§4§D§0Gives off a faint blue glow."),
+            ("§x§B§F§B§A§D§0Nobody knows where it comes from."),
+            ("§x§A§D§A§2§9§ECan make up to 600 volts and 1 amp of current."),
+            ("§x§C§B§4§2§A§6Naked-back Eel usually weighs between 2 - 21 kg."),
+            ("§x§F§F§3§2§C§E[Special effect] Can be used to make power")
     );
 
     private final String displayName;
@@ -534,7 +534,7 @@ public enum Fish {
         this.loreLines = loreLines;
     }
 
-    // Getter 省略（同上）
+    // Getters left out (same as above)
     public String getDisplayName() { return displayName; }
     public double getMinWeight() { return minWeight; }
     public double getMaxWeight() { return maxWeight; }
@@ -547,14 +547,14 @@ public enum Fish {
         try {
             return Fish.valueOf(name);
         } catch (IllegalArgumentException e) {
-            return null; // 或抛出异常
+            return null; // or throw an exception
         }
     }
 
 
     /**
-     * 按“越轻越稀有”原则生成重量
-     * 使用偏态分布：更大概率生成接近 minWeight 的小重量
+     * Make the weight with the "lighter = rarer" rule
+     * Uses a skewed distribution: a higher chance of making small weights close to minWeight
      */
     public double rollWeight() {
         Random random = new Random();
@@ -623,8 +623,8 @@ public enum Fish {
     }
 
     /**
-     * 计算重量在范围内的“归一化百分比”（0.0 ~ 1.0）
-     * 注意：值越小表示越轻
+     * Work out the weight's "normalized percentage" in the range (0.0 ~ 1.0)
+     * Note: the smaller the value, the lighter
      */
     public double getWeightPercent(double weight) {
         if (weight >= maxWeight) return 1.0;
@@ -633,7 +633,7 @@ public enum Fish {
     }
 
     /**
-     * 根据重量判断“重量稀有度”
+     * Decide the "weight rarity" from the weight
      */
     public WeightRarity getWeightRarity(double weight) {
         double percent = getWeightPercent(weight);
@@ -641,13 +641,13 @@ public enum Fish {
     }
 
     // ======================
-    // 内部枚举：重量稀有度（独立于基础稀有度）
+    // Inner enum: weight rarity (separate from base rarity)
     // ======================
     public enum WeightRarity {
-        COMMON_FISH("§f普通鱼", "§f",1),
-        RARE_FISH("§e稀有鱼", "§e",7),
-        SUPER_RARE_FISH("§b超级稀有鱼", "§b",15),
-        MAX_WEIGHT_FISH("§c§l鱼皇", "§c§l", 9999);
+        COMMON_FISH("§fCommon Fish", "§f",1),
+        RARE_FISH("§eRare Fish", "§e",7),
+        SUPER_RARE_FISH("§bSuper Rare Fish", "§b",15),
+        MAX_WEIGHT_FISH("§c§lFish King", "§c§l", 9999);
 
         private final String displayName;
         private final String colorCode;
@@ -667,30 +667,30 @@ public enum Fish {
 
         public static int getMultiplierByName(String name) {
             if (name == null) {
-                return 1; // 默认倍率
+                return 1; // default multiplier
             }
             try {
                 WeightRarity rarity = WeightRarity.valueOf(name);
                 return rarity.getMultiplier();
             } catch (IllegalArgumentException e) {
-                return 1; // 名称无效，默认普通
+                return 1; // invalid name, default to common
             }
         }
 
         /**
-         * 根据归一化百分比（0.0~1.0）判断重量稀有度
-         * 注意：越轻越稀有 → 百分比越小越稀有
+         * Decide the weight rarity from the normalized percentage (0.0~1.0)
+         * Note: lighter = rarer → the smaller the percentage, the rarer
          */
         public static WeightRarity fromPercent(double percent) {
             if (percent == 1){
-                return MAX_WEIGHT_FISH;  //满重量
+                return MAX_WEIGHT_FISH;  //full weight
             }
             else if (percent > 0.93) {
-                return SUPER_RARE_FISH;  // 最重的 7% → 超级稀有
+                return SUPER_RARE_FISH;  // heaviest 7% → super rare
             } else if (percent > 0.85) {
-                return RARE_FISH;        // 中间的 8% → 稀有鱼
+                return RARE_FISH;        // middle 8% → rare fish
             } else {
-                return COMMON_FISH;      // 最轻的 85% → 普通鱼
+                return COMMON_FISH;      // lightest 85% → common fish
             }
         }
     }
@@ -698,21 +698,21 @@ public enum Fish {
 
 
     // ======================
-    // 基础稀有度（原系统）
+    // Base rarity (original system)
     // ======================
     public enum Rarity {
-        COMMON("§f普通", "§f"),
-        UNCOMMON("§a罕见", "§a"),
-        RARE("§b稀有", "§b"),
-        RARE_POOL_DUST("§b稀有-POOL-矿粉", "§b"),
-        RARE_POOL_ORE("§b稀有-POOL-矿物", "§b"),
-        RARE_POOL_INDUSTRY("§b稀有-POOL-工业材料", "§b"),
-        EPIC("§d史诗", "§d"),
-        EPIC_POOL_INDUSTRY("§d史诗-POOL-工业材料", "§d"),
-        EPIC_POOL_ALLOY_INGOT("§d史诗-POOL-合金锭", "§d"),
-        LEGENDARY("§c传说", "§c"),
-        LEGENDARY_EEL("§c传说-以太电鳗", "§c"),
-        MYTHICAL("§e神话", "§e");
+        COMMON("§fCommon", "§f"),
+        UNCOMMON("§aUncommon", "§a"),
+        RARE("§bRare", "§b"),
+        RARE_POOL_DUST("§bRare-POOL-Ore Dust", "§b"),
+        RARE_POOL_ORE("§bRare-POOL-Ore", "§b"),
+        RARE_POOL_INDUSTRY("§bRare-POOL-Industrial Material", "§b"),
+        EPIC("§dEpic", "§d"),
+        EPIC_POOL_INDUSTRY("§dEpic-POOL-Industrial Material", "§d"),
+        EPIC_POOL_ALLOY_INGOT("§dEpic-POOL-Alloy Ingot", "§d"),
+        LEGENDARY("§cLegendary", "§c"),
+        LEGENDARY_EEL("§cLegendary-Ether Eel", "§c"),
+        MYTHICAL("§eMythical", "§e");
 
 
         private final String displayName;

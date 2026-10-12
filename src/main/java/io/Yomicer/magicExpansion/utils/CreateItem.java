@@ -10,7 +10,7 @@ public class CreateItem {
     public static ItemStack createItem(Material material, String displayName) {
         ItemStack item = new ItemStack(material);
 
-        //如果需要设置显示名称或其他元数据，可以使用 ItemMeta：
+        //To set a display name or other metadata, you can use ItemMeta: ItemMeta：
         var meta = item.getItemMeta();
         meta.setDisplayName(displayName);
         item.setItemMeta(meta);
@@ -19,7 +19,7 @@ public class CreateItem {
     }
 
     public static ItemStack createItem(Material material) {
-        return createItem(material, null); // 调用原始方法，不命名
+        return createItem(material, null); // Call the original method without a name
     }
 
     public static ItemStack createItemWithLore(Material material, String displayName, String... lore) {

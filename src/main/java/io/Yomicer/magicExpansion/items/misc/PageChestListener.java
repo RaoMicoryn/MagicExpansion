@@ -13,10 +13,10 @@ import org.bukkit.event.inventory.InventoryCloseEvent;
 import org.bukkit.inventory.Inventory;
 
 /**
- * 翻页储物箱监听器
- * 玩家界面直接使用 BlockMenu, 与货运容器一致
- * 窗口外空白处点击: 左键上一页, 右键下一页
- * 关闭界面时播放关闭动画(数据由 BlockMenu 自动保存)
+ * Page Chest listener
+ * The player UI directly uses BlockMenu, Same as the cargo container
+ * Click on the empty area outside the window: Left-click: previous page, Right-click: next page
+ * Play the close animation when the UI closes(Data is saved automatically by BlockMenu)
  */
 public class PageChestListener implements Listener {
 
@@ -33,7 +33,7 @@ public class PageChestListener implements Listener {
         if (!(BlockStorage.check(location.getBlock()) instanceof PageChest)) {
             return;
         }
-        // 只有点击在界面外的空白处(没有点中任何格子)才进行翻页
+        // Only when you click on the empty area outside the UI(No slot was clicked)then flip the page
         if (e.getClickedInventory() != null) {
             return;
         }

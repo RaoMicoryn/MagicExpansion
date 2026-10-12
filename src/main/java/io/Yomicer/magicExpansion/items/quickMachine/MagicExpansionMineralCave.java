@@ -34,67 +34,67 @@ public class MagicExpansionMineralCave extends SimpleSlimefunItem<ItemUseHandler
     public ItemUseHandler getItemHandler() {
 
         return e -> {
-            // 阻止默认行为（放置方块或使用物品）
+            // Prevent the default action (placing a block or using the item)
             e.setUseItem(Event.Result.DENY);
             e.setUseBlock(Event.Result.DENY);
 
-            // 获取玩家
+            // Get the player
             Player player = e.getPlayer();
 
-            // 打开自定义菜单
+            // Open the custom menu
             openCustomMenu(player);
         };
     }
 
 
     private void openCustomMenu(Player player) {
-        // 创建一个新的 ChestMenu
-        ChestMenu menu = new ChestMenu(getGradientName("魔法矿洞"));
-        // 用于记录已点击的槽位
+        // Create a new ChestMenu
+        ChestMenu menu = new ChestMenu(getGradientName("Magic Mine"));
+        // Keep track of clicked slots
         Set<Integer> clickedSlots = new HashSet<>();
-        // 设置菜单槽位内容
+        // Set up the menu slots
         for (int i = 0; i < 54; i++) {
             Random random = new Random();
-            // 判断是否满足 80% 概率
+            // Check if the 80% chance succeeds
             boolean isGenerated = random.nextDouble() < 0.8;
             if (isGenerated||i==53){
-            menu.addItem(i, createItem(Material.STONE, getGradientName("点击我挖取这里的石头")), (player1, slot, item, action) -> {
+            menu.addItem(i, createItem(Material.STONE, getGradientName("Click to mine this stone")), (player1, slot, item, action) -> {
 
-                // 检查该槽位是否已被点击过
+                // Check if this slot has already been clicked
                 if (clickedSlots.contains(slot)) {
-                    player1.sendMessage("§c你已经挖掘过这里了！");
-                    return false; // 返回 false 表示不消耗物品
+                    player1.sendMessage("§cYou’ve already mined this spot!");
+                    return false; // Return false so the item isn't used up
                 }
-                // 玩家点击后，将该槽位替换为普通圆石
+                // Replace this slot with regular cobblestone after the player clicks it
                 ItemStack randomItem = getRandomItem(random);
                 ItemStack treasureItem = randomItem.clone();
                 ItemMeta meta = treasureItem.getItemMeta();
-                meta.setDisplayName("§e宝藏：§b" + ItemStackHelper.getDisplayName(treasureItem));
+                meta.setDisplayName("§eTreasure: §b" + ItemStackHelper.getDisplayName(treasureItem));
                 treasureItem.setItemMeta(meta);
                 menu.replaceExistingItem(slot, treasureItem);
                 GiveItem.giveOrDropItem(player1, randomItem);
-                // 将槽位标记为已点击
+                // Mark this slot as clicked
                 clickedSlots.add(slot);
-                player1.sendMessage("你挖掘了坐标为 " + slot+" 的石头！");
-                return false; // 返回 false 表示不消耗物品
+                player1.sendMessage("You mined the stone at slot " + slot+" stone！");
+                return false; // Return false so the item isn't used up
             });
         }
         }
 
-        // 设置空槽位是否可点击
+        // Set whether empty slots can be clicked
         menu.setEmptySlotsClickable(false);
         menu.setPlayerInventoryClickable(false);
 
-        // 打开菜单
+        // Open the menu
         menu.open(player);
     }
 
 
 
-    // 预设的物品列表（静态常量）
+    // Preset item list (static constant)
     private static final List<ItemStack> ITEMS;
     static {
-        // 初始化物品列表
+        // Set up the item list
         ITEMS = new ArrayList<>();
         ITEMS.add(new ItemStack(Material.COBBLESTONE));
         ITEMS.add(new ItemStack(Material.IRON_INGOT));
@@ -135,9 +135,9 @@ public class MagicExpansionMineralCave extends SimpleSlimefunItem<ItemUseHandler
 
     }
 
-    // 随机物品生成方法
+    // Pick a random item
     private static ItemStack getRandomItem(Random random) {
-        // 随机选择一个物品
+        // Pick a random item
         return ITEMS.get(random.nextInt(ITEMS.size()));
     }
 

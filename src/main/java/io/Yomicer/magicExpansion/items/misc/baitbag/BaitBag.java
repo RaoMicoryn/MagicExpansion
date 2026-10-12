@@ -10,7 +10,7 @@ import org.bukkit.inventory.ItemStack;
 import javax.annotation.Nonnull;
 
 /**
- * 饵料袋: 右键打开自绘菜单, 存放织梦者/水云间系列鱼饵
+ * Bait Bag: right-click to open a custom menu, stores Dreamweaver / Water Cloud Realm series baits
  */
 public class BaitBag extends SimpleSlimefunItem<ItemUseHandler> {
 

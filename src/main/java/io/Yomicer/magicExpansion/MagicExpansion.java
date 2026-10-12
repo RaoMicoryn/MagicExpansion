@@ -56,17 +56,17 @@ public class MagicExpansion extends JavaPlugin implements SlimefunAddon {
 
     @Override
     public void onEnable() {
-        // 原 Lombok @SneakyThrows 已手工展开：整体 try-catch 异常隔离，
-        // 任一子模块失败时记录日志并禁用插件，避免"半启用"状态（修复方案 1 号问题）
+        // Lombok @SneakyThrows was expanded manually: catch errors around startup,
+        // item notes，item notes"partially enabled"state（Fixfix 1 ）
         try {
             onEnableInternal();
         } catch (Throwable t) {
-            getLogger().log(Level.SEVERE, "魔法拓展启用过程中发生严重错误，插件已自动禁用！", t);
+            getLogger().log(Level.SEVERE, "A serious error occurred while enabling Magic Expansion. The plugin has been disabled!", t);
             getServer().getPluginManager().disablePlugin(this);
         }
     }
 
-    // 实际的启用逻辑（从原 onEnable 平移，保证行为不变）
+    // Actual enable logic (moved from the original onEnable without changing behavior)
     private void onEnableInternal() throws Exception {
         // Plugin startup logic
         instance = this;
@@ -74,30 +74,30 @@ public class MagicExpansion extends JavaPlugin implements SlimefunAddon {
         // Read something from your config.yml
         Config cfg = new Config(this);
 
-        getLogger().info("§b魔法拓展加载中！");
+        getLogger().info("§bLoading Magic Expansion!");
 
         if (!getServer().getPluginManager().isPluginEnabled("GuizhanLibPlugin")) {
-            getLogger().log(Level.SEVERE, "本插件需要 鬼斩前置库插件(GuizhanLibPlugin) 才能运行!");
-            getLogger().log(Level.SEVERE, "从此处下载: https://50l.cc/gzlib");
+            getLogger().log(Level.SEVERE, "This plugin needs GuizhanLibPlugin to run!");
+            getLogger().log(Level.SEVERE, "Download it here: https://50l.cc/gzlib");
             getServer().getPluginManager().disablePlugin(this);
             return;
         }
 
         if (cfg.getBoolean("options.auto-update") && getDescription().getVersion().startsWith("Build ")) {
-            getLogger().info("§b正在加载更新！");
+            getLogger().info("§bChecking for updates!");
             GuizhanUpdater.start(this, getFile(), "Yomicer", "MagicExpansion", "master");
-            getLogger().info("§b更新完毕！");
+            getLogger().info("§bUpdate complete!");
         }else{
-            getLogger().info("§b未启用自动更新！");
+            getLogger().info("§bAuto-update is disabled!");
         }
         ConfigLoader.load(this);
         Language.loadConfig(ConfigLoader.LANGUAGE);
-        getLogger().info("§b语言包加载完毕！");
+        getLogger().info("§bLanguage files loaded!");
 
-        // 魔法祭坛
+        // Magic Altar
         pluginInitializer = new PluginInitializer(this);
         pluginInitializer.initialize();
-        getLogger().info("魔法2.0-魔法祭坛 已启用!");
+        getLogger().info("Magic 2.0 - Magic Altar is enabled!");
 
         // Registering Items
         MagicExpansionItemSetup.setup(this);
@@ -105,14 +105,14 @@ public class MagicExpansion extends JavaPlugin implements SlimefunAddon {
         MagicExpansionPowerMachineSetup.setup(this);
         MagicExpansionQuickMachineSetup.setup(this);
         MagicExpansionFoodSetup.setup(this);
-        getLogger().info("§b物品注册完毕！");
+        getLogger().info("§bItems registered!");
 
 
-        getLogger().info("§bAI聊天功能加载中！");
-        // 创建并启用 AI 子模块
+        getLogger().info("§bLoading AI chat...");
+        // Create and enable the AI module
         AIManager aiManager = new AIManager(this);
-        aiManager.onEnable();  // ✅ 启动 AI 模块
-        getLogger().info("✅ 魔法2.0 ai聊天功能加载完毕！使用 /mxai chaton 开启AI聊天。");
+        aiManager.onEnable();  // ✅ Start the AI module
+        getLogger().info("✅ Magic 2.0 AI chat is ready! Use /mxai chaton to turn it on.");
 
 
         // Registering Command
@@ -127,13 +127,13 @@ public class MagicExpansion extends JavaPlugin implements SlimefunAddon {
         this.getCommand("mxfishmode").setExecutor(new FishModeCommand());
 //        this.getCommand("mxai").setTabCompleter(new AIChat());
 
-        // 创建地图保存目录
+        // Create the folder for saved maps
         File mapsDir = new File(getDataFolder(), "maps");
         if (!mapsDir.exists()) {
             mapsDir.mkdirs();
         }
-        getLogger().info("§b指令注册完毕");
-        // 注册事件监听器
+        getLogger().info("§bCommands registered");
+        // Register event listeners
         getServer().getPluginManager().registerEvents(new SlimefunRegistryFinalized(), this);
         getServer().getPluginManager().registerEvents(new SlimefunRegistryListener(), this);
         getServer().getPluginManager().registerEvents(new RecipePreLoader(), this);
@@ -154,14 +154,14 @@ public class MagicExpansion extends JavaPlugin implements SlimefunAddon {
         getServer().getPluginManager().registerEvents(aiManager, this);
         ShopManager.load();
         getServer().getPluginManager().registerEvents(new ShopGUI(), this);
-        // 修复：注册玩家退出清理监听器，玩家下线时统一清理各模块会话数据
+        // Fix：Register a cleanup listener to clear session data when a player logs out
         getServer().getPluginManager().registerEvents(new PlayerCleanupListener(), this);
 
-        // 水云间新钓鱼系统调度(秒级状态机 + 鱼钩晃动)
+        // New Water Cloud fishing scheduler (second-based state machine + hook movement)
         WaterCloudHookManager.startTicking(this);
         BlackMarketManager.init();
-        getLogger().info("便携商店系统已加载！");
-        getLogger().info("§b监听注册完毕！");
+        getLogger().info("Portable shop system loaded!");
+        getLogger().info("§bEvent listeners registered!");
 
 
 
@@ -174,7 +174,7 @@ public class MagicExpansion extends JavaPlugin implements SlimefunAddon {
 
 
 
-        getLogger().info("§b魔法拓展已成功启用！");
+        getLogger().info("§bMagic Expansion enabled!");
 
 
 
@@ -192,26 +192,26 @@ public class MagicExpansion extends JavaPlugin implements SlimefunAddon {
         if (pluginInitializer != null) {
             pluginInitializer.getAltarManager().cancelAllTasks();
         }
-        getLogger().info("魔法2.0-魔法祭坛 已禁用!");
+        getLogger().info("Magic 2.0 - Magic Altar is disabled!");
         DrawMachine.cleanupAllHolograms();
-        getLogger().info("已清理所有抽奖机悬浮物！");
-        VirtualPlayerManager.shutdown(); // G1v3：清理交互机器人的虚拟玩家（Citizens NPC 反生成等）
+        getLogger().info("All lottery machine holograms have been cleared!");
+        VirtualPlayerManager.shutdown(); // G1v3：Clean up virtual players used by interactive bots (including removing Citizens NPCs)
 
         if (CargoFragmentDistributor.globalTickTask != null) {
             CargoFragmentDistributor.globalTickTask.cancel();
             CargoFragmentDistributor.globalTickTask = null;
         }
         CargoFragmentDistributor.machineStates.clear();
-        getLogger().info("已结束所有以太秘匣传输器进程！");
+        getLogger().info("All Aether Chest Transporter tasks have stopped!");
 
-        //便携式以太秘匣传输器
+        //Portable Aether Chest Transporter
         onPluginDisable();
         ShopManager.saveAll();
         WaterCloudHookManager.stopTicking();
 
 
         // Plugin shutdown logic
-        getLogger().info("§b魔法拓展已成功卸载！");
+        getLogger().info("§bMagic Expansion has been disabled!");
     }
     public PluginInitializer getPluginInitializer() {
         return pluginInitializer;

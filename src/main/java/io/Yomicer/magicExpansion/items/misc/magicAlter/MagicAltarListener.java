@@ -31,35 +31,35 @@ public class MagicAltarListener implements Listener {
         Player player = event.getPlayer();
         Block block = event.getClickedBlock();
 
-        // 检查是否右键了发射器
+        // Check if a dispenser was right-clicked
         if (block != null && block.getType() == Material.DISPENSER) {
             ItemStack itemInHand = player.getInventory().getItemInMainHand();
 
-            // 检查是否拿着祭坛法杖
+            // Check if the player is holding the altar wand
             if (isAltarWand(itemInHand)) {
                 event.setCancelled(true);
 
-                // 播放点击音效
+                // Play a click sound
                 player.playSound(player.getLocation(), Sound.BLOCK_ENCHANTMENT_TABLE_USE, 1.0f, 1.0f);
 
-                // 检查是否是中心发射器
+                // Check if it's the center dispenser
                 if (isCenterDispenser(block.getLocation())) {
-                    // 开始合成检查
+                    // Start the crafting check
                     boolean success = plugin.getPluginInitializer().getAltarManager().startCrafting(block.getLocation(), player);
 
                     if (success) {
-                        player.sendMessage("§a✓ 已激活魔法祭坛！开始检查配方...");
+                        player.sendMessage("§a✓ Magic Altar activated! Checking the recipe...");
                     } else {
-                        player.sendMessage("§c✗ 无法激活祭坛，请检查结构和配方！");
+                        player.sendMessage("§c✗ Can't activate the altar, please check the structure and recipe!");
                     }
                 } else {
-                    player.sendMessage("§e⚠ 请右键中心发射器来激活整个祭坛！");
+                    player.sendMessage("§e⚠ Right-click the center dispenser to activate the whole altar!");
                 }
             }
         }
     }
 
-    // 检查物品是否是祭坛法杖
+    // Check if the item is the altar wand
     private boolean isAltarWand(ItemStack item) {
         if (item == null || !item.hasItemMeta()) return false;
 
@@ -70,7 +70,7 @@ public class MagicAltarListener implements Listener {
         );
     }
 
-    // 检查是否是中心发射器（周围8格都是发射器）
+    // Check if it's the center dispenser (all 8 blocks around it are dispensers)
     private boolean isCenterDispenser(Location location) {
         int dispenserCount = 0;
 
@@ -83,6 +83,6 @@ public class MagicAltarListener implements Listener {
             }
         }
 
-        return dispenserCount == 9; // 3x3的发射器阵列
+        return dispenserCount == 9; // A 3x3 grid of dispensers
     }
 }

@@ -16,7 +16,7 @@ public class FishItemReader {
         if (!isFishItem(item)) return null;
         String typeName = item.getItemMeta().getPersistentDataContainer()
                 .get(FishKeys.FISH_TYPE, PersistentDataType.STRING);
-        // 修复(T)：valueOf 对非法/过期枚举名会抛 IllegalArgumentException，包 try-catch 失败返回 null（调用方需判空）
+        // Fix (T): valueOf throws IllegalArgumentException for invalid/outdated enum names, so wrap it in try-catch and return null on failure (the caller must check for null)
         try {
             return Fish.valueOf(typeName);
         } catch (IllegalArgumentException | NullPointerException e) {
@@ -26,7 +26,7 @@ public class FishItemReader {
 
     public static double getFishWeight(ItemStack item) {
         if (!isFishItem(item)) return 0.0;
-        // 修复(T)：权重字段缺失时 get 返回 null 会拆箱 NPE，安全返回默认值 0.0
+        // Fix (T): if the weight field is missing, get returns null and unboxing would throw an NPE, so safely return the default 0.0
         Double weight = item.getItemMeta().getPersistentDataContainer()
                 .get(FishKeys.FISH_WEIGHT, PersistentDataType.DOUBLE);
         return weight == null ? 0.0 : weight;
@@ -36,7 +36,7 @@ public class FishItemReader {
         if (!isFishItem(item)) return null;
         String wrName = item.getItemMeta().getPersistentDataContainer()
                 .get(FishKeys.FISH_WEIGHT_RARITY, PersistentDataType.STRING);
-        // 修复(T)：valueOf 对非法/缺失枚举名安全返回 null（调用方需判空处理）
+        // Fix (T): valueOf safely returns null for invalid/missing enum names (the caller must check for null)
         try {
             return Fish.WeightRarity.valueOf(wrName);
         } catch (IllegalArgumentException | NullPointerException e) {

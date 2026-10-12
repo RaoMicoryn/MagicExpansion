@@ -21,52 +21,52 @@ public class PreBuildingsTreeUtils {
     private static final Gson gson = new Gson();
 
     /**
-     * 修复(Z)：建筑文件名白名单校验 [a-zA-Z0-9_-]，防止路径穿越读取任意资源
+     * Fix (Z): Only allow building file names with [a-zA-Z0-9_-] to stop access to files outside the folder.
      */
     private static boolean isValidFileName(String fileName) {
         return fileName != null && fileName.matches("[a-zA-Z0-9_-]+");
     }
 
     /**
-     * 粘贴地图到玩家注视的目标方块上方
+     * Paste the build above the block the player is looking at.
      */
     public static boolean pasteMap(Player player, String fileName, String originName, String replaceName) {
-        // 修复(Z)：文件名白名单校验，非法文件名直接拒绝
+        // Fix (Z): Check the file name and reject invalid names.
         if (!isValidFileName(fileName)) {
-            player.sendMessage("§c非法的文件名，请不要随意修改插件设置!");
+            player.sendMessage("§cInvalid file name. Please do not change the plugin settings!");
             return false;
         }
 
-        // 从 resources/buildings 文件夹中读取 JSON 文件
+        // Read the JSON file from the resources/buildings folder.
         InputStream inputStream = PreBuildingsTreeUtils.class.getClassLoader().getResourceAsStream("buildings/" + fileName + ".json");
 
         if (inputStream == null) {
-            player.sendMessage("§c路径错误，请不要随意修改插件设置!");
-            return false; // 文件不存在，返回 false
+            player.sendMessage("§cWrong file path. Please do not change the plugin settings!");
+            return false; // File not found, return false
         }
 
-        // 获取玩家注视的目标方块
+        // Get the block the player is looking at.
         Block targetBlock = getTargetBlock(player);
         if (targetBlock == null) {
-            player.sendMessage("§c你需要看向一个方块!");
-            return false; // 没有目标方块，返回 false
+            player.sendMessage("§cYou need to look at a block!");
+            return false; // No target block found, return false
         }
 
-        // 粘贴位置为目标方块上方 1 格
+        // Paste the build one block above the target block.
         Location pasteLocation = targetBlock.getLocation().add(0, 1, 0);
 
         try (InputStreamReader reader = new InputStreamReader(inputStream)) {
             Type listType = new TypeToken<List<BlockData>>() {}.getType();
             List<BlockData> blocks = gson.fromJson(reader, listType);
 
-            // 修复(Z)：gson.fromJson 可能返回 null（空文件/非法 JSON），判空防止 NPE
+            // Fix (Z): gson.fromJson may return null for an empty file or invalid JSON, so check for null to avoid an NPE.
             if (blocks == null) {
-                player.sendMessage("§c建筑数据为空或格式错误: " + fileName + ".json");
+                player.sendMessage("§cBuilding data is empty or has the wrong format: " + fileName + ".json");
                 return false;
             }
 
             if (!(originName == null) && !(replaceName == null)) {
-                // 替换 "OAK" 为 "CHERRY"
+                // Replace "OAK" with "CHERRY".
                 for (BlockData blockData : blocks) {
                     if (blockData.type != null && blockData.type.contains(originName)) {
                         blockData.type = blockData.type.replace(originName, replaceName);
@@ -74,19 +74,19 @@ public class PreBuildingsTreeUtils {
                 }
             }
 
-            // 检查预期空间是否有权限冲突&&空间是否充足
+            // Check whether the area has permission issues and enough space.
             if (hasPermissionConflicts(blocks, pasteLocation, player.getWorld(),player)) {
-                player.sendMessage("§c有部分区域没有权限或者是空间大小不足，请选择其他地方放置。");
-                return false; // 存在冲突，返回 false
+                player.sendMessage("§cYou do not have permission for some areas, or there is not enough space. Please choose another spot.");
+                return false; // A conflict was found, return false
             }
 
-//            // 检查是否有冲突
+//            // Check for conflicts.
 //            if (hasConflicts(blocks, pasteLocation, player.getWorld())) {
-//                player.sendMessage("§c当前空间大小不足，请选择其他地方放置。");
-//                return false; // 存在冲突，返回 false
+//                player.sendMessage("§cThere is not enough space here. Please choose another spot.");
+//                return false; // A conflict was found, return false
 //            }
 
-            // 如果没有冲突，则开始粘贴
+            // If there are no conflicts, start placing the build.
             for (BlockData blockData : blocks) {
                 Location location = new Location(
                         player.getWorld(),
@@ -107,15 +107,15 @@ public class PreBuildingsTreeUtils {
             }
 
 
-            player.sendMessage("§a预制菜启动！");
-            return true; // 成功粘贴，返回 true
+            player.sendMessage("§aThe build is ready!");
+            return true; // Build placed successfully, return true
         } catch (IOException e) {
             player.sendMessage("§cFailed to create: " + e.getMessage());
             e.printStackTrace();
-            return false; // 发生异常，返回 false
+            return false; // An error occurred, return false
         } catch (com.google.gson.JsonParseException e) {
-            // 修复(Z)：捕获 JSON 解析异常（含 JsonSyntaxException），避免损坏文件导致未捕获异常
-            player.sendMessage("§c建筑文件已损坏或不是合法 JSON: " + fileName + ".json");
+            // Fix (Z): Catch JSON parsing errors, including JsonSyntaxException, so a damaged file does not cause an unhandled error.
+            player.sendMessage("§cThe building file is damaged or is not valid JSON: " + fileName + ".json");
             return false;
         }
     }
@@ -125,7 +125,7 @@ public class PreBuildingsTreeUtils {
     }
 
     /**
-     * 检查是否有权限冲突
+     * Check for permission issues.
      */
     private static boolean hasPermissionConflicts(List<BlockData> blocks, Location pasteLocation, org.bukkit.World world, Player p) {
         for (BlockData blockData : blocks) {
@@ -136,19 +136,19 @@ public class PreBuildingsTreeUtils {
                     pasteLocation.getBlockZ() + blockData.z
             );
             if(!ItemPermissionUtils.hasPermissionPoint(p,location)){
-                return true; //发现冲突
+                return true; //Conflict found
             }
 
             Block block = location.getBlock();
             if (!block.getType().isAir()) {
-                return true; // 发现冲突
+                return true; // Conflict found
             }
         }
-        return false; // 没有冲突
+        return false; // No conflict found
     }
 
     /**
-     * 检查是否有冲突
+     * Check for conflicts.
      */
     private static boolean hasConflicts(List<BlockData> blocks, Location pasteLocation, org.bukkit.World world) {
         for (BlockData blockData : blocks) {
@@ -161,40 +161,40 @@ public class PreBuildingsTreeUtils {
 
             Block block = location.getBlock();
             if (!block.getType().isAir()) {
-                return true; // 发现冲突
+                return true; // Conflict found
             }
         }
-        return false; // 没有冲突
+        return false; // No conflict found
     }
 
     /**
-     * 获取玩家注视的目标方块
+     * Get the block the player is looking at.
      */
     private static Block getTargetBlock(Player player) {
-        BlockIterator iterator = new BlockIterator(player, 10); // 最远检测 5 格
+        BlockIterator iterator = new BlockIterator(player, 10); // Check up to 5 blocks away.
         while (iterator.hasNext()) {
             Block block = iterator.next();
             if (!block.getType().isAir()) {
                 return block;
             }
         }
-        return null; // 如果没有找到非空气方块，返回 null
+        return null; // Return null if no solid block is found.
     }
 
     /**
-     * 内部类：存储单个方块的数据
+     * Inner class: stores data for one block.
      */
     private static class BlockData {
         public int x;
         public int y;
         public int z;
         public String type;
-        public String blockState; // 新增字段，用于保存方块状态
+        public String blockState; // New field used to store the block state.
 
-        // 默认构造函数
+        // Default constructor.
         public BlockData() {}
 
-        // 如果需要的话，可以添加带参数的构造函数
+        // Add a constructor with parameters if needed.
         public BlockData(int x, int y, int z, String type, String blockState) {
             this.x = x;
             this.y = y;
@@ -206,12 +206,12 @@ public class PreBuildingsTreeUtils {
 
 
     /**
-     * 获取建筑的尺寸 (X, Y, Z)
-     * @param fileName 文件名 (不带 .json)
-     * @return int[]{xSize, ySize, zSize}，如果文件不存在或出错返回 null
+     * Get the build size (X, Y, Z).
+     * @param fileName File name (without .json)
+     * @return int[]{xSize, ySize, zSize}，Return null if the file does not exist or an error occurs.
      */
     public static int[] getBuildingDimensions(String fileName) {
-        // 修复(Z)：文件名白名单校验，非法文件名返回 null
+        // Fix (Z):Check the file name and return null if it is invalid.
         if (!isValidFileName(fileName)) {
             return null;
         }
@@ -244,7 +244,7 @@ public class PreBuildingsTreeUtils {
                 if (block.z > maxZ) maxZ = block.z;
             }
 
-            // 计算尺寸 (最大值 - 最小值 + 1)
+            // Calculate the size (max value - min value + 1).
             int xSize = maxX - minX + 1;
             int ySize = maxY - minY + 1;
             int zSize = maxZ - minZ + 1;

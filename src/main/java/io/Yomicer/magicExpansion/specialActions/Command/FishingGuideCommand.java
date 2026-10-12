@@ -18,9 +18,9 @@ public class FishingGuideCommand implements CommandExecutor, TabCompleter {
 
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
-        // 检查发送者是否是玩家
+        // Check if the sender is a player
         if (!(sender instanceof Player)) {
-            sender.sendMessage("§c只有玩家才能使用这个命令！");
+            sender.sendMessage("§cOnly players can use this command!");
             return true;
         }
 
@@ -33,41 +33,41 @@ public class FishingGuideCommand implements CommandExecutor, TabCompleter {
 
         switch (args[0].toLowerCase()) {
             case "open_guide":
-                // 图鉴界面: /mxf open_guide <ZhiMeng|ShuiYunJian>
+                // Guide menu: /mxf open_guide <ZhiMeng|ShuiYunJian>
                 if (args.length < 2) {
-                    player.sendMessage("§e用法: /mxf open_guide <ZhiMeng|ShuiYunJian>");
-                    player.sendMessage("§7ZhiMeng     - 打开织梦者钓鱼图鉴");
-                    player.sendMessage("§7ShuiYunJian - 打开水云间钓鱼图鉴");
+                    player.sendMessage("§eUsage: /mxf open_guide <ZhiMeng|ShuiYunJian>");
+                    player.sendMessage("§7ZhiMeng     - Open the Dream Weaver fishing guide");
+                    player.sendMessage("§7ShuiYunJian - Open the Water Cloud fishing guide");
                     break;
                 }
                 switch (args[1].toLowerCase()) {
                     case "zhimeng" -> {
                         FishingGuideMenu.openMainMenu(player);
-                        player.sendMessage("§a已打开织梦者钓鱼图鉴！");
+                        player.sendMessage("§aDream Weaver fishing guide opened!");
                     }
-                    case "shuiyunjian" -> player.sendMessage("§b水云间钓鱼图鉴制作中, 敬请期待！");
-                    default -> player.sendMessage("§c未知图鉴: " + args[1] + " §7(可选: ZhiMeng / ShuiYunJian)");
+                    case "shuiyunjian" -> player.sendMessage("§bThe Water Cloud fishing guide is still in the works. Stay tuned!");
+                    default -> player.sendMessage("§cUnknown guide: " + args[1] + " §7(Options: ZhiMeng / ShuiYunJian)");
                 }
                 break;
 
             case "guide":
-                // 指南书: /mxf guide <ZhiMeng|ShuiYunJian>
+                // Guide book: /mxf guide <ZhiMeng|ShuiYunJian>
                 if (args.length < 2) {
-                    player.sendMessage("§e用法: /mxf guide <ZhiMeng|ShuiYunJian>");
-                    player.sendMessage("§7ZhiMeng     - 获取织梦者系列指南");
-                    player.sendMessage("§7ShuiYunJian - 获取水云间系列指南");
+                    player.sendMessage("§eUsage: /mxf guide <ZhiMeng|ShuiYunJian>");
+                    player.sendMessage("§7ZhiMeng     - Get the Dream Weaver guide book");
+                    player.sendMessage("§7ShuiYunJian - Get the Water Cloud guide book");
                     break;
                 }
                 switch (args[1].toLowerCase()) {
                     case "zhimeng" -> {
                         giveItem(player, MagicExpansionItems.FISHING_BOOK);
-                        player.sendMessage("§a已获得织梦者系列指南！");
+                        player.sendMessage("§aYou got the Dream Weaver guide book!");
                     }
                     case "shuiyunjian" -> {
                         giveItem(player, MagicExpansionItems.FISHING_BOOK_BETWEEN_WATER_CLOUD);
-                        player.sendMessage("§a已获得水云间系列指南！");
+                        player.sendMessage("§aYou got the Water Cloud guide book!");
                     }
-                    default -> player.sendMessage("§c未知指南: " + args[1] + " §7(可选: ZhiMeng / ShuiYunJian)");
+                    default -> player.sendMessage("§cUnknown guide book: " + args[1] + " §7(Options: ZhiMeng / ShuiYunJian)");
                 }
                 break;
 
@@ -84,7 +84,7 @@ public class FishingGuideCommand implements CommandExecutor, TabCompleter {
         List<String> completions = new ArrayList<>();
 
         if (args.length == 1) {
-            // 第一个参数补全
+            // Complete the first argument
             String[] subCommands = {"open_guide", "guide"};
             for (String subCommand : subCommands) {
                 if (subCommand.startsWith(args[0].toLowerCase())) {
@@ -92,7 +92,7 @@ public class FishingGuideCommand implements CommandExecutor, TabCompleter {
                 }
             }
         } else if (args.length == 2 && (args[0].equalsIgnoreCase("guide") || args[0].equalsIgnoreCase("open_guide"))) {
-            // 第二个参数补全: 指南/图鉴系列
+            // Complete the second argument: guide or guide book
             String[] guides = {"ZhiMeng", "ShuiYunJian"};
             for (String guide : guides) {
                 if (guide.toLowerCase().startsWith(args[1].toLowerCase())) {
@@ -105,23 +105,23 @@ public class FishingGuideCommand implements CommandExecutor, TabCompleter {
     }
 
     /**
-     * 发送命令用法
+     * Show command usage
      */
     private void sendUsage(Player player) {
-        player.sendMessage("§6=== 钓鱼图鉴命令 ===");
-        player.sendMessage("§a/mxf open_guide <ZhiMeng|ShuiYunJian> §7- 打开钓鱼图鉴界面");
-        player.sendMessage("§a/mxf guide ZhiMeng §7- 获取织梦者系列指南");
-        player.sendMessage("§a/mxf guide ShuiYunJian §7- 获取水云间系列指南");
+        player.sendMessage("§6=== Fishing Guide Commands ===");
+        player.sendMessage("§a/mxf open_guide <ZhiMeng|ShuiYunJian> §7- Open the fishing guide menu");
+        player.sendMessage("§a/mxf guide ZhiMeng §7- Get the Dream Weaver guide book");
+        player.sendMessage("§a/mxf guide ShuiYunJian §7- Get the Water Cloud guide book");
         player.sendMessage("§6===================");
     }
 
     /**
-     * 给予物品(背包满则掉落地上)
+     * Give an item (drop it on the ground if the inventory is full)
      */
     private void giveItem(Player player, ItemStack item) {
         if (player.getInventory().firstEmpty() == -1) {
             player.getWorld().dropItemNaturally(player.getLocation(), item);
-            player.sendMessage("§e你的背包已满，物品已掉落在地上！");
+            player.sendMessage("§eYour inventory is full, so the item was dropped on the ground!");
         } else {
             player.getInventory().addItem(item);
         }

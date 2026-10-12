@@ -49,7 +49,7 @@ public class OriginMaterialGenUltra extends AbstractElectricResourceMachine impl
     private static final ItemStack PROGRESS_ITEM = new ItemStack(Material.SOUL_LANTERN);
     private ItemStack material;
 
-    private static final ItemStack PROGRESS_STACK = new CustomItemStack(Material.SOUL_CAMPFIRE, getGradientNameVer2("信息"), getGradientNameVer2("类型：资源生成器"), getGradientNameVer2("所属附属：魔法"));
+    private static final ItemStack PROGRESS_STACK = new CustomItemStack(Material.SOUL_CAMPFIRE, getGradientNameVer2("Info"), getGradientNameVer2("Type: Resource Generator"), getGradientNameVer2("Addon: Magic"));
 
 
 
@@ -66,14 +66,14 @@ public class OriginMaterialGenUltra extends AbstractElectricResourceMachine impl
         SlimefunBlockData data = StorageCacheUtils.getBlock(loc);
         if (data == null) return;
 
-        // 获取序列化的 Base64 字符串
+        // Get the serialized Base64 string
         String base64Item = data.getData("origin_material");
         if (base64Item == null) {
             data.removeData("origin_material");
             return;
         }
 
-        // 反序列化获取原始物品
+        // Deserialize to get the original item
         ItemStack originalItem = deserializeItemStack(base64Item);
         if (originalItem == null) return;
 
@@ -88,11 +88,11 @@ public class OriginMaterialGenUltra extends AbstractElectricResourceMachine impl
             if (lore == null) {
                 lore = new ArrayList<>();
             }
-            lore.add(getGradientNameVer2("当前推演物品：" )+ n);
+            lore.add(getGradientNameVer2("Current item: " )+ n);
             meta.setLore(lore);
 
             NamespacedKey key = new NamespacedKey(MagicExpansion.getInstance(), "origin_material");
-            // 将 Base64 字符串存储到掉落物的 PDC 中
+            // Store the Base64 string in the dropped item's PDC
             meta.getPersistentDataContainer().set(key, PersistentDataType.STRING, base64Item);
             drop.setItemMeta(meta);
         }
@@ -109,7 +109,7 @@ public class OriginMaterialGenUltra extends AbstractElectricResourceMachine impl
         if (meta == null) return;
         NamespacedKey key = new NamespacedKey(MagicExpansion.getInstance(), "origin_material");
 
-        // 获取 Base64 字符串
+        // Get the Base64 string
         String base64Item = meta.getPersistentDataContainer().get(key, PersistentDataType.STRING);
         if (base64Item == null) return;
 
@@ -117,7 +117,7 @@ public class OriginMaterialGenUltra extends AbstractElectricResourceMachine impl
         SlimefunBlockData data = StorageCacheUtils.getBlock(loc);
         if (data == null) return;
 
-        // 存入 Base64 字符串
+        // Store the Base64 string
         data.setData("origin_material", base64Item);
     }
 
@@ -147,7 +147,7 @@ public class OriginMaterialGenUltra extends AbstractElectricResourceMachine impl
 
         if (maxedSlots == getOutputSlots().length) { return null; }
 
-        // L1 修复：配方列表为空时直接返回 null，避免 recipes.get(0) 抛 IndexOutOfBoundsException
+        // L1 fix: If the recipe list is empty, return null right away so recipes.get(0) doesn't throw IndexOutOfBoundsException
         if (recipes == null || recipes.isEmpty()) { return null; }
 
         MachineRecipe recipe = recipes.get(0);
@@ -162,20 +162,20 @@ public class OriginMaterialGenUltra extends AbstractElectricResourceMachine impl
         SlimefunBlockData data = StorageCacheUtils.getBlock(loc);
         if (data == null) return;
 
-        // 取出 Base64 字符串
+        // Read the Base64 string
         String base64Item = data.getData("origin_material");
         ItemStack output = null;
         if (base64Item != null) {
-            // 反序列化得到带有完整属性的原始物品
+            // Deserialize to get the original item with all its properties
             output = deserializeItemStack(base64Item);
             if (output != null) {
-                output.setAmount(64); // 设定单次推出的数量
+                output.setAmount(64); // Set the amount produced each time
             }
         }
 
         if (output != null) {
-            // L3 修复：大批量推送（36×64）前先用 fits 逻辑计算输出槽可容纳量，
-            // 能放多少放多少，剩余留到下个生产周期，不再静默丢弃
+            // L3 fix: Before pushing a large batch (36×64), work out how much the output slots can hold using fits logic,
+            // push as much as fits, leave the rest for the next production cycle, and never silently discard it
             int totalToPush = Math.min(36 * output.getAmount(), calcOutputFit(menu, output));
             int remaining = totalToPush;
             while (remaining > 0) {
@@ -192,7 +192,7 @@ public class OriginMaterialGenUltra extends AbstractElectricResourceMachine impl
         }
     }
 
-    // L3: 计算输出槽对指定物品还能容纳多少个（空槽按最大堆叠算，同类槽按剩余空间算）
+    // L3: Work out how many more of the given item the output slots can hold (empty slots count as a full stack, matching slots count their remaining space)
     private int calcOutputFit(BlockMenu menu, ItemStack output) {
         int fit = 0;
         for (int slot : getOutputSlots()) {
@@ -212,9 +212,9 @@ public class OriginMaterialGenUltra extends AbstractElectricResourceMachine impl
 	public List<ItemStack> getDisplayRecipes() {
 	    List<ItemStack> display = new ArrayList<>();
 
-        display.add(new CustomItemStack(Material.KNOWLEDGE_BOOK, getGradientNameVer2("产物⇨"),getGradientNameVer2("每次生产 2304 个"),getGradientNameVer2("生产效率⇨ ⚙ 每 " + getCraftSecond() + " s生成一次"),getGradientNameVer2("生产能耗⇨ ⚡ "+ getEnergyConsumption()*2 +" J/s")));
-        display.add(new CustomItemStack(Material.KNOWLEDGE_BOOK, getGradientNameVer2("产物⇨"),getGradientNameVer2("每次生产 2304 个"),getGradientNameVer2("生产效率⇨ ⚙ 每 " + getCraftSecond() + " s生成一次"),getGradientNameVer2("生产能耗⇨ ⚡ "+ getEnergyConsumption()*2 +" J/s")));
-        // 将输出物品数组中的所有物品添加到显示列表
+        display.add(new CustomItemStack(Material.KNOWLEDGE_BOOK, getGradientNameVer2("Output⇨"),getGradientNameVer2("Produces 2304 per cycle"),getGradientNameVer2("Speed⇨ ⚙ Once every " + getCraftSecond() + " s"),getGradientNameVer2("Energy use⇨ ⚡ "+ getEnergyConsumption()*2 +" J/s")));
+        display.add(new CustomItemStack(Material.KNOWLEDGE_BOOK, getGradientNameVer2("Output⇨"),getGradientNameVer2("Produces 2304 per cycle"),getGradientNameVer2("Speed⇨ ⚙ Once every " + getCraftSecond() + " s"),getGradientNameVer2("Energy use⇨ ⚡ "+ getEnergyConsumption()*2 +" J/s")));
+        // Add every item in the output array to the display list
         display.addAll(Arrays.asList(getItemStackOutputs()));
 
         return display;
@@ -265,13 +265,13 @@ public class OriginMaterialGenUltra extends AbstractElectricResourceMachine impl
         ItemStack item = PROGRESS_STACK.clone();
         ItemMeta meta = item.getItemMeta();
 
-        meta.setDisplayName(getGradientNameVer2("信息⇨"));
+        meta.setDisplayName(getGradientNameVer2("Info⇨"));
         ArrayList lore = new ArrayList<>();
-        lore.add(getGradientNameVer2("类型：资源生成器"));
-        lore.add(getGradientNameVer2("所属附属：魔法"));
-        lore.add(getGradientNameVer2("当前生产物品：") + ItemStackHelper.getDisplayName(output));
-        lore.add(getGradientNameVer2("生产效率⇨ ⚙ 每 " + getCraftSecond() + " s生成一次"));
-        lore.add(getGradientNameVer2("生产能耗⇨ ⚡ "+ getEnergyConsumption()*2 +" J/s"));
+        lore.add(getGradientNameVer2("Type: Resource Generator"));
+        lore.add(getGradientNameVer2("Addon: Magic"));
+        lore.add(getGradientNameVer2("Now producing: ") + ItemStackHelper.getDisplayName(output));
+        lore.add(getGradientNameVer2("Speed⇨ ⚙ Once every " + getCraftSecond() + " s"));
+        lore.add(getGradientNameVer2("Energy use⇨ ⚡ "+ getEnergyConsumption()*2 +" J/s"));
         meta.setLore(lore);
         item.setItemMeta(meta);
 
@@ -285,7 +285,7 @@ public class OriginMaterialGenUltra extends AbstractElectricResourceMachine impl
 
 
     /**
-     * 将 Base64 字符串反序列化回 ItemStack
+     * Deserializes a Base64 string back into an ItemStack
      */
     public static ItemStack deserializeItemStack(String base64) {
         if (base64 == null || base64.isEmpty()) return null;

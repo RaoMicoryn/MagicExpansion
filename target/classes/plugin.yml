@@ -1,0 +1,110 @@
+name: magicexpansion
+## CHANGE this to your username.
+author: Yomicer
+version: UNOFFICIAL
+main: io.Yomicer.magicExpansion.MagicExpansion
+api-version: '1.20'
+depend: [Slimefun]
+softdepend:
+  - RykenSlimeCustomizer
+  - GuizhanLibPlugin
+#  - Networks
+## CHANGE this to a meaninful but short description of your plugin.
+description: Have fun
+
+commands:
+  magicexpansion:
+    description: Main command for the MagicExpansion plugin
+    usage: /magicexpansion <reload slimefun>
+    permission: magicexpansion.command
+    permission-message: &cYou don’t have permission to use this command!
+
+  mxw:
+    description: Main command for map management.
+
+  mxf:
+    description: Commands for the fishing guide
+    usage: /<command> <open_guide|guide>
+
+
+  mxai:
+    description: AI chat controls
+    usage: /mxai <chaton|chatoff|public|publicmode>
+    permission: mxai.use
+    permission-message: You don’t have permission to use AI commands!
+
+  magicfish:
+    description: Admin command to get a specific magic fish
+    usage: /magicfish give <fish type> [weight] [amount]
+    permission: magicexpansion.admin.fish
+    permission-message: "&cYou don’t have permission to use this command!"
+
+
+
+#  record:
+#    description: Start or stop recording player actions
+#    usage: /<command> start|stop
+#    permission: magicexpansion.record
+#
+#  playback:
+#    description: Play back recorded actions
+#    usage: /<command> [stop]
+#    permission: magicexpansion.playback
+
+  mxwand:
+    description: Commands for the magic altar
+    usage: /<command> wand
+    permission: mxwand.wand
+
+  mxalter:
+    description: Command to get the recipe book
+    usage: /<command> <guide|open_guide>
+    aliases: [ malt ]
+
+  magicshop:
+    description: Command for the portable shop
+    usage: /magicshop <open|admin>
+    aliases: [ mshop ]
+
+  mxfishmode:
+    description: Switch the new Shuiyun fishing system (true = state-based system, false = old system)
+    usage: /mxfishmode <true|false>
+    permission: magicexpansion.admin.fishmode
+    permission-message: "&cYou don’t have permission to use this command!"
+
+
+permissions:
+  MagicExpansionMachines.use:
+    description: Allows players to use the plugin commands.
+    default: op
+
+  mxai.use:
+    description: Can use AI chat
+    default: true
+  mxai.op:
+    description: Can turn AI mode on or off for the whole server
+    default: op  # Only OPs or players with this permission can use it
+
+  mxwand.wand:
+    description: Get the magic altar wand
+    default: op
+
+  magicexpansion.admin.fish:
+    description: Can use the admin fish command /magicfish
+    default: op
+
+  magicexpansion.shop.admin:
+    description: Can use the admin shop menu
+    default: op
+
+  magicexpansion.admin.fishmode:
+    description: Can switch the new Shuiyun fishing system with /mxfishmode
+    default: op
+
+#  magicexpansion.record:
+#    description: Can use the /record command
+#    default: op
+#
+#  magicexpansion.playback:
+#    description: Can use the /playback command
+#    default: op

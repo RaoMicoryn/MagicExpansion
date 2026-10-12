@@ -8,8 +8,8 @@ import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 
 /**
- * 虚拟层级分组:仅作为 GuideHistory 条目,让三级菜单返回链逐级生效
- * 不挂载任何父组、不进原生分组页,点击时由 openItemGroup 调用其 open() 打开对应自绘页
+ * Virtual level group: only used as a GuideHistory entry, so the back button works step by step in the 3-level menu
+ * It isn't attached to any parent group and doesn't show in the normal group page. When clicked, openItemGroup calls its open() to open the matching custom-drawn page
  */
 public class VirtualGuideGroup extends FlexItemGroup {
 

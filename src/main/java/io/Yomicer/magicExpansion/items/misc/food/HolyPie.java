@@ -1,4 +1,4 @@
-package io.Yomicer.magicExpansion.items.misc.food; // 请修改为你的包名
+package io.Yomicer.magicExpansion.items.misc.food; // Change this to your package name
 
 import io.Yomicer.magicExpansion.MagicExpansion;
 import io.github.thebusybiscuit.slimefun4.api.items.ItemGroup;
@@ -26,8 +26,8 @@ import java.util.concurrent.ConcurrentHashMap;
 
 public class HolyPie extends SimpleSlimefunItem<ItemConsumptionHandler> implements Listener {
 
-    // 修复(R)：改为 uuid -> 庇护到期时间戳(毫秒)。连续食用时新时间戳覆盖旧值，
-    // 移除任务只在自己时间戳一致时清除，防止连续食用互相撤销庇护
+    // Fix (R): now it's uuid -> protection end time (in milliseconds). If you eat another one, the new time replaces the old one.
+    // The removal task only clears the entry if the time is still its own, so eating several in a row doesn't cancel each other's protection
     private static final Map<UUID, Long> holyProtectedPlayers = new ConcurrentHashMap<>();
 
     public HolyPie(ItemGroup itemGroup, SlimefunItemStack item, RecipeType recipeType, ItemStack[] recipe) {
@@ -43,54 +43,54 @@ public class HolyPie extends SimpleSlimefunItem<ItemConsumptionHandler> implemen
     public @NotNull ItemConsumptionHandler getItemHandler() {
         return (e, p, i) -> {
             double maxHealth = p.getMaxHealth();
-            p.setHealth(Math.min(p.getHealth() + 12.0, maxHealth)); // 回 6 颗心
-            p.addPotionEffect(new PotionEffect(PotionEffectType.DAMAGE_RESISTANCE, 30, 254));
+            p.setHealth(Math.min(p.getHealth() + 12.0, maxHealth)); // Heals 6 hearts
+            p.addPotionEffect(new PotionEffect(PotionEffectType.RESISTANCE, 30, 254));
             removeNegativeEffects(p);
-            // 修复(R)：记录庇护到期时间戳（30 ticks = 1500ms）；连续食用会覆盖为新时间戳
+            // Fix (R): save the time the protection ends (30 ticks = 1500ms); eating another one replaces it with the new time
             long expireAt = System.currentTimeMillis() + 1500L;
             holyProtectedPlayers.put(p.getUniqueId(), expireAt);
             new BukkitRunnable() {
                 @Override
                 public void run() {
-                    // 修复(R)：仅当记录的到期时间戳与本次任务一致时才清除，
-                    // 防止连续食用第二颗时被第一颗的过期任务提前撤销庇护
+                    // Fix (R): only clear it if the saved end time matches this task's time,
+                    // so when you eat a second one, the first one's expired task doesn't cancel the protection early
                     Long current = holyProtectedPlayers.get(p.getUniqueId());
                     if (current != null && current == expireAt) {
                         holyProtectedPlayers.remove(p.getUniqueId());
                         if (p.isOnline()) {
-                            p.sendMessage(ChatColor.GRAY + "§7神圣庇护已消散...");
+                            p.sendMessage(ChatColor.GRAY + "§7The holy protection has faded...");
                         }
                     }
                 }
             }.runTaskLater(MagicExpansion.getInstance(), 30L);
             playHolyEffects(p);
-            p.sendMessage(ChatColor.GOLD + "✨ " + ChatColor.BOLD + "神圣庇护激活！" + ChatColor.RESET + ChatColor.GRAY + " (免疫一切伤害)");
+            p.sendMessage(ChatColor.GOLD + "✨ " + ChatColor.BOLD + "Holy Protection activated!" + ChatColor.RESET + ChatColor.GRAY + " (immune to all damage)");
         };
     }
 
     /**
-     * 播放神圣特效
+     * Play the holy effects
      */
     private void playHolyEffects(Player p) {
         Location loc = p.getLocation().add(0, 1, 0);
         World world = p.getWorld();
-        p.playSound(loc, Sound.BLOCK_END_PORTAL_SPAWN, 0.8f, 1.5f); // 空灵感
-        p.playSound(loc, Sound.UI_TOAST_CHALLENGE_COMPLETE, 1.0f, 1.2f); // 达成感
-        p.playSound(loc, Sound.ENTITY_PLAYER_LEVELUP, 0.5f, 2.0f); // 升级感
+        p.playSound(loc, Sound.BLOCK_END_PORTAL_SPAWN, 0.8f, 1.5f); // Dreamy feeling
+        p.playSound(loc, Sound.UI_TOAST_CHALLENGE_COMPLETE, 1.0f, 1.2f); // Achievement feeling
+        p.playSound(loc, Sound.ENTITY_PLAYER_LEVELUP, 0.5f, 2.0f); // Level-up feeling
         world.spawnParticle(Particle.END_ROD, loc, 30, 0.5, 0.5, 0.5, 0.05);
         world.spawnParticle(Particle.HEART, loc, 15, 0.4, 0.4, 0.4, 0.1);
-        world.spawnParticle(Particle.VILLAGER_HAPPY, loc, 20, 0.5, 0.5, 0.5, 0.1);
+        world.spawnParticle(Particle.HAPPY_VILLAGER, loc, 20, 0.5, 0.5, 0.5, 0.1);
         new BukkitRunnable() {
                 int ticks = 0;
                 @Override
                 public void run() {
-                    // 修复(R)：集合类型改为 Map，使用 containsKey 判断庇护是否有效
+                    // Fix (R): the collection type is now a Map, so use containsKey to check if the protection is still active
                     if (!p.isOnline() || !holyProtectedPlayers.containsKey(p.getUniqueId())) {
                         this.cancel();
                         return;
                     }
                 Location currentLoc = p.getLocation().add(0, 1.5, 0);
-                // 画圈
+                // Draw a circle
                 for (double angle = 0; angle < 360; angle += 45) {
                     double rad = Math.toRadians(angle);
                     double x = currentLoc.getX() + (Math.cos(rad) * 0.8);
@@ -104,7 +104,7 @@ public class HolyPie extends SimpleSlimefunItem<ItemConsumptionHandler> implemen
     }
 
     /**
-     * 清除负面效果
+     * Remove negative effects
      */
     private void removeNegativeEffects(Player p) {
         List<PotionEffectType> toRemove = new ArrayList<>();
@@ -120,7 +120,7 @@ public class HolyPie extends SimpleSlimefunItem<ItemConsumptionHandler> implemen
 
     private boolean isNegative(PotionEffectType type) {
         String name = type.getName();
-        // 修复(R)：显式排除缓降(SLOW_FALLING)——它包含 SLOW 关键字但属于增益效果，不应被清除
+        // Fix (R): explicitly leave out Slow Falling (SLOW_FALLING). It has the word SLOW in it but it's a good effect, so it shouldn't be removed
         if (name.contains("SLOW")) {
             return !name.contains("SLOW_FALLING");
         }
@@ -135,7 +135,7 @@ public class HolyPie extends SimpleSlimefunItem<ItemConsumptionHandler> implemen
         if (!(event.getEntity() instanceof Player)) return;
         Player p = (Player) event.getEntity();
         if (holyProtectedPlayers.containsKey(p.getUniqueId())) {
-            // 修复(R)：VOID 伤害不取消（否则庇护期间悬空会不死、卡死虚空），仅取消其他伤害
+            // Fix (R): VOID damage is not cancelled (otherwise you'd be unkillable while hanging in the air and get stuck in the void), only other damage is cancelled
             if (event.getCause() == EntityDamageEvent.DamageCause.VOID) {
                 return;
             }

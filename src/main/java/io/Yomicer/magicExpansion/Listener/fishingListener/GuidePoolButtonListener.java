@@ -18,21 +18,21 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * 指南配方页"查看鱼饵池"按钮注入与点击处理
- * 按钮由 FishingRodWaterCloud.getDisplayRecipes() 生成并渲染进粘液书配方页,
- * 本监听器负责:打开时把按钮摆放到配方页槽 27(青竹竿下方再右一格),点击时打开鱼饵池菜单
+ * Guide recipe page"Open Bait Pool"button setup and click handling
+ * The button is created by  FishingRodWaterCloud.getDisplayRecipes()  and shown on the Slimefun guide recipe page,
+ * This listener places the button in slot 27 when the guide opens and opens the bait pool menu when clicked
  */
 public class GuidePoolButtonListener implements Listener {
 
-    /** 按钮最终摆放槽位(配方页青竹竿下方再右一格) */
+    /** Final button slot (one slot to the right below the bamboo fishing rod) */
     private static final int[] BUTTON_SLOTS = {26};
 
     @EventHandler(priority = EventPriority.HIGHEST)
     public void onOpen(InventoryOpenEvent e) {
-        // 收窄守卫: 鱼饵池按钮仅存在于水云间鱼竿的粘液书配方页(标题含"水云间")。
-        // 第三方机器菜单标题不含"水云间", 直接放行, 避免对所有打开的菜单无差别扫描/移动按钮。
+        // Check first: the bait pool button only appears on the Water Cloud fishing rod recipe page in the Slimefun guide (title contains "Water Cloud")。
+        // Third-party machine menus do not contain "Water Cloud", so skip them instead of scanning or moving buttons in every menu.
         String title = e.getView().getTitle();
-        if (title == null || !ChatColor.stripColor(title).contains("水云间")) {
+        if (title == null || !ChatColor.stripColor(title).contains("Water Cloud")) {
             return;
         }
         Inventory inv = e.getInventory();
@@ -50,7 +50,7 @@ public class GuidePoolButtonListener implements Listener {
         int count = Math.min(found.size(), BUTTON_SLOTS.length);
         for (int i = 0; i < count; i++) {
             ItemStack button = inv.getItem(found.get(i));
-            // 原位置清空为空气,不留下玻璃板占位
+            // Clear the old slot so no glass pane is left behind
             inv.setItem(found.get(i), new ItemStack(Material.AIR));
             inv.setItem(BUTTON_SLOTS[i], button);
         }

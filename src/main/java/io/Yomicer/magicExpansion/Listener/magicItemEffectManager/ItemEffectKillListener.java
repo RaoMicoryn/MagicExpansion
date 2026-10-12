@@ -24,21 +24,21 @@ public class ItemEffectKillListener implements Listener {
 
     @EventHandler
     public void onEntityDeath(EntityDeathEvent event) {
-        // 获取导致死亡的实体（即杀手）
+        // Get the entity that caused the death (the killer)
         Entity killer = event.getEntity().getKiller();
 
-        // 检查杀手是否是玩家
+        // Check whether the killer is a player
         if (killer instanceof Player) {
             Player player = (Player) killer;
             ItemStack item = player.getInventory().getItemInMainHand().clone();
-            // 获取被击杀的实体
+            // Get the entity that was killed
             LivingEntity entity = event.getEntity();
-            // 获取物品的 PDC
+            // Get the item PDC
             ItemMeta meta = item.getItemMeta();
             if (meta != null && meta.getPersistentDataContainer() != null) {
                 PersistentDataContainer pdc = meta.getPersistentDataContainer();
 
-                // 遍历所有属性
+                // Loop through all attributes
                 for (String attribute : ATTRIBUTE_POOL.keySet()) {
                     NamespacedKey key = new NamespacedKey("magicexpansion", attribute.toLowerCase().replace(".", "_"));
 
@@ -58,7 +58,7 @@ public class ItemEffectKillListener implements Listener {
 
     private void applyEffect(String attribute, Object value, Entity target, Player player, ItemStack item) {
         switch (attribute) {
-            case "MagicExpansion.EntitySpawn": // 击退效果
+            case "MagicExpansion.EntitySpawn": // Knockback effect
                 if (value instanceof Integer EntitySpawn) {
 
                     EntityType entityType = target.getType();
@@ -69,15 +69,15 @@ public class ItemEffectKillListener implements Listener {
 
                         Random random = new Random();
                         double eggRandom = EntitySpawn * 0.05 * 0.01;
-                        double randomValue = random.nextDouble(); // 生成一个 [0, 1) 的随机数
+                        double randomValue = random.nextDouble(); // Generate a random number in the range [0, 1)
 
                         if(eggRandom>randomValue) {
-                            // 创建刷怪蛋物品
+                            // Create the spawn egg item
                             ItemStack spawnEgg = new ItemStack(spawnEggMaterial);
-                            // 打印信息到控制台或发送消息给玩家
-                            player.sendMessage("§b在0.00001秒前，你击杀了 §d" + EntityHelper.getName(target));
-                            player.sendMessage("§b你的武器 §e[" + item.getItemMeta().getDisplayName() + "§e] §b对 §d"+ EntityHelper.getName(target) +" §b进行了§c生命重构");
-                            player.sendMessage("§b你获得了 §e" + EntityHelper.getName(target) + " §b生物蛋");
+                            // Print a message to the console or send it to the player
+                            player.sendMessage("§bYou killed §d" + EntityHelper.getName(target));
+                            player.sendMessage("§bYour weapon §e[" + item.getItemMeta().getDisplayName() + "§e] §bused §cLife Rebuild §bon §d"+ EntityHelper.getName(target) +"");
+                            player.sendMessage("§bYou got a §e" + EntityHelper.getName(target) + " spawn egg");
 
                             GiveItem.giveOrDropItem(player, spawnEgg);
                         }

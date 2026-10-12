@@ -23,7 +23,7 @@ import java.util.concurrent.ConcurrentHashMap;
 public class RecipeBookManager {
 
     private final MagicExpansion plugin;
-    // 修复：改为 static ConcurrentHashMap，支持静态 cleanup 清理离线玩家会话数据
+    // Fix: changed to a static ConcurrentHashMap, so a static cleanup can clear session data of offline players
     private static final ConcurrentHashMap<UUID, String> currentRecipeIds = new ConcurrentHashMap<>();
 
     public RecipeBookManager(MagicExpansion plugin) {
@@ -31,23 +31,23 @@ public class RecipeBookManager {
     }
 
     /**
-     * 修复：玩家退出时清理该玩家的当前配方ID记录，防止内存泄漏
+     * Fix: when a player leaves, clear that player's current recipe ID record to prevent a memory leak
      */
     public static void cleanup(UUID uuid) {
         currentRecipeIds.remove(uuid);
     }
 
-    // 创建配方书物品
+    // Create the recipe book item
     public ItemStack createRecipeBook() {
         ItemStack book = new ItemStack(Material.ENCHANTED_BOOK);
         ItemMeta meta = book.getItemMeta();
 
         if (meta != null) {
-            meta.setDisplayName("§6魔法祭坛配方指南");
+            meta.setDisplayName("§6Magic Altar Recipe Guide");
 
             List<String> lore = new ArrayList<>();
-            lore.add("§7右键查看所有可用配方");
-            lore.add("§7学习如何构建祭坛和合成物品");
+            lore.add("§7Right-click to see all available recipes");
+            lore.add("§7Learn how to build the altar and craft items");
             meta.setLore(lore);
 
             meta.getPersistentDataContainer().set(
@@ -62,7 +62,7 @@ public class RecipeBookManager {
         return book;
     }
 
-    // 检查是否是配方书
+    // Check if it's the recipe book
     public boolean isRecipeBook(ItemStack item) {
         if (item == null || !item.hasItemMeta()) return false;
         ItemMeta meta = item.getItemMeta();
@@ -72,11 +72,11 @@ public class RecipeBookManager {
         );
     }
 
-    // 打开配方书主界面
+    // Open the recipe book main menu
     public void openRecipeBook(Player player) {
-        Inventory gui = Bukkit.createInventory(null, 54, "§6魔法祭坛配方指南");
+        Inventory gui = Bukkit.createInventory(null, 54, "§6Magic Altar Recipe Guide");
 
-        // 清除当前配方ID
+        // Clear the current recipe ID
         currentRecipeIds.remove(player.getUniqueId());
 
         int slot = 10;
@@ -92,11 +92,11 @@ public class RecipeBookManager {
                 if(meta.hasLore()) {
                     lore.addAll(Objects.requireNonNull(meta.getLore()));
                 }
-                lore.add("§7点击查看合成配方");
-                lore.add("§e配方ID: " + recipeId);
+                lore.add("§7Click to see the crafting recipe");
+                lore.add("§eRecipe ID: " + recipeId);
                 meta.setLore(lore);
 
-                // 添加配方ID到PDC
+                // Add the recipe ID to PDC
                 meta.getPersistentDataContainer().set(
                         new NamespacedKey(plugin, "recipe_id"),
                         PersistentDataType.STRING,
@@ -110,29 +110,29 @@ public class RecipeBookManager {
             slot++;
         }
 
-        // 添加装饰边框
+        // Add a decorative border
         addBorder(gui);
 
         player.openInventory(gui);
     }
 
-    // 计算真实数量的方法
+    // Method to work out the real amount
     private int calculateRealAmount(ItemStack item) {
-        // 修复：原分批模拟循环只是把 amount 重复累加一遍，结果恒等于 item.getAmount()，直接返回消除冗余
+        // Fix: the old batch simulation loop just added the amount up again, and the result always equaled item.getAmount(), so we return it directly to remove the extra code
         return item.getAmount();
     }
 
-    // 打开配方详情界面
+    // Open the recipe details menu
     public void openRecipeDetail(Player player, String recipeId, ItemStack resultItem) {
-        Inventory gui = Bukkit.createInventory(null, 54, "§6配方详情 - " + recipeId);
+        Inventory gui = Bukkit.createInventory(null, 54, "§6Recipe Details - " + recipeId);
 
         MagicAltarRecipe recipe = plugin.getPluginInitializer().getAltarManager().getRecipes().get(recipeId);
         if (recipe == null) return;
 
-        // 存储当前配方ID
+        // Save the current recipe ID
         currentRecipeIds.put(player.getUniqueId(), recipeId);
 
-        // 中心显示结果物品
+        // Show the result item in the center
         ItemStack displayResult = resultItem.clone();
         ItemMeta meta = displayResult.getItemMeta();
         if (meta != null) {
@@ -141,20 +141,20 @@ public class RecipeBookManager {
             if(meta.hasLore()) {
                 lore.addAll(Objects.requireNonNull(meta.getLore()));
             }
-            lore.add("§6合成结果");
-            lore.add("§7配方: " + recipeId);
+            lore.add("§6Crafting Result");
+            lore.add("§7Recipe: " + recipeId);
             meta.setLore(lore);
             displayResult.setItemMeta(meta);
         }
         gui.setItem(13, displayResult);
 
-        // 添加查看按钮
+        // Add the view button
         ItemStack dispenserButton = createButton(
                 Material.DISPENSER,
-                "§b发射器物品配置",
-                Arrays.asList("§7点击查看9个发射器", "§7每个发射器的物品配置")
+                "§bDispenser Item Setup",
+                Arrays.asList("§7Click to see the 9 dispensers", "§7and the item setup of each one")
         );
-        // 添加按钮标识和配方ID
+        // Add the button tag and recipe ID
         ItemMeta dispenserMeta = dispenserButton.getItemMeta();
         dispenserMeta.getPersistentDataContainer().set(
                 new NamespacedKey(plugin, "button_type"),
@@ -171,10 +171,10 @@ public class RecipeBookManager {
 
         ItemStack baseButton = createButton(
                 Material.OBSIDIAN,
-                "§6祭坛底座布局",
-                Arrays.asList("§7点击查看5x5底座", "§7方块的摆放方式")
+                "§6Altar Base Layout",
+                Arrays.asList("§7Click to see the 5x5 base", "§7and how the blocks are placed")
         );
-        // 添加按钮标识和配方ID
+        // Add the button tag and recipe ID
         ItemMeta baseMeta = baseButton.getItemMeta();
         baseMeta.getPersistentDataContainer().set(
                 new NamespacedKey(plugin, "button_type"),
@@ -191,18 +191,18 @@ public class RecipeBookManager {
 
         ItemStack frameButton = createButton(
                 Material.ITEM_FRAME,
-                "§e物品展示框",
-                Arrays.asList("§7放置在中心发射器上方", "§7用于输出合成结果", "§d若数量＞1，则多余部分将在祭坛中央喷出", "§c必须为空!")
+                "§eItem Frame",
+                Arrays.asList("§7Place it above the center dispenser", "§7It's used to output the crafting result", "§dIf the amount is more than 1, the extra will shoot out from the middle of the altar", "§cIt must be empty!")
         );
         gui.setItem(33, frameButton);
 
-        // 返回按钮
+        // Back button
         ItemStack backButton = createHeadButton(
                 "MHF_ArrowLeft",
-                "§c返回配方列表",
-                Arrays.asList("§7点击返回主界面")
+                "§cBack to Recipe List",
+                Arrays.asList("§7Click to go back to the main menu")
         );
-        // 添加按钮标识
+        // Add the button tag
         ItemMeta backMeta = backButton.getItemMeta();
         backMeta.getPersistentDataContainer().set(
                 new NamespacedKey(plugin, "button_type"),
@@ -212,49 +212,49 @@ public class RecipeBookManager {
         backButton.setItemMeta(backMeta);
         gui.setItem(45, backButton);
 
-        // 添加装饰边框
+        // Add a decorative border
         addBorder(gui);
 
         player.openInventory(gui);
     }
 
-    // 打开发射器列表界面
+    // Open the dispenser list menu
     public void openDispenserList(Player player, String recipeId) {
-        Inventory gui = Bukkit.createInventory(null, 54, "§b发射器列表 - " + recipeId);
+        Inventory gui = Bukkit.createInventory(null, 54, "§bDispenser List - " + recipeId);
 
         MagicAltarRecipe recipe = plugin.getPluginInitializer().getAltarManager().getRecipes().get(recipeId);
         if (recipe == null) return;
 
-        // 存储当前配方ID
+        // Save the current recipe ID
         currentRecipeIds.put(player.getUniqueId(), recipeId);
 
-        // 在3x3网格中显示发射器
+        // Show the dispensers in a 3x3 grid
         int[] dispenserSlots = {10, 11, 12, 19, 20, 21, 28, 29, 30};
         String[] dispenserNames = {
-                "§b左上发射器", "§b中上发射器", "§b右上发射器",
-                "§b左中发射器", "§b中心发射器", "§b右中发射器",
-                "§b左下发射器", "§b中下发射器", "§b右下发射器"
+                "§bTop Left Dispenser", "§bTop Center Dispenser", "§bTop Right Dispenser",
+                "§bMiddle Left Dispenser", "§bCenter Dispenser", "§bMiddle Right Dispenser",
+                "§bBottom Left Dispenser", "§bBottom Center Dispenser", "§bBottom Right Dispenser"
         };
 
         for (int i = 0; i < 9; i++) {
             ItemStack dispenserButton = recipe.getDisplayItem(i);
 
             if (dispenserButton == null) {
-                // 空发射器
+                // Empty dispenser
                 dispenserButton = createButton(
                         Material.DROPPER,
                         dispenserNames[i],
-                        Arrays.asList("§7这个发射器为空", "§7点击查看详细配置")
+                        Arrays.asList("§7This dispenser is empty", "§7Click to see the details")
                 );
             } else {
-                // 确保是发射器材质并更新显示信息
+                // Make sure it's a dispenser material and update the display info
                 if (dispenserButton.getType() != Material.DISPENSER) {
                     ItemStack newDispenser = new ItemStack(Material.DISPENSER);
                     ItemMeta meta = newDispenser.getItemMeta();
                     if (meta != null) {
                         meta.setDisplayName(dispenserNames[i]);
                         List<String> lore = new ArrayList<>();
-                        lore.add("§7点击查看详细配置");
+                        lore.add("§7Click to see the details");
                         meta.setLore(lore);
                         newDispenser.setItemMeta(meta);
                     }
@@ -262,7 +262,7 @@ public class RecipeBookManager {
                 }
             }
 
-            // 添加发射器索引和配方ID到PDC
+            // Add the dispenser index and recipe ID to PDC
             ItemMeta meta = dispenserButton.getItemMeta();
             meta.getPersistentDataContainer().set(
                     new NamespacedKey(plugin, "dispenser_index"),
@@ -284,30 +284,30 @@ public class RecipeBookManager {
             gui.setItem(dispenserSlots[i], dispenserButton);
         }
 
-        // 添加说明
+        // Add the description
         ItemStack infoButton = createButton(
                 Material.OAK_SIGN,
-                "§e发射器配置说明",
+                "§eDispenser Setup Info",
                 Arrays.asList(
-                        "§7点击每个发射器查看其内部",
-                        "§7物品槽位的具体配置",
-                        "§7数量必须精确匹配!"
+                        "§7Click each dispenser to see what's inside",
+                        "§7The exact setup of each item slot",
+                        "§7Amounts must match exactly!"
                 )
         );
         gui.setItem(49, infoButton);
 
-        // 添加说明
+        // Add the description
         ItemStack dispenserInfoButton = createButton(
                 Material.NETHER_STAR,
-                "§e点击发射器查看详细配置",
+                "§eClick a dispenser to see the details",
                 Arrays.asList(
-                        "§7每个发射器要严格对应坐标",
-                        "§7暂不支持旋转匹配",
-                        ColorGradient.getRandomGradientName("合成时请使用魔法祭坛法杖右键中心发射器"),
-                        "§b左上角为原点(-1,-1)坐标",
-                        "§b右上角为原点(1,-1)坐标",
-                        "§b左下角为原点(-1,1)坐标",
-                        "§b右下角为原点(1,1)坐标"
+                        "§7Each dispenser must match its exact position",
+                        "§7Rotated layouts aren't supported yet",
+                        ColorGradient.getRandomGradientName("When crafting, right-click the center dispenser with the Magic Altar Wand"),
+                        "§bTop left corner is coordinate (-1,-1)",
+                        "§bTop right corner is coordinate (1,-1)",
+                        "§bBottom left corner is coordinate (-1,1)",
+                        "§bBottom right corner is coordinate (1,1)"
                 )
         );
         gui.setItem(24, dispenserInfoButton);
@@ -332,13 +332,13 @@ public class RecipeBookManager {
 
 
 
-        // 返回按钮
+        // Back button
         ItemStack backButton = createHeadButton(
                 "MHF_ArrowLeft",
-                "§c返回配方详情",
-                Arrays.asList("§7点击返回配方详情")
+                "§cBack to Recipe Details",
+                Arrays.asList("§7Click to go back to the recipe details")
         );
-        // 添加按钮标识和配方ID
+        // Add the button tag and recipe ID
         ItemMeta backMeta = backButton.getItemMeta();
         backMeta.getPersistentDataContainer().set(
                 new NamespacedKey(plugin, "button_type"),
@@ -357,35 +357,35 @@ public class RecipeBookManager {
         player.openInventory(gui);
     }
 
-    // 打开单个发射器物品界面
+    // Open the single dispenser items menu
     public void openDispenserItems(Player player, String recipeId, int dispenserIndex) {
-        Inventory gui = Bukkit.createInventory(null, 54, "§b发射器物品 - " + recipeId + " #" + (dispenserIndex + 1));
+        Inventory gui = Bukkit.createInventory(null, 54, "§bDispenser Items - " + recipeId + " #" + (dispenserIndex + 1));
 
         MagicAltarRecipe recipe = plugin.getPluginInitializer().getAltarManager().getRecipes().get(recipeId);
         if (recipe == null) return;
 
-        // 存储当前配方ID
+        // Save the current recipe ID
         currentRecipeIds.put(player.getUniqueId(), recipeId);
 
         String[] dispenserNames = {
-                "左上发射器", "中上发射器", "右上发射器",
-                "左中发射器", "中心发射器", "右中发射器",
-                "左下发射器", "中下发射器", "右下发射器"
+                "Top Left Dispenser", "Top Center Dispenser", "Top Right Dispenser",
+                "Middle Left Dispenser", "Center Dispenser", "Middle Right Dispenser",
+                "Bottom Left Dispenser", "Bottom Center Dispenser", "Bottom Right Dispenser"
         };
 
-        // 显示发射器名称
+        // Show the dispenser name
         ItemStack infoButton = createButton(
                 Material.OAK_SIGN,
-                "§e" + dispenserNames[dispenserIndex] + " 配置",
+                "§e" + dispenserNames[dispenserIndex] + " Setup",
                 Arrays.asList(
-                        "§7这是" + dispenserNames[dispenserIndex] + "的内部配置",
-                        "§7所有槽位都必须精确匹配!",
-                        "§7空槽位必须保持为空"
+                        "§7This is the inside setup of " + dispenserNames[dispenserIndex],
+                        "§7All slots must match exactly!",
+                        "§7Empty slots must stay empty"
                 )
         );
         gui.setItem(4, infoButton);
 
-        // 在3x3网格中显示发射器槽位
+        // Show the dispenser slots in a 3x3 grid
         int[] slotPositions = {10, 11, 12, 19, 20, 21, 28, 29, 30};
 
         for (int slotIndex = 0; slotIndex < 9; slotIndex++) {
@@ -393,7 +393,7 @@ public class RecipeBookManager {
             int guiSlot = slotPositions[slotIndex];
 
             if (requiredItem != null) {
-                // 显示需要的物品
+                // Show the required items
                 ItemStack displayItem = requiredItem.clone();
                 ItemMeta meta = displayItem.getItemMeta();
                 if (meta != null) {
@@ -401,33 +401,33 @@ public class RecipeBookManager {
                     if(meta.hasLore()){
                         lore.addAll(meta.getLore());
                     }
-                    lore.add("§7--------分割线--------");
-                    lore.add("§6需要的物品");
-                    lore.add("§7槽位: " + (slotIndex + 1));
-                    lore.add("§7数量: " + requiredItem.getAmount());
-                    lore.add("§c必须精确匹配!");
+                    lore.add("§7--------Divider--------");
+                    lore.add("§6Required Item");
+                    lore.add("§7Slot: " + (slotIndex + 1));
+                    lore.add("§7Amount: " + requiredItem.getAmount());
+                    lore.add("§cMust match exactly!");
                     meta.setLore(lore);
                     displayItem.setItemMeta(meta);
                 }
                 gui.setItem(guiSlot, displayItem);
             } else {
-                // 这个槽位应该为空
+                // This slot should be empty
                 ItemStack emptyMarker = createButton(
                         Material.GRAY_STAINED_GLASS_PANE,
-                        "§7槽位 " + (slotIndex + 1),
-                        Arrays.asList("§7这个槽位必须是空的", "§c不能有任何物品!")
+                        "§7Slot " + (slotIndex + 1),
+                        Arrays.asList("§7This slot must be empty", "§cNo items allowed!")
                 );
                 gui.setItem(guiSlot, emptyMarker);
             }
         }
 
-        // 返回按钮
+        // Back button
         ItemStack backButton = createHeadButton(
                 "MHF_ArrowLeft",
-                "§c返回发射器列表",
-                Arrays.asList("§7点击返回发射器列表")
+                "§cBack to Dispenser List",
+                Arrays.asList("§7Click to go back to the dispenser list")
         );
-        // 添加按钮标识和配方ID
+        // Add the button tag and recipe ID
         ItemMeta backMeta = backButton.getItemMeta();
         backMeta.getPersistentDataContainer().set(
                 new NamespacedKey(plugin, "button_type"),
@@ -442,21 +442,21 @@ public class RecipeBookManager {
         backButton.setItemMeta(backMeta);
         gui.setItem(45, backButton);
 
-        // 这个界面不加边框，因为需要显示3x3网格
+        // No border on this menu, because it needs to show a 3x3 grid
         player.openInventory(gui);
     }
 
-    // 打开底座布局界面
+    // Open the base layout menu
     public void openBaseLayout(Player player, String recipeId) {
-        Inventory gui = Bukkit.createInventory(null, 54, "§6祭坛底座 - " + recipeId);
+        Inventory gui = Bukkit.createInventory(null, 54, "§6Altar Base - " + recipeId);
 
         MagicAltarRecipe recipe = plugin.getPluginInitializer().getAltarManager().getRecipes().get(recipeId);
         if (recipe == null) return;
 
-        // 存储当前配方ID
+        // Save the current recipe ID
         currentRecipeIds.put(player.getUniqueId(), recipeId);
 
-        // 显示5x5底座布局
+        // Show the 5x5 base layout
         int[] baseSlots = {
                 10, 11, 12, 13, 14,
                 19, 20, 21, 22, 23,
@@ -477,8 +477,8 @@ public class RecipeBookManager {
                 if (meta != null) {
                     meta.setDisplayName("§f" + ItemStackHelper.getDisplayName(blockItem));
                     meta.setLore(Arrays.asList(
-                            "§7祭坛底座方块",
-                            "§7位置: §e(" + (col-2) + ", " + (row-2) + ")"
+                            "§7Altar base block",
+                            "§7Position: §e(" + (col-2) + ", " + (row-2) + ")"
                     ));
                     blockItem.setItemMeta(meta);
                 }
@@ -486,27 +486,27 @@ public class RecipeBookManager {
             }
         }
 
-        // 添加布局说明
+        // Add the layout description
         ItemStack infoButton = createButton(
                 Material.OAK_SIGN,
-                "§e底座布局说明",
+                "§eBase Layout Info",
                 Arrays.asList(
-                        "§7这是5x5的祭坛底座布局:",
-                        "§7- 布局以中心发射器下方为中心",
-                        "§7- 坐标(0,0)为中心发射器位置",
-                        "§7- 其他坐标是相对中心的位置",
-                        "§7- 必须严格按照此布局建造"
+                        "§7This is the 5x5 altar base layout:",
+                        "§7- The layout is centered under the center dispenser",
+                        "§7- Coordinate (0,0) is the center dispenser's spot",
+                        "§7- Other coordinates are relative to the center",
+                        "§7- You must build it exactly like this layout"
                 )
         );
         gui.setItem(8, infoButton);
 
-        // 返回按钮
+        // Back button
         ItemStack backButton = createHeadButton(
                 "MHF_ArrowLeft",
-                "§c返回配方详情",
-                Arrays.asList("§7点击返回配方详情")
+                "§cBack to Recipe Details",
+                Arrays.asList("§7Click to go back to the recipe details")
         );
-        // 添加按钮标识和配方ID
+        // Add the button tag and recipe ID
         ItemMeta backMeta = backButton.getItemMeta();
         backMeta.getPersistentDataContainer().set(
                 new NamespacedKey(plugin, "button_type"),
@@ -521,11 +521,11 @@ public class RecipeBookManager {
         backButton.setItemMeta(backMeta);
         gui.setItem(0, backButton);
 
-        // 这个界面不加边框，因为5x5显示不下
+        // No border on this menu, because 5x5 won't fit
         player.openInventory(gui);
     }
 
-    // 创建按钮物品
+    // Create button item
     private ItemStack createButton(Material material, String name, List<String> lore) {
         ItemStack item = new ItemStack(material);
         ItemMeta meta = item.getItemMeta();
@@ -539,7 +539,7 @@ public class RecipeBookManager {
         return item;
     }
 
-    // 创建自定义头颅按钮
+    // Create custom head button
     private ItemStack createHeadButton(String texture, String name, List<String> lore) {
         ItemStack head = new ItemStack(Material.PLAYER_HEAD);
         SkullMeta meta = (SkullMeta) head.getItemMeta();
@@ -565,7 +565,7 @@ public class RecipeBookManager {
         return head;
     }
 
-    // 添加GUI边框
+    // Add GUI border
     private void addBorder(Inventory gui) {
         ItemStack border = createButton(
                 Material.BLACK_STAINED_GLASS_PANE,
@@ -573,7 +573,7 @@ public class RecipeBookManager {
                 new ArrayList<>()
         );
 
-        // 顶部和底部边框
+        // Top and bottom border
         for (int i = 0; i < 9; i++) {
             if (gui.getItem(i) == null) {
                 gui.setItem(i, border);
@@ -583,7 +583,7 @@ public class RecipeBookManager {
             }
         }
 
-        // 侧边边框
+        // Side border
         for (int i = 0; i < 45; i += 9) {
             if (gui.getItem(i) == null) {
                 gui.setItem(i, border);
@@ -594,7 +594,7 @@ public class RecipeBookManager {
         }
     }
 
-    // 获取材料显示名称
+    // Get the material display name
     private String getMaterialName(Material material) {
         String name = material.name().toLowerCase();
         String[] words = name.split("_");
@@ -611,14 +611,14 @@ public class RecipeBookManager {
         return result.toString().trim();
     }
 
-    // 处理GUI点击事件 - 完全重写版本
+    // Handle GUI click events - fully rewritten version
     public void handleInventoryClick(Player player, int slot, ItemStack clickedItem) {
         if (clickedItem == null || clickedItem.getType() == Material.AIR) return;
 
         ItemMeta meta = clickedItem.getItemMeta();
         if (meta == null) return;
 
-        // 检查按钮类型
+        // Check the button type
         if (meta.getPersistentDataContainer().has(
                 new NamespacedKey(plugin, "button_type"),
                 PersistentDataType.STRING
@@ -628,7 +628,7 @@ public class RecipeBookManager {
                     PersistentDataType.STRING
             );
 
-            // 获取配方ID（从PDC或当前存储的）
+            // Get the recipe ID (from PDC or the one currently saved)
             String recipeId = null;
             if (meta.getPersistentDataContainer().has(
                     new NamespacedKey(plugin, "recipe_id"),
@@ -642,7 +642,7 @@ public class RecipeBookManager {
                 recipeId = currentRecipeIds.get(player.getUniqueId());
             }
 
-            // 处理按钮点击
+            // Handle the button click
             switch (buttonType) {
                 case "dispenser_list":
                     if (recipeId != null) {
@@ -693,7 +693,7 @@ public class RecipeBookManager {
             return;
         }
 
-        // 检查配方物品点击
+        // Check the recipe item click
         if (meta.getPersistentDataContainer().has(
                 new NamespacedKey(plugin, "recipe_id"),
                 PersistentDataType.STRING

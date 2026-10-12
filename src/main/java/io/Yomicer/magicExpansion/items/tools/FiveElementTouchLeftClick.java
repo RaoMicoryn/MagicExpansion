@@ -39,7 +39,7 @@ public class FiveElementTouchLeftClick extends SimpleSlimefunItem<ItemUseHandler
     @Override
     public @NotNull ItemUseHandler getItemHandler() {
         return e->{
-            // 阻止默认行为
+            // Stop the default behavior
             e.setUseItem(Event.Result.DENY);
             e.setUseBlock(Event.Result.DENY);
             Player player = e.getPlayer();
@@ -54,27 +54,27 @@ public class FiveElementTouchLeftClick extends SimpleSlimefunItem<ItemUseHandler
             PersistentDataContainer container = meta.getPersistentDataContainer();
 
             // ========================
-            // 情况1：Shift + 右键方块 → 记录坐标到物品
+            // Case 1: Shift + right-click a block -> Save its coordinates to the item
             // ========================
             if (player.isSneaking() && e.getClickedBlock().isPresent()) {
                 Block block = e.getClickedBlock().get();
 
-                // 写入坐标到物品 NBT
+                // Save the coordinates to the item's NBT
                 container.set(KEY_X, PersistentDataType.INTEGER, block.getX());
                 container.set(KEY_Y, PersistentDataType.INTEGER, block.getY());
                 container.set(KEY_Z, PersistentDataType.INTEGER, block.getZ());
                 container.set(KEY_WORLD, PersistentDataType.STRING, block.getWorld().getName());
 
-                // 更新 Lore
+                // Update the lore
                 updateLore(meta, block.getLocation());
                 item.setItemMeta(meta);
 
-                player.sendMessage("🔗 已绑定到方块: " + formatLocation(block.getLocation()));
+                player.sendMessage("🔗 Linked to block: " + formatLocation(block.getLocation()));
                 player.playSound(player.getLocation(), Sound.UI_BUTTON_CLICK, 1.0f, 1.5f);
             }
 
             // ========================
-            // 情况2：右键任意东西 → 优先尝试远程交互
+            // Case 2: Right-click anything -> Try interacting with the saved block from a distance
             // ========================
             else {
                 Location targetLoc = null;
@@ -98,7 +98,7 @@ public class FiveElementTouchLeftClick extends SimpleSlimefunItem<ItemUseHandler
                 if (targetLoc != null) {
                     Block targetBlock = targetLoc.getBlock();
 
-                    // 模拟右键点击该方块
+                    // Simulate a right-click on this block
                     PlayerInteractEvent interactEvent = new PlayerInteractEvent(
                             player,
                             Action.LEFT_CLICK_BLOCK,
@@ -109,14 +109,14 @@ public class FiveElementTouchLeftClick extends SimpleSlimefunItem<ItemUseHandler
 
                     Bukkit.getPluginManager().callEvent(interactEvent);
 
-                    player.sendMessage("🔁 五行之触可以遍及任何地方: " + formatLocation(targetLoc));
+                    player.sendMessage("🔁 Five Element Touch can reach anywhere: " + formatLocation(targetLoc));
                     player.playSound(player.getLocation(), Sound.BLOCK_ENDER_CHEST_OPEN, 1.0f, 1.0f);
                 }
             }
         };
     }
 
-    // 更新物品 Lore 显示绑定位置
+    // Update the item lore to show the linked location
     private void updateLore(ItemMeta meta, Location loc) {
         List<String> lore;
         if (meta.hasLore()) {
@@ -126,15 +126,15 @@ public class FiveElementTouchLeftClick extends SimpleSlimefunItem<ItemUseHandler
         } else {
             lore = new ArrayList<>();
         }
-        lore.add("§b绑定坐标: §fX:" + loc.getBlockX() + " Y:" + loc.getBlockY() + " Z:" + loc.getBlockZ());
-        lore.add("§b世界: §f" + loc.getWorld().getName());
+        lore.add("§bLinked coordinates: §fX:" + loc.getBlockX() + " Y:" + loc.getBlockY() + " Z:" + loc.getBlockZ());
+        lore.add("§bWorld: §f" + loc.getWorld().getName());
         meta.setLore(lore);
         meta.addItemFlags(ItemFlag.HIDE_ATTRIBUTES);
     }
 
-    // 格式化位置显示
+    // Format the location for display
     private String formatLocation(Location loc) {
-        return String.format("X:%d Y:%d Z:%d (世界:%s)",
+        return String.format("X:%d Y:%d Z:%d (World: %s)",
                 loc.getBlockX(), loc.getBlockY(), loc.getBlockZ(),
                 loc.getWorld().getName());
     }

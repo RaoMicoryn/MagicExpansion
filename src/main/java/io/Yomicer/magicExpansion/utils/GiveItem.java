@@ -13,10 +13,10 @@ public class GiveItem {
         Location location = player.getLocation();
         ItemStack item1 = item.clone();
 
-        // 尝试将物品放入玩家背包
+        // Try to put the item into the player inventory
         Map<Integer, ItemStack> remainingItems = inventory.addItem(item1);
 
-        // 如果背包已满，掉落剩余的物品到地上
+        // Drop any remaining items on the ground if the inventory is full
         if (!remainingItems.isEmpty()) {
             for (ItemStack remaining : remainingItems.values()) {
                 dropItemInBatches(player, location, remaining);
@@ -25,26 +25,26 @@ public class GiveItem {
     }
 
     /**
-     * 分批掉落物品（单次最大处理 127 个）
+     * Drop items in batches (maximum 127 items per operation)
      *
      * @param player   玩家
-     * @param location 掉落位置
-     * @param item     需要掉落的物品
+     * @param location Drop location
+     * @param item     Item to drop
      */
     private static void dropItemInBatches(Player player, Location location, ItemStack item) {
         int totalAmount = item.getAmount();
-        int maxDropSize = 64; // 单次最大掉落数量
+        int maxDropSize = 64; // Maximum drop amount per operation
 
         while (totalAmount > 0) {
-            // 创建一个新的物品副本，设置当前批次的数量
+            // Create an item copy and set the amount for this batch
             ItemStack dropItem = item.clone();
             int currentBatchSize = Math.min(totalAmount, maxDropSize);
             dropItem.setAmount(currentBatchSize);
 
-            // 掉落当前批次的物品
+            // Drop the current batch of items
             player.getWorld().dropItemNaturally(location, dropItem);
 
-            // 更新剩余数量
+            // Update the remaining amount
             totalAmount -= currentBatchSize;
         }
     }

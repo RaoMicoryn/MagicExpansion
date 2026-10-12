@@ -5,73 +5,73 @@ options:
   clear-old-config: false
 
 StarShardsSword:
-  help: '#####为星陨裁决配置信息#####'
+  help: '##### Starfall Judgment settings #####'
   StarShards_Atk_Mix: 3.8
-  #基础攻击倍率 默认:3.8 +280%
+  # Base attack multiplier, default: 3.8 (+280%)
   StarShards_Atk_Add: 1314.0
-  #基础攻击力加成 默认:1314.0
+  # Base attack bonus, default: 1314.0
   StarShards_Atk_Mult: 6.18
-  #基础攻击力乘区 默认:6.18   +618%
+  # Base attack multiplier, default: 6.18 (+618%)
   StarShards_AtkSpeed: 20.0
-  #攻击速度 默认:20.0 +2000%
+  # Attack speed, default: 20.0 (+2000%)
   StarShards_Atk_ExtraPercent: 0.08
-  #攻击力加成 默认:0.15 +15% 固定额外百分比伤害
+  # Attack bonus, default: 0.15 (+15%). Fixed extra percentage damage
   StarShards_Atk_Blood: 0.05
-  #流血效果 默认:0.03 +3% 可叠加，独立生效
+  # Bleed effect, default: 0.03 (+3%). Can stack; each stack works separately
   StarShards_Atk_Fire: 0.8
-  #炽焰斩额外火焰伤害倍率 默认:0.8 基于本次攻击伤害
+  # Extra fire damage multiplier for Blazing Slash, default: 0.8. Based on this attack's damage
   StarShards_ArcaneBlast_Mult: 0.6
-  #奥爆冲击伤害倍率 默认:0.6 基于本次攻击伤害
+  # Arcane Blast damage multiplier, default: 0.6. Based on this attack's damage
   StarShards_Health_Add: 1314.0
-  #基础生命值加成 默认:1314.0
+  # Base health bonus, default: 1314.0
   StarShards_Health_Mult: 6.18
-  #基础生命值乘区 默认:6.18   +618%
+  # Base health multiplier, default: 6.18 (+618%)
   StarShards_MoveSpeed: 0.618
-  #移动速度 默认:0.618 +61.8%
+  # Movement speed, default: 0.618 (+61.8%)
   StarShards_Armor: 200.0
-  #护甲 默认:200.0
+  # Armor, default: 200.0
   StarShards_Toughness: 200.0
-  #护甲韧性 默认:200.0
+  # Armor toughness, default: 200.0
   StarShards_FlySpeed: 13.14
-  #飞行速度 默认:13.14 +131.4%
+  # Flight speed, default: 13.14 (+131.4%)
   StarShards_BlazingSlash_CD: 1
-  #左键技能冷却时间 默认:1.0
+  # Left-click skill cooldown, default: 1.0
   StarShards_ArcaneBlast_CD: 3
-  #shift左键技能冷却时间 默认:3.0
+  # Shift + left-click skill cooldown, default: 3.0
   StarShards_AstralShield_CD: 5
-  #右键技能冷却时间 默认:5.0
+  # Right-click skill cooldown, default: 5.0
   StarShards_AstralShield_During: 5
-  #右键技能持续时间 默认:5.0
+  # Right-click skill duration, default: 5.0
   StarShards_InstantBlink_CD: 3
-  #shift右键技能冷却时间 默认:3.0
+  # Shift + right-click skill cooldown, default: 3.0
 
 Fish:
   FishingRod:
-    FISHING_ROD_FINAL_STICK: #终焉鱼竿配置
+    FISHING_ROD_FINAL_STICK: # Final fishing rod settings
       Enable:
-       FinalLure: true #是否启用终焉鱼饵[鱼饵·记忆碎片]（独立生效）
-       FinalLure_Obtain: true #是否可以从水中钓取终焉鱼饵[鱼饵·记忆碎片]（独立生效）
+       FinalLure: true # Whether to enable the Final Bait [Bait: Memory Fragment] (works separately)
+       FinalLure_Obtain: true # Whether the Final Bait [Bait: Memory Fragment] can be caught from water (works separately)
     admin-give:
       max-weight: 10000.0
 
 
 qwen-help:
-  help: '#####这个qwen-help为配置提示，请勿删除，删除也没啥影响'
-  cooldown: '#####玩家询问ai间隔时间,默认为3秒'
-  api-key: '#####api-key输入阿里云百炼控制台获取的api即可，新用户可白嫖很多额度，基本够用'
-  endpoint: '#####endpoint为端点，默认即可，建议默认，因为阿里云可以白嫖'
-  model: '#####model为自定义模型，可选项有qwen-max、qwen3-max、qwen-plus、qwen-plus-2025-09-11等更多见官网'
-  model-extra: '这里默认是回复最完善的是qwen-plus、qwen-plus-2025-09-11,回复内容也是最多的，第一个max回复内容则最为精简切最为敷衍'
-  model-extra1: '其中qwen-plus为主干版本，qwen-plus-2025-09-11为快照版本，每个快照版本都有独立的免费额度'
-  model-extra2: '3-max则是max的升级版，相对于max回复内容稍微详细一点'
-  model-extra3: '如果想回答的精简一些，建议使用qwen-max'
-  model-extra4: '在build34+版本，对所有模型的回答进行了调整，默认都为精简版本，玩家可自行对话调整字数限制'
-  ai-error: '#####此处为ai回复失败反馈信息'
+  help: '##### These are setup tips for qwen-help. Please don''t delete them, though deleting them won''t cause much trouble'
+  cooldown: '##### Time between player AI questions. Default: 3 seconds'
+  api-key: '##### Enter the API key from the Alibaba Cloud Bailian console. New users get plenty of free usage, which is usually enough'
+  endpoint: '##### This is the endpoint. The default is fine, and it''s recommended since Alibaba Cloud offers free usage'
+  model: '##### Custom model options include qwen-max, qwen3-max, qwen-plus, qwen-plus-2025-09-11, and more. Check the official site for details'
+  model-extra: 'By default, qwen-plus and qwen-plus-2025-09-11 give the most complete and longest replies. The first max model gives shorter, less detailed replies'
+  model-extra1: 'qwen-plus is the main version, while qwen-plus-2025-09-11 is a snapshot version. Each snapshot has its own free usage quota'
+  model-extra2: 'qwen3-max is an upgraded version of max and gives slightly more detailed replies'
+  model-extra3: 'If you want shorter replies, qwen-max is a good choice'
+  model-extra4: 'In build 34 and later, replies from all models were adjusted to be shorter by default. Players can ask the AI to change the reply length'
+  ai-error: '##### Message shown when the AI reply fails'
 
 
 qwen:
   api-key: "your_api_key_here"
   endpoint: "https://dashscope.aliyuncs.com/api/v1/services/aigc/text-generation/generation"
   model: "qwen-plus-2025-09-11"
-  ai-error: "&c❌ AI响应失败，请稍后再试"
+  ai-error: "&c❌ AI request failed. Please try again later"
   cooldown: 3

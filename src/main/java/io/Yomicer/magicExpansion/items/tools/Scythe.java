@@ -55,19 +55,19 @@ public class Scythe extends SimpleSlimefunItem<ItemUseHandler> implements NotPla
             if (e.getBlock().getBlockData() instanceof Ageable) {
                 Ageable ageable = (Ageable) e.getBlock().getBlockData();
 
-                // 只处理完全成熟的作物
+                // Only handle fully grown crops
                 if (ageable.getAge() == ageable.getMaximumAge()) {
-                    // 在搜索时增加成熟度验证
+                    // Check maturity while searching
                     List<Block> crops = Vein.find(e.getBlock(), MAX_BROKEN, b -> {
                         BlockData data = b.getBlockData();
 
-                        // 双重验证：既是作物且已成熟
+                        // Double-check that it's a crop and fully grown
                         return Tag.CROPS.isTagged(b.getType())
                                 && data instanceof Ageable
                                 && ((Ageable) data).getAge() == ((Ageable) data).getMaximumAge();
                     });
 
-                    crops.remove(e.getBlock()); // 移除原始方块
+                    crops.remove(e.getBlock()); // Remove the original block
 
                     boolean creative = e.getPlayer().getGameMode() == GameMode.CREATIVE;
 

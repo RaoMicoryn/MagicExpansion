@@ -28,89 +28,89 @@ public class MagicExpansionQuickMachineSetup {
 
 
         //Quick Machine
-        // 魔法矿洞
+        // Magic Mineral Cave
         new MagicExpansionMineralCave(magicexpansionquickmachine, MagicExpansionItems.MAGIC_EXPANSION_MINERAL_CAVE, RecipeType.ENHANCED_CRAFTING_TABLE, new ItemStack[] {
                 AdvancedCreateItem("MAGIC_COSMIC_DUST"), MagicExpansionItems.MAGIC_EXPANSION_INTERACTIVE_CORE, AdvancedCreateItem("MAGIC_COSMIC_DUST"),
                 BasicCreateItem("MAGIC_REDSTONE"), new ItemStack(Material.SMOOTH_STONE), BasicCreateItem("MAGIC_REDSTONE"),
                 AdvancedCreateItem("MAGIC_COSMIC_DUST"), BasicCreateItem("MAGIC_REDSTONE"), AdvancedCreateItem("MAGIC_COSMIC_DUST")
         }).register(plugin);
 
-        // 魔法工作台
+        // Magic Workbench
         new MagicExpansionQuickEnhancedCraftingTable(magicexpansionquickmachine, MagicExpansionItems.MAGIC_EXPANSION_QUICK_ENHANCED_CRAFTING_TABLE, RecipeType.ENHANCED_CRAFTING_TABLE, new ItemStack[] {
                 new ItemStack(Material.ENDER_EYE), MagicExpansionItems.MAGIC_EXPANSION_INTERACTIVE_CORE, new ItemStack(Material.ENDER_EYE),
                 AdvancedCreateItem("MAGIC_COSMIC_DUST"), new ItemStack(Material.CRAFTING_TABLE), AdvancedCreateItem("MAGIC_COSMIC_DUST"),
                 new ItemStack(Material.ENDER_EYE), BasicCreateItem("MAGIC_REDSTONE"), new ItemStack(Material.ENDER_EYE)
         }).register(plugin);
-        // 魔法冶炼炉
+        // Magic Smeltery
         new MagicExpansionQuickSmeltery(magicexpansionquickmachine, MagicExpansionItems.MAGIC_EXPANSION_QUICK_SMELTERY, RecipeType.ENHANCED_CRAFTING_TABLE, new ItemStack[] {
                 new ItemStack(Material.ENDER_EYE), MagicExpansionItems.MAGIC_EXPANSION_INTERACTIVE_CORE, new ItemStack(Material.ENDER_EYE),
                 AdvancedCreateItem("MAGIC_COSMIC_DUST"), new ItemStack(Material.FURNACE), AdvancedCreateItem("MAGIC_COSMIC_DUST"),
                 new ItemStack(Material.ENDER_EYE), BasicCreateItem("MAGIC_COSMIC_DUST"), new ItemStack(Material.ENDER_EYE)
         }).register(plugin);
         /*
-        // 魔法冶炼炉2
+        // Magic Smeltery 2
         new UnplaceableBlock(quickmachine, MagicExpansionItems.MAGIC_EXPANSION_QUICK_SMELTERY2, RecipeType.ENHANCED_CRAFTING_TABLE, new ItemStack[] {
                 BasicCreateItem("MAGIC_EXPANSION_TO_MAGIC_ITEM_BASIC"), AdvancedCreateItem("MAGIC_EXPANSION_TO_MAGIC_ITEM_ADVANCED"), BasicCreateItem("MAGIC_EXPANSION_TO_MAGIC_ITEM_BASIC"),
                 AdvancedCreateItem("MAGIC_EXPANSION_TO_MAGIC_ITEM_ADVANCED"), new ItemStack(Material.FURNACE), AdvancedCreateItem("MAGIC_EXPANSION_TO_MAGIC_ITEM_ADVANCED"),
                 BasicCreateItem("MAGIC_EXPANSION_TO_MAGIC_ITEM_BASIC"), AdvancedCreateItem("MAGIC_EXPANSION_TO_MAGIC_ITEM_ADVANCED"), BasicCreateItem("MAGIC_EXPANSION_TO_MAGIC_ITEM_BASIC")
         },MagicExpansionItems.MAGIC_EXPANSION_QUICK_SMELTERY).register(plugin);
         */
-        // 魔法磨石
+        // Magic Grindstone
         new MagicExpansionQuickGrindStone(magicexpansionquickmachine, MagicExpansionItems.MAGIC_EXPANSION_QUICK_GRIND_STONE, RecipeType.ENHANCED_CRAFTING_TABLE, new ItemStack[] {
                 new ItemStack(Material.ENDER_EYE), MagicExpansionItems.MAGIC_EXPANSION_INTERACTIVE_CORE, new ItemStack(Material.ENDER_EYE),
                 AdvancedCreateItem("MAGIC_COSMIC_DUST"), new ItemStack(Material.DISPENSER), AdvancedCreateItem("MAGIC_COSMIC_DUST"),
                 new ItemStack(Material.ENDER_EYE), BasicCreateItem("MAGIC_REDSTONE"), new ItemStack(Material.ENDER_EYE)
         }).register(plugin);
-        // 魔法粉碎机
+        // Magic Ore Crusher
         new MagicExpansionQuickOreCrusher(magicexpansionquickmachine, MagicExpansionItems.MAGIC_EXPANSION_QUICK_ORE_CRUSHER, RecipeType.ENHANCED_CRAFTING_TABLE, new ItemStack[] {
                 new ItemStack(Material.ENDER_EYE), MagicExpansionItems.MAGIC_EXPANSION_INTERACTIVE_CORE, new ItemStack(Material.ENDER_EYE),
                 AdvancedCreateItem("MAGIC_COSMIC_DUST"), new ItemStack(Material.IRON_BARS), AdvancedCreateItem("MAGIC_COSMIC_DUST"),
                 new ItemStack(Material.ENDER_EYE), BasicCreateItem("MAGIC_REDSTONE"), new ItemStack(Material.ENDER_EYE)
         }).register(plugin);
 
-        // 魔法盔甲锻造台
+        // Magic Armor Forge
         new MagicExpansionQuickArmorForge(magicexpansionquickmachine, MagicExpansionItems.MAGIC_EXPANSION_QUICK_ARMOR_FORGE, RecipeType.ENHANCED_CRAFTING_TABLE, new ItemStack[] {
                 new ItemStack(Material.ENDER_EYE), MagicExpansionItems.MAGIC_EXPANSION_INTERACTIVE_CORE, new ItemStack(Material.ENDER_EYE),
                 AdvancedCreateItem("MAGIC_COSMIC_DUST"), new ItemStack(Material.ANVIL), AdvancedCreateItem("MAGIC_COSMIC_DUST"),
                 new ItemStack(Material.ENDER_EYE), BasicCreateItem("MAGIC_REDSTONE"), new ItemStack(Material.ENDER_EYE)
         }).register(plugin);
-        // 魔法压缩机
+        // Magic Compressor
         new MagicExpansionQuickCompressor(magicexpansionquickmachine, MagicExpansionItems.MAGIC_EXPANSION_QUICK_COMPRESSOR, RecipeType.ENHANCED_CRAFTING_TABLE, new ItemStack[] {
                 new ItemStack(Material.ENDER_EYE), MagicExpansionItems.MAGIC_EXPANSION_INTERACTIVE_CORE, new ItemStack(Material.ENDER_EYE),
                 AdvancedCreateItem("MAGIC_COSMIC_DUST"), new ItemStack(Material.PISTON), AdvancedCreateItem("MAGIC_COSMIC_DUST"),
                 new ItemStack(Material.ENDER_EYE), BasicCreateItem("MAGIC_REDSTONE"), new ItemStack(Material.ENDER_EYE)
         }).register(plugin);
-        // 魔法压力机
+        // Magic Press
         new MagicExpansionQuickPressureChamber(magicexpansionquickmachine, MagicExpansionItems.MAGIC_EXPANSION_QUICK_PRESSURE_CHAMBER, RecipeType.ENHANCED_CRAFTING_TABLE, new ItemStack[] {
                 new ItemStack(Material.ENDER_EYE), MagicExpansionItems.MAGIC_EXPANSION_INTERACTIVE_CORE, new ItemStack(Material.ENDER_EYE),
                 AdvancedCreateItem("MAGIC_COSMIC_DUST"), new ItemStack(Material.GLASS), AdvancedCreateItem("MAGIC_COSMIC_DUST"),
                 new ItemStack(Material.ENDER_EYE), BasicCreateItem("MAGIC_REDSTONE"), new ItemStack(Material.ENDER_EYE)
         }).register(plugin);
-        // 魔法工作台
+        // Magic Workbench
         new MagicExpansionQuickMagicWorkbench(magicexpansionquickmachine, MagicExpansionItems.MAGIC_EXPANSION_QUICK_MAGIC_WORKBENCH, RecipeType.ENHANCED_CRAFTING_TABLE, new ItemStack[] {
                 new ItemStack(Material.ENDER_EYE), MagicExpansionItems.MAGIC_EXPANSION_INTERACTIVE_CORE, new ItemStack(Material.ENDER_EYE),
                 AdvancedCreateItem("MAGIC_COSMIC_DUST"), new ItemStack(Material.BOOKSHELF), AdvancedCreateItem("MAGIC_COSMIC_DUST"),
                 new ItemStack(Material.ENDER_EYE), BasicCreateItem("MAGIC_REDSTONE"), new ItemStack(Material.ENDER_EYE)
         }).register(plugin);
-        // 魔法淘金机
+        // Magic Gold Pan
         new MagicExpansionQuickAutomatedPanningMachine(magicexpansionquickmachine, MagicExpansionItems.MAGIC_EXPANSION_QUICK_AUTOMATED_PANNING_MACHINE, RecipeType.ENHANCED_CRAFTING_TABLE, new ItemStack[] {
                 new ItemStack(Material.ENDER_EYE), MagicExpansionItems.MAGIC_EXPANSION_INTERACTIVE_CORE, new ItemStack(Material.ENDER_EYE),
                 AdvancedCreateItem("MAGIC_COSMIC_DUST"), SlimefunItems.GOLD_PAN, AdvancedCreateItem("MAGIC_COSMIC_DUST"),
                 new ItemStack(Material.ENDER_EYE), BasicCreateItem("MAGIC_REDSTONE"), new ItemStack(Material.ENDER_EYE)
         }).register(plugin);
-        // 魔法远古祭坛
+        // Magic Ancient Altar
         new MagicExpansionQuickAncientAltar(magicexpansionquickmachine, MagicExpansionItems.MAGIC_EXPANSION_QUICK_AUTOMATED_ANCIENT_ALTAR, RecipeType.ENHANCED_CRAFTING_TABLE, new ItemStack[] {
                 SlimefunItems.ANCIENT_ALTAR, MagicExpansionItems.MAGIC_EXPANSION_INTERACTIVE_CORE, SlimefunItems.ANCIENT_ALTAR,
                 AdvancedCreateItem("MAGIC_COSMIC_DUST"), new ItemStack(Material.ENCHANTING_TABLE), AdvancedCreateItem("MAGIC_COSMIC_DUST"),
                 SlimefunItems.ANCIENT_ALTAR, BasicCreateItem("MAGIC_REDSTONE"), SlimefunItems.ANCIENT_ALTAR
         }).register(plugin);
-        // 破损的魔法碎矿机
+        // Broken Magic Ore Crusher
         new MagicExpansionQuickOreGrinder(magicexpansionquickmachine, MagicExpansionItems.MAGIC_EXPANSION_QUICK_ELECTRIC_ORE_GRINDER, RecipeType.ENHANCED_CRAFTING_TABLE, new ItemStack[] {
                 new ItemStack(Material.ENDER_EYE), MagicExpansionItems.MAGIC_EXPANSION_INTERACTIVE_CORE, new ItemStack(Material.ENDER_EYE),
                 AdvancedCreateItem("MAGIC_COSMIC_DUST"), new ItemStack(Material.OBSERVER), AdvancedCreateItem("MAGIC_COSMIC_DUST"),
                 new ItemStack(Material.ENDER_EYE), BasicCreateItem("MAGIC_REDSTONE"), new ItemStack(Material.ENDER_EYE)
         }).register(plugin);
-        // 魔法压力舱
+        // Magic Pressure Chamber
         new MagicExpansionQuickHeatedPressureChamber(magicexpansionquickmachine, MagicExpansionItems.MAGIC_EXPANSION_QUICK_HEATED_PRESSURE_CHAMBER, RecipeType.ENHANCED_CRAFTING_TABLE, new ItemStack[] {
                 new ItemStack(Material.ENDER_EYE), MagicExpansionItems.MAGIC_EXPANSION_INTERACTIVE_CORE, new ItemStack(Material.ENDER_EYE),
                 AdvancedCreateItem("MAGIC_COSMIC_DUST"), new ItemStack(Material.LIGHT_GRAY_STAINED_GLASS), AdvancedCreateItem("MAGIC_COSMIC_DUST"),
@@ -118,85 +118,85 @@ public class MagicExpansionQuickMachineSetup {
         }).register(plugin);
 
 
-        //快捷机器放置版
+        //Placeable quick machines
         new UnplaceableBlock(magicexpansionquickmachine, MagicExpansionItems.QUICK_MACHINE_BV_INFO, SPECIAL_RECIPE_TYPE, new ItemStack[] {
                 null, null, null,
                 null, null, null,
                 null, null,null
         }).register(plugin);
 
-        // 魔法增强型工作台 放置版
+        // Magic Enhanced Crafting Table - placeable version
         new QuickMachineBV(magicexpansionquickmachine, MagicExpansionItems.QUICK_ENHANCED_CRAFTING_TABLE_BV, RecipeType.ENHANCED_CRAFTING_TABLE, new ItemStack[] {
                 new ItemStack(Material.OAK_PLANKS), new ItemStack(Material.OAK_PLANKS), new ItemStack(Material.OAK_PLANKS),
                 new ItemStack(Material.OAK_PLANKS), MagicExpansionItems.MAGIC_EXPANSION_QUICK_ENHANCED_CRAFTING_TABLE,new ItemStack(Material.OAK_PLANKS),
                 new ItemStack(Material.OAK_PLANKS), new ItemStack(Material.OAK_PLANKS) ,new ItemStack(Material.OAK_PLANKS)
-        },"魔法工作台（增强型工作台）", SlimefunRegistryListener.ENHANCED_CRAFTING_TABLE_RECIPES,RecipeType.ENHANCED_CRAFTING_TABLE).register(plugin);
-        // 魔法冶炼炉 放置版
+        },"Magic Workbench (Enhanced Crafting Table)", SlimefunRegistryListener.ENHANCED_CRAFTING_TABLE_RECIPES,RecipeType.ENHANCED_CRAFTING_TABLE).register(plugin);
+        // Magic Smeltery - placeable version
         new QuickMachineMBBV(magicexpansionquickmachine, MagicExpansionItems.QUICK_SMELTERY_BV, RecipeType.ENHANCED_CRAFTING_TABLE, new ItemStack[] {
                 new ItemStack(Material.OAK_PLANKS), new ItemStack(Material.OAK_PLANKS), new ItemStack(Material.OAK_PLANKS),
                 new ItemStack(Material.OAK_PLANKS), MagicExpansionItems.MAGIC_EXPANSION_QUICK_SMELTERY,new ItemStack(Material.OAK_PLANKS),
                 new ItemStack(Material.OAK_PLANKS), new ItemStack(Material.OAK_PLANKS) ,new ItemStack(Material.OAK_PLANKS)
-        },"魔法冶炼炉", SlimefunRegistryFinalized.SMELTERY_RECIPES).register(plugin);
-        // 魔法磨石 放置版
+        },"Magic Smeltery", SlimefunRegistryFinalized.SMELTERY_RECIPES).register(plugin);
+        // Magic Grindstone - placeable version
         new QuickMachineMBBV(magicexpansionquickmachine, MagicExpansionItems.QUICK_GRIND_STONE_BV, RecipeType.ENHANCED_CRAFTING_TABLE, new ItemStack[] {
                 new ItemStack(Material.OAK_PLANKS), new ItemStack(Material.OAK_PLANKS), new ItemStack(Material.OAK_PLANKS),
                 new ItemStack(Material.OAK_PLANKS), MagicExpansionItems.MAGIC_EXPANSION_QUICK_GRIND_STONE,new ItemStack(Material.OAK_PLANKS),
                 new ItemStack(Material.OAK_PLANKS), new ItemStack(Material.OAK_PLANKS) ,new ItemStack(Material.OAK_PLANKS)
-        },"魔法磨石", SlimefunRegistryFinalized.GRIND_STONE_RECIPES).register(plugin);
-        // 魔法粉碎机 放置版
+        },"Magic Grindstone", SlimefunRegistryFinalized.GRIND_STONE_RECIPES).register(plugin);
+        // Magic Ore Crusher - placeable version
         new QuickMachineMBBV(magicexpansionquickmachine, MagicExpansionItems.QUICK_ORE_CRUSHER_BV, RecipeType.ENHANCED_CRAFTING_TABLE, new ItemStack[] {
                 new ItemStack(Material.OAK_PLANKS), new ItemStack(Material.OAK_PLANKS), new ItemStack(Material.OAK_PLANKS),
                 new ItemStack(Material.OAK_PLANKS), MagicExpansionItems.MAGIC_EXPANSION_QUICK_ORE_CRUSHER,new ItemStack(Material.OAK_PLANKS),
                 new ItemStack(Material.OAK_PLANKS), new ItemStack(Material.OAK_PLANKS) ,new ItemStack(Material.OAK_PLANKS)
-        },"魔法碎矿机", SlimefunRegistryFinalized.ORE_CRUSHER_RECIPES).register(plugin);
-        // 魔法锻造台 放置版
+        },"Magic Ore Crusher", SlimefunRegistryFinalized.ORE_CRUSHER_RECIPES).register(plugin);
+        // Magic Forge - placeable version
         new QuickMachineBV(magicexpansionquickmachine, MagicExpansionItems.QUICK_ARMOR_FORGE_BV, RecipeType.ENHANCED_CRAFTING_TABLE, new ItemStack[] {
                 new ItemStack(Material.OAK_PLANKS), new ItemStack(Material.OAK_PLANKS), new ItemStack(Material.OAK_PLANKS),
                 new ItemStack(Material.OAK_PLANKS), MagicExpansionItems.MAGIC_EXPANSION_QUICK_ARMOR_FORGE,new ItemStack(Material.OAK_PLANKS),
                 new ItemStack(Material.OAK_PLANKS), new ItemStack(Material.OAK_PLANKS) ,new ItemStack(Material.OAK_PLANKS)
-        },"魔法锻造台", SlimefunRegistryListener.ARMOR_FORGE_RECIPES,RecipeType.ARMOR_FORGE).register(plugin);
-        // 魔法压缩机 放置版
+        },"Magic Forge", SlimefunRegistryListener.ARMOR_FORGE_RECIPES,RecipeType.ARMOR_FORGE).register(plugin);
+        // Magic Compressor - placeable version
         new QuickMachineMBBV(magicexpansionquickmachine, MagicExpansionItems.QUICK_COMPRESSOR_BV, RecipeType.ENHANCED_CRAFTING_TABLE, new ItemStack[] {
                 new ItemStack(Material.OAK_PLANKS), new ItemStack(Material.OAK_PLANKS), new ItemStack(Material.OAK_PLANKS),
                 new ItemStack(Material.OAK_PLANKS), MagicExpansionItems.MAGIC_EXPANSION_QUICK_COMPRESSOR,new ItemStack(Material.OAK_PLANKS),
                 new ItemStack(Material.OAK_PLANKS), new ItemStack(Material.OAK_PLANKS) ,new ItemStack(Material.OAK_PLANKS)
-        },"魔法压缩机", SlimefunRegistryFinalized.COMPRESSOR_RECIPES).register(plugin);
-        // 魔法压力机 放置版
+        },"Magic Compressor", SlimefunRegistryFinalized.COMPRESSOR_RECIPES).register(plugin);
+        // Magic Press - placeable version
         new QuickMachineMBBV(magicexpansionquickmachine, MagicExpansionItems.QUICK_PRESSURE_CHAMBER_BV, RecipeType.ENHANCED_CRAFTING_TABLE, new ItemStack[] {
                 new ItemStack(Material.OAK_PLANKS), new ItemStack(Material.OAK_PLANKS), new ItemStack(Material.OAK_PLANKS),
                 new ItemStack(Material.OAK_PLANKS), MagicExpansionItems.MAGIC_EXPANSION_QUICK_PRESSURE_CHAMBER,new ItemStack(Material.OAK_PLANKS),
                 new ItemStack(Material.OAK_PLANKS), new ItemStack(Material.OAK_PLANKS) ,new ItemStack(Material.OAK_PLANKS)
-        },"魔法压力机", SlimefunRegistryFinalized.PRESSURE_CHAMBER_RECIPES).register(plugin);
-        // 魔法工作台[魔法工作台] 放置版
+        },"Magic Press", SlimefunRegistryFinalized.PRESSURE_CHAMBER_RECIPES).register(plugin);
+        // Magic Workbench [Magic Workbench] - placeable version
         new QuickMachineBV(magicexpansionquickmachine, MagicExpansionItems.QUICK_MAGIC_WORKBENCH_BV, RecipeType.ENHANCED_CRAFTING_TABLE, new ItemStack[] {
                 new ItemStack(Material.OAK_PLANKS), new ItemStack(Material.OAK_PLANKS), new ItemStack(Material.OAK_PLANKS),
                 new ItemStack(Material.OAK_PLANKS), MagicExpansionItems.MAGIC_EXPANSION_QUICK_MAGIC_WORKBENCH,new ItemStack(Material.OAK_PLANKS),
                 new ItemStack(Material.OAK_PLANKS), new ItemStack(Material.OAK_PLANKS) ,new ItemStack(Material.OAK_PLANKS)
-        },"魔法工作台（魔法工作台）", SlimefunRegistryListener.MAGIC_WORKBENCH_RECIPES,RecipeType.MAGIC_WORKBENCH).register(plugin);
-        // 魔法淘金机 放置版
+        },"Magic Workbench (Magic Workbench)", SlimefunRegistryListener.MAGIC_WORKBENCH_RECIPES,RecipeType.MAGIC_WORKBENCH).register(plugin);
+        // Magic Gold Pan - placeable version
         new QuickMachineBV(magicexpansionquickmachine, MagicExpansionItems.QUICK_AUTOMATED_PANNING_MACHINE_BV, RecipeType.ENHANCED_CRAFTING_TABLE, new ItemStack[] {
                 new ItemStack(Material.OAK_PLANKS), new ItemStack(Material.OAK_PLANKS), new ItemStack(Material.OAK_PLANKS),
                 new ItemStack(Material.OAK_PLANKS), MagicExpansionItems.MAGIC_EXPANSION_QUICK_AUTOMATED_PANNING_MACHINE,new ItemStack(Material.OAK_PLANKS),
                 new ItemStack(Material.OAK_PLANKS), new ItemStack(Material.OAK_PLANKS) ,new ItemStack(Material.OAK_PLANKS)
-        },"魔法淘金机", SlimefunRegistryListener.GOLD_PAN_RECIPES,RecipeType.GOLD_PAN).register(plugin);
-        // 魔法远古祭坛 放置版
+        },"Magic Gold Pan", SlimefunRegistryListener.GOLD_PAN_RECIPES,RecipeType.GOLD_PAN).register(plugin);
+        // Magic Ancient Altar - placeable version
         new QuickMachineBV(magicexpansionquickmachine, MagicExpansionItems.QUICK_AUTOMATED_ANCIENT_ALTAR_BV, RecipeType.ENHANCED_CRAFTING_TABLE, new ItemStack[] {
                 new ItemStack(Material.OAK_PLANKS), new ItemStack(Material.OAK_PLANKS), new ItemStack(Material.OAK_PLANKS),
                 new ItemStack(Material.OAK_PLANKS), MagicExpansionItems.MAGIC_EXPANSION_QUICK_AUTOMATED_ANCIENT_ALTAR,new ItemStack(Material.OAK_PLANKS),
                 new ItemStack(Material.OAK_PLANKS), new ItemStack(Material.OAK_PLANKS) ,new ItemStack(Material.OAK_PLANKS)
-        },"魔法远古祭坛", SlimefunRegistryListener.ANCIENT_ALTAR_RECIPES,RecipeType.ANCIENT_ALTAR).register(plugin);
-        // 魔法远古祭坛 放置版
+        },"Magic Ancient Altar", SlimefunRegistryListener.ANCIENT_ALTAR_RECIPES,RecipeType.ANCIENT_ALTAR).register(plugin);
+        // Magic Ancient Altar - placeable version
         new QuickMachineBV(magicexpansionquickmachine, MagicExpansionItems.QUICK_ELECTRIC_ORE_GRINDER_BV, RecipeType.ENHANCED_CRAFTING_TABLE, new ItemStack[] {
                 new ItemStack(Material.OAK_PLANKS), new ItemStack(Material.OAK_PLANKS), new ItemStack(Material.OAK_PLANKS),
                 new ItemStack(Material.OAK_PLANKS), MagicExpansionItems.MAGIC_EXPANSION_QUICK_ELECTRIC_ORE_GRINDER,new ItemStack(Material.OAK_PLANKS),
                 new ItemStack(Material.OAK_PLANKS), new ItemStack(Material.OAK_PLANKS) ,new ItemStack(Material.OAK_PLANKS)
-        },"破损的魔法碎矿机", SlimefunRegistryListener.ORE_CRUSHER_RECIPES,RecipeType.ORE_CRUSHER).register(plugin);
-        // 魔法远古祭坛 放置版
+        },"Broken Magic Ore Crusher", SlimefunRegistryListener.ORE_CRUSHER_RECIPES,RecipeType.ORE_CRUSHER).register(plugin);
+        // Magic Ancient Altar - placeable version
         new QuickMachineBV(magicexpansionquickmachine, MagicExpansionItems.QUICK_HEATED_PRESSURE_CHAMBER_BV, RecipeType.ENHANCED_CRAFTING_TABLE, new ItemStack[] {
                 new ItemStack(Material.OAK_PLANKS), new ItemStack(Material.OAK_PLANKS), new ItemStack(Material.OAK_PLANKS),
                 new ItemStack(Material.OAK_PLANKS), MagicExpansionItems.MAGIC_EXPANSION_QUICK_HEATED_PRESSURE_CHAMBER,new ItemStack(Material.OAK_PLANKS),
                 new ItemStack(Material.OAK_PLANKS), new ItemStack(Material.OAK_PLANKS) ,new ItemStack(Material.OAK_PLANKS)
-        },"魔法压力舱", SlimefunRegistryListener.HEATED_PRESSURE_CHAMBER_RECIPES,RecipeType.HEATED_PRESSURE_CHAMBER).register(plugin);
+        },"Magic Pressure Chamber", SlimefunRegistryListener.HEATED_PRESSURE_CHAMBER_RECIPES,RecipeType.HEATED_PRESSURE_CHAMBER).register(plugin);
 
 
 

@@ -30,12 +30,12 @@ public class FarmHavestBread extends SimpleSlimefunItem<ItemConsumptionHandler> 
             double currentHealth = p.getHealth();
             double newHealth = Math.min(currentHealth + 8.0, maxHealth);
             p.setHealth(newHealth);
-            p.addPotionEffect(new PotionEffect(PotionEffectType.SATURATION, 300, 2)); // 等级 2 对应 III (0=I, 1=II, 2=III)
-            p.addPotionEffect(new PotionEffect(PotionEffectType.REGENERATION, 160, 0)); // 等级 0 对应 I
+            p.addPotionEffect(new PotionEffect(PotionEffectType.SATURATION, 300, 2)); // Level 2 means III (0=I, 1=II, 2=III)
+            p.addPotionEffect(new PotionEffect(PotionEffectType.REGENERATION, 160, 0)); // Level 0 means I
             if (RANDOM.nextDouble() < 0.20) {
                 ItemStack seeds = MagicExpansionItems.WHEAT_SEEDS;
                 p.getWorld().dropItemNaturally(p.getLocation(), seeds);
-                p.sendMessage("§e✨ 丰收女神的恩赐！你获得了一些糖心麦种。");
+                p.sendMessage("§e✨ A gift from the Harvest Goddess! You got some Sweetheart Wheat Seeds.");
             }
             p.playSound(p.getLocation(), Sound.ENTITY_PLAYER_BURP, 1.0f, 1.2f);
             p.getWorld().playEffect(p.getLocation().add(0, 1, 0), Effect.VILLAGER_PLANT_GROW, 10);

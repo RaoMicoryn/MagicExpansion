@@ -25,19 +25,19 @@ import static io.Yomicer.magicExpansion.utils.ItemPermissionUtils.hasPermissionO
 
 public class ItemEffectAttackListener implements Listener {
 
-    // 修复(X1)：增加 ignoreCancelled = true，已取消的攻击事件（如无敌区域保护）不再重复触发效果
+    // Fix (X1): Add ignoreCancelled = true so cancelled attack events (such as protected-zone hits) do not trigger effects again
     @EventHandler(ignoreCancelled = true)
     public void onPlayerAttack(EntityDamageByEntityEvent event) {
         if (event.getDamager() instanceof Player) {
             Player player = (Player) event.getDamager();
             ItemStack item = player.getInventory().getItemInMainHand();
 
-            // 获取物品的 PDC
+            // Get the item PDC
             ItemMeta meta = item.getItemMeta();
             if (meta != null && meta.getPersistentDataContainer() != null) {
                 PersistentDataContainer pdc = meta.getPersistentDataContainer();
 
-                // 遍历所有属性
+                // Loop through all attributes
                 for (String attribute : ATTRIBUTE_POOL.keySet()) {
                     NamespacedKey key = new NamespacedKey("magicexpansion", attribute.toLowerCase().replace(".", "_"));
 
@@ -57,13 +57,13 @@ public class ItemEffectAttackListener implements Listener {
         if (!(target instanceof LivingEntity livingTarget)) return;
         if(!hasPermissionOnAttack(player)) return;
         switch (attribute) {
-            case "MagicExpansion.Knockback": // 击退效果
+            case "MagicExpansion.Knockback": // Knockback effect
                 if (value instanceof Integer knockbackStrength) {
-                    // 修复(X3)：去掉 teleport 抬升目标的实现（会造成瞬移闪烁/异步不安全），仅保留 setVelocity 击退
+                    // Fix (X3): Remove teleporting the target upward (it causes teleport flicker and is unsafe asynchronously); use setVelocity for knockback only
                     double knockbackStrengthDouble = (double) knockbackStrength;
                     Vector velocity = calculateKnockbackVelocity(livingTarget, knockbackStrengthDouble);
 
-                    // 检查 Vector 是否合法
+                    // Check whether the Vector is valid
                     if (isValidVector(velocity)) {
                         livingTarget.setVelocity(velocity);
                     } else {
@@ -71,21 +71,21 @@ public class ItemEffectAttackListener implements Listener {
                 }
                 break;
 
-            case "MagicExpansion.Slowness": // 减速效果
+            case "MagicExpansion.Slowness": // Slowness effect
                 if (value instanceof Integer slownessLevel) {
 
-                    // 施加减速效果（减速等级为 50%，持续 2 秒）
-//                    SlownessManager.applySlowness(livingTarget, slownessLevel, slownessLevel); // 40 ticks = 2 秒
-                    livingTarget.addPotionEffect(new PotionEffect(PotionEffectType.SLOW, slownessLevel*3, slownessLevel));
+                    // Apply slowness (50% slow, lasts 2 seconds)
+//                    SlownessManager.applySlowness(livingTarget, slownessLevel, slownessLevel); // 40 ticks = 2 seconds
+                    livingTarget.addPotionEffect(new PotionEffect(PotionEffectType.SLOWNESS, slownessLevel*3, slownessLevel));
 
                 }
                 break;
 
-            case "MagicExpansion.Attraction": // 吸引效果
+            case "MagicExpansion.Attraction": // Attraction effect
                 if (value instanceof Boolean attractionEnabled && attractionEnabled) {
                     Location targetLoc = target.getLocation();
                     Location playerLoc = player.getLocation();
-                    // 修复(X2)：距离 < 0.5 时跳过 —— 过近距离下 normalize 归一化会产生 NaN 速度，导致客户端异常踢人
+                    // Fix (X2): Skip when distance < 0.5. Calling normalize when too close can create NaN velocity and kick the client
                     if (targetLoc.distance(playerLoc) < 0.5) {
                         break;
                     }
@@ -93,19 +93,19 @@ public class ItemEffectAttackListener implements Listener {
                 }
                 break;
 
-            case "MagicExpansion.FireDamage": // 火焰伤害
+            case "MagicExpansion.FireDamage": // Fire damage
                 if (value instanceof Integer fireTicks) {
-                    target.setFireTicks(fireTicks * 40 ); // 每秒 20 ticks  2*level seconds
+                    target.setFireTicks(fireTicks * 40 ); // 20 ticks per second; 2 * level seconds
                 }
                 break;
 
-            case "MagicExpansion.Lightning": // 雷击效果
+            case "MagicExpansion.Lightning": // Lightning effect
                 if (value instanceof Boolean lightningEnabled && lightningEnabled) {
                     target.getWorld().strikeLightning(target.getLocation());
                 }
                 break;
 
-            case "MagicExpansion.AttackTpToTp": // 换位效果
+            case "MagicExpansion.AttackTpToTp": // Swap positions
                 if (value instanceof Boolean AttackTpToTp && AttackTpToTp) {
                     swapPositionsAndDirections(target, player);
                 }
@@ -116,10 +116,10 @@ public class ItemEffectAttackListener implements Listener {
 
     private Vector calculateKnockbackVelocity(LivingEntity target, double strength) {
         Random random = new Random();
-        // 示例：根据目标的方向计算击退速度
+        // Example: Calculate knockback velocity based on the target direction
         Vector direction = target.getLocation().getDirection();
         double speedX = direction.getX() * strength * 0.1;
-        double speedY = Math.max(0.1, strength*1.2); // 确保 Y 分量非负
+        double speedY = Math.max(0.1, strength*1.2); // Make sure the Y value is not negative
         double speedZ = direction.getZ() * strength * 0.1;
 
         return new Vector(speedX, speedY, speedZ);
@@ -131,47 +131,47 @@ public class ItemEffectAttackListener implements Listener {
 
 
     private void swapPositionsAndDirections(Entity target, Player player) {
-        // 获取玩家和目标的位置
+        // Get the player and target locations
         Location playerLocation = player.getLocation();
         Location targetLocation = target.getLocation();
 
-        // 保存玩家和目标的朝向（Yaw 和 Pitch）
+        // Save the player and target directions (yaw and pitch)
         float playerYaw = playerLocation.getYaw();
         float playerPitch = playerLocation.getPitch();
         float targetYaw = targetLocation.getYaw();
         float targetPitch = targetLocation.getPitch();
 
-        // 创建新的位置对象以避免引用问题
+        // Create new Location objects to avoid reference issues
         Location newPlayerLocation = targetLocation.clone();
         Location newTargetLocation = playerLocation.clone();
 
-        // 设置新的朝向
+        // Set the new directions
         newPlayerLocation.setYaw(targetYaw);
         newPlayerLocation.setPitch(targetPitch);
         newTargetLocation.setYaw(playerYaw);
         newTargetLocation.setPitch(playerPitch);
 
-        // 将玩家传送到目标的位置，并更新朝向
+        // Teleport the player to the target location and update the direction
         player.teleport(newPlayerLocation);
 
-        // 将目标传送到玩家的位置，并更新朝向
+        // Teleport the target to the player location and update the direction
         if (target instanceof LivingEntity) {
             ((LivingEntity) target).teleport(newTargetLocation);
         } else {
-            // 如果目标不是 LivingEntity，则仅传送位置
+            // If the target is not a LivingEntity, only teleport its location
             target.teleport(newTargetLocation);
         }
 
-        // 发送消息给玩家
-        player.sendMessage("§b你与目标的位置已互换！");
+        // Send a message to the player
+        player.sendMessage("§bYou and the target have swapped places!");
     }
 
     /**
-     * 修复(X4)：玩家退出清理接口 —— 本类当前无 per-player 静态 Map，
-     * 保留空实现供 PlayerCleanupListener 统一调用（未来新增会话数据时在此清理）
+     * Fix (X4): Player quit cleanup hook — this class currently has no per-player static Map,
+     * Keep this empty method for PlayerCleanupListener to call; clean up session data here if any is added later
      */
     public static void cleanup(UUID uuid) {
-        // 当前无 per-player 状态需要清理
+        // There is no per-player state to clean up right now
     }
 
 }

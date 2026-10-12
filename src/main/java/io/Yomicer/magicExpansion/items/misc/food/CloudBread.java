@@ -1,4 +1,4 @@
-package io.Yomicer.magicExpansion.items.misc.food; // 请修改为你的包名
+package io.Yomicer.magicExpansion.items.misc.food; // Change this to your package name
 
 import io.github.thebusybiscuit.slimefun4.api.items.ItemGroup;
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItemStack;
@@ -25,49 +25,49 @@ public class CloudBread extends SimpleSlimefunItem<ItemConsumptionHandler> {
     @Override
     public @NotNull ItemConsumptionHandler getItemHandler() {
         return (e, p, i) -> {
-            // --- 1. 基础恢复 ---
-            p.setHealth(Math.min(p.getHealth() + 8.0, p.getMaxHealth())); // 回 4 颗心
+            // --- 1. Basic healing ---
+            p.setHealth(Math.min(p.getHealth() + 8.0, p.getMaxHealth())); // Heals 4 hearts
 
-            // --- 2. 核心效果：轻盈之身 (15 秒) ---
-            // 跳跃提升 III: 跳得非常高
-            p.addPotionEffect(new PotionEffect(PotionEffectType.JUMP, 300, 2));
-            // 缓降: 落得非常慢，且免疫跌落伤害
+            // --- 2. Main effect: Light Body (15 seconds) ---
+            // Jump Boost III: you jump really high
+            p.addPotionEffect(new PotionEffect(PotionEffectType.JUMP_BOOST, 300, 2));
+            // Slow Falling: you fall very slowly and take no fall damage
             p.addPotionEffect(new PotionEffect(PotionEffectType.SLOW_FALLING, 300, 0));
 
-            // --- 3. 特殊机制：即时抵消坠落动能 ---
-            // 如果玩家正在下坠 (垂直速度 < 0)，立即将其垂直速度设为 0，实现"空中急停"
+            // --- 3. Special trick: cancel falling speed right away ---
+            // If the player is falling (vertical speed < 0), set the vertical speed to 0 right away, so they "stop in mid-air"
             Vector velocity = p.getVelocity();
             if (velocity.getY() < -0.5) {
                 velocity.setY(0);
                 p.setVelocity(velocity);
-                // 生成一团云雾表示缓冲
+                // Spawn a puff of cloud to show the cushion
                 p.getWorld().spawnParticle(Particle.CLOUD, p.getLocation().add(0, 0.2, 0), 20, 0.3, 0.1, 0.3, 0.05);
-                p.sendMessage("§f☁ 云朵接住了你！");
+                p.sendMessage("§f☁ A cloud caught you!");
             }
 
-            // --- 4. 特效反馈 ---
+            // --- 4. Visual and sound feedback ---
             playCloudEffects(p);
 
-            p.sendMessage("§f§l☁ 你感觉身体变得轻飘飘的... (§7跳跃提升 & 缓降 15 秒§f)");
+            p.sendMessage("§f§l☁ You feel light as a feather... (§7Jump Boost & Slow Falling for 15 seconds§f)");
         };
     }
 
     /**
-     * 播放云朵特效
+     * Play the cloud effects
      */
     private void playCloudEffects(Player p) {
         Location loc = p.getLocation().add(0, 0.5, 0);
         World world = p.getWorld();
 
-        // 音效：轻柔的风声或气泡声
-        p.playSound(loc, Sound.BLOCK_SNOW_PLACE, 1.0f, 1.5f); // 类似踩雪/蓬松的声音
-        p.playSound(loc, Sound.ENTITY_GHAST_AMBIENT, 0.5f, 2.0f); // 空灵的背景音
+        // Sounds: a soft wind or bubble sound
+        p.playSound(loc, Sound.BLOCK_SNOW_PLACE, 1.0f, 1.5f); // Sounds like stepping on snow / something fluffy
+        p.playSound(loc, Sound.ENTITY_GHAST_AMBIENT, 0.5f, 2.0f); // A dreamy background sound
 
-        // 粒子：大量的云团 (CLOUD) 和 烟雾 (SMOKE_NORMAL)
+        // Particles: lots of clouds (CLOUD) and smoke (SMOKE_NORMAL)
         world.spawnParticle(Particle.CLOUD, loc, 30, 0.5, 0.2, 0.5, 0.05);
-        world.spawnParticle(Particle.SMOKE_NORMAL, loc, 15, 0.4, 0.1, 0.4, 0.02);
+        world.spawnParticle(Particle.SMOKE, loc, 15, 0.4, 0.1, 0.4, 0.02);
 
-        // 额外彩蛋：如果在空中食用，生成一圈白色的光环
+        // Little bonus: if you eat it in the air, a ring of white light shows up
         if (!p.isOnGround()) {
             for (int i = 0; i < 360; i += 30) {
                 double rad = Math.toRadians(i);

@@ -45,8 +45,8 @@ import static io.Yomicer.magicExpansion.utils.ColorGradient.getGradientNameVer2;
 
 public class MagicCrop extends SlimefunItem implements Listener, RecipeDisplayItem, Placeable {
 
-    // D 修复：本插件魔法作物可能占据的方块材质集合（种子物品 WHEAT_SEEDS/POTATO/CARROT/BEETROOT_SEEDS
-    // 播种后对应的小麦/土豆/胡萝卜/甜菜根方块），用于 BlockPhysicsEvent 的快速材质过滤
+    // D Fix: set of block materials this plugin's magic crops may take up (seed items WHEAT_SEEDS/POTATO/CARROT/BEETROOT_SEEDS
+    // block after planting: wheat/potato/carrot/beetroot), used for the quick material filter in BlockPhysicsEvent
     private static final Set<Material> CROP_BLOCK_MATERIALS = new HashSet<>(Arrays.asList(
             Material.WHEAT, Material.POTATOES, Material.CARROTS, Material.BEETROOTS
     ));
@@ -89,7 +89,7 @@ public class MagicCrop extends SlimefunItem implements Listener, RecipeDisplayIt
         Bukkit.getPluginManager().registerEvents(this, MagicExpansion.getInstance());
     }
     /**
-     * 处理玩家破坏 (正常收获)
+     * Handle player breaking (Normal harvest)
      */
     @Nonnull
     private BlockBreakHandler onBlockBreak() {
@@ -118,8 +118,8 @@ public class MagicCrop extends SlimefunItem implements Listener, RecipeDisplayIt
     @EventHandler(priority = EventPriority.HIGHEST, ignoreCancelled = true)
     public void onPhysics(BlockPhysicsEvent e) {
         Block block = e.getBlock();
-        // D 修复：BlockPhysicsEvent 触发极其频繁，先按作物方块材质快速过滤，
-        // 非作物方块直接返回，避免对每个物理更新都去查询 BlockStorage（高性能开销）
+        // D Fix: BlockPhysicsEvent fires very often, so filter by crop block material first,
+        // non-crop blocks return right away, so we don't query BlockStorage on every physics update (high performance cost)
         if (!CROP_BLOCK_MATERIALS.contains(block.getType())) {
             return;
         }
@@ -147,17 +147,17 @@ public class MagicCrop extends SlimefunItem implements Listener, RecipeDisplayIt
     }
 
     /**
-     * 统一的销毁与掉落逻辑
+     * Shared destroy and drop logic
      */
     private void handleDestruction(Block block, BlockPhysicsEvent e) {
         Location loc = block.getLocation();
 
-        // A. 清理 Slimefun 数据
+        // A. Clean up Slimefun data
         Slimefun.getDatabaseManager().getBlockDataController().removeBlock(loc.clone());
 
-        // B. 获取生长阶段以计算掉落
+        // B. Get the growth stage to work out the drops
         if (!(block.getBlockData() instanceof Ageable ageable)) {
-            // 如果数据损坏或不是作物，直接清空
+            // If the data is broken or it's not a crop, just clear it
             block.setType(Material.AIR, false);
             return;
         }
@@ -165,20 +165,20 @@ public class MagicCrop extends SlimefunItem implements Listener, RecipeDisplayIt
         int age = ageable.getAge();
         int maxAge = ageable.getMaximumAge();
 
-        // C. 取消原版物理行为 (防止原版把方块冲走但不掉落，或者变成其他方块)
+        // C. Cancel the vanilla physics behavior (Stops vanilla from washing the block away without dropping anything, or turning it into another block)
         e.setCancelled(true);
 
-        // D. 生成自定义掉落物
+        // D. Spawn custom drops
         Location dropLoc = loc.clone().add(0.5, 0.5, 0.5);
 
         if (age < maxAge) {
-            // 未成熟：只掉种子
+            // Not ripe: only drops seeds
             block.getWorld().dropItemNaturally(dropLoc, new CustomItemStack(seedDrop, 1));
         } else {
-            // 成熟：掉种子 + 果实
+            // Ripe: drops seed + fruits
             block.getWorld().dropItemNaturally(dropLoc, new CustomItemStack(seedDrop, 1));
 
-            // 生成指定数量的果实
+            // Spawn the given number of fruits
             int fruitCount = min + ThreadLocalRandom.current().nextInt(bound);
             for (int i = 0; i < fruitCount; i++) {
                 if (!weightedDrops.isEmpty()) {
@@ -190,12 +190,12 @@ public class MagicCrop extends SlimefunItem implements Listener, RecipeDisplayIt
             }
         }
 
-        // E. 移除方块 (使用 false 避免递归触发物理事件)
+        // E. Remove block (Use false to avoid triggering physics events again and again)
         block.setType(Material.AIR, false);
     }
 
     /**
-     * 玩家破坏时的掉落计算 (复用逻辑)
+     * Drop calculation when a player breaks it (reuse the logic)
      */
     private void handleCropDrops(Block block, List<ItemStack> drops) {
         if (!(block.getBlockData() instanceof Ageable ageable)) return;
@@ -219,8 +219,8 @@ public class MagicCrop extends SlimefunItem implements Listener, RecipeDisplayIt
     }
 
     /**
-     * 核心算法：根据权重随机获取物品
-     * 算法逻辑：生成一个 [1, totalWeight] 的随机数，遍历累加权重，落在哪个区间就返回哪个物品
+     * Core algorithm: pick a random item by weight
+     * Algorithm: generate a [1, totalWeight] random number, add up the weights one by one, and return the item whose range it lands in
      */
     private ItemStack getWeightedRandomItem() {
         if (totalWeight <= 0 || weightedDrops.isEmpty()) return null;
@@ -234,7 +234,7 @@ public class MagicCrop extends SlimefunItem implements Listener, RecipeDisplayIt
                 return drop.item;
             }
         }
-        // 理论上不会运行到这里，除非权重计算有误
+        // In theory it never gets here, unless the weight calculation is wrong
         return weightedDrops.get(weightedDrops.size() - 1).item;
     }
 
@@ -242,23 +242,23 @@ public class MagicCrop extends SlimefunItem implements Listener, RecipeDisplayIt
     public @NotNull List<ItemStack> getDisplayRecipes() {
         List<ItemStack> display = new ArrayList<>();
 
-        display.add(new CustomItemStack(Material.KNOWLEDGE_BOOK, getGradientNameVer2("丰收时刻 · 掉落一览➵"),
-                getGradientNameVer2("每次成熟后采集随机掉落" + minDisplay + "~" + maxDisplay + "个果实"),
-                getGradientNameVer2("植物特性：保底掉落一个本体植物种子"),
-                getGradientNameVer2("可使用骨粉对其进行催熟"),
-                getGradientNameVer2("不同果实拥有不同的掉落权重")));
+        display.add(new CustomItemStack(Material.KNOWLEDGE_BOOK, getGradientNameVer2("Harvest Time · Drop List➵"),
+                getGradientNameVer2("After each ripening, harvesting randomly drops " + minDisplay + "~" + maxDisplay + " fruits"),
+                getGradientNameVer2("Plant trait: always drops one seed of the plant itself"),
+                getGradientNameVer2("You can use bone meal to ripen it faster"),
+                getGradientNameVer2("Different fruits have different drop weights")));
 
-        display.add(new CustomItemStack(Material.KNOWLEDGE_BOOK, getGradientNameVer2("丰收时刻 · 掉落一览➵"),
-                getGradientNameVer2("每次成熟后采集随机掉落" + minDisplay + "~" + maxDisplay + "个果实"),
-                getGradientNameVer2("植物特性：保底掉落一个本体植物种子"),
-                getGradientNameVer2("可使用骨粉对其进行催熟"),
-                getGradientNameVer2("不同果实拥有不同的掉落权重")));
+        display.add(new CustomItemStack(Material.KNOWLEDGE_BOOK, getGradientNameVer2("Harvest Time · Drop List➵"),
+                getGradientNameVer2("After each ripening, harvesting randomly drops " + minDisplay + "~" + maxDisplay + " fruits"),
+                getGradientNameVer2("Plant trait: always drops one seed of the plant itself"),
+                getGradientNameVer2("You can use bone meal to ripen it faster"),
+                getGradientNameVer2("Different fruits have different drop weights")));
 
         if (weightedDrops.isEmpty()) {
             return display;
         }
 
-        // 计算并添加每个果实的详细概率
+        // Work out and add the detailed chance of each fruit
         for (WeightedDrop drop : weightedDrops) {
             if (drop.item != null) {
                 ItemStack displayFruit = drop.item.clone();
@@ -271,26 +271,26 @@ public class MagicCrop extends SlimefunItem implements Listener, RecipeDisplayIt
 
                     lore.add(getGradientNameVer2("------------------"));
 
-                    // 计算百分比：(权重 / 总权重) * 100
+                    // Work out the percentage: (weight / total weight) * 100
                     double probability = (double) drop.weight / totalWeight * 100.0;
                     String probString;
 
-                    // 格式化：如果是整数则显示整数，否则保留两位小数
+                    // Format: show a whole number if it's an integer, otherwise keep two decimal places
                     if (probability == (long) probability) {
                         probString = String.format("%d%%", (long) probability);
                     } else {
                         probString = String.format("%.2f%%", probability);
                     }
 
-                    lore.add(getGradientNameVer2("掉落权重: " + drop.weight));
-                    lore.add(getGradientNameVer2("掉落概率: " + probString));
+                    lore.add(getGradientNameVer2("Drop weight: " + drop.weight));
+                    lore.add(getGradientNameVer2("Drop chance: " + probString));
 
                     meta.setLore(lore);
                     displayFruit.setItemMeta(meta);
                 }
-                // 为了在 Slimefun 机器界面中正确显示，通常需要一个占位符或者配对项
-                // 这里简单起见，直接添加物品，Slimefun 会尝试配对，如果奇数个最后一个可能不显示配对
-                // 如果需要严格配对，可以在这里添加一个空气或者重复添加
+                // To show up properly in the Slimefun machine UI, you usually need a placeholder or a paired item
+                // To keep it simple, just add the item; Slimefun will try to pair them, and if there's an odd number the last one may not show its pair
+                // If you need strict pairing, you can add an air or add it again here
                 display.add(new CustomItemStack(Material.GRAY_STAINED_GLASS_PANE, " "));
                 display.add(displayFruit);
             }

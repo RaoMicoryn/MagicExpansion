@@ -22,7 +22,7 @@ public class InfiniteTool extends SlimefunItem {
         ItemMeta meta = itemStack.getItemMeta();
 
         if (meta != null) {
-            meta.setUnbreakable(true); // 设置为无法破坏
+            meta.setUnbreakable(true); // Make it unbreakable
             itemStack.setItemMeta(meta);
         }
     }

@@ -23,7 +23,7 @@ import static io.Yomicer.magicExpansion.utils.ColorGradient.getGradientName;
 
 public class ResourceRandomOneMachine extends AbstractElectricResourceMachine {
 
-    // L4 修复：共享 static final Random，避免每次随机都新建 Random 实例
+    // L4 fix: Share one static final Random so a new Random isn't created for every roll
     private static final Random RANDOM = new Random();
 
     private static final int[] BACKGROUND_SLOTS = new int[] { 0, 4, 8, 9, 13, 17 };
@@ -35,7 +35,7 @@ public class ResourceRandomOneMachine extends AbstractElectricResourceMachine {
     private static final ItemStack PROGRESS_ITEM = new ItemStack(Material.SOUL_LANTERN);
     private ItemStack material;
 
-    private static final ItemStack PROGRESS_STACK = new CustomItemStack(Material.SOUL_CAMPFIRE, getGradientName("信息"), getGradientName("类型：资源生成器"), getGradientName("所属附属：魔法"));
+    private static final ItemStack PROGRESS_STACK = new CustomItemStack(Material.SOUL_CAMPFIRE, getGradientName("Info"), getGradientName("Type: Resource Generator"), getGradientName("Addon: Magic"));
 
 
 
@@ -61,20 +61,20 @@ public class ResourceRandomOneMachine extends AbstractElectricResourceMachine {
     protected void addOutputs(BlockMenu menu, Block b, ItemStack[] outputs) {
         List<ItemStack> validOutputs = new ArrayList<>();
 
-        // 收集所有非 null 的输出
+        // Collect all non-null outputs
         for (ItemStack output : outputs) {
             if (output != null) {
                 validOutputs.add(output);
             }
         }
 
-        // 如果有有效的输出
+        // If there are any valid outputs
         if (!validOutputs.isEmpty()) {
-            // 如果只有一个，直接输出
+            // If there is only one, output it directly
             if (validOutputs.size() == 1) {
                 menu.pushItem(validOutputs.get(0).clone(), getOutputSlots());
             } else {
-                // 否则随机选一个（L4 修复：使用共享 static final Random，不再每次 new）
+                // Otherwise pick one at random (L4 fix: use the shared static final Random instead of creating a new one every time)
                 ItemStack randomOutput = validOutputs.get(RANDOM.nextInt(validOutputs.size()));
                 menu.pushItem(randomOutput.clone(), getOutputSlots());
             }
@@ -94,7 +94,7 @@ public class ResourceRandomOneMachine extends AbstractElectricResourceMachine {
 
         if (maxedSlots == getOutputSlots().length) { return null; }
 
-        // L1 修复：配方列表为空时直接返回 null，避免 recipes.get(0) 抛 IndexOutOfBoundsException
+        // L1 fix: If the recipe list is empty, return null right away so recipes.get(0) doesn't throw IndexOutOfBoundsException
         if (recipes == null || recipes.isEmpty()) { return null; }
 
         MachineRecipe recipe = recipes.get(0);
@@ -108,9 +108,9 @@ public class ResourceRandomOneMachine extends AbstractElectricResourceMachine {
 	public List<ItemStack> getDisplayRecipes() {
 	    List<ItemStack> display = new ArrayList<>();
 
-        display.add(new CustomItemStack(Material.KNOWLEDGE_BOOK, getGradientName("产物⇨"),getGradientName("生产效率⇨ ⚙ 每 " + getCraftSecond() + " s生成一次"),getGradientName("生产能耗⇨ ⚡ "+ getEnergyConsumption()*2 +" J/s"),getGradientName("随机产出一种产物")));
-        display.add(new CustomItemStack(Material.KNOWLEDGE_BOOK, getGradientName("产物⇨"),getGradientName("生产效率⇨ ⚙ 每 " + getCraftSecond() + " s生成一次"),getGradientName("生产能耗⇨ ⚡ "+ getEnergyConsumption()*2 +" J/s"),getGradientName("随机产出一种产物")));
-        // 将输出物品数组中的所有物品添加到显示列表
+        display.add(new CustomItemStack(Material.KNOWLEDGE_BOOK, getGradientName("Output⇨"),getGradientName("Speed⇨ ⚙ Once every " + getCraftSecond() + " s"),getGradientName("Energy use⇨ ⚡ "+ getEnergyConsumption()*2 +" J/s"),getGradientName("Produces one random item")));
+        display.add(new CustomItemStack(Material.KNOWLEDGE_BOOK, getGradientName("Output⇨"),getGradientName("Speed⇨ ⚙ Once every " + getCraftSecond() + " s"),getGradientName("Energy use⇨ ⚡ "+ getEnergyConsumption()*2 +" J/s"),getGradientName("Produces one random item")));
+        // Add every item in the output array to the display list
         display.addAll(Arrays.asList(getItemStackOutputs()));
 
         return display;
@@ -161,9 +161,9 @@ public class ResourceRandomOneMachine extends AbstractElectricResourceMachine {
 //        ItemStack item = PROGRESS_STACK.clone();
 //        ItemMeta meta = item.getItemMeta();
 //
-//        meta.setDisplayName(getGradientName("信息"));
+//        meta.setDisplayName(getGradientName("Info"));
 //        ArrayList lore = new ArrayList<>();
-//        lore.add(getGradientName("生产速率：" + getCraftSecondDisplay() + "秒"));
+//        lore.add(getGradientName("Production speed: " + getCraftSecondDisplay() + " sec"));
 //        item.setLore(lore);
 //        item.setItemMeta(meta);
 //

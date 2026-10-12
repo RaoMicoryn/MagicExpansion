@@ -36,57 +36,57 @@ public class EnchantmentEraser extends SimpleSlimefunItem<ItemUseHandler> {
             e.cancel();
             Player player = e.getPlayer();
 
-            // 检查触发事件的手
+            // Check which hand triggered the event
             if (e.getHand() != EquipmentSlot.HAND) {
-                // 如果是副手触发的，不处理（我们希望清除器在主手）
+                // Ignore offhand events (the eraser should be in the main hand)
                 return;
             }
 
-            // 获取主手物品（应该是清除器）
+            // Get the main-hand item (should be the eraser)
             ItemStack mainHandItem = player.getInventory().getItemInMainHand();
 
-            // 获取副手物品（需要清除的物品）
+            // Get the offhand item (the item to clean)
             ItemStack offhandItem = player.getInventory().getItemInOffHand();
 
-            // 检查副手是否有物品且不是空气
+            // Check whether the offhand has an item and it's not air
             if (offhandItem == null || offhandItem.getType() == Material.AIR) {
-                player.sendMessage(ColorGradient.getGradientNameVer2("请将需要清除赋能属性的物品放在副手！"));
+                player.sendMessage(ColorGradient.getGradientNameVer2("Put the item you want to remove enchantment attributes from in your offhand!"));
                 return;
             }
 
-            // 检查副手物品是否包含赋能属性
+            // Check whether the offhand item has enchantment attributes
             if (!hasEnchantmentAttributesExact(offhandItem)) {
-                player.sendMessage(ColorGradient.getGradientNameVer2("副手物品没有魔法赋能属性！"));
+                player.sendMessage(ColorGradient.getGradientNameVer2("The offhand item has no magic enchantment attributes!"));
                 return;
             }
 
-            // 清除副手物品的赋能属性
+            // Remove enchantment attributes from the offhand item
             ItemStack result = removeEnchantmentAttributes(offhandItem.clone());
 
             if (result != null) {
-                // 播放音效
+                // Play sound effects
                 player.playSound(player.getLocation(), Sound.BLOCK_ENCHANTMENT_TABLE_USE, 1.0f, 1.5f);
                 player.playSound(player.getLocation(), Sound.ITEM_BOOK_PAGE_TURN, 1.0f, 1.0f);
 
-                // 设置副手物品为清除后的物品
+                // Put the cleaned item back in the offhand
                 player.getInventory().setItemInOffHand(result);
 
-                // 消耗主手的清除器
+                // Use up one eraser from the main hand
                 if (mainHandItem.getAmount() > 1) {
                     mainHandItem.setAmount(mainHandItem.getAmount() - 1);
                 } else {
                     player.getInventory().setItemInMainHand(new ItemStack(Material.AIR));
                 }
 
-                player.sendMessage(ColorGradient.getGradientNameVer2("成功清除副手物品的魔法赋能属性！"));
+                player.sendMessage(ColorGradient.getGradientNameVer2("Removed the magic enchantment attributes from the offhand item!"));
             } else {
-                player.sendMessage(ColorGradient.getGradientNameVer2("清除失败，该物品可能没有魔法赋能属性！"));
+                player.sendMessage(ColorGradient.getGradientNameVer2("Couldn't remove them. This item may not have any magic enchantment attributes!"));
             }
         };
     }
 
     /**
-     * 清除物品上的所有魔法赋能属性
+     * Remove all magic enchantment attributes from an item
      */
     public static ItemStack removeEnchantmentAttributes(ItemStack item) {
         if (item == null || item.getType() == Material.AIR) {
@@ -102,7 +102,7 @@ public class EnchantmentEraser extends SimpleSlimefunItem<ItemUseHandler> {
         Set<String> attributesToRemove = new HashSet<>();
         boolean hasRemovedAttributes = false;
 
-        // 检查并移除所有魔法赋能属性
+        // Check for and remove all magic enchantment attributes
         for (String attribute : EnchantingTable.ATTRIBUTE_POOL.keySet()) {
             NamespacedKey key = new NamespacedKey("magicexpansion", attribute.toLowerCase().replace(".", "_"));
 
@@ -113,12 +113,12 @@ public class EnchantmentEraser extends SimpleSlimefunItem<ItemUseHandler> {
             }
         }
 
-        // 如果没有属性被移除，返回原物品
+        // Return the item if no attributes were removed
         if (!hasRemovedAttributes) {
             return item;
         }
 
-        // 更新Lore，移除整个魔法赋能段落
+        // Update the lore and remove the whole Magic Enchantments section
         removeEnchantmentLore(meta, attributesToRemove);
 
         item.setItemMeta(meta);
@@ -126,7 +126,7 @@ public class EnchantmentEraser extends SimpleSlimefunItem<ItemUseHandler> {
     }
 
     /**
-     * 从Lore中移除整个魔法赋能段落
+     * Remove the whole Magic Enchantments section from the lore
      */
     private static void removeEnchantmentLore(ItemMeta meta, Set<String> attributesToRemove) {
         List<String> lore = meta.getLore();
@@ -143,50 +143,50 @@ public class EnchantmentEraser extends SimpleSlimefunItem<ItemUseHandler> {
             String line = lore.get(i);
             String strippedLine = stripAllColorCodes(line);
 
-            // 检查是否是"魔法赋能："标题行
-            if (strippedLine.contains("魔法赋能") && (strippedLine.contains("：") || strippedLine.contains(":"))) {
-                // 如果已经在赋能段落中，先结束之前的段落
+            // Check whether this is the "Magic Enchantments:" heading
+            if (strippedLine.contains("Magic Enchantments") && (strippedLine.contains("：") || strippedLine.contains(":"))) {
+                // If we're already in an enchantment section, end the previous section first
                 if (inEnchantmentSection) {
-                    // 跳过之前段落的所有行
-//                    MagicExpansion.getInstance().getLogger().info("结束魔法赋能段落 " + sectionCount + "，从行 " + enchantmentSectionStart + " 到 " + (i-1));
+                    // Skip all lines in the previous section
+//                    MagicExpansion.getInstance().getLogger().info("Ended Magic Enchantments section " + sectionCount + ", from line " + enchantmentSectionStart + " to " + (i-1));
                 }
 
-                // 开始新的赋能段落
+                // Start a new enchantment section
                 inEnchantmentSection = true;
                 enchantmentSectionStart = i;
                 sectionCount++;
-//                MagicExpansion.getInstance().getLogger().info("发现魔法赋能段落 " + sectionCount + "，标题行: " + strippedLine);
-                continue; // 跳过标题行
+//                MagicExpansion.getInstance().getLogger().info("Found Magic Enchantments section " + sectionCount + ", heading: " + strippedLine);
+                continue; // Skip the heading line
             }
 
-            // 如果在赋能段落中
+            // If we're inside an enchantment section
             if (inEnchantmentSection) {
-                // 检查是否是属性行（去色后以"- "开头）
+                // Check whether this is an attribute line (starts with "- " after removing colors)
                 if (strippedLine.startsWith("- ")) {
-//                    MagicExpansion.getInstance().getLogger().info("跳过属性行: " + strippedLine);
-                    continue; // 跳过属性行
+//                    MagicExpansion.getInstance().getLogger().info("Skipped attribute line: " + strippedLine);
+                    continue; // Skip the attribute line
                 }
 
-                // 如果不是属性行，结束当前赋能段落
-//                MagicExpansion.getInstance().getLogger().info("结束魔法赋能段落 " + sectionCount + "，从行 " + enchantmentSectionStart + " 到 " + (i-1));
+                // If this isn't an attribute line, end the current enchantment section
+//                MagicExpansion.getInstance().getLogger().info("Ended Magic Enchantments section " + sectionCount + ", from line " + enchantmentSectionStart + " to " + (i-1));
                 inEnchantmentSection = false;
 
-                // 当前行不是属性行，添加到新Lore
+                // This isn't an attribute line, so add it to the new lore
                 newLore.add(line);
             } else {
-                // 不在赋能段落中，直接添加
+                // If we're not in an enchantment section, add it as-is
                 newLore.add(line);
             }
         }
 
-        // 如果最后还在赋能段落中，结束它
+        // End the enchantment section if we're still in one at the end
         if (inEnchantmentSection) {
-//            MagicExpansion.getInstance().getLogger().info("结束魔法赋能段落 " + sectionCount + "，从行 " + enchantmentSectionStart + " 到末尾");
+//            MagicExpansion.getInstance().getLogger().info("Ended Magic Enchantments section " + sectionCount + " at the end");
         }
 
-//        MagicExpansion.getInstance().getLogger().info("原始Lore行数: " + lore.size() + ", 新Lore行数: " + newLore.size());
+//        MagicExpansion.getInstance().getLogger().info("Original lore lines: " + lore.size() + ", new lore lines: " + newLore.size());
 
-        // 如果移除了整个赋能段落导致Lore为空，设为null
+        // Set the lore to null if removing the whole enchantment section leaves it empty
         if (newLore.isEmpty()) {
             meta.setLore(null);
         } else {
@@ -195,21 +195,21 @@ public class EnchantmentEraser extends SimpleSlimefunItem<ItemUseHandler> {
     }
 
     /**
-     * 去除字符串中的所有Minecraft颜色代码（包括十六进制颜色代码）
-     * 处理 §x§F§D§B§7§D§4 这种格式的渐变颜色代码
+     * Remove all Minecraft color codes from a string, including hex color codes
+     * Handle gradient color codes like §x§F§D§B§7§D§4
      */
     private static String stripAllColorCodes(String input) {
         if (input == null || input.isEmpty()) {
             return input;
         }
 
-        // 先处理十六进制颜色代码 §x§F§D§B§7§D§4 格式
-        // 这种格式是 §x 后面跟12个字符（6组 §+十六进制数字）
+        // Handle hex color codes like §x§F§D§B§7§D§4 first
+        // This format has 12 characters after §x (6 pairs of § plus a hex digit)
         String result = input;
 
-        // 循环移除所有颜色代码
+        // Loop through and remove all color codes
         while (result.contains("§")) {
-            // 找到第一个 §
+            // Find the first §
             int index = result.indexOf("§");
             if (index < 0 || index >= result.length() - 1) {
                 break;
@@ -217,12 +217,12 @@ public class EnchantmentEraser extends SimpleSlimefunItem<ItemUseHandler> {
 
             char nextChar = result.charAt(index + 1);
 
-            // 如果是 §x（十六进制颜色代码开头）
+            // If it's §x (the start of a hex color code)
             if (nextChar == 'x' || nextChar == 'X') {
-                // §x 后面应该有12个字符（6组 §+十六进制数字）
-                // 总共14个字符：§x + 6*(§+数字)
+                // There should be 12 characters after §x (6 pairs of § plus a hex digit)
+                // 14 characters total: §x + 6*(§+digit)
                 if (index + 13 < result.length()) {
-                    // 检查后面是否都是正确的格式
+                    // Check whether the following characters use the right format
                     boolean validHexColor = true;
                     for (int i = 0; i < 6; i++) {
                         if (result.charAt(index + 2 + i*2) != '§' ||
@@ -233,19 +233,19 @@ public class EnchantmentEraser extends SimpleSlimefunItem<ItemUseHandler> {
                     }
 
                     if (validHexColor) {
-                        // 移除这14个字符
+                        // Remove these 14 characters
                         result = result.substring(0, index) + result.substring(index + 14);
                         continue;
                     }
                 }
             }
 
-            // 处理普通颜色代码 §0-§9, §a-§f, §k-§o, §r
+            // Handle regular color codes §0-§9, §a-§f, §k-§o, §r
             if (isColorCodeChar(nextChar)) {
-                // 移除这两个字符
+                // Remove these two characters
                 result = result.substring(0, index) + result.substring(index + 2);
             } else {
-                // 如果不是颜色代码，只移除 § 字符本身
+                // If it's not a color code, remove only the § character
                 result = result.substring(0, index) + result.substring(index + 1);
             }
         }
@@ -254,14 +254,14 @@ public class EnchantmentEraser extends SimpleSlimefunItem<ItemUseHandler> {
     }
 
     /**
-     * 检查字符是否是有效的十六进制数字（0-9, a-f, A-F）
+     * Check whether a character is a valid hex digit (0-9, a-f, A-F)
      */
     private static boolean isHexDigit(char c) {
         return (c >= '0' && c <= '9') || (c >= 'a' && c <= 'f') || (c >= 'A' && c <= 'F');
     }
 
     /**
-     * 检查字符是否是颜色代码字符
+     * Check whether a character is a color code character
      */
     private static boolean isColorCodeChar(char c) {
         return (c >= '0' && c <= '9') || (c >= 'a' && c <= 'f') || (c >= 'k' && c <= 'o') ||
@@ -269,7 +269,7 @@ public class EnchantmentEraser extends SimpleSlimefunItem<ItemUseHandler> {
     }
 
     /**
-     * 检查物品是否包含魔法赋能属性
+     * Check whether the item has magic enchantment attributes
      */
     public static boolean hasEnchantmentAttributesExact(ItemStack item) {
         if (item == null || item.getType() == Material.AIR) {
@@ -281,7 +281,7 @@ public class EnchantmentEraser extends SimpleSlimefunItem<ItemUseHandler> {
             return false;
         }
 
-        // 首先检查PDC中是否有魔法赋能属性
+        // First, check whether the PDC has magic enchantment attributes
         PersistentDataContainer pdc = meta.getPersistentDataContainer();
         for (String attribute : EnchantingTable.ATTRIBUTE_POOL.keySet()) {
             NamespacedKey key = new NamespacedKey("magicexpansion", attribute.toLowerCase().replace(".", "_"));
@@ -291,12 +291,12 @@ public class EnchantmentEraser extends SimpleSlimefunItem<ItemUseHandler> {
             }
         }
 
-        // 如果PDC中没有，检查Lore中是否有"魔法赋能："字样
+        // If the PDC doesn't have them, check whether the lore contains "Magic Enchantments:"
         List<String> lore = meta.getLore();
         if (lore != null) {
             for (String line : lore) {
                 String strippedLine = stripAllColorCodes(line);
-                if (strippedLine.contains("魔法赋能") && (strippedLine.contains("：") || strippedLine.contains(":"))) {
+                if (strippedLine.contains("Magic Enchantments") && (strippedLine.contains("：") || strippedLine.contains(":"))) {
                     return true;
                 }
             }

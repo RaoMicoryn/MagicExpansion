@@ -33,7 +33,7 @@ public class IDCardMachineCN extends AbstractElectricRecipeMachine {
     private static final int[] BACKGROUND_SLOTS = new int[] { 4, 49 };
 
     private static final ItemStack PROGRESS_ITEM = new ItemStack(Material.SOUL_LANTERN);
-    private static final ItemStack PROGRESS_STACK = new CustomItemStack(Material.SOUL_CAMPFIRE, getGradientName("信息"), getGradientName("类型：加工机器"), getGradientName("所属附属：魔法"));
+    private static final ItemStack PROGRESS_STACK = new CustomItemStack(Material.SOUL_CAMPFIRE, getGradientName("Info"), getGradientName("Type: Processing Machine"), getGradientName("Addon: Magic"));
 
     public IDCardMachineCN(ItemGroup itemGroup, SlimefunItemStack item, RecipeType recipeType, ItemStack[] recipe) {
         super(itemGroup, item, recipeType, recipe);
@@ -52,33 +52,33 @@ public class IDCardMachineCN extends AbstractElectricRecipeMachine {
     @Override
 	public List<ItemStack> getDisplayRecipes() {
 		List<ItemStack> display = new ArrayList<>();
-        display.add(new CustomItemStack(Material.KNOWLEDGE_BOOK, getGradientName("材料⇨"),getGradientName("中间分割线用于分割各个配方")));
-        display.add(new CustomItemStack(Material.KNOWLEDGE_BOOK, getGradientName("产物⇨"),getGradientName("中间分割线用于分割各个配方")));
-        // 遍历所有配方并动态生成展示内容
+        display.add(new CustomItemStack(Material.KNOWLEDGE_BOOK, getGradientName("Materials⇨"),getGradientName("The middle divider separates the recipes")));
+        display.add(new CustomItemStack(Material.KNOWLEDGE_BOOK, getGradientName("Output⇨"),getGradientName("The middle divider separates the recipes")));
+        // Go through all recipes and build the display list
         for (MachineRecipe recipe : recipes) {
             ItemStack[] inputs = recipe.getInput();
             ItemStack[] outputs = recipe.getOutput();
             int productionTime = recipe.getTicks()/2;
 
-            int maxItems = Math.max(inputs.length, outputs.length); // 获取最大物品数量
+            int maxItems = Math.max(inputs.length, outputs.length); // Get the largest item count
             for (int i = 0; i < maxItems; i++) {
-                // 添加输入物品（带生产时间）
+                // Add the input item (with production time)
                 if (i < inputs.length) {
-                    display.add(addLore(inputs[i], "§7生产时间: §e" + productionTime + " 秒"));
+                    display.add(addLore(inputs[i], "§7Production time: §e" + productionTime + " sec"));
                 } else {
-                    display.add(new ItemStack(Material.AIR)); // 如果没有更多输入物品，添加 AIR
+                    display.add(new ItemStack(Material.AIR)); // If there are no more input items, add AIR
                 }
 
-                // 添加输出物品（带生产时间）
+                // Add the output item (with production time)
                 if (i < outputs.length) {
-                    display.add(addLore(outputs[i], "§7生产时间: §e" + productionTime + " 秒"));
+                    display.add(addLore(outputs[i], "§7Production time: §e" + productionTime + " sec"));
                 } else {
-                    display.add(new ItemStack(Material.AIR)); // 如果没有更多输出物品，添加 AIR
+                    display.add(new ItemStack(Material.AIR)); // If there are no more output items, add AIR
                 }
             }
-            display.add(new CustomItemStack(Material.PINK_STAINED_GLASS_PANE, getGradientName("<== 配方分割线 =>>"),getGradientName("<== 输入材料 =>>")));
-            display.add(new CustomItemStack(Material.PINK_STAINED_GLASS_PANE, getGradientName("<== 配方分割线 =>>"),getGradientName("<== 输出材料 =>>")));
-            // 遍历所有配方并动态生成展示内容
+            display.add(new CustomItemStack(Material.PINK_STAINED_GLASS_PANE, getGradientName("<== Recipe Divider =>>"),getGradientName("<== Input Materials =>>")));
+            display.add(new CustomItemStack(Material.PINK_STAINED_GLASS_PANE, getGradientName("<== Recipe Divider =>>"),getGradientName("<== Output Materials =>>")));
+            // Go through all recipes and build the display list
         }
         return display;
 	}
@@ -90,10 +90,10 @@ public class IDCardMachineCN extends AbstractElectricRecipeMachine {
 
 
     /**
-     * 为物品添加描述（lore）
+     * Adds a description (lore) to an item
      */
     private ItemStack addLore(ItemStack item, String loreText) {
-        ItemStack newItem = item.clone(); // 防止直接修改原始物品
+        ItemStack newItem = item.clone(); // Avoid changing the original item directly
         ItemMeta meta = newItem.getItemMeta();
         List<String> lore = meta.hasLore() ? new ArrayList<>(meta.getLore()) : new ArrayList<>();
         lore.add(loreText);
@@ -109,8 +109,8 @@ public class IDCardMachineCN extends AbstractElectricRecipeMachine {
 	protected void setupMenu(BlockMenuPreset preset) {
 
         preset.drawBackground(new CustomItemStack(Material.PINK_STAINED_GLASS_PANE," "), BACKGROUND_SLOTS);
-        preset.drawBackground(new CustomItemStack(Material.LIGHT_BLUE_STAINED_GLASS_PANE,getGradientName("←输入槽")), INPUT_BORDER_SLOTS);
-        preset.drawBackground(new CustomItemStack(Material.LIME_STAINED_GLASS_PANE,getGradientName("输出槽→")), OUTPUT_BORDER_SLOTS);
+        preset.drawBackground(new CustomItemStack(Material.LIGHT_BLUE_STAINED_GLASS_PANE,getGradientName("←Input Slot")), INPUT_BORDER_SLOTS);
+        preset.drawBackground(new CustomItemStack(Material.LIME_STAINED_GLASS_PANE,getGradientName("Output Slot→")), OUTPUT_BORDER_SLOTS);
     
         preset.addItem(getProgressSlot(), new CustomItemStack(Material.PINK_STAINED_GLASS_PANE, " "), ChestMenuUtils.getEmptyClickHandler());
 

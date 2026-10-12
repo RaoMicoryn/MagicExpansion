@@ -17,61 +17,61 @@ import java.util.concurrent.ConcurrentHashMap;
 
 public class SlownessManager {
 
-    // 用于存储减速修饰符 ID（B2: 已为 ConcurrentHashMap，线程安全）
+    // Stores slowness modifier IDs (B2: ConcurrentHashMap is thread-safe)
     private static final Map<UUID, UUID> playerSlownessModifierIds = new ConcurrentHashMap<>();
 
-    // B3: 延迟移除任务引用列表，用于统一取消，防止插件卸载/重载后任务悬挂
+    // B3: Keeps delayed removal tasks so they can all be canceled when the plugin unloads or reloads
     private static final List<BukkitTask> pendingRemoveTasks = new ArrayList<>();
 
     /**
-     * 施加减速效果
+     * Apply the slowness effect
      *
-     * @param livingTarget 目标生物
-     * @param slownessLevel 减速等级（0 ~ 1）
-     * @param durationTicks 持续时间（单位：tick，20 ticks = 1 秒）
+     * @param livingTarget the target entity
+     * @param slownessLevel the slowness level (0 to 1)
+     * @param durationTicks how long it lasts (in ticks; 20 ticks = 1 second)
      */
     public static void applySlowness(LivingEntity livingTarget, double slownessLevel, int durationTicks) {
         AttributeInstance movementSpeed = livingTarget.getAttribute(Attribute.GENERIC_MOVEMENT_SPEED);
         if (movementSpeed == null) {
-            // B2: 目标没有该属性时也移除登记，防止 Map 泄漏
+            // B2: Remove the saved entry if the target has no such attribute, to avoid a memory leak
             playerSlownessModifierIds.remove(livingTarget.getUniqueId());
             return;
         }
 
-        // B1: 只移除本插件登记的减速修饰符（不再清空其他来源如装备/药水的属性修饰符）
+        // B1: Only remove this plugin’s slowness modifier, not modifiers from gear, potions, or other sources
         removeAllModifiers(movementSpeed);
         UUID playerId = livingTarget.getUniqueId();
         UUID modifierId = playerSlownessModifierIds.get(playerId);
 
-        // 如果已经存在减速修饰符，则先移除
+        // Remove the old slowness modifier first, if there is one
         if (modifierId != null) {
             removeExistingModifier(movementSpeed, modifierId);
         }
 
-        // 计算减速比例
+        // Calculate the speed reduction
         double baseSpeed = movementSpeed.getBaseValue();
-        double reducedSpeed = baseSpeed * (1 - slownessLevel*0.0099); // 减速比例
+        double reducedSpeed = baseSpeed * (1 - slownessLevel*0.0099); // speed reduction
 
-        // 生成新的修饰符 ID
+        // Create a new modifier ID
         modifierId = UUID.randomUUID();
         playerSlownessModifierIds.put(playerId, modifierId);
 
-        // 创建减速修饰符
+        // Create the slowness modifier
         AttributeModifier modifier = new AttributeModifier(
                 modifierId,
                 "SlownessEffect",
-                reducedSpeed - baseSpeed, // 减速值
+                reducedSpeed - baseSpeed, // speed change
                 AttributeModifier.Operation.ADD_NUMBER
         );
 
-        // 添加减速修饰符
+        // Add the slowness modifier
         movementSpeed.addModifier(modifier);
 
-        // 调试信息
+        // Debug info
 //        Debug.logInfo("Slowness applied to " + livingTarget.getName());
 
-        // 延迟移除减速效果
-        // B3: 保存延迟任务引用，便于 cancelAll 统一取消；同时清理已结束的任务防止列表无限增长
+        // Remove the slowness effect later
+        // B3: Save the task so cancelAll can stop it, and remove finished tasks to keep the list from growing forever
         BukkitTask task = new BukkitRunnable() {
             @Override
             public void run() {
@@ -83,15 +83,15 @@ public class SlownessManager {
     }
 
     /**
-     * 移除减速效果
+     * Remove the slowness effect
      *
-     * @param livingTarget 目标生物
+     * @param livingTarget the target entity
      */
     public static void removeSlowness(LivingEntity livingTarget) {
         AttributeInstance movementSpeed = livingTarget.getAttribute(Attribute.GENERIC_MOVEMENT_SPEED);
         UUID playerId = livingTarget.getUniqueId();
         if (movementSpeed == null) {
-            // B2: 目标没有该属性时也移除登记，防止 Map 泄漏
+            // B2: Remove the saved entry if the target has no such attribute, to avoid a memory leak
             playerSlownessModifierIds.remove(playerId);
             return;
         }
@@ -102,16 +102,16 @@ public class SlownessManager {
             removeExistingModifier(movementSpeed, modifierId);
             playerSlownessModifierIds.remove(playerId);
 
-            // 调试信息
+            // Debug info
 //            Debug.logInfo("Slowness removed from " + livingTarget.getName());
         }
     }
 
     /**
-     * 移除指定的修饰符
+     * Remove a specific modifier
      *
-     * @param movementSpeed 属性实例
-     * @param modifierId    需要移除的修饰符 ID
+     * @param movementSpeed the movement speed attribute
+     * @param modifierId the ID of the modifier to remove
      */
     private static void removeExistingModifier(AttributeInstance movementSpeed, UUID modifierId) {
         Collection<AttributeModifier> modifiers = movementSpeed.getModifiers();
@@ -124,16 +124,16 @@ public class SlownessManager {
     }
 
     /**
-     * B1: 移除目标属性实例上由本插件添加的减速修饰符。
-     * 原实现会移除所有修饰符（误伤装备/药水/其他插件加成），
-     * 现改为遍历修饰符逐个比对名称，仅移除本插件登记的 "SlownessEffect"。
+     * B1: Remove the slowness modifier added by this plugin.
+     * The old code removed every modifier, including ones from gear, potions, and other plugins.
+     * Now it checks each modifier and only removes this plugin’s "SlownessEffect".
      *
-     * @param attributeInstance 属性实例
+     * @param attributeInstance the attribute instance
      */
     private static void removeAllModifiers(AttributeInstance attributeInstance) {
         Collection<AttributeModifier> modifiers = attributeInstance.getModifiers();
         for (AttributeModifier modifier : modifiers) {
-            // 仅移除本插件登记的减速修饰符（与 applySlowness 写入的名称一致）
+            // Only remove this plugin’s slowness modifier (the name used in applySlowness)
             if ("SlownessEffect".equals(modifier.getName())) {
                 attributeInstance.removeModifier(modifier);
             }
@@ -141,19 +141,19 @@ public class SlownessManager {
     }
 
     /**
-     * B3: 取消所有待执行的延迟移除任务（插件卸载/重载时调用，防止任务悬挂）
+     * B3: Cancel all pending delayed removal tasks when the plugin unloads or reloads.
      */
     public static void cancelAll() {
         for (BukkitTask task : pendingRemoveTasks) {
-            task.cancel(); // 逐个取消延迟任务
+            task.cancel(); // Cancel each delayed task
         }
-        pendingRemoveTasks.clear(); // 清空任务列表
+        pendingRemoveTasks.clear(); // Clear the task list
     }
 
     /**
-     * B4: 玩家退出时的会话数据清理（由 PlayerCleanupListener 统一调用）：
-     * 移除该玩家的减速修饰符登记，防止 Map 残留离线玩家数据造成内存泄漏。
-     * （实体身上的 modifier 随实体下线自动失效，此处只需清理登记表）
+     * B4: Clean up session data when a player leaves (called by PlayerCleanupListener):
+     * Remove this player’s saved slowness modifier ID so offline player data does not stay in the map and cause a memory leak.
+     * The modifier on the entity stops working when it goes offline, so only the saved entry needs to be cleared.
      */
     public static void cleanup(UUID uuid) {
         playerSlownessModifierIds.remove(uuid);

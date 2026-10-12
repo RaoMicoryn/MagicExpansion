@@ -45,12 +45,12 @@ public class SchrodingerFrame extends SimpleSlimefunItem<ItemUseHandler> impleme
                     Block block = e.getClickedBlock().get();
 
                     if (!block.getType().isSolid() || !block.getType().isOccluding()) {
-                        e.getPlayer().sendMessage("§c这个表面无法挂载物品！");
+                        e.getPlayer().sendMessage("§cItems can't be mounted on this surface!");
                         return;
                     }
                     Location spawnLocation = getFrameSpawnLocation(block, blockFace);
                     if (hasItemFrameAtLocation(spawnLocation, blockFace)) {
-                        e.getPlayer().sendMessage("§c这个位置已有物品展示框！");
+                        e.getPlayer().sendMessage("§cThere's already an item frame here!");
                         return;
                     }
 
@@ -87,11 +87,11 @@ public class SchrodingerFrame extends SimpleSlimefunItem<ItemUseHandler> impleme
             case UP:
                 return new Location(world, x + 0.5, y + 1, z + 0.5);
             case DOWN:
-                return new Location(world, x + 0.5, y - 0.0625, z + 0.5); // 微微突出下方
+                return new Location(world, x + 0.5, y - 0.0625, z + 0.5); // Sticks out a tiny bit below
             case NORTH:
-                return new Location(world, x + 0.5, y + 0.5, z - 0.0625); // z-方向突出一点点
+                return new Location(world, x + 0.5, y + 0.5, z - 0.0625); // z-direction sticks out a tiny bit
             case SOUTH:
-                return new Location(world, x + 0.5, y + 0.5, z + 1.0625); // z+方向突出
+                return new Location(world, x + 0.5, y + 0.5, z + 1.0625); // z+direction sticks out
             case EAST:
                 return new Location(world, x + 1.0625, y + 0.5, z + 0.5);
             case WEST:

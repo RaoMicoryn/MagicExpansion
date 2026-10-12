@@ -37,7 +37,7 @@ public class TemplateMachine extends AbstractElectricRecipeMachine {
     private static final int[] BACKGROUND_SLOTS = new int[] { 4, 49 };
 
     private static final ItemStack PROGRESS_ITEM = new ItemStack(Material.SOUL_LANTERN);
-    private static final ItemStack PROGRESS_STACK = new CustomItemStack(Material.SOUL_CAMPFIRE, getGradientName("信息"), getGradientName("类型：非完全消耗型机器"), getGradientName("所属附属：魔法"));
+    private static final ItemStack PROGRESS_STACK = new CustomItemStack(Material.SOUL_CAMPFIRE, getGradientName("Info"), getGradientName("Type: Doesn't use up everything"), getGradientName("Addon: Magic"));
 
     public TemplateMachine(ItemGroup itemGroup, SlimefunItemStack item, RecipeType recipeType, ItemStack[] recipe) {
         super(itemGroup, item, recipeType, recipe);
@@ -56,46 +56,46 @@ public class TemplateMachine extends AbstractElectricRecipeMachine {
     @Override
     public List<ItemStack> getDisplayRecipes() {
         List<ItemStack> display = new ArrayList<>();
-        display.add(new CustomItemStack(Material.KNOWLEDGE_BOOK, getGradientName("材料⇨"),getGradientName("中间分割线用于分割各个配方")));
-        display.add(new CustomItemStack(Material.KNOWLEDGE_BOOK, getGradientName("产物⇨"),getGradientName("中间分割线用于分割各个配方")));
-        // 遍历所有配方并动态生成展示内容
+        display.add(new CustomItemStack(Material.KNOWLEDGE_BOOK, getGradientName("Inputs ⇨"),getGradientName("The divider line separates the recipes")));
+        display.add(new CustomItemStack(Material.KNOWLEDGE_BOOK, getGradientName("Outputs ⇨"),getGradientName("The divider line separates the recipes")));
+        // Go through all recipes and build the display items
         for (MachineRecipe recipe : recipes) {
             ItemStack[] inputs = recipe.getInput();
             ItemStack[] outputs = recipe.getOutput();
             int productionTime = recipe.getTicks()/2;
 
-            int maxItems = Math.max(inputs.length, outputs.length); // 获取最大物品数量
+            int maxItems = Math.max(inputs.length, outputs.length); // Get the biggest item count
             for (int i = 0; i < maxItems; i++) {
-                // 添加输入物品
+                // Add input item
                 if (i < inputs.length) {
                     if (i == 0) {
-                        display.add(addLore(inputs[i], "§e§l☞此配方运行时不消耗该物品☜"));
+                        display.add(addLore(inputs[i], "§e§l☞This item is not used up in this recipe☜"));
                     } else {
-                        display.add(addLore(inputs[i], "§7生产时间: §e" + productionTime + " 秒"));
+                        display.add(addLore(inputs[i], "§7Time: §e" + productionTime + " sec"));
                     }
                 } else {
-                    display.add(new ItemStack(Material.AIR)); // 没有输入物品则填充 AIR
+                    display.add(new ItemStack(Material.AIR)); // No input item, so fill with AIR
                 }
 
-                // 添加输出物品（带生产时间）
+                // Add output item (with production time)
                 if (i < outputs.length) {
-                    display.add(addLore(outputs[i], "§7生产时间: §e" + productionTime + " 秒"));
+                    display.add(addLore(outputs[i], "§7Time: §e" + productionTime + " sec"));
                 } else {
-                    display.add(new ItemStack(Material.AIR)); // 如果没有更多输出物品，添加 AIR
+                    display.add(new ItemStack(Material.AIR)); // No more output items, so add AIR
                 }
             }
-            display.add(new CustomItemStack(Material.PINK_STAINED_GLASS_PANE, getGradientName("<== 配方分割线 =>>"),getGradientName("<== 输入材料 =>>")));
-            display.add(new CustomItemStack(Material.PINK_STAINED_GLASS_PANE, getGradientName("<== 配方分割线 =>>"),getGradientName("<== 输出材料 =>>")));
-            // 遍历所有配方并动态生成展示内容
+            display.add(new CustomItemStack(Material.PINK_STAINED_GLASS_PANE, getGradientName("<== Recipe Divider =>>"),getGradientName("<== Inputs =>>")));
+            display.add(new CustomItemStack(Material.PINK_STAINED_GLASS_PANE, getGradientName("<== Recipe Divider =>>"),getGradientName("<== Outputs =>>")));
+            // Go through all recipes and build the display items
         }
         return display;
     }
 
     /**
-     * 为物品添加描述（lore）
+     * Add lore to an item
      */
     private ItemStack addLore(ItemStack item, String loreText) {
-        ItemStack newItem = item.clone(); // 防止直接修改原始物品
+        ItemStack newItem = item.clone(); // Don't change the original item directly
         ItemMeta meta = newItem.getItemMeta();
         List<String> lore = meta.hasLore() ? new ArrayList<>(meta.getLore()) : new ArrayList<>();
         lore.add(loreText);
@@ -111,8 +111,8 @@ public class TemplateMachine extends AbstractElectricRecipeMachine {
     protected void setupMenu(BlockMenuPreset preset) {
 
         preset.drawBackground(new CustomItemStack(Material.PINK_STAINED_GLASS_PANE," "), BACKGROUND_SLOTS);
-        preset.drawBackground(new CustomItemStack(Material.LIGHT_BLUE_STAINED_GLASS_PANE,getGradientName("←输入槽")), INPUT_BORDER_SLOTS);
-        preset.drawBackground(new CustomItemStack(Material.LIME_STAINED_GLASS_PANE,getGradientName("输出槽→")), OUTPUT_BORDER_SLOTS);
+        preset.drawBackground(new CustomItemStack(Material.LIGHT_BLUE_STAINED_GLASS_PANE,getGradientName("←Input")), INPUT_BORDER_SLOTS);
+        preset.drawBackground(new CustomItemStack(Material.LIME_STAINED_GLASS_PANE,getGradientName("Output→")), OUTPUT_BORDER_SLOTS);
 
         preset.addItem(getProgressSlot(), new CustomItemStack(Material.PINK_STAINED_GLASS_PANE, " "), ChestMenuUtils.getEmptyClickHandler());
 
@@ -172,7 +172,7 @@ public class TemplateMachine extends AbstractElectricRecipeMachine {
                     return null;
                 }
 
-                // 找出第一个输入物品对应的槽位
+                // Find the slot that holds the first input item
                 ItemStack firstInput = recipe.getInput()[0];
                 Integer firstSlotToSkip = null;
                 for (Map.Entry<Integer, Integer> entry : found.entrySet()) {
@@ -185,7 +185,7 @@ public class TemplateMachine extends AbstractElectricRecipeMachine {
 
                 for (Map.Entry<Integer, Integer> entry : found.entrySet()) {
                     if (entry.getKey().equals(firstSlotToSkip)) {
-                        continue; // 不消耗第一个输入物品
+                        continue; // Don't use up the first input item
                     }
                     menu.consumeItem(entry.getKey(), entry.getValue());
                 }

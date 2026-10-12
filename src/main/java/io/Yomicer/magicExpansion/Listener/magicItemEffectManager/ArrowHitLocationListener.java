@@ -25,27 +25,27 @@ public class ArrowHitLocationListener implements Listener {
 
     @EventHandler
     public void onArrowHit(ProjectileHitEvent event) {
-        // 检查投射物是否是箭
+        // Check whether the projectile is an arrow
         if (event.getEntity().getType() == EntityType.ARROW) {
             Arrow arrow = (Arrow) event.getEntity();
 
-            // 获取射出箭的玩家（如果有的话）
+            // Get the player who shot the arrow, if any
             if (arrow.getShooter() instanceof Player player) {
 
-                // 修复(W1)：最小改动方案 —— 命中事件里校验主手仍为弓类物品（同类魔法弓）才生效，
-                // 防止射箭后切换手持导致读取到其他物品的属性串用（未采用箭PDC记录方案以减小改动）
+                // Fix (W1): Minimal change — on hit, check that the player is still holding a bow-type item (including the same kind of magic bow) before applying the effect,
+                // This prevents using another item’s attributes if the player switches items after shooting. The arrow PDC approach was not used to keep changes small.
                 ItemStack held = player.getInventory().getItemInMainHand();
                 if (held == null || (held.getType() != Material.BOW && held.getType() != Material.CROSSBOW)) {
                     return;
                 }
 
                 ItemStack item = held.clone();
-                // 获取物品的 PDC
+                // Get the item PDC
                 ItemMeta meta = item.getItemMeta();
                 if (meta != null && meta.getPersistentDataContainer() != null) {
                     PersistentDataContainer pdc = meta.getPersistentDataContainer();
 
-                    // 遍历所有属性
+                    // Loop through all attributes
                     for (String attribute : ATTRIBUTE_POOL.keySet()) {
                         NamespacedKey key = new NamespacedKey("magicexpansion", attribute.toLowerCase().replace(".", "_"));
 
@@ -66,38 +66,38 @@ public class ArrowHitLocationListener implements Listener {
 
     private void applyEffect(String attribute, Object value, ProjectileHitEvent event, Player player, Arrow arrow) {
         switch (attribute) {
-            case "MagicExpansion.ArrowTp": // 击退效果
+            case "MagicExpansion.ArrowTp": // Knockback effect
                 if (value instanceof Boolean ArrowTp && ArrowTp) {
 
-                    // 获取箭的落点位置
+                    // Get the arrow landing location
                     Location hitLocation = null;
 
-                    // 检查箭是否击中了方块
+                    // Check whether the arrow hit a block
                     if (event.getHitBlock() != null) {
                         hitLocation = event.getHitBlock().getLocation();
                     }
 
-                    // 检查箭是否击中了实体
+                    // Check whether the arrow hit an entity
                     if (event.getHitEntity() != null) {
                         hitLocation = event.getHitEntity().getLocation();
                     }
 
-                    // 如果既没有击中方块也没有击中实体，可能是射到了空气
+                    // If the arrow did not hit a block or an entity, it may have hit air
                     if (hitLocation == null) {
-                        hitLocation = arrow.getLocation(); // 获取箭的最终位置
+                        hitLocation = arrow.getLocation(); // Get the arrow’s final location
                     }
 
-                    // 将玩家传送到箭的落点位置
+                    // Teleport the player to where the arrow landed
                     if (hitLocation != null) {
                         hitLocation.add(0,1,0);
-                        // 修复(W2)：传送前校验落点上下两格均为空气才传送，不安全则取消并提示玩家（防卡方块/窒息）
+                        // Fix (W2): Before teleporting, check that the blocks at the destination and above it are both air. Cancel and notify the player if it is unsafe, to avoid getting stuck or suffocating.
                         Block feet = hitLocation.getBlock();
                         Block head = hitLocation.clone().add(0, 1, 0).getBlock();
                         if (feet.getType().isAir() && head.getType().isAir()) {
                             player.teleport(hitLocation);
-                            player.sendMessage("§b你传送到了箭的落点位置");
+                            player.sendMessage("§bYou have been teleported to where the arrow landed.");
                         } else {
-                            player.sendMessage("§c箭的落点不安全，传送已取消！");
+                            player.sendMessage("§cThe arrow landing spot is unsafe. Teleport cancelled!");
                         }
                     }
 

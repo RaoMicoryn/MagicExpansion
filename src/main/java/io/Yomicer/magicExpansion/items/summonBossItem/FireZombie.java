@@ -37,22 +37,22 @@ public class FireZombie extends SimpleSlimefunItem<ItemUseHandler> implements No
     @Override
     public ItemUseHandler getItemHandler() {
         return e -> {
-            // 阻止默认行为（放置方块或使用物品）
+            // Stop the default action (placing a block or using an item)
             e.setUseItem(Event.Result.DENY);
             e.setUseBlock(Event.Result.DENY);
             Player player = e.getPlayer();
             ItemStack itemInHand = player.getInventory().getItemInMainHand();
-            // 检查玩家手上是否有物品
+            // Check the item in the player's hand
             if (e.getHand()!= HAND) {
-                player.sendMessage(ColorGradient.getGradientName("请使用主手使用~"));
+                player.sendMessage(ColorGradient.getGradientName("Please use your main hand!"));
                 return;
             }
 
-            // 减少手上的物品数量
+            // Reduce the item stack in hand
             if (itemInHand.getAmount() > 1) {
                 itemInHand.setAmount(itemInHand.getAmount() - 1);
             } else {
-                player.getInventory().setItemInMainHand(null); // 如果数量为 1，则直接移除
+                player.getInventory().setItemInMainHand(null); // If there's only one left, remove it
             }
 
             spawnFireZombie(e);
@@ -64,104 +64,104 @@ public class FireZombie extends SimpleSlimefunItem<ItemUseHandler> implements No
     private void spawnFireZombie(PlayerRightClickEvent e) {
 
         Player player = e.getPlayer();
-        // 获取玩家位置并生成怪物
+        // Get the player's location and spawn the mob
         Location location = player.getLocation();
         LivingEntity mob = (LivingEntity) location.getWorld().spawnEntity(location, EntityType.ZOMBIE);
 
-        // 设置怪物名称
-        String zombieName = "§c§l烈焰僵尸";
+        // Set the mob's name
+        String zombieName = "§c§lFire Zombie";
         mob.setCustomName(zombieName);
         mob.setCustomNameVisible(true);
-        // 设置自定义元数据：用于标识这是烈火僵尸
+        // Set custom metadata to identify this as a Wind Elf
         mob.setMetadata("magicMobType", new FixedMetadataValue(MagicExpansion.getInstance(), "FireZombie"));
-        mob.setMetadata("isInvincibleFireZombie", new FixedMetadataValue(MagicExpansion.getInstance(), false)); // 设置无敌元数据
-        // 调整最大生命值并设置初始血量
-        double maxHealth = 200.0; // 自定义最大生命值
+        mob.setMetadata("isInvincibleFireZombie", new FixedMetadataValue(MagicExpansion.getInstance(), false)); // Set invincibility metadata
+        // Set the max health and starting health
+        double maxHealth = 200.0; // Custom max health
         mob.getAttribute(Attribute.GENERIC_MAX_HEALTH).setBaseValue(maxHealth);
-        mob.setHealth(maxHealth); // 设置初始血量为最大生命值
+        mob.setHealth(maxHealth); // Set health to the max
 
 
-        // 添加雷击效果
+        // Add a lightning effect
         worldStrikeLightningEffect(mob.getLocation());
 
 
 
-        // 定义技能列表
+        // Set up the skill list
         Runnable[] skills = {
                 () -> magicAttackSkill(mob, zombieName),
                 () -> redstoneParticleAttackSkill(mob),
                 () -> fireParticleAttackSkill(mob),
         };
 
-        // 每隔4-8秒随机释放一个技能
+        // Use a random skill every 4–8 seconds
         new BukkitRunnable() {
             @Override
             public void run() {
                 if (mob.isDead()) {
-                    this.cancel(); // 如果怪物死亡，停止任务
+                    this.cancel(); // Stop the task if the mob dies
                     return;
                 }
-                // 修改名称，添加“无法选中·”前缀
+                // Change the name and add an invincible prefix
                 mob.setMetadata("isInvincibleFireZombie", new FixedMetadataValue(MagicExpansion.getInstance(), true));
-                mob.setCustomName(zombieName + "§e§l[霸体]");
+                mob.setCustomName(zombieName + "§e§l[Invincible]");
                 mob.setCustomNameVisible(true);
 
                 new BukkitRunnable() {
                     @Override
                     public void run() {
-                        // 恢复原始名称
+                        // Restore the original name
                         mob.setMetadata("isInvincibleFireZombie", new FixedMetadataValue(MagicExpansion.getInstance(), false));
                         mob.setCustomName(zombieName);
                         mob.setCustomNameVisible(true);
                     }
-                }.runTaskLater(MagicExpansion.getInstance(), 50L); // 2.5秒后恢复
+                }.runTaskLater(MagicExpansion.getInstance(), 50L); // Restore after 2.5 seconds
 
-                // 随机选择一个技能释放
+                // Pick a random skill to use
                 int randomIndex = new Random().nextInt(skills.length);
                 skills[randomIndex].run();
             }
-        }.runTaskTimer(MagicExpansion.getInstance(), 0L, 80L + new Random().nextInt(81)); // 每4-8秒执行一次
+        }.runTaskTimer(MagicExpansion.getInstance(), 0L, 80L + new Random().nextInt(81)); // Run every 4–8 seconds
 
-        // 添加：每隔11秒进行一次传送
+        // Teleport every 11 seconds
         new BukkitRunnable() {
             @Override
             public void run() {
                 if (mob.isDead()) {
-                    this.cancel(); // 如果怪物死亡，停止任务
+                    this.cancel(); // Stop the task if the mob dies
                     return;
                 }
 
-                // 获取附近玩家
+                // Get nearby players
                 List<Player> nearbyPlayers = getNearbyPlayers(mob);
 
-                // 如果没有玩家在范围内，取消本次传送
+                // Skip this teleport if no players are nearby
                 if (nearbyPlayers.isEmpty()) {
                     return;
                 }
 
-                // 随机选择一个附近的玩家
+                // Pick a random nearby player
                 Player nearestPlayer = nearbyPlayers.get(new Random().nextInt(nearbyPlayers.size()));
 
-                // 获取玩家的位置并计算随机传送位置
+                // Get the player's location and pick a random teleport spot
                 Location playerLocation = nearestPlayer.getLocation();
                 Random random = new Random();
 
-                double x = playerLocation.getX() + (random.nextDouble() * 18 - 9); // 半径5范围内的随机X坐标
-                double y = playerLocation.getY() + random.nextDouble() * 4;       // Y坐标+0到+4
-                double z = playerLocation.getZ() + (random.nextDouble() * 18 - 9); // 半径5范围内的随机Z坐标
+                double x = playerLocation.getX() + (random.nextDouble() * 18 - 9); // Random X coordinate within a radius of 5
+                double y = playerLocation.getY() + random.nextDouble() * 4;       // Y coordinate from 0 to 4 blocks higher
+                double z = playerLocation.getZ() + (random.nextDouble() * 18 - 9); // Random Z coordinate within a radius of 5
 
                 Location newLocation = new Location(mob.getWorld(), x, y, z);
 
-                // 确保新位置是安全的（避免卡在方块中）
+                // Make sure the new spot is safe and not inside blocks
                 while (!newLocation.getBlock().getType().isAir() || !newLocation.clone().add(0, 1, 0).getBlock().getType().isAir()) {
-                    y += 1; // 向上移动直到找到空旷位置
+                    y += 1; // Move up until there's enough space
                     newLocation.setY(y);
                 }
 
-                // 传送怪物到新位置
+                // Teleport the mob to the new spot
                 mob.teleport(newLocation);
             }
-        }.runTaskTimer(MagicExpansion.getInstance(), 0L, 220L); // 每11秒执行一次
+        }.runTaskTimer(MagicExpansion.getInstance(), 0L, 220L); // Run every 11 seconds
 
 
 
@@ -170,9 +170,9 @@ public class FireZombie extends SimpleSlimefunItem<ItemUseHandler> implements No
 
 
 
-    // 生成雷击效果
+    // Create a lightning effect
     public void worldStrikeLightningEffect(Location location) {
-        location.getWorld().strikeLightningEffect(location); // 只有视觉效果，不会造成伤害
+        location.getWorld().strikeLightningEffect(location); // Visual effect only; it won't deal damage
     }
 
     private static List<Player> getNearbyPlayers(LivingEntity mob) {

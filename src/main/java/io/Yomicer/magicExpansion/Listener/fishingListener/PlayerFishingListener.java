@@ -43,7 +43,7 @@ import static io.Yomicer.magicExpansion.utils.MagicExpansionSlimefunItemCache.ge
 public class PlayerFishingListener implements Listener {
 
     Config cfg = new Config(MagicExpansion.getInstance());
-    // 所有鱼饵类型（优先级顺序）
+    // All bait types (in priority order)
     private static final List<Lure> LURES = List.of(
             new MoreLure(SlimefunItems.MAGIC_SUGAR,"magic_sugar"),
             new MoreLure(new ItemStack(Material.BREAD),"bread"),
@@ -51,25 +51,25 @@ public class PlayerFishingListener implements Listener {
             new MoreLure(MagicExpansionItems.FISH_LURE_DUST,"fishLureDust"),
             new MoreLure(MagicExpansionItems.FISH_LURE_ORE,"fishLureOre"),
             new MoreLure(MagicExpansionItems.FISH_LURE_ALLOY_INGOT,"fishLureAlloyIngot"),
-            new MoreLure(new CustomItemStack(new ItemStack(Material.PRISMARINE_SHARD),getGradientNameVer2("鱼饵·记忆碎片"),
-                    ("§f这个鱼饵可以钓到任何物品"),
-                    ("§f他存在于过去或者是未来"),
-                    ("§f你现在看到的他并非真正的他")),
+            new MoreLure(new CustomItemStack(new ItemStack(Material.PRISMARINE_SHARD),getGradientNameVer2("Memory Shard Bait"),
+                    ("§fThis bait can catch any item"),
+                    ("§fIt exists in the past and the future"),
+                    ("§fWhat you see now is not the real thing")),
                     "fishLureFinal"),
 
 
-            //新系列鱼饵  水云间
-            new MoreLure(MagicExpansionItems.FISH_LURE_BETWEEN_WATER_CLOUD_CUIXIA,"CuiXia"),// 淬霞
-            new MoreLure(MagicExpansionItems.FISH_LURE_BETWEEN_WATER_CLOUD_WEICHEN,"WeiChen"),// 微尘
-            new MoreLure(MagicExpansionItems.FISH_LURE_BETWEEN_WATER_CLOUD_RONGHUO,"RongHuo"),// 熔火
-            new MoreLure(MagicExpansionItems.FISH_LURE_BETWEEN_WATER_CLOUD_YUEJIN,"YueJin"),// 跃金
-            new MoreLure(MagicExpansionItems.FISH_LURE_BETWEEN_WATER_CLOUD_XINGHE,"XingHe")// 星核
+            //New Water Cloud bait series
+            new MoreLure(MagicExpansionItems.FISH_LURE_BETWEEN_WATER_CLOUD_CUIXIA,"CuiXia"),// CuiXia
+            new MoreLure(MagicExpansionItems.FISH_LURE_BETWEEN_WATER_CLOUD_WEICHEN,"WeiChen"),// WeiChen
+            new MoreLure(MagicExpansionItems.FISH_LURE_BETWEEN_WATER_CLOUD_RONGHUO,"RongHuo"),// RongHuo
+            new MoreLure(MagicExpansionItems.FISH_LURE_BETWEEN_WATER_CLOUD_YUEJIN,"YueJin"),// YueJin
+            new MoreLure(MagicExpansionItems.FISH_LURE_BETWEEN_WATER_CLOUD_XINGHE,"XingHe")// XingHe
 
     );
 
     private static final Set<ItemStack> RANDOM_FISH_TYPES = new HashSet<>();
 
-    // C5: 共享静态随机数实例，避免每次钓获都新建 Random
+    // C5: Use one shared random generator instead of making a new one for every catch
     private static final Random RANDOM = new Random();
 
     static {
@@ -103,7 +103,7 @@ public class PlayerFishingListener implements Listener {
 
         Set<String> supportedKeys = fishingRod.getLootTable().keySet();
 
-        // 饵料袋优先消耗, 其次副手/背包
+        // Use bait from the bait bag first, then the off-hand or inventory
         String bagKey = BaitBagMenu.tryConsumeFromBag(player, supportedKeys);
         Lure activeLure = null;
         if (bagKey != null) {
@@ -115,7 +115,7 @@ public class PlayerFishingListener implements Listener {
             ItemStack offHand = player.getInventory().getItemInOffHand();
             if (offHand != null) {
                 activeLure = LURES.stream()
-                        .filter(lure -> supportedKeys.contains(lure.getKey())) // 鱼竿支持
+                        .filter(lure -> supportedKeys.contains(lure.getKey())) // Supported by this rod
                         .filter(lure -> SlimefunUtils.isItemSimilar(offHand, lure.getItem(), true))
                         .findFirst()
                         .orElse(null);
@@ -131,18 +131,18 @@ public class PlayerFishingListener implements Listener {
         ItemStack drop = getSmartLoot(player, fishingRod, activeLure).clone();
         Boolean FinalLureEnable = cfg.getBoolean("Fish.FishingRod.FISHING_ROD_FINAL_STICK.Enable.FinalLure_Obtain");
         if (!FinalLureEnable) {
-            // C1: 记忆碎片判定物提取到循环外，避免每轮循环重复构建
-            ItemStack memoryShard = new CustomItemStack(new ItemStack(Material.PRISMARINE_SHARD), getGradientNameVer2("鱼饵·记忆碎片"),
-                    ("§f这个鱼饵可以钓到任何物品"),
-                    ("§f他存在于过去或者是未来"),
-                    ("§f你现在看到的他并非真正的他"));
-            // C1: 原来是死循环——若钓获池只有记忆碎片会无限重试；改为最多重试 16 次
+            // C1: Create the Memory Shard item outside the loop to avoid rebuilding it each time
+            ItemStack memoryShard = new CustomItemStack(new ItemStack(Material.PRISMARINE_SHARD), getGradientNameVer2("Memory Shard Bait"),
+                    ("§fThis bait can catch any item"),
+                    ("§fIt exists in the past and the future"),
+                    ("§fWhat you see now is not the real thing"));
+            // C1: This could loop forever if the pool only had Memory Shards, so retry up to 16 times
             int retries = 0;
             while (drop.isSimilar(memoryShard) && retries < 16) {
                 drop = getSmartLoot(player, fishingRod, activeLure).clone();
                 retries++;
             }
-            // C1: 仍命中记忆碎片则放弃本次特殊掉落，走默认钓获物
+            // C1: If it still gets a Memory Shard, use the default catch instead
             if (drop.isSimilar(memoryShard)) {
                 drop = getRandomItemFromWeightedPool(getDefaultLootPool());
             }
@@ -150,8 +150,8 @@ public class PlayerFishingListener implements Listener {
         if (activeLure != null && bagKey == null) {
             consumeLure(player, activeLure);
         } else if (activeLure != null) {
-            // 饵料袋消耗: 同样弹出消耗提示
-            player.sendMessage(ColorGradient.getRandomGradientName("钓鱼佬，你消耗了 1 个 ") + "§r"
+            // Show a message when bait is used from the bait bag too
+            player.sendMessage(ColorGradient.getRandomGradientName("You used 1 ") + "§r"
                     + ItemStackHelper.getDisplayName(activeLure.getItem()) + ColorGradient.getRandomGradientName(" ！"));
         }
         Entity hook = e.getHook();
@@ -176,7 +176,7 @@ public class PlayerFishingListener implements Listener {
         if (isTNTItem(drop)){
             TNTPrimed tnt = player.getWorld().spawn(hookLocation.add(0,2,0), TNTPrimed.class);
             tnt.setFuseTicks(600);
-            tnt.setCustomName(getGradientName("这是一颗威力非常大的TNT"));
+            tnt.setCustomName(getGradientName("This TNT packs a huge punch"));
             tnt.setCustomNameVisible(true);
             tnt.setFireTicks(400);
             Vector direction = player.getLocation().add(0,2,0).toVector()
@@ -186,7 +186,7 @@ public class PlayerFishingListener implements Listener {
             tnt.setVelocity(direction);
             tnt.setGlowing(true);
             String itemName = ItemStackHelper.getDisplayName(drop);
-            // C5: 改用共享随机数实例
+            // C5: Use the shared random generator
             String message = phrases.get(RANDOM.nextInt(phrases.size()));
             player.sendMessage((ColorGradient.getRandomGradientName(message))+" §r"+itemName+ColorGradient.getRandomGradientName(" ！！"));
             return;
@@ -203,26 +203,26 @@ public class PlayerFishingListener implements Listener {
                     .multiply(2.5);
             rewardItem.setVelocity(direction);
             rewardItem.setGlowing(true);
-            // C4: 物品名与提示消息移入判空块内，避免 drop 为 null 时 NPE
+            // C4: Move the item name and message inside the null check to avoid a null pointer error
             String itemName = ItemStackHelper.getDisplayName(drop);
-            String message = phrases.get(RANDOM.nextInt(phrases.size())); // C5: 改用共享随机数实例
+            String message = phrases.get(RANDOM.nextInt(phrases.size())); // C5: Use the shared random generator
             player.sendMessage((ColorGradient.getRandomGradientName(message))+" §r"+itemName+ColorGradient.getRandomGradientName(" ！！"));
         }
     }
 
     List<String> phrases = List.of(
-            "💨 水面泛起漩涡，你钓上了：",
-            "⚡ 鱼竿一颤，你拉到了：",
-            "❄ 寒光一闪，你捞起：",
-            "★ 欧气爆发！你钓到了：",
-            "☆ 闪光！你钓上了：",
-            "♪ 听，BGM响了：",
-            "♫ 恭喜！你钓到了：",
-            "∞ 钓鱼佬永不空军！：",
-            "✓ 成功捕获：",
-            "✗ 又是垃圾：",
-            "☀ 今日晴，适合欧：",
-            "☁ 今天非酋附体："
+            "💨 A swirl forms on the water. You caught: ",
+            "⚡ Your rod shakes. You reeled in: ",
+            "❄ A cold flash appears. You pulled up: ",
+            "★ Lucky catch! You got: ",
+            "☆ Something shiny! You caught: ",
+            "♪ The music starts playing: ",
+            "♫ Nice! You caught: ",
+            "∞ A fisher never comes back empty-handed: ",
+            "✓ Caught successfully: ",
+            "✗ Just junk again: ",
+            "☀ Sunny day, time to get lucky: ",
+            "☁ Bad luck is here today: "
     );
 
     private boolean isRandomFish(ItemStack item) {
@@ -241,7 +241,7 @@ public class PlayerFishingListener implements Listener {
 
     private boolean isTNTItem(ItemStack item) {
         if (item == null || item.getType().isAir()) return false;
-        return SlimefunUtils.isItemSimilar(item, new CustomItemStack(new ItemStack(Material.COCOA_BEANS),getGradientName("一个TNT")), true);
+        return SlimefunUtils.isItemSimilar(item, new CustomItemStack(new ItemStack(Material.COCOA_BEANS),getGradientName("TNT")), true);
     }
 
 
@@ -251,7 +251,7 @@ public class PlayerFishingListener implements Listener {
             ItemStack offHand = player.getInventory().getItemInOffHand();
             if (offHand != null) {
                 activeLure = LURES.stream()
-                        .filter(lure -> supportedKeys.contains(lure.getKey())) // 鱼竿支持
+                        .filter(lure -> supportedKeys.contains(lure.getKey())) // Supported by this rod
                         .filter(lure -> SlimefunUtils.isItemSimilar(offHand, lure.getItem(), true))
                         .findFirst()
                         .orElse(null);
@@ -269,13 +269,13 @@ public class PlayerFishingListener implements Listener {
     }
 
     private ItemStack getRandomItemFromWeightedPool(List<WeightedItem> pool) {
-        // C2: 池为空或总权重 <= 0 时回退默认掉落池，防止 nextInt(0) 抛异常
+        // C2: Use the default loot pool if the pool is empty or total weight is 0, so nextInt(0) does not crash
         if (pool == null || pool.isEmpty()) {
             return getRandomItemFromWeightedPool(getDefaultLootPool());
         }
         int total = pool.stream().mapToInt(WeightedItem::getWeight).sum();
         if (total <= 0) {
-            return getDefaultLootPool().get(0).getItem().clone(); // 回退默认掉落（鳕鱼）
+            return getDefaultLootPool().get(0).getItem().clone(); // Use the default drop (cod)
         }
         int r = RANDOM.nextInt(total), current = 0;
         for (WeightedItem w : pool) if ((current += w.getWeight()) > r) return w.getItem().clone();
@@ -299,10 +299,10 @@ public class PlayerFishingListener implements Listener {
                     SlimefunUtils.isItemSimilar(item, requiredItem, true)) {
                 if (item.getAmount() > 1) {
                     item.setAmount(item.getAmount() - 1);
-                    player.sendMessage((ColorGradient.getRandomGradientName("钓鱼佬，你消耗了 1 个"))+" §r"+ItemStackHelper.getDisplayName(item)+ ColorGradient.getRandomGradientName(" ！"));
+                    player.sendMessage((ColorGradient.getRandomGradientName("You used 1"))+" §r"+ItemStackHelper.getDisplayName(item)+ ColorGradient.getRandomGradientName(" ！"));
                 } else {
                     inv.setItem(i, null);
-                    player.sendMessage(ItemStackHelper.getDisplayName(item)+ColorGradient.getRandomGradientName(" 是刚才那一组的最后 1 个！"));
+                    player.sendMessage(ItemStackHelper.getDisplayName(item)+ColorGradient.getRandomGradientName(" was the last one in that stack!"));
                 }
                 player.updateInventory();
                 break;

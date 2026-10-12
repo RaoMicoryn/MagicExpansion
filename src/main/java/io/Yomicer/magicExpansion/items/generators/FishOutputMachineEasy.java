@@ -56,7 +56,7 @@ public class FishOutputMachineEasy extends MenuBlock implements EnergyNetCompone
     private static final NamespacedKey KEY_Z = new NamespacedKey(MagicExpansion.getInstance(), "touch_z");
     private static final NamespacedKey KEY_WORLD = new NamespacedKey(MagicExpansion.getInstance(), "touch_world");
 
-//    // 1. 定义所有鱼类型与输出物品的映射（集中管理，易扩展）
+//    // 1. Map every fish type to its output item (one place, easy to add more)
 //    private final Map<String, ItemStack> FISH_OUTPUT_MAP = new LinkedHashMap<>() {{
 //        put("CopperDustFish",     SlimefunItems.COPPER_DUST);
 //        put("GoldDustFish",       SlimefunItems.GOLD_DUST);
@@ -67,105 +67,105 @@ public class FishOutputMachineEasy extends MenuBlock implements EnergyNetCompone
 //        put("LeadDustFish",       SlimefunItems.LEAD_DUST);
 //        put("ZincDustFish",       SlimefunItems.ZINC_DUST);
 //        put("MagnesiumDustFish",  SlimefunItems.MAGNESIUM_DUST);
-//        // 🔶 煤晶鱼 → 煤炭
+//        // 🔶 Coal Crystal Fish → Coal
 //        put("CoalFish", new ItemStack(Material.COAL));
-//        // 💚 翠宝鱼 → 绿宝石
+//        // 💚 Emerald Fish → Emerald
 //        put("EmeraldFish", new ItemStack(Material.EMERALD));
-//        // 🔷 靛灵鱼 → 青金石
+//        // 🔷 Lapis Spirit Fish → Lapis Lazuli
 //        put("LapisFish", new ItemStack(Material.LAPIS_LAZULI));
-//        // 💎 晶耀鱼 → 钻石
+//        // 💎 Diamond Shine Fish → Diamond
 //        put("DiamondFish", new ItemStack(Material.DIAMOND));
-//        // 🔴 焰晶鱼 → 下界石英
+//        // 🔴 Flame Crystal Fish → Nether Quartz
 //        put("QuartzFish", new ItemStack(Material.QUARTZ));
-//        // 🟣 震颤鱼 → 紫水晶碎片
+//        // 🟣 Tremor Fish → Amethyst Shard
 //        put("AmethystFish", new ItemStack(Material.AMETHYST_SHARD));
-//        // ⚫ 铁核鱼 → 铁锭
+//        // ⚫ Iron Core Fish → Iron Ingot
 //        put("IronFish", new ItemStack(Material.IRON_INGOT));
-//        // 🟡 鎏核鱼 → 金锭
+//        // 🟡 Gold Core Fish → Gold Ingot
 //        put("GoldFish", new ItemStack(Material.GOLD_INGOT));
-//        // 🟠 铜脉鱼 → 铜锭
+//        // 🟠 Copper Vein Fish → Copper Ingot
 //        put("CopperFish", new ItemStack(Material.COPPER_INGOT));
-//        // 🟠 赤脉鱼 → 红石
+//        // 🟠 Red Vein Fish → Redstone
 //        put("RedstoneFish", new ItemStack(Material.REDSTONE));
-//        // ⚔️ 狱铸鱼 → 下界合金锭
+//        // ⚔️ Netherforged Fish → Netherite Ingot
 //        put("NetheriteFish", new ItemStack(Material.NETHERITE_INGOT));
-//        // ⚔️ 灯笼鱼 → 萤石粉
+//        // ⚔️ Lantern Fish → Glowstone Dust
 //        put("GlowStoneDustFish", new ItemStack(Material.GLOWSTONE_DUST));
-//        // ⚔️ 塑灵鱼 → 塑料纸
+//        // ⚔️ Plastic Spirit Fish → Plastic Sheet
 //        put("ShuLingYu", SlimefunItems.PLASTIC_SHEET);
-//        // ⚔️ 铀核鱼 → U
+//        // ⚔️ Uranium Core Fish → U
 //        put("UraniumFish", SlimefunItems.URANIUM);
-//        // ⚔️ 油岩鱼 → 原油桶
+//        // ⚔️ Oil Rock Fish → Crude Oil Bucket
 //        put("OilRockFish", SlimefunItems.OIL_BUCKET);
-//        // ⚔️ 泡晶鱼 → 起泡锭
+//        // ⚔️ Bubble Crystal Fish → Foam Ingot
 //        put("FoamCrystalFish", SlimefunItems.BLISTERING_INGOT_3);
-//        // ⚔️ 黑曜鱼 → 黑金刚石
+//        // ⚔️ Obsidian Fish → Black Diamond
 //        put("BlackDiamondFish", SlimefunItems.CARBONADO);
-//        // ⚔️ 灵咒鱼 → 附魔之瓶
+//        // ⚔️ Curse Spirit Fish → Bottle o' Enchanting
 //        put("EnchantedBottleFish", new ItemStack(Material.EXPERIENCE_BOTTLE));
-//        // ⚔️ 晶鳞鱼 → 硫酸盐
+//        // ⚔️ Crystal Scale Fish → Sulfate
 //        put("SulfateFish", SlimefunItems.SULFATE);
-//        // ⚔️ 酸晶鱼 → 硅
+//        // ⚔️ Acid Crystal Fish → Silicon
 //        put("SiliconFish", SlimefunItems.SILICON);
 //
-//        // 【合金灵鱼】用于生产：强化合金锭
+//        // [Alloy Spirit Fish]makes: Reinforced Alloy Ingot
 //        put("ReinforcedAlloyFish", SlimefunItems.REINFORCED_ALLOY_INGOT);
 //
-//        // 【硬化灵鱼】用于生产：硬化金属
+//        // [Hardened Spirit Fish]makes: Hardened Metal
 //        put("HardenedMetalFish", SlimefunItems.HARDENED_METAL_INGOT);
 //
-//        // 【大马士革灵鱼】用于生产：大马士革钢锭
+//        // [Damascus Spirit Fish]makes: Damascus Steel Ingot
 //        put("DamascusSoulFish", SlimefunItems.DAMASCUS_STEEL_INGOT);
 //
-//        // 【钢魄鱼】用于生产：钢锭
+//        // [Steel Soul Fish]makes: Steel Ingot
 //        put("SteelSoulFish", SlimefunItems.STEEL_INGOT);
 //
-//        // 【青铜古影鱼】用于生产：青铜锭
+//        // [Bronze Shadow Fish]makes: Bronze Ingot
 //        put("BronzeAncientFish", SlimefunItems.BRONZE_INGOT);
 //
-//        // 【硬铝天翔鱼】用于生产：硬铝锭
+//        // [Duralumin Sky Fish]makes: Duralumin Ingot
 //        put("HardlightAluFish", SlimefunItems.DURALUMIN_INGOT);
 //
-//        // 【银铜灵鱼】用于生产：银铜合金锭
+//        // [Silver Copper Spirit Fish]makes: Silver Copper Alloy Ingot
 //        put("SilverCopperFish", SlimefunItems.BILLON_INGOT);
 //
-//        // 【黄铜鸣音鱼】用于生产：黄铜锭
+//        // [Brass Chime Fish]makes: Brass Ingot
 //        put("BrassResonanceFish", SlimefunItems.BRASS_INGOT);
 //
-//        // 【铝黄铜灵鱼】用于生产：铝黄铜锭
+//        // [Aluminum Brass Spirit Fish]makes: Aluminum Brass Ingot
 //        put("AluminumBrassFish", SlimefunItems.ALUMINUM_BRASS_INGOT);
 //
-//        // 【铝青铜灵鱼】用于生产：铝青铜锭
+//        // [Aluminum Bronze Spirit Fish]makes: Aluminum Bronze Ingot
 //        put("AluminumBronzeFish", SlimefunItems.ALUMINUM_BRONZE_INGOT);
 //
-//        // 【科林斯青铜灵鱼】用于生产：科林斯青铜锭
+//        // [Corinthian Bronze Spirit Fish]makes: Corinthian Bronze Ingot
 //        put("CorinthianBronzeFish", SlimefunItems.CORINTHIAN_BRONZE_INGOT);
 //
-//        // 【焊锡灵鱼】用于生产：焊锡锭
+//        // [Solder Spirit Fish]makes: Solder Ingot
 //        put("SolderFlowFish", SlimefunItems.SOLDER_INGOT);
 //
-//        // 【镍魄鱼】用于生产：镍锭
+//        // [Nickel Soul Fish]makes: Nickel Ingot
 //        put("NickelSpiritFish", SlimefunItems.NICKEL_INGOT);
 //
-//        // 【钴焰鱼】用于生产：钴锭
+//        // [Cobalt Flame Fish]makes: Cobalt Ingot
 //        put("CobaltFlameFish", SlimefunItems.COBALT_INGOT);
 //
-//        // 【硅铁灵鱼】用于生产：硅铁
+//        // [Ferrosilicon Spirit Fish]makes: Ferrosilicon
 //        put("SiliconIronFish", SlimefunItems.FERROSILICON);
 //
-//        // 【碳魂鱼】用于生产：碳块
+//        // [Carbon Soul Fish]makes: Carbon Block
 //        put("CarbonSoulFish", SlimefunItems.CARBON_CHUNK);
 //
-//        // 【镀金灵鱼】用于生产：镀金铁锭
+//        // [Gilded Spirit Fish]makes: Gilded Iron Ingot
 //        put("GildedIronFish", SlimefunItems.GILDED_IRON);
 //
-//        // 【红石合金灵鱼】用于生产：红石合金锭
+//        // [Redstone Alloy Spirit Fish]makes: Redstone Alloy Ingot
 //        put("RedstoneAlloyFish", SlimefunItems.REDSTONE_ALLOY);
 //
-//        // 【镎影鱼】用于生产：镎
+//        // [Neptunium Shadow Fish]makes: Neptunium
 //        put("NeptuniumShadowFish", SlimefunItems.NEPTUNIUM);
 //
-//        // 【钚心鱼】用于生产：钚
+//        // [Plutonium Heart Fish]makes: Plutonium
 //        put("PlutoniumCoreFish", SlimefunItems.PLUTONIUM);
 //
 //
@@ -197,17 +197,17 @@ public class FishOutputMachineEasy extends MenuBlock implements EnergyNetCompone
     }
     protected void tick(Block block) {
         BlockMenu inv = StorageCacheUtils.getMenu(block.getLocation());
-        // A3 修复：区块加载时序窗口内可能取不到菜单（inv == null），入口统一判空返回，避免后续 getItemInSlot 抛 NPE
+        // A3 fix: the menu may not be available right when the chunk loads (inv == null), so check for null at the start and return, to avoid an NPE in getItemInSlot later
         if (inv == null) {
             return;
         }
-        // 电力标记：外部存储已扣电则输出槽回落时不再重复扣（防止存满回落时双重扣电）
+        // Power flag: if the external storage already took power, don't take it again when falling back to the output slot (stops double charging when storage is full)
         boolean chargeTaken = false;
 
         if (getCharge(block.getLocation()) < getEnergyConsumption()) {
             if(inv != null && inv.hasViewer()) {
-                inv.addItem(48, new CustomItemStack(doGlow(Material.LANTERN), getGradientName("⚡机器停止运行⚡"),
-                                getGradientName("请检查电力供应是否充足")),
+                inv.addItem(48, new CustomItemStack(doGlow(Material.LANTERN), getGradientName("⚡Machine stopped⚡"),
+                                getGradientName("Check that there's enough power")),
                         (player1, slot, item, action) -> false);
                 return;
             }
@@ -215,8 +215,8 @@ public class FishOutputMachineEasy extends MenuBlock implements EnergyNetCompone
         }
 //        if(inv != null && inv.hasViewer()) {
 //            if (getCharge(block.getLocation()) < getEnergyConsumption()) {
-//                inv.addItem(48, new CustomItemStack(doGlow(Material.LANTERN), getGradientName("⚡机器停止运行⚡"),
-//                                getGradientName("请检查电力供应是否充足")),
+//                inv.addItem(48, new CustomItemStack(doGlow(Material.LANTERN), getGradientName("⚡Machine stopped⚡"),
+//                                getGradientName("Check that there's enough power")),
 //                        (player1, slot, item, action) -> false);
 //                return;
 //            }
@@ -237,17 +237,17 @@ public class FishOutputMachineEasy extends MenuBlock implements EnergyNetCompone
         if(meta != null) {
 
             PersistentDataContainer pdc = meta.getPersistentDataContainer();
-            // 读取PDC数据
+            // Read PDC data
             String fishType = pdc.get(FishKeys.FISH_TYPE, PersistentDataType.STRING);
             Double weight = pdc.get(FishKeys.FISH_WEIGHT, PersistentDataType.DOUBLE);
             String weightRarityName = pdc.get(FishKeys.FISH_WEIGHT_RARITY, PersistentDataType.STRING);
 
-            // 基础校验
+            // Basic checks
             if (fishType == null || weight == null || weight == 0.0 || weightRarityName == null) {
                 return ;
             }
 
-            // 从映射中查找对应输出物品
+            // Look up the matching output item in the map
             ItemStack baseOutputOrigin = FISH_OUTPUT_MAP.get(fishType);
             if(baseOutputOrigin != null) {
                 ItemStack baseOutput = FISH_OUTPUT_MAP.get(fishType).clone();
@@ -257,11 +257,11 @@ public class FishOutputMachineEasy extends MenuBlock implements EnergyNetCompone
                     if (multiplier == 7) multiplier = 3;
                     if (multiplier == 15) multiplier = 8;
                     if (multiplier == 9999) multiplier = 888;
-                    long amount = (long) (weight * multiplier); // 使用 long 防止中间结果溢出
+                    long amount = (long) (weight * multiplier); // Use long so the middle result doesn't overflow
                     if (amount <= 0) {
                         amount = 1;
                     } else if (amount > Integer.MAX_VALUE) {
-                        // 原始全量产出；仅当超出 ItemStack 数量上限(int)时钳制，避免大数量构造异常(1.20.5+ 校验)
+                        // Full original output; only clamp when it goes over the ItemStack amount limit (int), to avoid errors when making huge stacks (1.20.5+ check)
                         amount = Integer.MAX_VALUE;
                     }
 
@@ -273,38 +273,38 @@ public class FishOutputMachineEasy extends MenuBlock implements EnergyNetCompone
 
         }
         if (inv != null && inv.hasViewer() && outItems != null) {
-            inv.addItem(48, new CustomItemStack(doGlow(Material.SOUL_LANTERN), getGradientName("⚡机器正在运行⚡"),
-                            getGradientName("本机器会源源不断地生产，即使输出槽已经填满了"),
-                            getGradientName("当前产出: ")+ ItemStackHelper.getDisplayName(outItems),
-                            getGradientName("当前效率: ")+ "§r" +getRandomGradientName(outItems.getAmount() + "个/tick")), // A1 修复：calculateRealAmount 返回值恒等于 getAmount()，删除冗余循环后直接取值
+            inv.addItem(48, new CustomItemStack(doGlow(Material.SOUL_LANTERN), getGradientName("⚡Machine running⚡"),
+                            getGradientName("This machine keeps producing nonstop, even if the output slot is full"),
+                            getGradientName("Current output: ")+ ItemStackHelper.getDisplayName(outItems),
+                            getGradientName("Current speed: ")+ "§r" +getRandomGradientName(outItems.getAmount() + " items/tick")), // A1 fix: calculateRealAmount always returns the same as getAmount(), so the extra loop is removed and the value is used directly
                     (player1, slot, item, action) -> false);
         } else {
             if (inv != null && inv.hasViewer()) {
-                inv.addItem(48, new CustomItemStack(doGlow(Material.LANTERN), getGradientName("⚡机器停止运行⚡"),
-                                getGradientName("请检查鱼种是否符合")),
+                inv.addItem(48, new CustomItemStack(doGlow(Material.LANTERN), getGradientName("⚡Machine stopped⚡"),
+                                getGradientName("Check that the fish type fits")),
                         (player1, slot, item, action) -> false);
             }
         }
 
         ItemStack VoidTouchSlotItem = inv.getItemInSlot(VoidTouchSlot);
         if (VoidTouchSlotItem != null && !VoidTouchSlotItem.getType().isAir() && outItems != null){
-            // 网络量子存储：直接存入量子存储物品（最大值/溢出保护封装在 NetworkStorage 中）
+            // Network quantum storage: store straight into the quantum storage item (max value / overflow protection is handled inside NetworkStorage)
             if (NetworkStorage.isQuantumStorageItem(VoidTouchSlotItem)) {
                 long leftover = NetworkStorage.store(VoidTouchSlotItem, outItems);
                 if (leftover < outItems.getAmount()) {
                     inv.replaceExistingItem(VoidTouchSlot, VoidTouchSlotItem);
                     removeCharge(block.getLocation(), getEnergyConsumption());
-                    chargeTaken = true; // 外部存储已扣电
+                    chargeTaken = true; // external storage already took power
                 }
-                // 外部存储已存满：把剩余(leftover)回落到输出槽输出，不再丢弃
+                // External storage is full: send the leftover to the output slot instead of throwing it away
                 if (leftover > 0) {
                     outItems.setAmount((int) Math.min(leftover, Integer.MAX_VALUE));
-                    // 不 return，继续走下方输出槽分支
+                    // Don't return, keep going to the output slot branch below
                 } else {
-                    return; // 全部存入，无剩余
+                    return; // All stored, nothing left
                 }
             }
-            // 虚空之触 → 魔法存储终端（原逻辑不变）
+            // Void Touch → Magic Storage Terminal (old logic unchanged)
             SlimefunItem VoidTouchItem = SlimefunItem.getByItem(VoidTouchSlotItem);
             if (VoidTouchItem != null && VoidTouchItem instanceof VoidTouch) {
                 ItemMeta VoidTouchMeta = VoidTouchSlotItem.getItemMeta();
@@ -333,18 +333,18 @@ public class FishOutputMachineEasy extends MenuBlock implements EnergyNetCompone
                                         return;
                                     }
                                 } else if (NetworkStorage.isQuantumStorageBlock(sfItem)) {
-                                    // 虚空之触绑定网络量子存储方块：直接存入该方块缓存
+                                    // Void Touch is bound to a network quantum storage block: store straight into that block's cache
                                     long leftover = NetworkStorage.storeToQuantumStorageBlock(targetLocation, outItems);
                                     if (leftover < outItems.getAmount()) {
                                         removeCharge(block.getLocation(), getEnergyConsumption());
-                                        chargeTaken = true; // 外部存储已扣电
+                                        chargeTaken = true; // external storage already took power
                                     }
-                                    // 外部存储已存满：剩余(leftover)回落到输出槽输出，不再丢弃
+                                    // External storage is full: send the leftover to the output slot instead of throwing it away
                                     if (leftover > 0) {
                                         outItems.setAmount((int) Math.min(leftover, Integer.MAX_VALUE));
-                                        // 不 return，继续走下方输出槽分支
+                                        // Don't return, keep going to the output slot branch below
                                     } else {
-                                        return; // 全部存入，无剩余
+                                        return; // All stored, nothing left
                                     }
                                 }
                             }
@@ -355,15 +355,15 @@ public class FishOutputMachineEasy extends MenuBlock implements EnergyNetCompone
         }
 
         if (outItems != null && inv != null) {
-            // 未连接量子存储：与输出格剩余容量对比，取较小值
+            // No quantum storage connected: compare with the output slots' free space and take the smaller one
             int fit = NetworkStorage.calculateFitAmount(inv, getOutputSlots(), outItems);
             if (outItems.getAmount() > fit) {
                 outItems.setAmount(fit);
             }
             if (outItems.getAmount() > 0) {
                 pushAllItems(inv,outItems, getOutputSlots());
-                // A4 修复：扣电放在确认入库之后（只有实际推入产物才消耗电力）
-                // 外部存储回落时已扣电，此处不再重复扣
+                // A4 fix: take power after confirming storage (power is only used when products are really pushed)
+                // Power was already taken when falling back from external storage, so don't take it again here
                 if (!chargeTaken) {
                     removeCharge(block.getLocation(), getEnergyConsumption());
                 }
@@ -387,21 +387,21 @@ public class FishOutputMachineEasy extends MenuBlock implements EnergyNetCompone
         return false;
     }
     /**
-     * 检查CargoCore中是否已经有该物品
+     * Check if the CargoCore already has this item
      */
     private boolean hasStoredItem(SlimefunBlockData data, ItemStack item) {
-        // A2 修复：改为调用 FishOutputMachine 中的共享缓存实现，避免每 tick 1145 次 Base64 反序列化
+        // A2 fix: now calls the shared cache version in FishOutputMachine, to avoid 1145 Base64 deserializations every tick
         return FishOutputMachine.hasStoredItemCached(data, item);
     }
     /**
-     * 只向已有物品的槽位存储（不创建新槽位）
+     * Only store into slots that already have the item (don't make new slots)
      */
     private void storeItemToExistingSlot(SlimefunBlockData data, ItemStack item) {
-        // A2 修复：改为调用 FishOutputMachine 中的共享缓存实现（写入后标 dirty，下一 tick 重建缓存）
+        // A2 fix: now calls the shared cache version in FishOutputMachine (marks dirty after writing, cache is rebuilt next tick)
         FishOutputMachine.storeItemToExistingSlotCached(data, item);
     }
 
-    // A5: 单 tick 输出上限（与 FishOutputMachine 保持一致，替代原先放行的 Integer.MAX_VALUE）
+    // A5: per-tick output cap (same as FishOutputMachine, replaces the old Integer.MAX_VALUE)
     private static final int MAX_OUTPUT_PER_TICK = FishOutputMachine.MAX_OUTPUT_PER_TICK;
 
     protected void pushAllItems(BlockMenu menu, ItemStack item, int[] outputSlots) {
@@ -409,22 +409,22 @@ public class FishOutputMachineEasy extends MenuBlock implements EnergyNetCompone
             return;
         }
 
-        int totalAmount = item.getAmount();  // 总共有多少个
-        int perPush = 64;                    // 每次塞64个
+        int totalAmount = item.getAmount();  // how many in total
+        int perPush = 64;                    // push 64 each time
 
-        // A4 修复：累加 pushItem 实际接受的量，输出槽满则停止本 tick 推送，
-        // 剩余产量由下个 tick 重新生成，不再静默销毁被拒绝的部分
+        // A4 fix: add up what pushItem really accepted, and stop pushing this tick if the output slots are full,
+        // the rest is made again next tick, so rejected items are no longer silently destroyed
         while (totalAmount > 0) {
             int batch = Math.min(totalAmount, perPush);
             ItemStack toPush = item.clone();
             toPush.setAmount(batch);
 
-            ItemStack leftover = menu.pushItem(toPush, outputSlots); // 返回未放下的部分
+            ItemStack leftover = menu.pushItem(toPush, outputSlots); // returns the part that didn't fit
             int accepted = batch - (leftover == null ? 0 : leftover.getAmount());
             totalAmount -= accepted;
 
             if (accepted <= 0) {
-                break; // 输出槽已满，剩余留待下 tick
+                break; // Output slots are full, the rest waits for next tick
             }
         }
     }
@@ -437,15 +437,15 @@ public class FishOutputMachineEasy extends MenuBlock implements EnergyNetCompone
 
     @Override
     protected void setup(BlockMenuPreset var1) {
-        var1.drawBackground(new CustomItemStack(Material.LIGHT_BLUE_STAINED_GLASS_PANE,getGradientName("请将鱼放入到该槽位中")),new int[] {
+        var1.drawBackground(new CustomItemStack(Material.LIGHT_BLUE_STAINED_GLASS_PANE,getGradientName("Put the fish in this slot")),new int[] {
 
                 40
         });
-        var1.drawBackground(new CustomItemStack(Material.CHAIN,getGradientName("虚空之触槽位")),new int[] {
+        var1.drawBackground(new CustomItemStack(Material.CHAIN,getGradientName("Void Touch slot")),new int[] {
 
                 41
         });
-        var1.drawBackground(new CustomItemStack(Material.END_CRYSTAL,getGradientName("机器工作状态")),new int[] {
+        var1.drawBackground(new CustomItemStack(Material.END_CRYSTAL,getGradientName("Machine status")),new int[] {
 
                 39, 48
         });
@@ -491,18 +491,18 @@ public class FishOutputMachineEasy extends MenuBlock implements EnergyNetCompone
     public @NotNull List<ItemStack> getDisplayRecipes() {
 
         List<ItemStack> display = new ArrayList<>();
-        display.add(new CustomItemStack(Material.KNOWLEDGE_BOOK, getGradientName("使用说明⇩"),getGradientName("请务必仔细阅读")));
-        display.add(new CustomItemStack(Material.BOOK, getGradientName("使用方法："),getGradientName("将魔法鱼放入到机器槽位中可进行生产")
-                ,getGradientName("鱼的种类会影响最终产物种类")
-                ,getGradientName("鱼的重量会影响最终产物数量")));
-        display.add(new CustomItemStack(Material.KNOWLEDGE_BOOK, getGradientName("使用说明⇩"),getGradientName("请务必仔细阅读")));
-        display.add(new CustomItemStack(Material.BOOK, getGradientName("产出量算法："),getGradientName("每个机器只能放置一条魔法鱼")
-                ,getGradientName("产出量 = 重量(向下取整) * 魔法鱼稀有程度")
-                ,getGradientName("普通/稀有/超级稀有/鱼皇 : 1/4/8/888")));
-        display.add(new CustomItemStack(CustomHead.getHead("26314d31b095e4d421760497be6a156f459d8c9957b7e6b1c12deb4e47860d71"),getGradientName("支持的鱼类 ⇨")));
-        display.add(new CustomItemStack(CustomHead.getHead("26314d31b095e4d421760497be6a156f459d8c9957b7e6b1c12deb4e47860d71"),getGradientName("产出的产物 ⇨")));
+        display.add(new CustomItemStack(Material.KNOWLEDGE_BOOK, getGradientName("How to use⇩"),getGradientName("Please read carefully")));
+        display.add(new CustomItemStack(Material.BOOK, getGradientName("How to use:"),getGradientName("Put a magic fish in the machine slot to start producing")
+                ,getGradientName("The fish type decides what it produces")
+                ,getGradientName("The fish weight decides how much it produces")));
+        display.add(new CustomItemStack(Material.KNOWLEDGE_BOOK, getGradientName("How to use⇩"),getGradientName("Please read carefully")));
+        display.add(new CustomItemStack(Material.BOOK, getGradientName("Output formula:"),getGradientName("Each machine takes only one magic fish")
+                ,getGradientName("Output = weight (rounded down) * magic fish rarity")
+                ,getGradientName("Common/Rare/Super Rare/Fish King : 1/4/8/888")));
+        display.add(new CustomItemStack(CustomHead.getHead("26314d31b095e4d421760497be6a156f459d8c9957b7e6b1c12deb4e47860d71"),getGradientName("Supported fish ⇨")));
+        display.add(new CustomItemStack(CustomHead.getHead("26314d31b095e4d421760497be6a156f459d8c9957b7e6b1c12deb4e47860d71"),getGradientName("Products ⇨")));
 
-//        display.add(new CustomItemStack(Material.PUFFERFISH_BUCKET,CopperDustFish.getDisplayName(),getGradientName("每秒产出个数："+ " 重量 * 魔法鱼稀有程度 ")));
+//        display.add(new CustomItemStack(Material.PUFFERFISH_BUCKET,CopperDustFish.getDisplayName(),getGradientName("Items per second: "+ " weight * magic fish rarity ")));
 //        display.add(outputCopperDust);
 
 
@@ -510,24 +510,24 @@ public class FishOutputMachineEasy extends MenuBlock implements EnergyNetCompone
             String fishTypeName = entry.getKey();
             Fish fish = Fish.fromString(fishTypeName);
             if (fish == null) {
-                continue; // 跳过无效类型
+                continue; // Skip invalid types
             }
             ItemStack output = entry.getValue();
-            // 根据稀有度选择不同的鱼桶材质
+            // Pick a different fish bucket by rarity
             Material displayMaterial = switch (fish.getRarity()) {
-                case COMMON -> Material.COD_BUCKET;           // 普通 - 鳕鱼桶
-                case UNCOMMON -> Material.SALMON_BUCKET;     // 不常见 - 鲑鱼桶
-                case RARE -> Material.PUFFERFISH_BUCKET;  // 稀有 - 河豚
-                case EPIC -> Material.TROPICAL_FISH_BUCKET;     // 史诗 - 热带鱼
-                case LEGENDARY -> Material.AXOLOTL_BUCKET;   // 传说 - 用美西螈
-                case MYTHICAL -> Material.NAUTILUS_SHELL;       // 神话 - 下界之星（最稀有）
+                case COMMON -> Material.COD_BUCKET;           // Common - cod bucket
+                case UNCOMMON -> Material.SALMON_BUCKET;     // Uncommon - salmon bucket
+                case RARE -> Material.PUFFERFISH_BUCKET;  // Rare - pufferfish
+                case EPIC -> Material.TROPICAL_FISH_BUCKET;     // Epic - tropical fish
+                case LEGENDARY -> Material.AXOLOTL_BUCKET;   // Legendary - axolotl
+                case MYTHICAL -> Material.NAUTILUS_SHELL;       // Mythical - nether star (rarest)
                 default -> Material.COD_BUCKET;
             };
 
             display.add(new CustomItemStack(
                     displayMaterial,
                     fish.getDisplayName(),
-                    getGradientName("每秒产出个数：重量 × 魔法鱼体重稀有程度")
+                    getGradientName("Items per second: weight × magic fish weight rarity")
             ));
             display.add(output);
         }
@@ -537,9 +537,8 @@ public class FishOutputMachineEasy extends MenuBlock implements EnergyNetCompone
 
 
     private static void addDisplay(List<ItemStack> l,Material m, String s, ItemStack i){
-        l.add(new CustomItemStack(m, s, getGradientName("每秒产出个数：" + " 重量 * 魔法鱼稀有程度 ")));
+        l.add(new CustomItemStack(m, s, getGradientName("Items per second: " + " weight * magic fish rarity ")));
         l.add(i);
     }
 
 }
-

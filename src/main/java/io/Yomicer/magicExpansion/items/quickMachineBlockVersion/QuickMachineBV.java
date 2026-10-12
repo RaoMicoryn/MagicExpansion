@@ -49,7 +49,7 @@ public class QuickMachineBV extends SlimefunItem implements EnergyNetComponent {
     private final int[] iBorder = {46,47,48,50,51,52};
     private final List<Map<String, Integer>> receivedMBRecipes;
     private final RecipeType recipeTypeQuick;
-    // G1: 输入槽点击刷新去抖标记——同一 tick 内多次点击只调度一次刷新，回调中重置
+    // G1: Debounce input-slot refreshes: multiple clicks in one tick schedule only one refresh, then reset the flag in the callback
     private boolean refreshPending = false;
 
     public QuickMachineBV(ItemGroup category, SlimefunItemStack item, RecipeType recipeType, ItemStack[] recipe, String displayName, List<Map<String, Integer>> receivedMBRecipes,RecipeType recipeTypeQuick) {
@@ -80,22 +80,22 @@ public class QuickMachineBV extends SlimefunItem implements EnergyNetComponent {
                 menu.addMenuOpeningHandler((player -> {
                     addAvailableRecipesToMenu(menu, receivedMBRecipes, recipeTypeQuick);
                 }));
-                // 初始化菜单内容
+                // Set up the menu contents
                 for (int i : starslot) {
-                menu.addItem(i, new CustomItemStack(Material.NETHER_STAR, "§x§F§D§B§7§D§4使用说明",
-                            "§x§F§D§B§7§D§4§l点我一下刷新产物列表",
-                            "§e右键 §b查看单次合成所需的材料",
-                            "§e左键 §b制作一次",
-                            "§b按住 §eShift 右键 §b一次制作32个物品",
-                            "§b按住 §eShift 左键 §b制作所有可制作的物品",
-                            "§b注意 §e1~4行 §b是输入槽也是输出槽"),
+                menu.addItem(i, new CustomItemStack(Material.NETHER_STAR, "§x§F§D§B§7§D§4How to Use",
+                            "§x§F§D§B§7§D§4§lClick here to refresh the output list",
+                            "§eRight-click §bView the materials needed for one craft",
+                            "§eLeft-click §bCraft once",
+                            "§bHold §eShift Right-click §bto craft 32 items at once",
+                            "§bHold §eShift Left-click §bto craft all available items",
+                            "§bNote §eRows 1–4 §bare both input and output slots"),
                         (player1, slot, item, action) -> {
                             addAvailableRecipesToMenu(menu, receivedMBRecipes, recipeTypeQuick);
                             return false;
                         });
                 }
                 for (int i : arrowslots) {
-                    menu.addItem(i, new CustomItemStack(Material.ARROW, "&a点击翻页"),
+                    menu.addItem(i, new CustomItemStack(Material.ARROW, "&aClick to change pages"),
                             (player, slot, item, action) -> false);
                 }
 
@@ -155,11 +155,11 @@ public class QuickMachineBV extends SlimefunItem implements EnergyNetComponent {
                 public boolean onClick(InventoryClickEvent e, Player p, int slot, ItemStack cursor, ClickAction action) {
 
                         if (e.getAction() != InventoryAction.NOTHING){
-                            // G2: 强转前加 instanceof 判断，防止 holder 不是 BlockMenu 时抛 ClassCastException
+                            // G2: Check instanceof before casting to avoid a ClassCastException when the holder is not a BlockMenu
                             if (e.getInventory().getHolder() instanceof BlockMenu) {
                                 Block block = ((BlockMenu) e.getInventory().getHolder()).getBlock();
                                 if (block != null) {
-                                    // G1: 去抖——同一 tick 内多次点击只调度一次刷新任务，回调里重置标记
+                                    // G1: Debounce refreshes: multiple clicks in one tick schedule only one task, then reset the flag in the callback
                                     if (!refreshPending) {
                                         refreshPending = true;
                                         Bukkit.getScheduler().runTaskLater(MagicExpansion.getInstance(), () -> {
@@ -184,12 +184,12 @@ public class QuickMachineBV extends SlimefunItem implements EnergyNetComponent {
 
     static void borders(BlockMenuPreset preset, int[] inputInfo, int[] outputInfo, int[] arrow, int[] star, int[] iBorder) {
 //        for (int i : inputInfo ) {
-//            preset.addItem(i, new CustomItemStack(doGlow(new ItemStack (Material.LIGHT_BLUE_STAINED_GLASS_PANE)), "§b材料输入槽→","§b材料输入槽↓","§b1~3行为材料输入槽"),
+//            preset.addItem(i, new CustomItemStack(doGlow(new ItemStack (Material.LIGHT_BLUE_STAINED_GLASS_PANE)), "§bMaterial input slots →","§bMaterial input slots ↓","§bRows 1–3 are material input slots"),
 //                    (p, slot, item, action) -> false);
 //        }
 
 //        for (int i : outputInfo) {
-//            preset.addItem(i, new CustomItemStack(new ItemStack (Material.YELLOW_STAINED_GLASS_PANE), "§b产物输入槽→","§b产物列表↓"),
+//            preset.addItem(i, new CustomItemStack(new ItemStack (Material.YELLOW_STAINED_GLASS_PANE), "§bOutput input slots →","§bOutput list ↓"),
 //                    (p, slot, item, action) -> false);
 //        }
 
@@ -200,12 +200,12 @@ public class QuickMachineBV extends SlimefunItem implements EnergyNetComponent {
 //        }
 
 //        for (int i : star) {
-//            preset.addItem(i, new CustomItemStack(Material.NETHER_STAR, "§x§F§D§B§7§D§4使用说明",
-//                            "§x§F§D§B§7§D§4§l首次打开需要手动放入一个材料来初始化机器",
-//                            "§e右键 §b查看单次合成所需的材料",
-//                            "§e左键 §b制作一次",
-//                            "§b按住 §eShift 右键 §b一次制作32个物品",
-//                            "§b按住 §eShift 左键 §b制作所有可制作的物品"),
+//            preset.addItem(i, new CustomItemStack(Material.NETHER_STAR, "§x§F§D§B§7§D§4How to Use",
+//                            "§x§F§D§B§7§D§4§lWhen opening it for the first time, add one item manually to initialize the machine",
+//                            "§eRight-click §bView the materials needed for one craft",
+//                            "§eLeft-click §bCraft once",
+//                            "§bHold §eShift Right-click §bto craft 32 items at once",
+//                            "§bHold §eShift Left-click §bto craft all available items"),
 //                    (player1, slot, item, action) -> false);
 //        }
 

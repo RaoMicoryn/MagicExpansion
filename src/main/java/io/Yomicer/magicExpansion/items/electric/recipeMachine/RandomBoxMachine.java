@@ -37,7 +37,7 @@ public class RandomBoxMachine extends AbstractElectricRecipeMachine {
     private static final int[] BACKGROUND_SLOTS = new int[] { 4, 49 };
 
     private static final ItemStack PROGRESS_ITEM = new ItemStack(Material.SOUL_LANTERN);
-    private static final ItemStack PROGRESS_STACK = new CustomItemStack(Material.SOUL_CAMPFIRE, getGradientName("信息"), getGradientName("类型：加工机器"), getGradientName("所属附属：魔法"));
+    private static final ItemStack PROGRESS_STACK = new CustomItemStack(Material.SOUL_CAMPFIRE, getGradientName("Info"), getGradientName("Type: Processing Machine"), getGradientName("Addon: Magic"));
 
     public RandomBoxMachine(ItemGroup itemGroup, SlimefunItemStack item, RecipeType recipeType, ItemStack[] recipe) {
         super(itemGroup, item, recipeType, recipe);
@@ -53,28 +53,28 @@ public class RandomBoxMachine extends AbstractElectricRecipeMachine {
 
     }
 
-    // E2: 开盒节流计数器——每 10 tick 最多执行一次开盒逻辑，避免每 tick 高频开盒
+    // E2: Box-opening throttle counter. The opening logic runs at most once every 10 ticks, so boxes aren't opened every single tick
     private int openBoxTickCounter = 0;
 
     @Override
     public void tick(BlockMenu menu, Block b) {
 
-        // E2: 节流——每 10 tick 最多开 1 盒
+        // E2: Throttle: open at most 1 box every 10 ticks
         openBoxTickCounter++;
         if (openBoxTickCounter < 10) {
             return;
         }
         openBoxTickCounter = 0;
 
-        // E1: 电力检查——电量不足(或未配置耗电)时本 tick 不工作，防止无耗电产出
+        // E1: Power check. If there isn't enough energy (or no energy use is set), the machine doesn't work this tick, so it can't produce for free
         if (!takeCharge(b.getLocation())) {
             return;
         }
 
         int slot = containsTargetItem(menu, MagicExpansionItems.HONKAI_STAR_RAIL_BOX);
-        // E3: 删除复制粘贴产生的死分支——原第二个 containsTargetItem 查询的仍是同一种盒子
-        // (HONKAI_STAR_RAIL_BOX)，类与 MagicExpansionItems 中均不存在第二种盒子常量，
-        // else if 分支永远不可达，故整体移除
+        // E3: Removed a dead branch left over from copy and paste. The second containsTargetItem lookup was still checking the same kind of box
+        // (HONKAI_STAR_RAIL_BOX), and neither this class nor MagicExpansionItems has a second box constant,
+        // so the else if branch could never be reached and was removed entirely
         if(slot!=-1){
             ItemStack gift = getRandomItemFromGroup.getRandomItemStack(itemMapMihoyoHonkai);
             if (gift != null && menu.fits(gift, getOutputSlots())) {
@@ -91,28 +91,28 @@ public class RandomBoxMachine extends AbstractElectricRecipeMachine {
 
         if (box != null && box.getType() != Material.AIR) {
             inv.consumeItem(slot);
-//            Debug.logInfo("已消耗盲盒");
+//            Debug.logInfo("Blind box used");
         }
 
         if (output != null && output.getType() != Material.AIR) {
             inv.pushItem(output, getOutputSlots());
-//            Debug.logInfo("已生成礼物");
+//            Debug.logInfo("Gift generated");
         }
     }
 
     /**
-     * 检查指定槽位中是否存在与目标物品相似的 ItemStack
+     * Checks whether the given slots contain an ItemStack similar to the target item
      */
     public static int containsTargetItem(BlockMenu menu, ItemStack target) {
         for (int slot : INPUT_SLOTS) {
             ItemStack item = menu.getItemInSlot(slot);
 
             if (SlimefunUtils.isItemSimilar(item, target, true)) {
-                return slot; // 找到了匹配的物品
+                return slot; // Found a matching item
             }
         }
 
-        return -1; // 没找到
+        return -1; // Not found
     }
 
 
@@ -120,42 +120,42 @@ public class RandomBoxMachine extends AbstractElectricRecipeMachine {
     @Override
 	public List<ItemStack> getDisplayRecipes() {
 		List<ItemStack> display = new ArrayList<>();
-        display.add(new CustomItemStack(Material.KNOWLEDGE_BOOK, getGradientName("材料⇨"),getGradientName("中间分割线用于分割各个配方")));
-        display.add(new CustomItemStack(Material.KNOWLEDGE_BOOK, getGradientName("产物⇨"),getGradientName("中间分割线用于分割各个配方")));
-        // 遍历所有配方并动态生成展示内容
+        display.add(new CustomItemStack(Material.KNOWLEDGE_BOOK, getGradientName("Materials⇨"),getGradientName("The middle divider separates the recipes")));
+        display.add(new CustomItemStack(Material.KNOWLEDGE_BOOK, getGradientName("Output⇨"),getGradientName("The middle divider separates the recipes")));
+        // Go through all recipes and build the display list
         for (MachineRecipe recipe : recipes) {
             ItemStack[] inputs = recipe.getInput();
             ItemStack[] outputs = recipe.getOutput();
             int productionTime = recipe.getTicks()/2;
 
-            int maxItems = Math.max(inputs.length, outputs.length); // 获取最大物品数量
+            int maxItems = Math.max(inputs.length, outputs.length); // Get the largest item count
             for (int i = 0; i < maxItems; i++) {
-                // 添加输入物品（带生产时间）
+                // Add the input item (with production time)
                 if (i < inputs.length) {
-                    display.add(addLore(inputs[i], "§7生产时间: §e" + productionTime + " 秒"));
+                    display.add(addLore(inputs[i], "§7Production time: §e" + productionTime + " sec"));
                 } else {
-                    display.add(new ItemStack(Material.AIR)); // 如果没有更多输入物品，添加 AIR
+                    display.add(new ItemStack(Material.AIR)); // If there are no more input items, add AIR
                 }
 
-                // 添加输出物品（带生产时间）
+                // Add the output item (with production time)
                 if (i < outputs.length) {
-                    display.add(addLore(outputs[i], "§7生产时间: §e" + productionTime + " 秒（概率产出）"));
+                    display.add(addLore(outputs[i], "§7Production time: §e" + productionTime + " sec (random drop)"));
                 } else {
-                    display.add(new ItemStack(Material.AIR)); // 如果没有更多输出物品，添加 AIR
+                    display.add(new ItemStack(Material.AIR)); // If there are no more output items, add AIR
                 }
             }
-            display.add(new CustomItemStack(Material.PINK_STAINED_GLASS_PANE, getGradientName("<== 配方分割线 =>>"),getGradientName("<== 输入材料 =>>")));
-            display.add(new CustomItemStack(Material.PINK_STAINED_GLASS_PANE, getGradientName("<== 配方分割线 =>>"),getGradientName("<== 输出材料 =>>")));
-            // 遍历所有配方并动态生成展示内容
+            display.add(new CustomItemStack(Material.PINK_STAINED_GLASS_PANE, getGradientName("<== Recipe Divider =>>"),getGradientName("<== Input Materials =>>")));
+            display.add(new CustomItemStack(Material.PINK_STAINED_GLASS_PANE, getGradientName("<== Recipe Divider =>>"),getGradientName("<== Output Materials =>>")));
+            // Go through all recipes and build the display list
         }
         return display;
 	}
 
     /**
-     * 为物品添加描述（lore）
+     * Adds a description (lore) to an item
      */
     private ItemStack addLore(ItemStack item, String loreText) {
-        ItemStack newItem = item.clone(); // 防止直接修改原始物品
+        ItemStack newItem = item.clone(); // Avoid changing the original item directly
         ItemMeta meta = newItem.getItemMeta();
         List<String> lore = meta.hasLore() ? new ArrayList<>(meta.getLore()) : new ArrayList<>();
         lore.add(loreText);
@@ -171,8 +171,8 @@ public class RandomBoxMachine extends AbstractElectricRecipeMachine {
 	protected void setupMenu(BlockMenuPreset preset) {
 
         preset.drawBackground(new CustomItemStack(Material.PINK_STAINED_GLASS_PANE," "), BACKGROUND_SLOTS);
-        preset.drawBackground(new CustomItemStack(Material.LIGHT_BLUE_STAINED_GLASS_PANE,getGradientName("←输入槽")), INPUT_BORDER_SLOTS);
-        preset.drawBackground(new CustomItemStack(Material.LIME_STAINED_GLASS_PANE,getGradientName("输出槽→")), OUTPUT_BORDER_SLOTS);
+        preset.drawBackground(new CustomItemStack(Material.LIGHT_BLUE_STAINED_GLASS_PANE,getGradientName("←Input Slot")), INPUT_BORDER_SLOTS);
+        preset.drawBackground(new CustomItemStack(Material.LIME_STAINED_GLASS_PANE,getGradientName("Output Slot→")), OUTPUT_BORDER_SLOTS);
     
         preset.addItem(getProgressSlot(), new CustomItemStack(Material.PINK_STAINED_GLASS_PANE, " "), ChestMenuUtils.getEmptyClickHandler());
 

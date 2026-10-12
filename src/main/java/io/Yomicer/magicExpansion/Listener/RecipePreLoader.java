@@ -15,10 +15,10 @@ import java.util.concurrent.ConcurrentHashMap;
 
 public class RecipePreLoader implements Listener {
 
-    // 存储每种机器类型的配方列表
+    // Store recipes for each machine type.
     private static final Map<RecipeType, List<Map<ItemStack, Integer>>> RECIPES_BY_TYPE = new ConcurrentHashMap<>();
 
-    // 外部常量引用
+    // References to public constants.
     public static final List<Map<ItemStack, Integer>> ENHANCED_CRAFTING_TABLE_RECIPES = getOrCreateList(RecipeType.ENHANCED_CRAFTING_TABLE);
     public static final List<Map<ItemStack, Integer>> ARMOR_FORGE_RECIPES = getOrCreateList(RecipeType.ARMOR_FORGE);
     public static final List<Map<ItemStack, Integer>> ANCIENT_ALTAR_RECIPES = getOrCreateList(RecipeType.ANCIENT_ALTAR);
@@ -41,16 +41,16 @@ public class RecipePreLoader implements Listener {
         loadRecipes(ORE_CRUSHER_RECIPES, RecipeType.ORE_CRUSHER);
 
         long time = System.currentTimeMillis() - start;
-        Debug.logInfo("✅ 配方预加载完成，耗时 " + time + "ms");
+        Debug.logInfo("✅ Recipe preloading finished in " + time + "ms");
     }
 
     /**
-     * 加载指定 RecipeType 的所有配方
+     * Load all recipes for the given RecipeType.
      */
     private void loadRecipes(List<Map<ItemStack, Integer>> recipeList, RecipeType type) {
         if (recipeList == null || type == null) return;
 
-        // ✅ 最兼容方式获取所有物品：通过 SlimefunRegistry
+        // ✅ Get all items in the most compatible way, through SlimefunRegistry.
         Map<?, SlimefunItem> items = Slimefun.getRegistry().getSlimefunItemIds();
 
         int count = 0;
@@ -58,7 +58,7 @@ public class RecipePreLoader implements Listener {
         for (SlimefunItem item : items.values()) {
             if (item == null) continue;
 
-            // 检查 RecipeType 是否匹配
+            // Check whether the RecipeType matches.
             if (item.getRecipeType() != type) {
                 continue;
             }
@@ -66,7 +66,7 @@ public class RecipePreLoader implements Listener {
             ItemStack[] recipe = item.getRecipe();
             if (recipe == null || recipe.length == 0) continue;
 
-            // 检查是否有有效材料
+            // Check whether the recipe has any valid ingredients.
             boolean hasIngredient = false;
             for (ItemStack ing : recipe) {
                 if (ing != null && ing.getType() != Material.AIR) {
@@ -83,7 +83,7 @@ public class RecipePreLoader implements Listener {
                     continue;
                 }
 
-                // 合并相同物品
+                // Combine matching items.
                 boolean merged = false;
                 for (ItemStack key : recipeMap.keySet()) {
                     if (isSimilar(key, ingredient)) {
@@ -104,30 +104,30 @@ public class RecipePreLoader implements Listener {
             }
         }
 
-        // ✅ 显示机器名称（fallback 到 toString）
+        // ✅ Show the machine name (fall back to toString).
         String typeName = getRecipeTypeName(type);
-        Debug.logInfo("📊 已加载 [" + typeName + "] 类型配方: " + count + " 个");
+        Debug.logInfo("📊 Loaded [" + typeName + "] recipes for this type: " + count + " items");
     }
     /**
-     * 获取 RecipeType 的显示名称（尽可能友好）
+     * Get a readable name for the RecipeType.
      */
     private String getRecipeTypeName(RecipeType type) {
-        // 如果你有自定义名称映射，可以在这里加
+        // Add custom names here if needed.
         Map<RecipeType, String> NAMES = new HashMap<>();
-        NAMES.put(RecipeType.ENHANCED_CRAFTING_TABLE, "增强型合成台");
-        NAMES.put(RecipeType.ARMOR_FORGE, "盔甲锻造台");
-        NAMES.put(RecipeType.ANCIENT_ALTAR, "远古祭坛");
-        NAMES.put(RecipeType.GOLD_PAN, "淘金盘");
-        NAMES.put(RecipeType.HEATED_PRESSURE_CHAMBER, "加热压力室");
-        NAMES.put(RecipeType.MAGIC_WORKBENCH, "魔法工作台");
-        NAMES.put(RecipeType.ORE_CRUSHER, "矿物粉碎机");
+        NAMES.put(RecipeType.ENHANCED_CRAFTING_TABLE, "Enhanced Crafting Table");
+        NAMES.put(RecipeType.ARMOR_FORGE, "Armor Forge");
+        NAMES.put(RecipeType.ANCIENT_ALTAR, "Ancient Altar");
+        NAMES.put(RecipeType.GOLD_PAN, "Gold Pan");
+        NAMES.put(RecipeType.HEATED_PRESSURE_CHAMBER, "Heated Pressure Chamber");
+        NAMES.put(RecipeType.MAGIC_WORKBENCH, "Magic Workbench");
+        NAMES.put(RecipeType.ORE_CRUSHER, "Ore Crusher");
 
         return NAMES.getOrDefault(type, type.toString());
     }
 
 
     /**
-     * 判断两个 ItemStack 是否相似（类型相同即可，或可扩展 NBT 比较）
+     * Check whether two ItemStacks are similar (same item type for now; NBT checks can be added later).
      */
     private boolean isSimilar(ItemStack a, ItemStack b) {
         if (a == null || b == null) return false;
@@ -136,7 +136,7 @@ public class RecipePreLoader implements Listener {
     }
 
     /**
-     * 初始化或获取列表
+     * Create a list or get an existing one.
      */
     private static List<Map<ItemStack, Integer>> getOrCreateList(RecipeType type) {
         List<Map<ItemStack, Integer>> list = new ArrayList<>();
@@ -144,12 +144,12 @@ public class RecipePreLoader implements Listener {
         return list;
     }
 
-    // ✅ 获取某个机器的所有配方
+    // ✅ Get all recipes for a machine.
     public static List<Map<ItemStack, Integer>> getRecipes(RecipeType type) {
         return RECIPES_BY_TYPE.getOrDefault(type, Collections.emptyList());
     }
 
-    // ✅ 获取所有已加载类型
+    // ✅ Get all loaded recipe types.
     public static Set<RecipeType> getLoadedTypes() {
         return Collections.unmodifiableSet(new HashSet<>(RECIPES_BY_TYPE.keySet()));
     }

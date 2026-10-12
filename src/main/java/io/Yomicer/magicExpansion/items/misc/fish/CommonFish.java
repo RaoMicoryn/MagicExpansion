@@ -24,54 +24,54 @@ public class CommonFish extends SimpleSlimefunItem<ItemUseHandler> implements No
     public @NotNull ItemUseHandler getItemHandler() {
         return e -> {
 
-            // 阻止默认行为（放置方块或使用物品）
+            // Stop the default behavior (placing a block or using the item)
             e.setUseItem(Event.Result.DENY);
             e.setUseBlock(Event.Result.DENY);
             ItemStack item = e.getItem();
 
             if (!FishItemReader.isFishItem(item)) {
-                return; // 不是鱼物品，直接返回
+                return; // Not a fish item, just return
             }
 
             Player player = e.getPlayer();
             Fish fish = FishItemReader.getFishType(item);
 
             if (fish == null) {
-                player.sendMessage("§c这条鱼的数据已损坏，无法识别种类。");
+                player.sendMessage("§cThis fish's data is corrupted, so we can't tell what kind it is.");
                 return;
             }
 
             double weight = FishItemReader.getFishWeight(item);
             if (weight <= 0) {
-                player.sendMessage("§c这条鱼的重量数据异常。");
+                player.sendMessage("§cThis fish's weight data looks wrong.");
                 return;
             }
             Fish.WeightRarity wr = FishItemReader.getWeightRarity(item);
-            // 正常显示信息
-            player.sendMessage("§6你拿着一条 §e" + fish.getDisplayName() + "§6。");
-            player.sendMessage("§7重量: §f" + String.format("%.3f", weight) + "kg");
+            // Show the info normally
+            player.sendMessage("§6You're holding a §e" + fish.getDisplayName() + "§6.");
+            player.sendMessage("§7Weight: §f" + String.format("%.3f", weight) + "kg");
             if (wr != null) {
-                player.sendMessage("§7重量稀有度: " + wr.getColorCode() + wr.getDisplayName());
+                player.sendMessage("§7Weight rarity: " + wr.getColorCode() + wr.getDisplayName());
             }
 
         };
     }
 
     /**
-     * 安全检查：该物品是否为有效的鱼物品
+     * Safety check: is this item a valid fish item?
      */
     public static boolean isFishItem(ItemStack item) {
         if (item == null) return false;
         if (item.getType() == Material.AIR) return false;
         ItemMeta meta = item.getItemMeta();
         if (meta == null) return false;
-        if (!meta.hasDisplayName()) return false; // 可选：检查是否有名字
+        if (!meta.hasDisplayName()) return false; // Optional: check that it has a name
         var container = meta.getPersistentDataContainer();
         return container.has(FishKeys.FISH_TYPE, PersistentDataType.STRING);
     }
     /**
-     * 安全获取鱼的类型
-     * @return 对应的 Fish 枚举，失败返回 null
+     * Safely get the fish's type
+     * @return the matching Fish enum, or null if it fails
      */
     public static Fish getFishType(ItemStack item) {
         if (!isFishItem(item)) return null;
@@ -87,17 +87,17 @@ public class CommonFish extends SimpleSlimefunItem<ItemUseHandler> implements No
 
             return Fish.valueOf(typeName.trim());
         } catch (IllegalArgumentException e) {
-            // 枚举值不存在（比如插件更新后旧物品残留）
+            // The enum value doesn't exist (for example, an old item left over after a plugin update)
             return null;
         } catch (Exception e) {
-            // 其他意外异常（如容器损坏）
+            // Any other unexpected error (like a broken container)
             e.printStackTrace();
             return null;
         }
     }
     /**
-     * 安全获取鱼的重量
-     * @return 重量（kg），失败返回 0.0
+     * Safely get the fish's weight
+     * @return weight in kg, or 0.0 if it fails
      */
     public static double getFishWeight(ItemStack item) {
         if (!isFishItem(item)) return 0.0;
@@ -109,16 +109,16 @@ public class CommonFish extends SimpleSlimefunItem<ItemUseHandler> implements No
             Double weight = meta.getPersistentDataContainer()
                     .get(FishKeys.FISH_WEIGHT, PersistentDataType.DOUBLE);
 
-            // 检查是否为有效数值
+            // Check that it's a valid number
             if (weight == null || Double.isNaN(weight) || weight < 0) {
                 return 0.0;
             }
 
-            // 可选：检查是否在该鱼种的合理范围内
+            // Optional: check that it's within a reasonable range for this fish
             Fish fish = getFishType(item);
             if (fish != null) {
                 if (weight < fish.getMinWeight() || weight > fish.getMaxWeight() * 2) {
-                    // 允许略微超出（比如奖励加成），但不能离谱
+                    // Slightly over is allowed (like with bonus boosts), but not crazy values
                     return 0.0;
                 }
             }
@@ -130,12 +130,12 @@ public class CommonFish extends SimpleSlimefunItem<ItemUseHandler> implements No
         }
     }
     /**
-     * 安全获取重量稀有度
-     * @return WeightRarity 枚举，失败返回 COMMON_FISH
+     * Safely get the weight rarity
+     * @return a WeightRarity enum, or COMMON_FISH if it fails
      */
     public static Fish.WeightRarity getWeightRarity(ItemStack item) {
         if (!isFishItem(item)) {
-            return Fish.WeightRarity.COMMON_FISH; // 默认值
+            return Fish.WeightRarity.COMMON_FISH; // Default value
         }
 
         try {
@@ -144,7 +144,7 @@ public class CommonFish extends SimpleSlimefunItem<ItemUseHandler> implements No
                     .get(FishKeys.FISH_WEIGHT_RARITY, PersistentDataType.STRING);
 
             if (wrName == null || wrName.trim().isEmpty()) {
-                // 如果没有存储，根据当前重量重新计算
+                // If nothing is saved, work it out again from the current weight
                 double weight = getFishWeight(item);
                 Fish fish = getFishType(item);
                 if (fish != null && weight > 0) {
@@ -155,7 +155,7 @@ public class CommonFish extends SimpleSlimefunItem<ItemUseHandler> implements No
 
             return Fish.WeightRarity.valueOf(wrName.trim());
         } catch (IllegalArgumentException e) {
-            // 枚举值不存在，重新计算
+            // The enum value doesn't exist, work it out again
             double weight = getFishWeight(item);
             Fish fish = getFishType(item);
             if (fish != null && weight > 0) {

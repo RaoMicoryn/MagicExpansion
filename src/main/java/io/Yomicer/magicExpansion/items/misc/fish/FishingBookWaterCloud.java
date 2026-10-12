@@ -13,7 +13,7 @@ import org.bukkit.inventory.ItemStack;
 import org.jetbrains.annotations.NotNull;
 
 /**
- * 水云间钓鱼指南书: 内容暂未编写, 右键提示制作中
+ * Water & Cloud fishing guide book: no content yet, right-click just says it's still being made
  */
 public class FishingBookWaterCloud extends SimpleSlimefunItem<ItemUseHandler> implements NotPlaceable {
 
@@ -27,7 +27,7 @@ public class FishingBookWaterCloud extends SimpleSlimefunItem<ItemUseHandler> im
             e.setUseItem(Event.Result.DENY);
             e.setUseBlock(Event.Result.DENY);
             Player player = e.getPlayer();
-            player.sendMessage("§b水云间钓鱼指南内容制作中, 敬请期待！");
+            player.sendMessage("§bThe Water & Cloud fishing guide is still being written, stay tuned!");
             player.playSound(player.getLocation(), Sound.UI_BUTTON_CLICK, 0.5f, 1.0f);
         };
     }
